@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-green: #10b981;
+  --lime-accent: #84cc16;
+  --forest-dark: #0d2b1f;
+  --navy-dark: #0f172a;
+  --near-black: #111827;
+  --body: #374151;
+  --subtext: #6b7280;
+  --footer-dark: #0a1f14;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--body);
+  background: #ffffff;
+  overflow-x: hidden;
+}
+
+@layer utilities {
+  .text-gradient-cta {
+    @apply bg-gradient-to-b from-white via-white to-lime-accent bg-clip-text text-transparent;
+  }
+
+  .text-gradient-lime-emerald {
+    @apply bg-gradient-to-r from-lime-accent to-emerald-500 bg-clip-text text-transparent;
+  }
+
+  .text-gradient-custom-ai {
+    @apply bg-gradient-to-r from-pink-400 via-purple-500 to-blue-500 bg-clip-text text-transparent;
+  }
+}
