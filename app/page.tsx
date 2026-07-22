@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
-import VideoSection from "@/components/VideoSection";
+import IntegrationsFeatures from "@/components/IntegrationsFeatures";
+import SmartDashboardSection from "@/components/SmartDashboardSection";
 import RavenAISection from "@/components/RavenAISection";
 import ChannelsSection from "@/components/ChannelsSection";
 import MyLinkrSection from "@/components/MyLinkrSection";
@@ -15,7 +16,8 @@ export default function Home() {
     <main className="min-h-screen overflow-x-hidden">
       <Navbar />
       <HeroSection />
-      <VideoSection />
+      <IntegrationsFeatures />
+      <SmartDashboardSection />
       <RavenAISection />
       <ChannelsSection />
       <MyLinkrSection />

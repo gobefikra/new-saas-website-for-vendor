@@ -12,7 +12,7 @@ import { blogPost } from "@/lib/blog-data";
 
 export default function BlogDetailPage() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-white pt-16 md:pt-[4.5rem]">
       <Navbar />
       <ReadingProgressBar />
       <HeroBlock post={blogPost} />

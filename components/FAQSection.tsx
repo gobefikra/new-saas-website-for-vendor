@@ -1,10 +1,25 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence, useInView } from "framer-motion";
-import { useRef } from "react";
-import { Minus, Plus } from "lucide-react";
+import Link from "next/link";
+import { useRef, useState } from "react";
+import { AnimatePresence, motion, useInView } from "framer-motion";
+import {
+  ArrowRight,
+  CircleHelp,
+  Headphones,
+  HelpCircle,
+  MessageCircle,
+  Minus,
+  Plus,
+} from "lucide-react";
 import { fadeInUp } from "@/components/motion";
+
+const GREEN = "#22C55E";
+const GREEN_DARK = "#16A34A";
+const NAVY = "#0D1B2A";
+const BODY = "#6B7280";
+const MINT = "#E8F5E9";
+const SECTION_BG = "#F4F6F8";
 
 const faqs = [
   {
@@ -39,6 +54,86 @@ const faqs = [
   },
 ];
 
+function FaqItem({
+  faq,
+  isOpen,
+  onToggle,
+}: {
+  faq: (typeof faqs)[number];
+  isOpen: boolean;
+  onToggle: () => void;
+}) {
+  return (
+    <div
+      className={`rounded-2xl bg-white shadow-[0_4px_20px_rgba(13,27,42,0.05)] transition-shadow ${
+        isOpen ? "p-5 sm:p-6" : "px-5 py-4 sm:px-6 sm:py-4"
+      }`}
+    >
+      <button
+        type="button"
+        onClick={onToggle}
+        className="flex w-full items-center gap-3 text-left sm:gap-4"
+        aria-expanded={isOpen}
+      >
+        <span
+          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full sm:h-10 sm:w-10"
+          style={{ backgroundColor: MINT }}
+        >
+          {isOpen ? (
+            <MessageCircle
+              className="h-4 w-4 sm:h-[18px] sm:w-[18px]"
+              style={{ color: GREEN_DARK }}
+              strokeWidth={2}
+            />
+          ) : (
+            <HelpCircle
+              className="h-4 w-4 sm:h-[18px] sm:w-[18px]"
+              style={{ color: GREEN_DARK }}
+              strokeWidth={2}
+            />
+          )}
+        </span>
+
+        <span
+          className="min-w-0 flex-1 text-sm font-bold leading-snug sm:text-base"
+          style={{ color: NAVY }}
+        >
+          {faq.question}
+        </span>
+
+        <span className="shrink-0" style={{ color: GREEN }}>
+          {isOpen ? (
+            <Minus className="h-5 w-5" strokeWidth={2.25} />
+          ) : (
+            <Plus className="h-5 w-5" strokeWidth={2.25} />
+          )}
+        </span>
+      </button>
+
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="overflow-hidden"
+          >
+            <div className="mt-4 rounded-xl bg-gray-50 px-4 py-3.5 sm:ml-14 sm:px-5 sm:py-4">
+              <p
+                className="font-dm-sans text-sm leading-relaxed"
+                style={{ color: BODY }}
+              >
+                {faq.answer}
+              </p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
 export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState(0);
   const ref = useRef(null);
@@ -46,69 +141,104 @@ export default function FAQSection() {
 
   return (
     <section
+      id="faq"
       ref={ref}
-      className="w-full overflow-hidden bg-white py-20 md:py-28 px-4"
+      className="w-full overflow-hidden px-4 py-20 md:py-24"
+      style={{ backgroundColor: SECTION_BG }}
     >
-      <div className="max-w-2xl mx-auto">
-        <motion.h2
+      <div className="mx-auto max-w-3xl">
+        {/* Header */}
+        <motion.div
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
           variants={fadeInUp}
-          className="text-3xl md:text-4xl font-extrabold text-center text-near-black"
+          className="text-center"
         >
-          Common Questions. Clear Answers.
-        </motion.h2>
+          <span
+            className="inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-bold uppercase tracking-wide"
+            style={{ borderColor: "#A5D6A7", backgroundColor: MINT, color: GREEN_DARK }}
+          >
+            <span
+              className="flex h-5 w-5 items-center justify-center rounded-full text-white"
+              style={{ backgroundColor: GREEN }}
+            >
+              <CircleHelp className="h-3 w-3" strokeWidth={2.5} />
+            </span>
+            FAQ
+          </span>
 
+          <h2
+            className="mt-5 text-3xl font-extrabold leading-tight md:text-4xl lg:text-[2.75rem]"
+            style={{ color: NAVY }}
+          >
+            Common Questions.
+            <br />
+            <span style={{ color: GREEN }}>Clear Answers.</span>
+          </h2>
+
+          <p
+            className="font-dm-sans mx-auto mt-4 max-w-md text-base"
+            style={{ color: BODY }}
+          >
+            Everything you need to know about Befikra Partner.
+          </p>
+        </motion.div>
+
+        {/* Accordion */}
         <motion.div
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
           variants={fadeInUp}
           transition={{ delay: 0.1 }}
-          className="mt-12 space-y-4"
+          className="mt-10 space-y-4"
         >
-          {faqs.map((faq, index) => {
-            const isOpen = openIndex === index;
-            return (
-              <div
-                key={faq.question}
-                className="border border-gray-200 rounded-2xl px-6 py-5 cursor-pointer hover:border-gray-300 transition-colors"
-                onClick={() => setOpenIndex(isOpen ? -1 : index)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") {
-                    e.preventDefault();
-                    setOpenIndex(isOpen ? -1 : index);
-                  }
-                }}
-                role="button"
-                tabIndex={0}
-                aria-expanded={isOpen}
-              >
-                <div className="flex items-center justify-between gap-4">
-                  <h3 className="font-bold text-near-black text-left">
-                    {faq.question}
-                  </h3>
-                  {isOpen ? (
-                    <Minus className="w-5 h-5 text-emerald-500 shrink-0" />
-                  ) : (
-                    <Plus className="w-5 h-5 text-emerald-500 shrink-0" />
-                  )}
-                </div>
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                      className="overflow-hidden"
-                    >
-                      <p className="text-subtext text-sm mt-3">{faq.answer}</p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            );
-          })}
+          {faqs.map((faq, index) => (
+            <FaqItem
+              key={faq.question}
+              faq={faq}
+              isOpen={openIndex === index}
+              onToggle={() => setOpenIndex(openIndex === index ? -1 : index)}
+            />
+          ))}
+        </motion.div>
+
+        {/* Support CTA */}
+        <motion.div
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          variants={fadeInUp}
+          transition={{ delay: 0.2 }}
+          className="mt-8 flex flex-col items-start gap-4 rounded-2xl bg-white px-5 py-5 shadow-[0_4px_20px_rgba(13,27,42,0.05)] sm:flex-row sm:items-center sm:justify-between sm:px-6"
+        >
+          <div className="flex items-center gap-3.5">
+            <span
+              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full"
+              style={{ backgroundColor: MINT }}
+            >
+              <Headphones
+                className="h-5 w-5"
+                style={{ color: GREEN_DARK }}
+                strokeWidth={2}
+              />
+            </span>
+            <div>
+              <p className="text-sm font-bold sm:text-base" style={{ color: NAVY }}>
+                Still have questions?
+              </p>
+              <p className="font-dm-sans text-sm" style={{ color: BODY }}>
+                We&apos;re here to help you succeed.
+              </p>
+            </div>
+          </div>
+
+          <Link
+            href="/contact"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-xl border px-5 py-2.5 text-sm font-semibold transition-colors hover:bg-gray-50 sm:w-auto"
+            style={{ borderColor: GREEN, color: GREEN_DARK }}
+          >
+            Contact Support
+            <ArrowRight className="h-4 w-4" strokeWidth={2.25} />
+          </Link>
         </motion.div>
       </div>
     </section>

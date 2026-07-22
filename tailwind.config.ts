@@ -23,6 +23,7 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["var(--font-plus-jakarta)", "system-ui", "sans-serif"],
+        "dm-sans": ["var(--font-dm-sans)", "system-ui", "sans-serif"],
       },
     },
   },

@@ -1,18 +1,99 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { fadeInUp } from "@/components/motion";
+import {
+  ArrowRight,
+  BarChart3,
+  Calendar,
+  Link2,
+  Play,
+  Shield,
+  Sparkles,
+  Users,
+  Zap,
+} from "lucide-react";
+import MyLinkrHomeVisual from "@/components/mylinkr/MyLinkrHomeVisual";
+import { fadeInUp, staggerContainer } from "@/components/motion";
 
-const floatingChips = [
-  { label: "Event Booking", className: "top-4 left-0 md:-left-4" },
-  { label: "Instant Payments", className: "top-4 right-0 md:-right-4" },
-  { label: "Custom Themes", className: "top-1/2 -translate-y-1/2 left-0 md:-left-8" },
-  { label: "Share Anywhere", className: "top-1/2 -translate-y-1/2 right-0 md:-right-8" },
-  { label: "AI-Powered Replies", className: "bottom-8 left-0 md:-left-4" },
-  { label: "Track Clicks & Bookings", className: "bottom-8 right-0 md:-right-4" },
+const GREEN = "#22C55E";
+const NAVY = "#0D1B2A";
+const BODY = "#6B7280";
+const MINT = "#E8F5E9";
+
+const features = [
+  {
+    Icon: Link2,
+    title: "All-in-one link",
+    desc: "Events, trips, payments & more — all in one place.",
+    iconBg: "#E8F5E9",
+    iconColor: "#2E7D32",
+  },
+  {
+    Icon: Zap,
+    title: "Instant actions",
+    desc: "Book, pay, and confirm in seconds.",
+    iconBg: "#DBEAFE",
+    iconColor: "#2563EB",
+  },
+  {
+    Icon: BarChart3,
+    title: "Built for growth",
+    desc: "Capture leads, boost conversions, and grow faster.",
+    iconBg: "#F3E5F5",
+    iconColor: "#9333EA",
+  },
+  {
+    Icon: Shield,
+    title: "Secure & reliable",
+    desc: "Safe payments, secure data, total peace of mind.",
+    iconBg: "#FFEDD5",
+    iconColor: "#EA580C",
+  },
+];
+
+const stats = [
+  {
+    Icon: Link2,
+    value: "10K+",
+    title: "Links Created",
+    desc: "One link for all your bookings & leads",
+    iconBg: "#E8F5E9",
+    iconColor: "#2E7D32",
+  },
+  {
+    Icon: Calendar,
+    value: "2M+",
+    title: "Bookings Made",
+    desc: "Turning visitors into happy customers",
+    iconBg: "#F3E5F5",
+    iconColor: "#9333EA",
+  },
+  {
+    Icon: Users,
+    value: "500+",
+    title: "Businesses",
+    desc: "From startups to scaleups, we've got you covered",
+    iconBg: "#DBEAFE",
+    iconColor: "#2563EB",
+  },
+  {
+    Icon: BarChart3,
+    value: "98%",
+    title: "Conversion Boost",
+    desc: "More bookings with smarter engagement",
+    iconBg: "#FFEDD5",
+    iconColor: "#EA580C",
+  },
+  {
+    Icon: Shield,
+    value: "100%",
+    title: "Secure Payments",
+    desc: "Safe, secure & peace of mind",
+    iconBg: "#E8F5E9",
+    iconColor: "#2E7D32",
+  },
 ];
 
 export default function MyLinkrSection() {
@@ -23,104 +104,158 @@ export default function MyLinkrSection() {
     <section
       id="mylinkr"
       ref={ref}
-      className="w-full overflow-hidden bg-emerald-500 py-20 md:py-28 px-4 md:px-8"
+      className="w-full overflow-hidden bg-white px-4 py-20 md:py-24 lg:px-8"
     >
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-        <motion.div
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          variants={fadeInUp}
-          className="text-white"
-        >
-          <span className="bg-white/20 text-white text-sm px-4 py-1 rounded-full inline-block mb-6">
-            🚀 New Feature
-          </span>
-          <h2 className="text-4xl md:text-5xl font-extrabold leading-tight">
-            One link.
-            <br />
-            Unlimited bookings.
-          </h2>
-          <p className="font-semibold text-xl mt-4">
-            Turn Every Visitor Into a Booking With MyLinkr
-          </p>
-          <p className="text-white/80 text-base mt-4 max-w-md">
-            MyLinkr gives you a powerful personalized booking page where
-            customers can explore events, view details, and book instantly.
-            Share one link across WhatsApp, Instagram, and your website to
-            capture leads, accept payments, and grow your business faster.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-4">
-            <Link
-              href="/contact"
-              className="bg-white text-emerald-600 font-semibold rounded-full px-6 py-3 hover:bg-gray-100 transition-colors"
-            >
-              Book a demo
-            </Link>
-            <Link
-              href="/contact"
-              className="border border-white text-white rounded-full px-6 py-3 font-semibold hover:bg-white/10 transition-colors"
-            >
-              Learn More
-            </Link>
-          </div>
-        </motion.div>
-
-        <motion.div
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          variants={fadeInUp}
-          transition={{ delay: 0.15 }}
-          className="relative flex justify-center min-h-[420px] items-center"
-        >
+      <div className="mx-auto max-w-6xl">
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-10">
+          {/* Left — copy & CTAs */}
           <motion.div
-            animate={{ y: [-8, 8, -8] }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-            className="relative w-64 md:w-72"
+            initial="hidden"
+            animate={inView ? "visible" : "hidden"}
+            variants={staggerContainer}
           >
-            <Image
-              src="/icons/iPhone_17.png"
-              alt="MyLinkr on iPhone"
-              width={288}
-              height={580}
-              className="w-full h-auto relative z-10"
-            />
-            <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
-              <div className="relative w-[78%] h-[92%] mt-[-2%] overflow-hidden rounded-[2rem]">
-                <Image
-                  src="/icons/Mobile-screen.png"
-                  alt="MyLinkr booking page"
-                  fill
-                  className="object-cover object-top"
-                  sizes="220px"
-                />
-              </div>
-            </div>
+            <motion.span
+              variants={fadeInUp}
+              className="inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wide"
+              style={{ borderColor: "#A5D6A7", backgroundColor: MINT, color: "#1B5E20" }}
+            >
+              <Sparkles className="h-3.5 w-3.5" strokeWidth={2.25} />
+              NEW FEATURE
+            </motion.span>
+
+            <motion.h2
+              variants={fadeInUp}
+              className="mt-5 text-4xl font-extrabold leading-[1.1] tracking-tight md:text-5xl lg:text-[3.25rem]"
+              style={{ color: NAVY }}
+            >
+              One link.
+              <br />
+              <span style={{ color: GREEN }}>Unlimited bookings.</span>
+            </motion.h2>
+
+            <motion.p
+              variants={fadeInUp}
+              className="font-dm-sans mt-5 max-w-md text-base leading-relaxed md:text-lg"
+              style={{ color: BODY }}
+            >
+              Create a powerful booking page in minutes. All your events,
+              payments, and more — in one smart link.
+            </motion.p>
+
+            <motion.ul
+              variants={staggerContainer}
+              className="mt-8 space-y-5"
+            >
+              {features.map(({ Icon, title, desc, iconBg, iconColor }) => (
+                <motion.li
+                  key={title}
+                  variants={fadeInUp}
+                  className="flex items-start gap-3.5"
+                >
+                  <div
+                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full"
+                    style={{ backgroundColor: iconBg }}
+                  >
+                    <Icon
+                      className="h-5 w-5"
+                      style={{ color: iconColor }}
+                      strokeWidth={2}
+                    />
+                  </div>
+                  <div>
+                    <p className="text-sm font-bold" style={{ color: NAVY }}>
+                      {title}
+                    </p>
+                    <p
+                      className="font-dm-sans mt-0.5 text-sm leading-relaxed"
+                      style={{ color: BODY }}
+                    >
+                      {desc}
+                    </p>
+                  </div>
+                </motion.li>
+              ))}
+            </motion.ul>
+
+            <motion.div
+              variants={fadeInUp}
+              className="mt-9 flex flex-wrap items-center gap-3"
+            >
+              <Link
+                href="/mylinkr"
+                className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+                style={{ backgroundColor: NAVY }}
+              >
+                Explore MyLinkr
+                <ArrowRight className="h-4 w-4" strokeWidth={2.25} />
+              </Link>
+              <Link
+                href="/mylinkr"
+                className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-6 py-3 text-sm font-semibold transition-colors hover:bg-gray-50"
+                style={{ color: NAVY }}
+              >
+                <Play className="h-4 w-4 fill-current" strokeWidth={0} />
+                See how it works
+              </Link>
+            </motion.div>
           </motion.div>
 
-          {floatingChips.map((chip, i) => (
-            <motion.span
-              key={chip.label}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={inView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ delay: 0.2 + i * 0.08 }}
-              className={`absolute hidden sm:inline-block bg-white text-gray-800 text-xs font-semibold px-3 py-1.5 rounded-full shadow-md whitespace-nowrap ${chip.className}`}
-            >
-              {chip.label}
-            </motion.span>
-          ))}
+          {/* Right — visual */}
+          <motion.div
+            initial="hidden"
+            animate={inView ? "visible" : "hidden"}
+            variants={fadeInUp}
+            transition={{ delay: 0.12 }}
+            className="overflow-visible"
+          >
+            <MyLinkrHomeVisual />
+          </motion.div>
+        </div>
 
-          <div className="flex flex-wrap justify-center gap-2 mt-6 sm:hidden absolute -bottom-2 left-0 right-0">
-            {floatingChips.map((chip) => (
-              <span
-                key={chip.label}
-                className="bg-white text-gray-800 text-xs font-semibold px-3 py-1.5 rounded-full shadow-md"
+        {/* Stats bar */}
+        <motion.div
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          variants={fadeInUp}
+          transition={{ delay: 0.2 }}
+          className="mt-16 overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-[0_8px_40px_rgba(13,27,42,0.06)]"
+        >
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5">
+            {stats.map((stat, index) => (
+              <div
+                key={stat.title}
+                className={`flex flex-col items-center px-5 py-7 text-center ${
+                  index < stats.length - 1
+                    ? "border-b border-gray-100 sm:border-b-0 sm:border-r"
+                    : ""
+                }`}
               >
-                {chip.label}
-              </span>
+                <div
+                  className="flex h-10 w-10 items-center justify-center rounded-full"
+                  style={{ backgroundColor: stat.iconBg }}
+                >
+                  <stat.Icon
+                    className="h-5 w-5"
+                    style={{ color: stat.iconColor }}
+                    strokeWidth={2}
+                  />
+                </div>
+                <p
+                  className="mt-3 text-2xl font-extrabold tracking-tight"
+                  style={{ color: NAVY }}
+                >
+                  {stat.value}
+                </p>
+                <p className="mt-0.5 text-sm font-bold" style={{ color: NAVY }}>
+                  {stat.title}
+                </p>
+                <p
+                  className="font-dm-sans mt-1 max-w-[160px] text-xs leading-relaxed"
+                  style={{ color: BODY }}
+                >
+                  {stat.desc}
+                </p>
+              </div>
             ))}
           </div>
         </motion.div>

@@ -1,7 +1,7 @@
 "use client";
 
+import { useRef, useState } from "react";
 import Image from "next/image";
-import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { fadeInUp } from "@/components/motion";
 import DashboardMockup from "@/components/blog/BlogDetail/DashboardMockup";
@@ -39,6 +39,9 @@ function AnimatedImage({
 }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
+  const [imgError, setImgError] = useState(false);
+  const showImage = src && !imgError;
+
   return (
     <motion.figure
       ref={ref}
@@ -47,12 +50,21 @@ function AnimatedImage({
       transition={{ duration: 0.5 }}
       className="my-8"
     >
-      {src ? (
-        <div className="relative w-full h-64 rounded-2xl overflow-hidden">
-          <Image src={src} alt={alt} fill className="object-cover" sizes="800px" />
+      {showImage ? (
+        <div className="relative h-64 w-full overflow-hidden rounded-2xl">
+          <Image
+            src={src}
+            alt={alt}
+            fill
+            className="object-cover"
+            sizes="800px"
+            onError={() => setImgError(true)}
+          />
         </div>
       ) : (
-        fallback
+        fallback ?? (
+          <div className="flex h-64 w-full items-center justify-center rounded-2xl bg-gradient-to-br from-gray-200 to-gray-300" />
+        )
       )}
       {caption && (
         <figcaption className="text-gray-400 text-sm text-center mt-2 mb-6">

@@ -8,7 +8,7 @@ import { FaInstagram, FaLink, FaWhatsapp } from "react-icons/fa";
 import { FaMeta } from "react-icons/fa6";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import IntegrationTabs from "@/components/IntegrationTabs";
+import StickyTabNav from "@/components/StickyTabNav";
 import IntegrationFAQ from "@/components/IntegrationFAQ";
 import IntegrationsCTA from "@/components/IntegrationsCTA";
 import { fadeInUp, staggerContainer } from "@/components/motion";
@@ -235,6 +235,7 @@ export default function IntegrationsPage() {
   return (
     <main className="min-h-screen overflow-x-hidden bg-white">
       <Navbar />
+      <StickyTabNav zoneRef={zoneRef} />
 
       {/* Hero */}
       <section className="relative bg-white py-20 overflow-visible px-4">
@@ -321,22 +322,13 @@ export default function IntegrationsPage() {
         </motion.div>
       </section>
 
-      {/* Integration zone + sticky tabs */}
-      <div ref={zoneRef} className="relative">
-        <div className="px-4 pt-4 pb-2">
-          <IntegrationTabs
-            whatsappRef={whatsappRef}
-            instagramRef={instagramRef}
-            websiteRef={websiteRef}
-            zoneRef={zoneRef}
-          />
-        </div>
-
+      {/* Integration zone */}
+      <div ref={zoneRef} className="relative pt-2">
         {/* WhatsApp */}
         <section
-          id="whatsapp-section"
+          id="whatsapp"
           ref={whatsappRef}
-          className="bg-[#0F1B2D] text-white py-20 px-8 md:px-20 scroll-mt-28"
+          className="scroll-mt-[8.5rem] bg-[#0F1B2D] px-8 py-20 text-white md:px-20"
         >
           <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             <div className="max-w-lg">
@@ -362,9 +354,9 @@ export default function IntegrationsPage() {
 
         {/* Instagram */}
         <section
-          id="instagram-section"
+          id="instagram"
           ref={instagramRef}
-          className="bg-white py-20 px-8 md:px-20 scroll-mt-28"
+          className="scroll-mt-[8.5rem] bg-white px-8 py-20 md:px-20"
         >
           <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             <div
@@ -393,9 +385,9 @@ export default function IntegrationsPage() {
 
         {/* Website */}
         <section
-          id="website-section"
+          id="website"
           ref={websiteRef}
-          className="bg-[#0F1B2D] text-white py-20 px-8 md:px-20 scroll-mt-28"
+          className="scroll-mt-[8.5rem] bg-[#0F1B2D] px-8 py-20 text-white md:px-20"
         >
           <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             <div className="max-w-lg">

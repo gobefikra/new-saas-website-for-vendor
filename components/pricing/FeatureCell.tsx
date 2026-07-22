@@ -1,57 +1,40 @@
-import { Check } from "lucide-react";
-import type { BadgeVariant, CellValue } from "@/lib/pricing-data";
+import { Check, X } from "lucide-react";
+import type { CellValue } from "@/lib/pricing-data";
 
-const badgeStyles: Record<BadgeVariant, string> = {
-  default: "bg-gray-100 text-gray-700 border border-gray-200",
-  green: "bg-emerald-50 text-emerald-700 border border-emerald-200",
-  amber: "bg-amber-50 text-amber-700 border border-amber-200",
-  rust: "bg-red-50 text-red-600 border border-red-200",
-};
+const GREEN = "#22C55E";
+const NAVY = "#0D1B2A";
+const MUTED = "#9CA3AF";
 
 type FeatureCellProps = {
   value: CellValue;
-  featured?: boolean;
 };
 
-export default function FeatureCell({ value, featured }: FeatureCellProps) {
-  const baseClass = featured ? "bg-emerald-50/30" : "";
-
+export default function FeatureCell({ value }: FeatureCellProps) {
   switch (value.type) {
     case "check":
       return (
-        <div className={`flex justify-center items-center p-2 ${baseClass}`}>
-          <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-emerald-500 text-white">
-            <Check className="w-3 h-3" strokeWidth={3} />
-          </span>
-        </div>
+        <span
+          className="inline-flex h-[22px] w-[22px] items-center justify-center rounded-full"
+          style={{ backgroundColor: GREEN }}
+        >
+          <Check className="h-3 w-3 text-white" strokeWidth={3} />
+        </span>
       );
     case "dash":
       return (
-        <div className={`flex justify-center items-center p-2 ${baseClass}`}>
-          <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-gray-100 text-gray-400 text-xs font-bold">
-            —
-          </span>
-        </div>
+        <X className="h-4 w-4" style={{ color: MUTED }} strokeWidth={2.25} />
       );
     case "infinity":
       return (
-        <div className={`flex justify-center items-center p-2 ${baseClass}`}>
-          <span className="text-emerald-600 font-bold text-xl leading-none">
-            ∞
-          </span>
-        </div>
+        <span className="text-sm font-medium" style={{ color: NAVY }}>
+          Unlimited
+        </span>
       );
-    case "badge": {
-      const variant = value.variant ?? "default";
+    case "badge":
       return (
-        <div className={`flex justify-center items-center px-2 py-2 ${baseClass}`}>
-          <span
-            className={`font-mono text-[10px] px-2 py-0.5 rounded font-semibold tracking-wide ${badgeStyles[variant]}`}
-          >
-            {value.label}
-          </span>
-        </div>
+        <span className="text-sm font-medium" style={{ color: NAVY }}>
+          {value.label}
+        </span>
       );
-    }
   }
 }

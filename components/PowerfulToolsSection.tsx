@@ -1,148 +1,226 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence, useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { ChevronDown, ChevronUp } from "lucide-react";
-import { fadeInUp } from "@/components/motion";
+import {
+  BarChart3,
+  Calendar,
+  CalendarCheck,
+  ChevronRight,
+  Globe,
+  Network,
+  Star,
+  Users,
+  Zap,
+} from "lucide-react";
+import PowerfulToolsPreview from "@/components/powerful-tools/PowerfulToolsPreview";
+import { fadeInUp, staggerContainer } from "@/components/motion";
 
-const accordionItems = [
+const NAVY = "#0D1B2A";
+const BODY = "#6B7280";
+const MINT = "#E8F5E9";
+const GREEN_DARK = "#1B5E20";
+
+const features = [
   {
+    Icon: Network,
     title: "Unified Lead-to-Booking Pipeline",
-    content:
-      "Every inquiry automatically enters the CRM, where you can track progress, assign leads, convert bookings, and manage payments without switching tools.",
+    desc: "Every inquiry automatically enters the CRM, where you can track progress, assign leads, convert bookings, and manage payments without switching tools.",
   },
   {
+    Icon: CalendarCheck,
     title: "Integrated Booking & Batch Management",
-    content:
-      "Create events, manage batches, slots, pricing, and bookings effortlessly.",
+    desc: "Create events, manage batches, slots, pricing, and bookings effortlessly.",
   },
   {
+    Icon: Globe,
     title: "Website Visibility & Direct Booking",
-    content:
-      "Show your events on Befikra and allow customers to book instantly.",
+    desc: "Show your events on Befikra and allow customers to book instantly.",
+  },
+];
+
+const stats = [
+  {
+    Icon: BarChart3,
+    value: "500+",
+    label: "Travel Businesses",
+    iconBg: "#E8F5E9",
+    iconColor: "#2E7D32",
   },
   {
-    title: "Payment Collection & Invoicing",
-    content:
-      "Collect payments via secure links, send automated invoices, and reconcile transactions in one place.",
+    Icon: Users,
+    value: "50K+",
+    label: "Happy Customers",
+    iconBg: "#DBEAFE",
+    iconColor: "#2563EB",
   },
   {
-    title: "Analytics & Revenue Insights",
-    content:
-      "Track revenue trends, conversion rates, and team performance with real-time dashboards and AI-powered insights.",
+    Icon: Calendar,
+    value: "2.5M+",
+    label: "Bookings Managed",
+    iconBg: "#F3E5F5",
+    iconColor: "#9333EA",
+  },
+  {
+    Icon: Star,
+    value: "4.8/5",
+    label: "User Rating",
+    iconBg: "#FEF9C3",
+    iconColor: "#CA8A04",
   },
 ];
 
 export default function PowerfulToolsSection() {
-  const [openIndex, setOpenIndex] = useState(0);
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
     <section
+      id="powerful-tools"
       ref={ref}
-      className="w-full overflow-hidden bg-forest-dark py-20 md:py-28 px-4 md:px-8 relative"
+      className="w-full overflow-hidden bg-white px-4 py-20 md:py-24 lg:px-8"
     >
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse 50% 60% at 20% 30%, rgba(16, 185, 129, 0.15), transparent 65%)",
-        }}
-      />
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-start relative z-10">
-        <motion.div
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          variants={fadeInUp}
-        >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white leading-tight">
-            Powerful Tools to Run and
-            <br />
-            <span className="bg-gradient-to-r from-lime-400 via-[#84CC16] to-teal-400 bg-clip-text text-transparent">
-              Grow Your Travel Business
-            </span>
-          </h2>
-          <p className="text-white/90 mt-6 max-w-md leading-relaxed">
-            Manage leads, bookings, payments, customers, and operations in one
-            unified platform built for modern experience businesses.
-          </p>
+      <div className="mx-auto max-w-6xl">
+        <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-2 lg:gap-10">
+          {/* Left — copy & features */}
+          <motion.div
+            initial="hidden"
+            animate={inView ? "visible" : "hidden"}
+            variants={staggerContainer}
+          >
+            <motion.span
+              variants={fadeInUp}
+              className="inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-xs font-semibold"
+              style={{ borderColor: "#A5D6A7", backgroundColor: MINT, color: GREEN_DARK }}
+            >
+              <Zap className="h-3.5 w-3.5" strokeWidth={2.25} />
+              Everything you need. All in one place.
+            </motion.span>
 
-          <div className="mt-10 space-y-6">
-            {accordionItems.map((item, index) => {
-              const isOpen = openIndex === index;
-              return (
-                <div key={item.title} className="relative">
-                  {isOpen && (
-                    <motion.div
-                      layoutId="accordion-indicator"
-                      className="absolute left-0 top-0 bottom-0 w-1 bg-emerald-400 rounded-full"
-                      transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                    />
-                  )}
+            <motion.h2
+              variants={fadeInUp}
+              className="mt-5 text-3xl font-extrabold leading-[1.15] tracking-tight md:text-4xl lg:text-[2.75rem]"
+              style={{ color: NAVY }}
+            >
+              Powerful Tools to Run and
+              <br />
+              <span className="bg-gradient-to-r from-[#22C55E] via-[#16A34A] to-[#14B8A6] bg-clip-text text-transparent">
+                Grow Your Travel Business
+              </span>
+            </motion.h2>
+
+            <motion.p
+              variants={fadeInUp}
+              className="font-dm-sans mt-4 max-w-lg text-base leading-relaxed"
+              style={{ color: BODY }}
+            >
+              Manage leads, bookings, payments, customers, and operations in one
+              unified platform built for modern travel businesses.
+            </motion.p>
+
+            <motion.ul variants={staggerContainer} className="mt-8 divide-y divide-gray-100">
+              {features.map(({ Icon, title, desc }) => (
+                <motion.li key={title} variants={fadeInUp}>
                   <button
                     type="button"
-                    onClick={() => setOpenIndex(index)}
-                    className={`w-full text-left pl-4 transition-colors ${
-                      isOpen ? "border-l-4 border-emerald-400" : "border-l-4 border-transparent"
-                    }`}
+                    className="group flex w-full items-start gap-4 py-5 text-left transition-colors hover:bg-gray-50/60"
                   >
-                    <div className="flex items-center justify-between gap-4">
-                      <span className="text-white font-semibold text-base md:text-lg pr-2">
-                        {item.title}
-                      </span>
-                      {isOpen ? (
-                        <ChevronUp className="w-5 h-5 text-white shrink-0" />
-                      ) : (
-                        <ChevronDown className="w-5 h-5 text-white shrink-0" />
-                      )}
+                    <div
+                      className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl"
+                      style={{ backgroundColor: MINT }}
+                    >
+                      <Icon
+                        className="h-5 w-5"
+                        style={{ color: "#2E7D32" }}
+                        strokeWidth={2}
+                      />
                     </div>
-                    <AnimatePresence initial={false}>
-                      {isOpen && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                          className="overflow-hidden"
-                        >
-                          <p className="text-gray-400 text-sm mt-3 pr-8">
-                            {item.content}
-                          </p>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                    {!isOpen && (
-                      <p className="text-gray-500 text-sm mt-2 line-clamp-1 md:hidden">
-                        {item.content}
+                    <div className="min-w-0 flex-1">
+                      <p className="text-sm font-bold md:text-base" style={{ color: NAVY }}>
+                        {title}
                       </p>
-                    )}
+                      <p
+                        className="font-dm-sans mt-1 text-sm leading-relaxed"
+                        style={{ color: BODY }}
+                      >
+                        {desc}
+                      </p>
+                    </div>
+                    <ChevronRight
+                      className="mt-1 h-5 w-5 shrink-0 text-gray-300 transition-colors group-hover:text-gray-500"
+                      strokeWidth={2}
+                    />
                   </button>
-                </div>
-              );
-            })}
-          </div>
-        </motion.div>
+                </motion.li>
+              ))}
+            </motion.ul>
+          </motion.div>
 
+          {/* Right — dashboard preview */}
+          <motion.div
+            initial="hidden"
+            animate={inView ? "visible" : "hidden"}
+            variants={fadeInUp}
+            transition={{ delay: 0.12 }}
+          >
+            <div className="lg:hidden">
+              <p
+                className="mb-2 text-center text-base font-semibold italic"
+                style={{ color: "#22C55E", fontFamily: "cursive" }}
+              >
+                See Befikra in action
+              </p>
+              <p className="font-dm-sans mb-4 text-center text-xs text-gray-500">
+                A quick overview of how everything works together.
+              </p>
+            </div>
+            <PowerfulToolsPreview />
+          </motion.div>
+        </div>
+
+        {/* Stats bar */}
         <motion.div
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
           variants={fadeInUp}
-          transition={{ delay: 0.15 }}
-          className="rounded-3xl bg-[#1A3A2A] w-full h-80 md:h-96 flex items-center justify-center relative overflow-hidden"
+          transition={{ delay: 0.2 }}
+          className="mt-14 overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-[0_8px_40px_rgba(13,27,42,0.06)]"
         >
-          <div
-            className="absolute inset-0 opacity-30"
-            style={{
-              background:
-                "radial-gradient(ellipse at top left, rgba(16, 185, 129, 0.4), transparent 60%)",
-            }}
-          />
-          {/* Dashboard image will be added later */}
-          <p className="text-gray-500 text-center px-6 relative z-10">
-            Dashboard Preview Coming Soon
-          </p>
+          <div className="grid grid-cols-2 lg:grid-cols-4">
+            {stats.map((stat, index) => (
+              <div
+                key={stat.label}
+                className={`flex flex-col items-center px-5 py-7 text-center ${
+                  index % 2 === 0 ? "border-r border-gray-100" : ""
+                } ${index < 2 ? "border-b border-gray-100 lg:border-b-0" : ""} ${
+                  index < 3 ? "lg:border-r lg:border-b-0" : ""
+                }`}
+              >
+                <div
+                  className="flex h-10 w-10 items-center justify-center rounded-full"
+                  style={{ backgroundColor: stat.iconBg }}
+                >
+                  <stat.Icon
+                    className="h-5 w-5"
+                    style={{ color: stat.iconColor }}
+                    strokeWidth={2}
+                  />
+                </div>
+                <p
+                  className="mt-3 text-2xl font-extrabold tracking-tight"
+                  style={{ color: NAVY }}
+                >
+                  {stat.value}
+                </p>
+                <p
+                  className="font-dm-sans mt-0.5 text-sm"
+                  style={{ color: BODY }}
+                >
+                  {stat.label}
+                </p>
+              </div>
+            ))}
+          </div>
         </motion.div>
       </div>
     </section>

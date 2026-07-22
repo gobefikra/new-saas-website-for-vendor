@@ -1,19 +1,32 @@
 "use client";
 
-import type { LucideIcon } from "lucide-react";
+import { PLANS } from "@/lib/pricing-data";
+
+const NAVY = "#0D1B2A";
+
+const GRID =
+  "grid grid-cols-[minmax(220px,1.35fr)_repeat(4,1fr)] max-lg:grid-cols-1";
 
 type CategoryRowProps = {
-  icon: LucideIcon;
   name: string;
 };
 
-export default function CategoryRow({ icon: Icon, name }: CategoryRowProps) {
+export default function CategoryRow({ name }: CategoryRowProps) {
   return (
-    <div className="grid grid-cols-1 bg-gray-900 text-white">
-      <div className="col-span-full flex items-center gap-3 px-5 md:px-[22px] py-3.5 font-mono text-xs tracking-widest uppercase font-semibold">
-        <Icon className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
+    <div className={`${GRID} border-b border-gray-200 bg-[#F4F6F8]`}>
+      <div
+        className="border-r border-gray-200 px-4 py-3 text-sm font-semibold md:px-5 md:py-3.5"
+        style={{ color: NAVY }}
+      >
         {name}
       </div>
+      {PLANS.map((plan) => (
+        <div
+          key={plan.id}
+          className="hidden border-r border-gray-200 last:border-r-0 lg:block"
+          aria-hidden
+        />
+      ))}
     </div>
   );
 }

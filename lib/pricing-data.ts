@@ -35,6 +35,8 @@ export type Plan = {
   tag: string;
   name: string;
   nameEmphasis?: string;
+  description: string;
+  highlights: string[];
   featured: boolean;
   featuredBadge?: string;
   pricing: PlanPricing;
@@ -68,9 +70,17 @@ export const PLANS: Plan[] = [
     id: "starter",
     tag: "01 · STARTER",
     name: "Starter",
+    description: "Perfect for solo operators testing the waters.",
+    highlights: [
+      "Free forever — no credit card",
+      "Up to 50 bookings per month",
+      "WhatsApp & website lead capture",
+      "Basic CRM & payment links",
+      "Community support",
+    ],
     featured: false,
     pricing: { kind: "free", amount: 0, strike: "Free forever" },
-    feeTag: { text: "5% fee", variant: "rust" },
+    feeTag: { text: "5% platform fee", variant: "rust" },
     cta: "Get started",
   },
   {
@@ -78,8 +88,16 @@ export const PLANS: Plan[] = [
     tag: "02 · CREATOR PRO",
     name: "Creator",
     nameEmphasis: "Pro",
+    description: "Great for growing brands who want more AI and automation.",
+    highlights: [
+      "Unlimited bookings & events",
+      "Raven AI assistant included",
+      "Instagram + WhatsApp automation",
+      "Verified organizer badge",
+      "Priority email support",
+    ],
     featured: true,
-    featuredBadge: "MOST LOVED",
+    featuredBadge: "Most popular",
     pricing: {
       kind: "paid",
       monthly: 4999,
@@ -87,7 +105,7 @@ export const PLANS: Plan[] = [
       annualYearTotal: "₹47,999/yr · save 20%",
       monthlyStrike: 4999,
     },
-    feeTag: { text: "3% fee", variant: "amber" },
+    feeTag: { text: "3% platform fee", variant: "amber" },
     cta: "Start Pro",
   },
   {
@@ -95,6 +113,14 @@ export const PLANS: Plan[] = [
     tag: "03 · BUSINESS AI",
     name: "Business",
     nameEmphasis: "AI",
+    description: "Built for teams that need performance and scale.",
+    highlights: [
+      "Everything in Creator Pro",
+      "Advanced Raven AI workflows",
+      "Multi-user CRM & roles",
+      "Revenue analytics dashboard",
+      "Priority support (chat & email)",
+    ],
     featured: false,
     pricing: {
       kind: "paid",
@@ -103,20 +129,28 @@ export const PLANS: Plan[] = [
       annualYearTotal: "₹1,15,000/yr · save 20%",
       monthlyStrike: 11999,
     },
-    feeTag: { text: "1.5% fee", variant: "green" },
+    feeTag: { text: "1.5% platform fee", variant: "green" },
     cta: "Scale up",
   },
   {
     id: "enterprise",
     tag: "04 · ENTERPRISE",
     name: "Enterprise",
+    description: "Custom setup for large operators and travel companies.",
+    highlights: [
+      "White-label platform",
+      "Dedicated account manager",
+      "Custom AI model training",
+      "ERP & Salesforce integrations",
+      "Negotiated fees (0.5–1%)",
+    ],
     featured: false,
     pricing: {
       kind: "custom",
       headline: "Let's talk",
       strike: "Custom pricing",
     },
-    feeTag: { text: "0.5–1% fee", variant: "green" },
+    feeTag: { text: "0.5–1% platform fee", variant: "green" },
     cta: "Talk to sales",
   },
 ];
@@ -776,11 +810,8 @@ export const PRICING_SUMMARY = {
 };
 
 export const PRICING_HERO = {
-  eyebrow: "Compare all plans",
-  title: "Every feature.",
-  titleEmphasis: "plan.",
-  subtitle:
-    "Find the plan that fits — and see exactly what you get at each tier. Lower platform fees, more AI, more automation as you grow.",
+  title: "Choose the tier that fits your journey.",
+  subtitle: "Simple pricing with clear value and no surprises.",
 };
 
 export const PRICING_CTA = {

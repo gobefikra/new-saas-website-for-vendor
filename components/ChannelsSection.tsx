@@ -1,24 +1,53 @@
 "use client";
 
+import Link from "next/link";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Check, Globe, Instagram } from "lucide-react";
+import {
+  ArrowRight,
+  Bot,
+  Check,
+  Clock,
+  Code2,
+  Globe,
+  Headphones,
+  Link2,
+  ShieldCheck,
+  Star,
+  TrendingUp,
+  Zap,
+} from "lucide-react";
+import { InstagramLogo } from "@/components/integrations/BrandLogos";
 import { fadeInUp, staggerContainer } from "@/components/motion";
 
-function WhatsAppIcon() {
-  return (
-    <div className="w-12 h-12 rounded-xl bg-green-50 p-2 flex items-center justify-center">
-      <svg viewBox="0 0 24 24" className="w-8 h-8 text-green-600" fill="currentColor" aria-hidden>
-        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-      </svg>
-    </div>
-  );
-}
+const GREEN = "#2E7D32";
+const GREEN_DARK = "#1B5E20";
+const NAVY = "#0D1B2A";
+const MINT = "#E8F5E9";
+const BODY = "#6B7280";
 
-const cards = [
+const topFeatures = [
   {
-    type: "default" as const,
-    icon: <WhatsAppIcon />,
+    Icon: Zap,
+    title: "Capture Instantly",
+    desc: "Never miss a lead",
+  },
+  {
+    Icon: Bot,
+    title: "Automate Effortlessly",
+    desc: "Save time with smart automation",
+  },
+  {
+    Icon: TrendingUp,
+    title: "Grow Consistently",
+    desc: "Turn leads into loyal customers",
+  },
+];
+
+const integrationCards = [
+  {
+    id: "whatsapp",
+    badge: { label: "Most Used", variant: "light" as const, icon: Star },
     title: "WhatsApp Integration",
     desc: "Manage all WhatsApp inquiries and bookings directly inside your CRM.",
     items: [
@@ -28,31 +57,29 @@ const cards = [
       "Share payment links and event details easily",
       "Sync conversations with leads and bookings",
     ],
+    cta: "Connect WhatsApp",
+    featured: false,
+    icon: "whatsapp" as const,
   },
   {
-    type: "highlight" as const,
-    icon: (
-      <div className="w-12 h-12 rounded-xl bg-white p-2 flex items-center justify-center">
-        <Instagram className="w-8 h-8 text-pink-600" />
-      </div>
-    ),
+    id: "instagram",
+    badge: { label: "Recommended", variant: "solid" as const },
     title: "Instagram Integration",
-    desc: "Convert Instagram messages into leads and bookings automatically",
+    desc: "Convert Instagram messages into leads and bookings automatically.",
     items: [
       "Capture leads from Instagram DMs and comments",
-      "Auto-reply using Raven AI and saved template",
+      "Auto-reply using AI and saved templates",
       "Track source and conversion from Instagram",
       "Assign conversations to your sales team",
       "Sync chats directly with CRM records",
     ],
+    cta: "Connect Instagram",
+    featured: true,
+    icon: "instagram" as const,
   },
   {
-    type: "default" as const,
-    icon: (
-      <div className="w-12 h-12 rounded-xl bg-gray-100 p-2 flex items-center justify-center">
-        <Globe className="w-8 h-8 text-gray-600" />
-      </div>
-    ),
+    id: "website",
+    badge: null,
     title: "Website Integration",
     desc: "Capture bookings and leads from Befikra event and MyLinkr pages.",
     items: [
@@ -62,8 +89,26 @@ const cards = [
       "Track performance of Befikra listings",
       "Sync all data automatically with CRM",
     ],
+    cta: "Connect Website",
+    featured: false,
+    icon: "website" as const,
   },
 ];
+
+const brandLogos = ["WanderPro", "TrailHive", "tripoto", "PeakGo", "Roameo"];
+
+function WhatsAppSquareIcon() {
+  return (
+    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#25D366]">
+      <svg className="h-7 w-7" viewBox="0 0 24 24" aria-hidden>
+        <path
+          fill="#fff"
+          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+        />
+      </svg>
+    </div>
+  );
+}
 
 export default function ChannelsSection() {
   const ref = useRef(null);
@@ -71,74 +116,257 @@ export default function ChannelsSection() {
 
   return (
     <section
-      id="integrations"
+      id="customer-channels"
       ref={ref}
-      className="w-full overflow-hidden bg-white py-20 md:py-28 px-4"
+      className="w-full overflow-hidden bg-white px-4 py-20 md:py-28"
     >
-      <div className="max-w-5xl mx-auto">
+      <div className="mx-auto max-w-6xl">
+        {/* Badge */}
+        <motion.div
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          variants={fadeInUp}
+          className="flex justify-center"
+        >
+          <span
+            className="inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-sm font-medium"
+            style={{ borderColor: "#A5D6A7", backgroundColor: MINT, color: GREEN_DARK }}
+          >
+            <Link2 className="h-4 w-4" strokeWidth={2.25} />
+            All your channels. One smart CRM.
+          </span>
+        </motion.div>
+
+        {/* Heading */}
         <motion.h2
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
           variants={fadeInUp}
-          className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-center text-gray-900 leading-tight"
+          className="mx-auto mt-6 max-w-3xl text-center text-3xl font-extrabold leading-tight md:text-4xl lg:text-[2.75rem]"
+          style={{ color: NAVY }}
         >
           Connect Your{" "}
-          <span className="bg-gradient-to-r from-lime-400 via-[#84CC16] to-teal-400 bg-clip-text text-transparent">
-            Customer Channels
-          </span>
+          <span style={{ color: GREEN }}>Customer Channels</span>
         </motion.h2>
+
         <motion.p
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
           variants={fadeInUp}
-          transition={{ delay: 0.1 }}
-          className="text-gray-900 text-center mt-4 max-w-2xl mx-auto text-base md:text-lg"
+          transition={{ delay: 0.08 }}
+          className="mx-auto mt-4 max-w-2xl text-center font-dm-sans text-base md:text-lg"
+          style={{ color: BODY }}
         >
           Capture leads, reply instantly, and manage bookings from WhatsApp,
           Instagram, and Befikra — all in one CRM.
         </motion.p>
 
+        {/* Top 3 features */}
         <motion.div
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
           variants={staggerContainer}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 items-stretch"
+          className="mx-auto mt-10 grid max-w-3xl grid-cols-1 gap-6 sm:grid-cols-3"
         >
-          {cards.map((card) => (
+          {topFeatures.map(({ Icon, title, desc }) => (
             <motion.div
-              key={card.title}
+              key={title}
               variants={fadeInUp}
-              className={`rounded-3xl p-8 flex flex-col ${
-                card.type === "highlight"
-                  ? "bg-emerald-500 text-white shadow-xl md:scale-105 z-10"
-                  : "border border-gray-200 bg-white"
-              }`}
+              className="flex flex-col items-center text-center"
             >
-              {card.icon}
-              <h3 className="font-bold text-xl mt-4">{card.title}</h3>
-              <p
-                className={`mt-2 text-sm ${
-                  card.type === "highlight" ? "text-white/90" : "text-subtext"
-                }`}
+              <div
+                className="flex h-12 w-12 items-center justify-center rounded-full"
+                style={{ backgroundColor: MINT }}
               >
-                {card.desc}
+                <Icon className="h-6 w-6" style={{ color: GREEN }} strokeWidth={2} />
+              </div>
+              <p className="mt-3 text-sm font-bold" style={{ color: NAVY }}>
+                {title}
               </p>
-              <ul className="mt-6 space-y-3 flex-1">
-                {card.items.map((item) => (
-                  <li key={item} className="flex items-start gap-2 text-sm">
-                    <Check
-                      className={`w-5 h-5 shrink-0 mt-0.5 ${
-                        card.type === "highlight"
-                          ? "text-white"
-                          : "text-emerald-500"
-                      }`}
-                    />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
+              <p className="mt-0.5 font-dm-sans text-sm" style={{ color: BODY }}>
+                {desc}
+              </p>
             </motion.div>
           ))}
+        </motion.div>
+
+        {/* Integration cards */}
+        <motion.div
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          variants={staggerContainer}
+          className="mt-14 grid grid-cols-1 items-stretch gap-6 lg:grid-cols-3"
+        >
+          {integrationCards.map((card) => (
+            <motion.article
+              key={card.id}
+              variants={fadeInUp}
+              className={`relative flex flex-col overflow-hidden rounded-2xl bg-white shadow-[0_4px_24px_rgba(13,27,42,0.06)] ${
+                card.featured ? "border-2 z-10 lg:-mt-1 lg:mb-1" : "border border-gray-100"
+              }`}
+              style={card.featured ? { borderColor: GREEN } : undefined}
+            >
+              {card.badge && (
+                <span
+                  className={`absolute right-4 top-4 inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-semibold ${
+                    card.badge.variant === "solid"
+                      ? "text-white"
+                      : ""
+                  }`}
+                  style={
+                    card.badge.variant === "solid"
+                      ? { backgroundColor: GREEN_DARK }
+                      : { backgroundColor: MINT, color: GREEN_DARK }
+                  }
+                >
+                  {"icon" in card.badge && card.badge.icon ? (
+                    <card.badge.icon className="h-3 w-3 fill-current" />
+                  ) : null}
+                  {card.badge.label}
+                </span>
+              )}
+
+              <div className="flex flex-1 flex-col p-6 pb-0 md:p-7 md:pb-0">
+                <div className="mb-4">
+                  {card.icon === "whatsapp" && <WhatsAppSquareIcon />}
+                  {card.icon === "instagram" && (
+                    <div className="overflow-hidden rounded-xl">
+                      <InstagramLogo className="h-12 w-12" id="channels-ig" />
+                    </div>
+                  )}
+                  {card.icon === "website" && (
+                    <div
+                      className="flex h-12 w-12 items-center justify-center rounded-xl"
+                      style={{ backgroundColor: MINT }}
+                    >
+                      <Globe className="h-7 w-7" style={{ color: GREEN }} strokeWidth={2} />
+                    </div>
+                  )}
+                </div>
+
+                <h3 className="text-lg font-bold" style={{ color: NAVY }}>
+                  {card.title}
+                </h3>
+                <p className="mt-2 font-dm-sans text-sm leading-relaxed" style={{ color: BODY }}>
+                  {card.desc}
+                </p>
+
+                <ul className="mt-5 flex-1 space-y-2.5 pb-6">
+                  {card.items.map((item) => (
+                    <li key={item} className="flex items-start gap-2.5 font-dm-sans text-sm" style={{ color: BODY }}>
+                      <Check
+                        className="mt-0.5 h-4 w-4 shrink-0"
+                        style={{ color: GREEN }}
+                        strokeWidth={2.5}
+                      />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <Link
+                href="/integrations"
+                className={`flex items-center justify-center gap-2 py-3.5 text-sm font-semibold transition-opacity hover:opacity-90 ${
+                  card.featured ? "text-white" : ""
+                }`}
+                style={
+                  card.featured
+                    ? { backgroundColor: GREEN_DARK }
+                    : { backgroundColor: MINT, color: GREEN_DARK }
+                }
+              >
+                {card.cta}
+                <ArrowRight className="h-4 w-4" strokeWidth={2.25} />
+              </Link>
+            </motion.article>
+          ))}
+        </motion.div>
+
+        {/* Trust row */}
+        <motion.div
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          variants={fadeInUp}
+          transition={{ delay: 0.2 }}
+          className="mt-16 grid grid-cols-1 items-center gap-8 border-t border-gray-100 pt-12 lg:grid-cols-[1fr_auto_1fr]"
+        >
+          <div className="flex items-center gap-3 lg:justify-start">
+            <div
+              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full"
+              style={{ backgroundColor: MINT }}
+            >
+              <ShieldCheck className="h-5 w-5" style={{ color: GREEN }} strokeWidth={2} />
+            </div>
+            <div>
+              <p className="text-sm font-bold" style={{ color: NAVY }}>
+                Secure & Reliable
+              </p>
+              <p className="font-dm-sans text-xs" style={{ color: BODY }}>
+                Your data is safe with enterprise-grade security.
+              </p>
+            </div>
+          </div>
+
+          <div className="text-center">
+            <p className="font-dm-sans text-sm font-medium" style={{ color: BODY }}>
+              Trusted by 500+ travel brands and startups
+            </p>
+            <div className="mt-4 flex flex-wrap items-center justify-center gap-5 opacity-50 grayscale">
+              {brandLogos.map((name) => (
+                <span
+                  key={name}
+                  className={`font-dm-sans text-[11px] font-bold uppercase tracking-wider text-gray-500 ${
+                    name === "tripoto" ? "normal-case tracking-normal" : ""
+                  }`}
+                >
+                  {name}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div className="flex items-center gap-3 lg:justify-end">
+            <div
+              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full"
+              style={{ backgroundColor: MINT }}
+            >
+              <Zap className="h-5 w-5" style={{ color: GREEN }} strokeWidth={2} />
+            </div>
+            <div>
+              <p className="text-sm font-bold" style={{ color: NAVY }}>
+                Quick & Easy Setup
+              </p>
+              <p className="font-dm-sans text-xs" style={{ color: BODY }}>
+                Connect your channels in just a few clicks.
+              </p>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Bottom bar */}
+        <motion.div
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          variants={fadeInUp}
+          transition={{ delay: 0.25 }}
+          className="mt-10 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 font-dm-sans text-sm"
+          style={{ color: BODY }}
+        >
+          <span className="inline-flex items-center gap-2">
+            <Code2 className="h-4 w-4" strokeWidth={2} />
+            No coding required
+          </span>
+          <span className="hidden text-gray-300 sm:inline">|</span>
+          <span className="inline-flex items-center gap-2">
+            <Clock className="h-4 w-4" strokeWidth={2} />
+            5-min setup
+          </span>
+          <span className="hidden text-gray-300 sm:inline">|</span>
+          <span className="inline-flex items-center gap-2">
+            <Headphones className="h-4 w-4" strokeWidth={2} />
+            24/7 support
+          </span>
         </motion.div>
       </div>
     </section>

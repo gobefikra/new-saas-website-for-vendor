@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -15,15 +16,16 @@ export interface BlogCardProps {
 }
 
 const categoryGradients: Record<string, string> = {
-  "Automation & CRM": "from-slate-400 to-slate-600",
-  "CRM Automation": "from-slate-400 to-slate-600",
-  "Booking Systems": "from-blue-300 to-blue-500",
-  "Booking Workflow": "from-blue-300 to-blue-500",
-  "Operations Management": "from-teal-300 to-teal-500",
-  "AI & Insights": "from-purple-300 to-purple-500",
-  "Growth Strategies": "from-emerald-300 to-emerald-500",
-  "Lead Management": "from-indigo-300 to-indigo-500",
-  "Customer Experience": "from-rose-300 to-rose-500",
+  "Automation & CRM": "from-slate-500 to-slate-700",
+  "CRM Automation": "from-slate-500 to-slate-700",
+  "Booking Systems": "from-emerald-400 to-teal-600",
+  "Booking Workflow": "from-emerald-400 to-teal-600",
+  "Operations Management": "from-teal-400 to-cyan-600",
+  "AI & Insights": "from-violet-400 to-purple-600",
+  "Growth Strategies": "from-green-400 to-emerald-600",
+  "Lead Management": "from-indigo-400 to-blue-600",
+  "Customer Experience": "from-rose-400 to-pink-600",
+  "Quick Insights": "from-gray-400 to-gray-600",
 };
 
 function MountainSilhouette() {
@@ -55,39 +57,42 @@ export default function BlogCard({
   imageSrc,
   slug,
 }: BlogCardProps) {
-  const gradient =
-    categoryGradients[category] ?? "from-gray-300 to-gray-500";
+  const [imgError, setImgError] = useState(false);
+  const gradient = categoryGradients[category] ?? "from-gray-400 to-gray-600";
+  const showImage = imageSrc && !imgError;
 
   const card = (
     <motion.article
       layout
-      className="bg-white border border-gray-100 rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition hover:-translate-y-1 cursor-pointer h-full"
+      className="h-full cursor-pointer overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-md"
     >
-      <div className="relative w-full h-48 overflow-hidden rounded-t-3xl bg-gray-200">
-        {imageSrc ? (
+      <div className="relative h-48 w-full overflow-hidden bg-gray-100">
+        {showImage ? (
           <Image
             src={imageSrc}
             alt={title}
             fill
             className="object-cover"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            onError={() => setImgError(true)}
           />
         ) : (
-          <div
-            className={`absolute inset-0 bg-gradient-to-br ${gradient}`}
-          >
+          <div className={`absolute inset-0 bg-gradient-to-br ${gradient}`}>
             <MountainSilhouette />
           </div>
         )}
+        <span className="absolute left-3 top-3 rounded-full bg-white/90 px-2.5 py-1 text-[10px] font-semibold text-gray-700 backdrop-blur-sm">
+          {category}
+        </span>
       </div>
       <div className="p-5">
-        <p className="text-xs text-gray-400 mb-2">
-          {date} | {readTime}
+        <p className="mb-2 text-xs text-gray-400">
+          {date} · {readTime}
         </p>
-        <h3 className="font-bold text-gray-900 text-base leading-snug mb-2">
+        <h3 className="mb-2 text-base font-bold leading-snug text-gray-900">
           {title}
         </h3>
-        <p className="text-gray-400 text-sm leading-relaxed line-clamp-3">
+        <p className="line-clamp-3 text-sm leading-relaxed text-gray-500">
           {excerpt}
         </p>
       </div>
