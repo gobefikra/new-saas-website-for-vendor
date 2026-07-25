@@ -20,6 +20,13 @@ export const metadata: Metadata = {
   title: "Befikra Partner - India's Intelligent CRM for Travel Brands",
   description:
     "India's intelligent CRM for travel brands, combining automation, analytics, and AI to power faster growth.",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.png", type: "image/png", sizes: "512x512" },
+    ],
+    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
+  },
 };
 
 export default function RootLayout({
