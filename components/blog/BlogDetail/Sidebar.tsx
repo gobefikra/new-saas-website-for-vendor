@@ -1,9 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import { motion } from "framer-motion";
-import { TrendingUp } from "lucide-react";
+import { ArrowRight, TrendingUp } from "lucide-react";
 import { fadeInUp, staggerContainer } from "@/components/motion";
+import Button from "@/components/ui/Button";
 import { popularArticles } from "@/lib/blog-data";
 import type { blogPost } from "@/lib/blog-data";
 
@@ -58,12 +58,15 @@ export default function Sidebar({
           Stop wrestling with spreadsheets. Let Befikra handle the bookings,
           waivers, and payments so you can focus on the climb.
         </p>
-        <Link
+        <Button
           href="/contact"
-          className="mt-5 w-full flex items-center justify-center gap-2 bg-emerald-500 text-white rounded-full py-3 font-semibold text-sm hover:bg-emerald-600 transition-colors"
+          variant="primary"
+          size="sm"
+          className="mt-5 w-full"
         >
-          Try Befikra CRM Free ›
-        </Link>
+          Try Befikra CRM Free
+          <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-0.5" />
+        </Button>
         <p className="text-gray-500 text-xs text-center mt-2">
           No credit card required. 14-day trial.
         </p>

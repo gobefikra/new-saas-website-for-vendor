@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import PhoneMockup, { MYLINKR_SCREENS } from "@/components/mylinkr/PhoneMockup";
+import Button from "@/components/ui/Button";
 
 export default function PreviewToggle() {
   const [activeView, setActiveView] = useState<"app" | "website">("app");
@@ -19,20 +20,20 @@ export default function PreviewToggle() {
         Experience your MyLinkr exactly how your audience will see it, perfectly
         responsive on every device.
       </p>
-      <Link
-        href="/contact"
-        className="mt-8 mx-auto w-fit flex items-center gap-2 bg-emerald-500 text-white rounded-full px-8 py-3.5 font-semibold hover:bg-emerald-600 transition-colors"
-      >
-        Get Started for Free ›
-      </Link>
+      <div className="mt-8 flex justify-center">
+        <Button href="/contact" variant="primary" size="lg">
+          Get Started for Free
+          <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-0.5" />
+        </Button>
+      </div>
 
       <div className="mt-10 mx-auto w-fit flex items-center gap-1 rounded-full border border-gray-200 bg-white px-2 py-2 shadow-sm">
         <button
           type="button"
           onClick={() => setActiveView("app")}
-          className={`rounded-full px-6 py-2 text-sm font-semibold transition-colors ${
+          className={`rounded-full px-6 py-2 text-sm font-semibold transition-all ${
             activeView === "app"
-              ? "bg-emerald-500 text-white"
+              ? "bg-gradient-to-r from-[#10B981] to-[#059669] text-white shadow-[0_2px_10px_rgba(16,185,129,0.3)]"
               : "text-gray-600 font-medium hover:bg-gray-50"
           }`}
         >
@@ -41,9 +42,9 @@ export default function PreviewToggle() {
         <button
           type="button"
           onClick={() => setActiveView("website")}
-          className={`rounded-full px-6 py-2 text-sm transition-colors ${
+          className={`rounded-full px-6 py-2 text-sm transition-all ${
             activeView === "website"
-              ? "bg-emerald-500 text-white font-semibold"
+              ? "bg-gradient-to-r from-[#10B981] to-[#059669] text-white font-semibold shadow-[0_2px_10px_rgba(16,185,129,0.3)]"
               : "text-gray-600 font-medium hover:bg-gray-50"
           }`}
         >

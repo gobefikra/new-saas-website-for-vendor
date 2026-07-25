@@ -55,9 +55,9 @@ function CountUp({
 }
 
 const codeLines = [
-  { text: "if (lead.source === 'whatsapp') {", className: "text-purple-400" },
+  { text: "if (lead.source === 'whatsapp') {", className: "text-lime-400" },
   { text: "  await system.routeToAvailableAgent(lead);", className: "text-emerald-300" },
-  { text: "}", className: "text-purple-400" },
+  { text: "}", className: "text-lime-400" },
 ];
 
 export default function TrainedByFounders() {

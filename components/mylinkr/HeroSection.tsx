@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import PhoneMockup, { MYLINKR_SCREENS } from "@/components/mylinkr/PhoneMockup";
 import { FaTwitter, FaSpotify, FaBookmark } from "react-icons/fa";
 import { fadeInUp, staggerContainer } from "@/components/motion";
+import Eyebrow from "@/components/ui/Eyebrow";
 
 function FloatingCard({
   className,
@@ -53,12 +54,10 @@ export default function MyLinkrHeroSection() {
         variants={staggerContainer}
         className="max-w-5xl mx-auto"
       >
-        <motion.div
-          variants={fadeInUp}
-          className="mx-auto mb-6 w-fit rounded-full border border-emerald-300 bg-white px-5 py-1.5 text-sm font-medium text-gray-700"
-        >
-          Introducing MyLinkr by{" "}
-          <span className="font-bold text-gray-900">Befikra</span>
+        <motion.div variants={fadeInUp} className="mb-6 flex justify-center">
+          <Eyebrow uppercase={false}>
+            Introducing MyLinkr by Befikra
+          </Eyebrow>
         </motion.div>
 
         <motion.h1

@@ -14,8 +14,9 @@ import {
   ShieldCheck,
   Zap,
 } from "lucide-react";
-import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Button from "@/components/ui/Button";
+import Eyebrow from "@/components/ui/Eyebrow";
 import { fadeInUp, staggerContainer } from "@/components/motion";
 
 const featureCards = [
@@ -194,8 +195,6 @@ export default function ContactPage() {
 
   return (
     <main className="min-h-screen overflow-x-hidden bg-white">
-      <Navbar />
-
       {/* Section 1 - Hero / Form */}
       <section className="bg-white py-20 px-6 md:px-16">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start max-w-6xl mx-auto">
@@ -204,12 +203,11 @@ export default function ContactPage() {
             animate="visible"
             variants={staggerContainer}
           >
-            <motion.span
-              variants={fadeInUp}
-              className="bg-emerald-50 border border-emerald-200 text-emerald-600 text-sm font-medium px-4 py-1.5 rounded-full inline-block mb-6"
-            >
-              Response within 24 hours
-            </motion.span>
+            <motion.div variants={fadeInUp} className="mb-6">
+              <Eyebrow icon={<Zap className="h-3 w-3" strokeWidth={2.5} />}>
+                Response within 24 hours
+              </Eyebrow>
+            </motion.div>
             <motion.h1
               variants={fadeInUp}
               className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mt-4"
@@ -335,12 +333,9 @@ export default function ContactPage() {
                 />
               </div>
 
-              <button
-                type="button"
-                className="w-full mt-2 bg-emerald-500 text-white rounded-full py-4 font-semibold text-base hover:bg-emerald-600 transition"
-              >
+              <Button type="button" variant="primary" size="lg" className="mt-2 w-full">
                 Send Message
-              </button>
+              </Button>
 
               <div className="flex items-center gap-2 mt-3">
                 <ShieldCheck className="text-emerald-500 w-4 h-4 shrink-0" />

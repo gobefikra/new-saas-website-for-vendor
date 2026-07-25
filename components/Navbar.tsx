@@ -66,6 +66,12 @@ export default function Navbar({ theme = "light" }: NavbarProps) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Keep navbar mounted across navigations, but reset transient UI state
+  useEffect(() => {
+    setMobileOpen(false);
+    setScrolled(window.scrollY > 8);
+  }, [pathname]);
+
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
     return () => {
@@ -115,7 +121,7 @@ export default function Navbar({ theme = "light" }: NavbarProps) {
 
   const ctaClass = isDark
     ? "inline-flex bg-white text-gray-900 rounded-full px-6 py-2.5 font-semibold text-sm hover:bg-gray-100 transition-colors"
-    : "inline-flex bg-emerald-500 text-white rounded-full px-6 py-2.5 font-semibold text-sm hover:bg-emerald-600 transition-colors";
+    : "inline-flex bg-gradient-to-r from-[#10B981] to-[#059669] text-white rounded-full px-6 py-2.5 font-semibold text-sm shadow-[0_4px_16px_rgba(16,185,129,0.35)] hover:shadow-[0_6px_22px_rgba(16,185,129,0.45)] hover:opacity-95 transition-all";
 
   return (
     <>
@@ -274,10 +280,10 @@ export default function Navbar({ theme = "light" }: NavbarProps) {
                 <Link
                   href="/contact"
                   onClick={() => setMobileOpen(false)}
-                  className={`flex w-full justify-center rounded-full px-6 py-3 font-semibold transition-colors ${
+                  className={`flex w-full justify-center rounded-full px-6 py-3 font-semibold transition-all ${
                     isDark
                       ? "bg-white text-gray-900 hover:bg-gray-100"
-                      : "bg-emerald-500 text-white hover:bg-emerald-600"
+                      : "bg-gradient-to-r from-[#10B981] to-[#059669] text-white shadow-[0_4px_16px_rgba(16,185,129,0.35)] hover:shadow-[0_6px_22px_rgba(16,185,129,0.45)] hover:opacity-95"
                   }`}
                 >
                   Get a demo

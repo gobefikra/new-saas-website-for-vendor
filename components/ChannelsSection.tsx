@@ -19,12 +19,13 @@ import {
 } from "lucide-react";
 import { InstagramLogo } from "@/components/integrations/BrandLogos";
 import { fadeInUp, staggerContainer } from "@/components/motion";
+import { brand } from "@/lib/brand-theme";
 
-const GREEN = "#10B981";
-const GREEN_DARK = "#059669";
-const NAVY = "#0F172A";
-const MINT = "#ECFDF5";
-const BODY = "#6B7280";
+const GREEN = brand.primary;
+const GREEN_DARK = brand.primaryDark;
+const NAVY = brand.navy;
+const MINT = brand.mint;
+const BODY = brand.subtext;
 
 const topFeatures = [
   {

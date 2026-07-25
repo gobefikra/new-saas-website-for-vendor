@@ -1,4 +1,3 @@
-import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import IntegrationsFeatures from "@/components/IntegrationsFeatures";
 import SmartDashboardSection from "@/components/SmartDashboardSection";
@@ -14,7 +13,6 @@ import Footer from "@/components/Footer";
 export default function Home() {
   return (
     <main className="min-h-screen overflow-x-hidden">
-      <Navbar />
       <HeroSection />
       <IntegrationsFeatures />
       <SmartDashboardSection />

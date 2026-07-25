@@ -3,9 +3,11 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { fadeInUp } from "@/components/motion";
-import { RavenOrbitPanel, RavenPlatformGrid } from "@/components/raven-ai/RavenOrbitPanel";
+import { RavenOrbitPanel } from "@/components/raven-ai/RavenOrbitPanel";
+import { RavenPlatformGrid } from "@/components/raven-ai/RavenPlatformBento";
+import { brand } from "@/lib/brand-theme";
 
-const GREEN = "#10B981";
+const GREEN = brand.primary;
 
 export default function RavenAISection() {
   const topRef = useRef(null);
@@ -51,7 +53,7 @@ export default function RavenAISection() {
       {/* Dark platform grid - part 2 */}
       <div
         className="px-4 py-16 md:py-24"
-        style={{ backgroundColor: "#0E1F13" }}
+        style={{ backgroundColor: brand.ravenDark }}
       >
         <div className="mx-auto max-w-[1200px]">
           <RavenPlatformGrid />

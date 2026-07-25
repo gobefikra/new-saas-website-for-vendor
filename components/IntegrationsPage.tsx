@@ -24,7 +24,6 @@ import {
   Zap,
   type LucideIcon,
 } from "lucide-react";
-import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import StickyTabNav from "@/components/StickyTabNav";
 import IntegrationFAQ from "@/components/IntegrationFAQ";
@@ -944,7 +943,7 @@ function IntegrationShowcase({
       <div className="mt-8 flex-1 space-y-3">
         {features.map((feature, index) => {
           const active = activeIndex === index;
-          return (
+  return (
             <button
               key={feature.title}
               type="button"
@@ -972,8 +971,8 @@ function IntegrationShowcase({
                     }`}
                   >
                     {feature.title}
-                  </h3>
-                  <p
+          </h3>
+          <p
                     className={`mt-1 text-sm ${
                       dark ? "text-slate-400" : "text-slate-500"
                     }`}
@@ -1185,8 +1184,6 @@ export default function IntegrationsPage() {
 
   return (
     <main className="min-h-screen bg-white">
-      <Navbar />
-
       {/* Sticky parent spans hero + integrations so the secondary nav
           can sit in the hero and remain sticky through the sections */}
       <div ref={zoneRef} className="relative">
@@ -1201,49 +1198,49 @@ export default function IntegrationsPage() {
                 <StatFloatCard key={card.label} card={card} />
               ))}
 
-              {floatingBadges.map((badge) => (
-                <FloatBadge key={badge.key} badge={badge} />
-              ))}
+          {floatingBadges.map((badge) => (
+            <FloatBadge key={badge.key} badge={badge} />
+          ))}
 
-              <motion.div
-                initial="hidden"
-                animate="visible"
-                variants={staggerContainer}
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={staggerContainer}
                 className="relative z-10 mx-auto flex max-w-lg flex-col items-center justify-start px-3 py-10 text-center lg:min-h-[620px] lg:max-w-xl lg:pb-0 lg:pt-[5%] xl:min-h-[660px] xl:pt-[6%]"
               >
-              <motion.h1
-                variants={fadeInUp}
+            <motion.h1
+              variants={fadeInUp}
                 className="text-4xl font-extrabold leading-[1.12] tracking-tight sm:text-5xl md:text-[3.15rem] lg:text-[3.35rem]"
-                style={{ color: NAVY }}
-              >
-                Turn Every Inquiry.
-                <br />
-                Into a <span style={{ color: GREEN }}>Booking.</span>
-              </motion.h1>
+              style={{ color: NAVY }}
+            >
+              Turn Every Inquiry.
+              <br />
+              Into a <span style={{ color: GREEN }}>Booking.</span>
+            </motion.h1>
 
-              <motion.p
-                variants={fadeInUp}
+            <motion.p
+              variants={fadeInUp}
                 className="font-dm-sans mx-auto mt-5 max-w-md text-base leading-relaxed md:mt-6 md:text-lg"
-                style={{ color: BODY }}
-              >
-                Save time, reduce manual work, and never miss a lead — Befikra
-                helps you focus on what matters most: growing your business. Just
-                connect, and you&apos;re all set.
-              </motion.p>
+              style={{ color: BODY }}
+            >
+              Save time, reduce manual work, and never miss a lead — Befikra
+              helps you focus on what matters most: growing your business. Just
+              connect, and you&apos;re all set.
+            </motion.p>
 
               <motion.div
                 variants={fadeInUp}
                 className="mt-7 flex justify-center md:mt-8"
               >
-                <Link
-                  href="/contact"
+              <Link
+                href="/contact"
                   className="inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-base font-semibold text-white transition-opacity hover:opacity-90"
-                  style={{ backgroundColor: GREEN_DARK }}
-                >
-                  Book a Demo
+                style={{ backgroundColor: GREEN_DARK }}
+              >
+                Book a Demo
                   <ArrowRight className="h-4 w-4" strokeWidth={2.5} />
-                </Link>
-              </motion.div>
+              </Link>
+            </motion.div>
             </motion.div>
           </div>
 
@@ -1262,16 +1259,16 @@ export default function IntegrationsPage() {
                   />
                 </div>
               ))}
-            </div>
+        </div>
 
             <div className="grid grid-cols-2 gap-3">
-              {stats.map((card) => (
+          {stats.map((card) => (
                 <div
                   key={`m-${card.label}`}
                   title={card.desc}
                   className="flex items-start gap-2.5 rounded-2xl border border-gray-200/90 bg-white px-3 py-3 shadow-sm"
-                >
-                  <div
+            >
+              <div
                     className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl"
                     style={{ backgroundColor: card.iconBg }}
                   >
@@ -1281,14 +1278,14 @@ export default function IntegrationsPage() {
                       strokeWidth={2.25}
                       aria-hidden
                     />
-                  </div>
+              </div>
                   <div className="min-w-0 pt-0.5">
                     <p
                       className="text-lg font-bold leading-none tracking-tight"
                       style={{ color: NAVY }}
                     >
-                      {card.stat}
-                    </p>
+                {card.stat}
+              </p>
                     <p className="mt-1 text-[11px] font-semibold leading-tight text-gray-600">
                       {card.label}
                     </p>
@@ -1296,7 +1293,7 @@ export default function IntegrationsPage() {
                 </div>
               ))}
             </div>
-          </div>
+            </div>
           </div>
         </section>
 
@@ -1314,7 +1311,7 @@ export default function IntegrationsPage() {
 
         <IntegrationShowcase
           title="Instagram Integration"
-          features={instagramFeatures}
+                features={instagramFeatures}
           kind="instagram"
           reverse
         />

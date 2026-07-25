@@ -1,9 +1,10 @@
 "use client";
 
 import { useRef } from "react";
-import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import PhoneMockup, { MYLINKR_SCREENS } from "@/components/mylinkr/PhoneMockup";
+import Button from "@/components/ui/Button";
 
 const carouselPhones = [
   { screen: MYLINKR_SCREENS.carousel[0], scale: "scale-95" },
@@ -36,12 +37,12 @@ export default function PhoneCarousel() {
           Pick a template, customize your branding, and create a powerful link
           hub for your business.
         </p>
-        <Link
-          href="/contact"
-          className="mt-8 mx-auto w-fit flex items-center gap-2 bg-emerald-500 text-white rounded-full px-8 py-3.5 font-semibold hover:bg-emerald-600 transition-colors"
-        >
-          Get Started for Free ›
-        </Link>
+        <div className="mt-8 flex justify-center">
+          <Button href="/contact" variant="primary" size="lg">
+            Get Started for Free
+            <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-0.5" />
+          </Button>
+        </div>
         <p className="mt-12 mb-6 text-gray-500 font-medium text-sm text-center">
           Social Hub
         </p>
