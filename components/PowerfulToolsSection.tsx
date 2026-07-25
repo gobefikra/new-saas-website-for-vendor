@@ -6,7 +6,6 @@ import {
   BarChart3,
   Calendar,
   CalendarCheck,
-  ChevronRight,
   Globe,
   Network,
   Star,
@@ -146,10 +145,6 @@ export default function PowerfulToolsSection() {
                         {desc}
                       </p>
                     </div>
-                    <ChevronRight
-                      className="mt-1 h-5 w-5 shrink-0 text-gray-300 transition-colors group-hover:text-gray-500"
-                      strokeWidth={2}
-                    />
                   </button>
                 </motion.li>
               ))}
@@ -162,6 +157,7 @@ export default function PowerfulToolsSection() {
             animate={inView ? "visible" : "hidden"}
             variants={fadeInUp}
             transition={{ delay: 0.12 }}
+            className="lg:mt-14"
           >
             <div className="lg:hidden">
               <p

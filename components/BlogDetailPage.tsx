@@ -1,6 +1,5 @@
 "use client";
 
-import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ReadingProgressBar from "@/components/blog/ReadingProgressBar";
 import HeroBlock from "@/components/blog/BlogDetail/HeroBlock";
@@ -12,8 +11,7 @@ import { blogPost } from "@/lib/blog-data";
 
 export default function BlogDetailPage() {
   return (
-    <main className="min-h-screen bg-white pt-16 md:pt-[4.5rem]">
-      <Navbar />
+    <main className="min-h-screen bg-white">
       <ReadingProgressBar />
       <HeroBlock post={blogPost} />
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-12 max-w-6xl mx-auto px-6 md:px-10 py-12">

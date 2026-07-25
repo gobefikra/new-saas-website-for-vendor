@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { Check } from "lucide-react";
+import Button from "@/components/ui/Button";
 import {
   PLANS,
   type BillingCycle,
@@ -104,17 +104,14 @@ function PricingCard({ plan, billing }: { plan: Plan; billing: BillingCycle }) {
         ))}
       </ul>
 
-      <Link
+      <Button
         href="/contact"
-        className="mt-8 block w-full rounded-xl py-3 text-center text-sm font-semibold transition-opacity hover:opacity-90"
-        style={
-          plan.featured
-            ? { backgroundColor: GREEN, color: "#fff" }
-            : { backgroundColor: NAVY, color: "#fff" }
-        }
+        variant={plan.featured ? "primary" : "outline"}
+        size="sm"
+        className="mt-8 w-full"
       >
         {plan.cta}
-      </Link>
+      </Button>
     </div>
   );
 }

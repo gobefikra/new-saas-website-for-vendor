@@ -1,6 +1,5 @@
 "use client";
 
-import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import MyLinkrHeroSection from "@/components/mylinkr/HeroSection";
 import PhoneCarousel from "@/components/mylinkr/PhoneCarousel";
@@ -13,7 +12,6 @@ import MyLinkrCTA from "@/components/mylinkr/MyLinkrCTA";
 export default function MyLinkrPage() {
   return (
     <main className="min-h-screen bg-white">
-      <Navbar />
       <MyLinkrHeroSection />
       <PhoneCarousel />
       <PreviewToggle />

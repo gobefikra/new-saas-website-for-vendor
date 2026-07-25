@@ -1,6 +1,5 @@
 "use client";
 
-import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import StoryHeroSection from "@/components/our-story/HeroSection";
 import NewBeginning from "@/components/our-story/NewBeginning";
@@ -13,7 +12,6 @@ import StoryCTA from "@/components/our-story/StoryCTA";
 export default function OurStoryPage() {
   return (
     <main className="min-h-screen bg-black text-white">
-      <Navbar theme="dark" />
       <StoryHeroSection />
       <NewBeginning />
       <BuiltWithFounders />

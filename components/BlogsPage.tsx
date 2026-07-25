@@ -1,6 +1,5 @@
 "use client";
 
-import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import HeroBanner from "@/components/blog/HeroBanner";
 import BlogSection from "@/components/blog/BlogSection";
@@ -15,8 +14,7 @@ import {
 
 export default function BlogsPage() {
   return (
-    <main className="min-h-screen bg-white pt-16 md:pt-[4.5rem]">
-      <Navbar />
+    <main className="min-h-screen bg-white">
       <HeroBanner />
       <BlogSection
         label="Featured Reads"
