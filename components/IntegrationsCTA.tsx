@@ -31,7 +31,7 @@ export default function IntegrationsCTA() {
         </h2>
         <p className="text-gray-300 text-base mt-6 max-w-md mx-auto leading-relaxed">
           Capture leads, reply instantly, and manage bookings from WhatsApp,
-          Instagram, and Befikra — all in one powerful CRM.
+          Instagram, and Befikra - all in one powerful CRM.
         </p>
         <div className="mt-10 flex flex-wrap gap-4 justify-center">
           <Link

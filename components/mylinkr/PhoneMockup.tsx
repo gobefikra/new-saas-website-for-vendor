@@ -27,6 +27,9 @@ type PhoneMockupProps = {
   alt?: string;
 };
 
+/**
+ * Real MyLinkr screen clipped inside the iPhone_17 frame bezels.
+ */
 export default function PhoneMockup({
   screenSrc,
   className = "w-64 md:w-72",
@@ -39,19 +42,31 @@ export default function PhoneMockup({
     <div className={`relative ${className}`}>
       <Image
         src="/icons/iPhone_17.png"
-        alt="iPhone frame"
+        alt=""
         width={frameWidth}
         height={frameHeight}
-        className="w-full h-auto relative z-10 pointer-events-none"
+        className="relative z-0 h-auto w-full pointer-events-none select-none"
         priority={priority}
+        aria-hidden
       />
-      <div className="absolute inset-[8%_7%_9%_7%] overflow-hidden rounded-[2rem]">
+
+      {/* Screen overlaid on the frame's glass area */}
+      <div
+        className="absolute z-10 overflow-hidden"
+        style={{
+          top: "2.1%",
+          right: "5.1%",
+          bottom: "2.1%",
+          left: "5.1%",
+          borderRadius: "12.5% / 6.2%",
+        }}
+      >
         <Image
           src={screenSrc}
           alt={alt}
           fill
           className="object-cover object-top"
-          sizes="(max-width: 768px) 256px, 288px"
+          sizes="(max-width: 768px) 220px, 260px"
           priority={priority}
         />
       </div>

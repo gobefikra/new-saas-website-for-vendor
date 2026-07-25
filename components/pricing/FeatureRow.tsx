@@ -8,7 +8,7 @@ import {
   type PricingFeature,
 } from "@/lib/pricing-data";
 
-const NAVY = "#0D1B2A";
+const NAVY = "#0F172A";
 const BODY = "#6B7280";
 
 const GRID =

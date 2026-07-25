@@ -1,8 +1,8 @@
 import { Check, X } from "lucide-react";
 import type { CellValue } from "@/lib/pricing-data";
 
-const GREEN = "#22C55E";
-const NAVY = "#0D1B2A";
+const GREEN = "#10B981";
+const NAVY = "#0F172A";
 const MUTED = "#9CA3AF";
 
 type FeatureCellProps = {

@@ -88,7 +88,7 @@ function Avatar() {
   return (
     <div className="relative shrink-0">
       <div className="w-10 h-10 rounded-full bg-gray-700" />
-      <span className="absolute -bottom-0.5 -right-0.5 w-4 h-4 bg-white rounded-full border border-gray-200 text-[10px] text-blue-600 font-bold flex items-center justify-center">
+      <span className="absolute -bottom-0.5 -right-0.5 w-4 h-4 bg-white rounded-full border border-gray-200 text-[10px] text-emerald-600 font-bold flex items-center justify-center">
         G
       </span>
     </div>

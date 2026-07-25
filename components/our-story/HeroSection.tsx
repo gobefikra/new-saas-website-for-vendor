@@ -20,7 +20,7 @@ export default function StoryHeroSection() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 60% 50% at 50% 50%, #0D3D20 0%, #000000 70%)",
+            "radial-gradient(ellipse 60% 50% at 50% 50%, #0D2B1F 0%, #000000 70%)",
         }}
         animate={{
           scale: [1, 1.15, 1],
@@ -52,7 +52,7 @@ export default function StoryHeroSection() {
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1, ease: "easeOut" }}
-        className="relative z-10 text-6xl md:text-8xl font-extrabold tracking-[0.2em] text-[#4DFFC3]"
+        className="relative z-10 text-6xl md:text-8xl font-extrabold tracking-[0.2em] text-[#84CC16]"
       >
         OUR STORY
       </motion.h1>

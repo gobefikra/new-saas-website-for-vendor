@@ -14,12 +14,12 @@ import {
 } from "lucide-react";
 import { fadeInUp } from "@/components/motion";
 
-const GREEN = "#22C55E";
-const GREEN_DARK = "#16A34A";
-const NAVY = "#0D1B2A";
+const GREEN = "#10B981";
+const GREEN_DARK = "#059669";
+const NAVY = "#0F172A";
 const BODY = "#6B7280";
-const MINT = "#E8F5E9";
-const SECTION_BG = "#F4F6F8";
+const MINT = "#ECFDF5";
+const SECTION_BG = "#F9FAFB";
 
 const faqs = [
   {
@@ -156,7 +156,7 @@ export default function FAQSection() {
         >
           <span
             className="inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-bold uppercase tracking-wide"
-            style={{ borderColor: "#A5D6A7", backgroundColor: MINT, color: GREEN_DARK }}
+            style={{ borderColor: "#A7F3D0", backgroundColor: MINT, color: GREEN_DARK }}
           >
             <span
               className="flex h-5 w-5 items-center justify-center rounded-full text-white"

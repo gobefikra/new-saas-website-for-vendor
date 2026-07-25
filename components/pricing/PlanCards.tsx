@@ -10,8 +10,8 @@ import {
   getPlanStrike,
 } from "@/lib/pricing-data";
 
-const NAVY = "#0D1B2A";
-const GREEN = "#22C55E";
+const NAVY = "#0F172A";
+const GREEN = "#10B981";
 const BODY = "#6B7280";
 
 type PlanCardsProps = {
@@ -29,7 +29,7 @@ function PricingCard({ plan, billing }: { plan: Plan; billing: BillingCycle }) {
     <div
       className={`relative flex flex-col rounded-2xl border bg-white p-6 md:p-7 ${
         plan.featured
-          ? "border-[#22C55E] shadow-[0_8px_40px_rgba(34,197,94,0.12)] lg:-mt-2 lg:mb-2 lg:pb-9"
+          ? "border-[#10B981] shadow-[0_8px_40px_rgba(16,185,129,0.12)] lg:-mt-2 lg:mb-2 lg:pb-9"
           : "border-gray-200 shadow-[0_4px_24px_rgba(13,27,42,0.04)]"
       }`}
     >
@@ -82,7 +82,7 @@ function PricingCard({ plan, billing }: { plan: Plan; billing: BillingCycle }) {
         </p>
         <p
           className="mt-2 inline-block rounded-md px-2 py-0.5 text-[11px] font-semibold"
-          style={{ backgroundColor: "#E8F5E9", color: "#1B5E20" }}
+          style={{ backgroundColor: "#ECFDF5", color: "#059669" }}
         >
           {plan.feeTag.text}
         </p>
@@ -93,7 +93,7 @@ function PricingCard({ plan, billing }: { plan: Plan; billing: BillingCycle }) {
           <li key={item} className="flex items-start gap-2.5">
             <span
               className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full"
-              style={{ backgroundColor: "#E8F5E9" }}
+              style={{ backgroundColor: "#ECFDF5" }}
             >
               <Check className="h-2.5 w-2.5" style={{ color: GREEN }} strokeWidth={3} />
             </span>

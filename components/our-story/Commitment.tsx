@@ -65,8 +65,8 @@ export default function Commitment() {
           variants={fadeInUp}
           className="bg-[#0D1F14] border border-[#1A3A25] rounded-3xl p-8"
         >
-          <div className="bg-[#0A1A30] rounded-xl p-3 w-14 h-14 flex items-center justify-center mb-4">
-            <Globe className="text-blue-400 text-2xl" />
+          <div className="bg-[#0A2A18] rounded-xl p-3 w-14 h-14 flex items-center justify-center mb-4">
+            <Globe className="text-emerald-400 text-2xl" />
           </div>
           <p className="text-gray-500 text-xs font-medium uppercase tracking-wider mb-3">
             Our Vision

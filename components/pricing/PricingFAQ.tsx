@@ -7,8 +7,8 @@ import { Minus, Plus } from "lucide-react";
 import { fadeInUp } from "@/components/motion";
 import { PRICING_FAQS } from "@/lib/pricing-data";
 
-const GREEN = "#22C55E";
-const NAVY = "#0D1B2A";
+const GREEN = "#10B981";
+const NAVY = "#0F172A";
 const BODY = "#6B7280";
 
 function FaqItem({

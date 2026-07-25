@@ -60,8 +60,8 @@ export default function BuiltWithFounders() {
             ))}
           </div>
           <p className="text-gray-400 text-sm mt-8 max-w-sm leading-relaxed">
-            So we built a platform that connects everything — from inquiry to
-            booking to payment — into one seamless system. A system designed
+            So we built a platform that connects everything - from inquiry to
+            booking to payment - into one seamless system. A system designed
             specifically for trekking companies, travel operators, and
             experience-based businesses.
           </p>

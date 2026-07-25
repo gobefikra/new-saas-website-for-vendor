@@ -2,8 +2,8 @@ import Link from "next/link";
 import { ArrowRight, Rocket } from "lucide-react";
 import { PRICING_CTA } from "@/lib/pricing-data";
 
-const NAVY = "#0D1B2A";
-const GREEN = "#22C55E";
+const NAVY = "#0F172A";
+const GREEN = "#10B981";
 
 export default function PricingCTA() {
   return (
@@ -19,7 +19,7 @@ export default function PricingCTA() {
           aria-hidden
           style={{
             background:
-              "radial-gradient(ellipse 70% 60% at 50% 0%, rgba(34,197,94,0.18), transparent 65%)",
+              "radial-gradient(ellipse 70% 60% at 50% 0%, rgba(16,185,129,0.18), transparent 65%)",
           }}
         />
 
@@ -27,8 +27,8 @@ export default function PricingCTA() {
           <span
             className="inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-bold uppercase tracking-wide"
             style={{
-              borderColor: "rgba(34,197,94,0.35)",
-              backgroundColor: "rgba(34,197,94,0.12)",
+              borderColor: "rgba(16,185,129,0.35)",
+              backgroundColor: "rgba(16,185,129,0.12)",
               color: GREEN,
             }}
           >

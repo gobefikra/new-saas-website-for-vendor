@@ -10,7 +10,7 @@ import {
 } from "@/components/legal/LegalContent";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — Befikra Partner",
+  title: "Privacy Policy - Befikra Partner",
   description:
     "How Befikra collects, uses, stores, and protects your information when you use our website and services.",
 };

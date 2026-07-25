@@ -21,7 +21,7 @@ import { fadeInUp, staggerContainer } from "@/components/motion";
 const featureCards = [
   {
     iconSrc: "/icons/Picture__5_.png",
-    fallback: <Zap className="w-6 h-6 text-amber-500" />,
+    fallback: <Zap className="w-6 h-6 text-lime-accent" />,
     title: "Setup in days, not weeks",
     desc: "Fast implementation with zero downtime.",
     highlight: true,
@@ -35,7 +35,7 @@ const featureCards = [
   },
   {
     iconSrc: "/icons/Picture__3_.png",
-    fallback: <Rocket className="w-6 h-6 text-indigo-500" />,
+    fallback: <Rocket className="w-6 h-6 text-emerald-500" />,
     title: "Start capturing leads instantly",
     desc: "Never miss a customer inquiry again.",
     highlight: false,
@@ -196,7 +196,7 @@ export default function ContactPage() {
     <main className="min-h-screen overflow-x-hidden bg-white">
       <Navbar />
 
-      {/* Section 1 — Hero / Form */}
+      {/* Section 1 - Hero / Form */}
       <section className="bg-white py-20 px-6 md:px-16">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start max-w-6xl mx-auto">
           <motion.div
@@ -226,7 +226,7 @@ export default function ContactPage() {
             >
               Tell us about your business, and we&apos;ll show you how Befikra
               helps you capture leads, automate conversations, and convert
-              inquiries into confirmed bookings — all from one unified platform.
+              inquiries into confirmed bookings - all from one unified platform.
             </motion.p>
 
             <motion.div
@@ -353,7 +353,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Section 2 — Other ways to connect */}
+      {/* Section 2 - Other ways to connect */}
       <section ref={connectRef} className="bg-white py-20 px-6">
         <h2 className="text-4xl font-extrabold text-gray-900 text-center">
           Other ways to connect
@@ -388,7 +388,7 @@ export default function ContactPage() {
         </motion.div>
       </section>
 
-      {/* Section 3 — Help and Support */}
+      {/* Section 3 - Help and Support */}
       <section ref={helpRef} className="bg-white py-20 px-6">
         <h2 className="text-4xl font-extrabold text-gray-900 text-center">
           Help and Support

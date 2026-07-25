@@ -5,32 +5,47 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, Sparkles, X } from "lucide-react";
 import { fadeInDown } from "@/components/motion";
 
-const navLinks = [
+type NavLink = {
+  label: string;
+  href: string;
+  /** Always shown in accent style, regardless of active route */
+  highlight?: boolean;
+};
+
+const navLinks: NavLink[] = [
   { label: "Home", href: "/" },
   { label: "Integrations", href: "/integrations" },
   { label: "MyLinkr", href: "/mylinkr" },
-  { label: "AI Features", href: "/#raven-ai-section" },
+  { label: "AI Features", href: "/#raven-ai-section", highlight: true },
   { label: "Pricing", href: "/pricing" },
   { label: "Our Story", href: "/our-story" },
   { label: "Contact", href: "/contact" },
   { label: "Blogs", href: "/blogs" },
 ];
 
+function AiFeaturesLabel({ className }: { className?: string }) {
+  return (
+    <span className={className}>
+      AI{" "}
+      <span className="relative inline-block pr-2.5">
+        Features
+        <Sparkles
+          className="absolute -right-0.5 -top-1.5 h-3 w-3"
+          strokeWidth={2.25}
+          aria-hidden
+        />
+      </span>
+    </span>
+  );
+}
+
 function isActive(pathname: string, href: string) {
+  // In-page anchors (e.g. AI Features) are not page-level active states
+  if (href.startsWith("/#") || href.startsWith("#")) return false;
   if (href === "/") return pathname === "/";
-  if (href.startsWith("/#")) return pathname === "/";
-  if (href === "/contact") return pathname === "/contact";
-  if (href === "/integrations") return pathname === "/integrations";
-  if (href === "/mylinkr") return pathname === "/mylinkr";
-  if (href === "/our-story") return pathname === "/our-story";
-  if (href === "/blogs") return pathname === "/blogs";
-  if (href === "/privacy-policy") return pathname === "/privacy-policy";
-  if (href === "/terms-and-conditions")
-    return pathname === "/terms-and-conditions";
-  if (href === "/pricing") return pathname === "/pricing";
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 
@@ -66,17 +81,37 @@ export default function Navbar({ theme = "light" }: NavbarProps) {
       ? "bg-white/90 backdrop-blur-md border-b border-gray-100 shadow-sm"
       : "bg-white border-b border-gray-100";
 
-  const linkClass = (href: string) => {
+  const desktopLinkClass = (href: string) => {
     const active = isActive(pathname, href);
     if (isDark) {
       return active
-        ? "font-bold text-white"
+        ? "font-semibold text-lime-400"
         : "font-medium text-gray-300 hover:text-white";
     }
     return active
-      ? "font-bold text-near-black"
+      ? "font-semibold text-emerald-600"
       : "font-medium text-gray-600 hover:text-emerald-600";
   };
+
+  const mobileLinkClass = (href: string) => {
+    const active = isActive(pathname, href);
+    if (isDark) {
+      return active
+        ? "font-semibold text-lime-400 bg-emerald-500/10 border-l-2 border-lime-400"
+        : "font-medium text-gray-300 hover:text-white border-l-2 border-transparent";
+    }
+    return active
+      ? "font-semibold text-emerald-700 bg-emerald-50 border-l-2 border-emerald-500"
+      : "font-medium text-gray-600 hover:text-emerald-600 border-l-2 border-transparent";
+  };
+
+  const desktopHighlightClass = isDark
+    ? "font-semibold text-lime-400"
+    : "font-semibold text-emerald-600";
+
+  const mobileHighlightClass = isDark
+    ? "font-semibold text-lime-400 border-l-2 border-transparent"
+    : "font-semibold text-emerald-600 border-l-2 border-transparent";
 
   const ctaClass = isDark
     ? "inline-flex bg-white text-gray-900 rounded-full px-6 py-2.5 font-semibold text-sm hover:bg-gray-100 transition-colors"
@@ -102,17 +137,44 @@ export default function Navbar({ theme = "light" }: NavbarProps) {
             />
           </Link>
 
-          <ul className="hidden lg:flex items-center gap-6 xl:gap-8">
-            {navLinks.map((link) => (
-              <li key={link.label}>
-                <Link
-                  href={link.href}
-                  className={`text-sm transition-colors ${linkClass(link.href)}`}
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
+          <ul className="hidden lg:flex items-center gap-5 xl:gap-7">
+            {navLinks.map((link) => {
+              const active = isActive(pathname, link.href);
+
+              if (link.highlight) {
+                return (
+                  <li key={link.label} className="relative">
+                    <Link
+                      href={link.href}
+                      className={`relative inline-block py-1 text-sm transition-colors ${desktopHighlightClass}`}
+                    >
+                      <AiFeaturesLabel />
+                    </Link>
+                  </li>
+                );
+              }
+
+              return (
+                <li key={link.label} className="relative">
+                  <Link
+                    href={link.href}
+                    className={`relative inline-block py-1 text-sm transition-colors ${desktopLinkClass(link.href)}`}
+                    aria-current={active ? "page" : undefined}
+                  >
+                    {link.label}
+                    {active && (
+                      <motion.span
+                        layoutId="nav-active-underline"
+                        className={`absolute -bottom-1 left-0 right-0 h-0.5 rounded-full ${
+                          isDark ? "bg-lime-400" : "bg-emerald-500"
+                        }`}
+                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                      />
+                    )}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
 
           <div className="hidden lg:block shrink-0">
@@ -172,20 +234,37 @@ export default function Navbar({ theme = "light" }: NavbarProps) {
                   <X className="w-6 h-6" />
                 </button>
               </div>
-              <ul className="flex flex-col p-6 gap-1 flex-1 overflow-y-auto">
-                {navLinks.map((link) => (
-                  <li key={link.label}>
-                    <Link
-                      href={link.href}
-                      onClick={() => setMobileOpen(false)}
-                      className={`block py-3 text-base border-b ${
-                        isDark ? "border-[#1A3A25]" : "border-gray-50"
-                      } ${linkClass(link.href)}`}
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
+              <ul className="flex flex-col p-4 gap-1 flex-1 overflow-y-auto">
+                {navLinks.map((link) => {
+                  const active = isActive(pathname, link.href);
+
+                  if (link.highlight) {
+                    return (
+                      <li key={link.label}>
+                        <Link
+                          href={link.href}
+                          onClick={() => setMobileOpen(false)}
+                          className={`block rounded-r-lg px-4 py-3 text-base transition-colors ${mobileHighlightClass}`}
+                        >
+                          <AiFeaturesLabel />
+                        </Link>
+                      </li>
+                    );
+                  }
+
+                  return (
+                    <li key={link.label}>
+                      <Link
+                        href={link.href}
+                        onClick={() => setMobileOpen(false)}
+                        aria-current={active ? "page" : undefined}
+                        className={`block rounded-r-lg px-4 py-3 text-base transition-colors ${mobileLinkClass(link.href)}`}
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  );
+                })}
               </ul>
               <div
                 className={`p-6 border-t ${
