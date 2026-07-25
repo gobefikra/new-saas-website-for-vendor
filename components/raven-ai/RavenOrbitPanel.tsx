@@ -23,8 +23,9 @@ import {
   Zap,
 } from "lucide-react";
 import { fadeInUp } from "@/components/motion";
+import { FeatureIllustration } from "@/components/raven-ai/FeatureIllustrations";
 
-const GREEN = "#22C55E";
+const GREEN = "#10B981";
 const DARK_PANEL = "#0a120e";
 const CARD_BG = "#0f1f18";
 const CARD_BORDER = "#1a3328";
@@ -47,8 +48,9 @@ const ORBIT_R = 140;
 
 /** Row centers aligned with flex justify-between slots in VIEW_H */
 const ROW_Y = [102, 250, 398, 546] as const;
-const LEFT_ANCHOR_X = 242;
-const RIGHT_ANCHOR_X = 658;
+/** Top/bottom hug the hub; middle two sit slightly farther out */
+const LEFT_ANCHOR_X = [242, 190, 190, 242] as const;
+const RIGHT_ANCHOR_X = [658, 710, 710, 658] as const;
 
 const orbitFeatureDefs = [
   { id: "replies", title: "Instant Replies", description: "Respond to leads instantly with AI-powered conversations.", Icon: MessageCircle, side: "left" as const, row: 0 },
@@ -64,10 +66,14 @@ const orbitFeatureDefs = [
 const orbitFeatures: OrbitFeature[] = orbitFeatureDefs.map((f) => ({
   ...f,
   anchor: {
-    x: f.side === "left" ? LEFT_ANCHOR_X : RIGHT_ANCHOR_X,
+    x: f.side === "left" ? LEFT_ANCHOR_X[f.row] : RIGHT_ANCHOR_X[f.row],
     y: ROW_Y[f.row],
   },
 }));
+
+function isOuterRow(row: number) {
+  return row === 1 || row === 2;
+}
 
 const leftFeatures = orbitFeatures.filter((f) => f.side === "left");
 const rightFeatures = orbitFeatures.filter((f) => f.side === "right");
@@ -120,7 +126,7 @@ function CentralOrb() {
         <defs>
           <radialGradient id="orb-core" cx="50%" cy="45%" r="55%">
             <stop offset="0%" stopColor="#4ade80" stopOpacity="0.9" />
-            <stop offset="55%" stopColor="#16a34a" stopOpacity="0.55" />
+            <stop offset="55%" stopColor="#059669" stopOpacity="0.55" />
             <stop offset="100%" stopColor="#052e16" stopOpacity="0.2" />
           </radialGradient>
           <pattern id="orb-mesh" width="8" height="8" patternUnits="userSpaceOnUse">
@@ -165,10 +171,19 @@ function OrbitFeatureCard({
 }) {
   const { title, description, Icon, row } = feature;
   const floatDelay = row * 0.4;
+  const outer = isOuterRow(row);
 
   return (
     <motion.div
-      className={`w-full max-w-[240px] ${align === "left" ? "ml-auto" : "mr-auto"}`}
+      className={`w-[232px] shrink-0 ${
+        align === "left"
+          ? outer
+            ? "mr-auto"
+            : "ml-auto"
+          : outer
+            ? "ml-auto"
+            : "mr-auto"
+      }`}
       initial={{ opacity: 0, x: align === "left" ? -20 : 20 }}
       animate={inView ? { opacity: 1, x: 0 } : { opacity: 0 }}
       transition={{ duration: 0.5, delay: row * 0.08 }}
@@ -185,25 +200,29 @@ function OrbitFeatureCard({
         }}
       >
         <div
-          className="flex gap-3 rounded-2xl border px-4 py-3 transition-colors duration-300"
+          className="flex h-[84px] items-start gap-3 rounded-2xl border px-3.5 py-3 transition-colors duration-300"
           style={{
             backgroundColor: active ? "#122820" : CARD_BG,
             borderColor: active ? GREEN : CARD_BORDER,
-            boxShadow: active ? `0 0 28px rgba(34,197,94,0.22)` : "none",
+            boxShadow: active ? `0 0 28px rgba(16,185,129,0.22)` : "none",
             transform: active ? "scale(1.02)" : "scale(1)",
           }}
         >
           <motion.div
-            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full"
-            style={{ backgroundColor: "rgba(34,197,94,0.15)" }}
+            className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full"
+            style={{ backgroundColor: "rgba(16,185,129,0.15)" }}
             animate={active ? { scale: [1, 1.08, 1] } : { scale: 1 }}
             transition={{ duration: 1.2, repeat: active ? Infinity : 0 }}
           >
-            <Icon className="h-5 w-5" style={{ color: GREEN }} strokeWidth={2} />
+            <Icon className="h-4 w-4" style={{ color: GREEN }} strokeWidth={2} />
           </motion.div>
-          <div className="min-w-0">
-            <p className="text-sm font-bold text-white">{title}</p>
-            <p className="mt-0.5 text-xs leading-snug text-gray-400">{description}</p>
+          <div className="min-w-0 flex-1">
+            <p className="truncate text-[13px] font-semibold leading-tight text-white">
+              {title}
+            </p>
+            <p className="mt-1 line-clamp-2 text-[11px] leading-snug text-gray-400">
+              {description}
+            </p>
           </div>
         </div>
       </motion.div>
@@ -265,7 +284,7 @@ export function RavenOrbitPanel() {
         className="pointer-events-none absolute inset-0 opacity-60"
         style={{
           background:
-            "radial-gradient(ellipse 55% 45% at 50% 45%, rgba(34,197,94,0.14), transparent 70%)",
+            "radial-gradient(ellipse 55% 45% at 50% 45%, rgba(16,185,129,0.14), transparent 70%)",
         }}
       />
 
@@ -302,7 +321,7 @@ export function RavenOrbitPanel() {
                   y1={orbitPt.y}
                   x2={f.anchor.x}
                   y2={f.anchor.y}
-                  stroke={active ? GREEN : "rgba(34,197,94,0.35)"}
+                  stroke={active ? GREEN : "rgba(16,185,129,0.35)"}
                   strokeWidth={active ? 2 : 1.5}
                   animate={{ strokeOpacity: active ? [0.7, 1, 0.7] : [0.25, 0.45, 0.25] }}
                   transition={{
@@ -350,7 +369,7 @@ export function RavenOrbitPanel() {
             {leftFeatures.map((f) => (
               <div
                 key={f.id}
-                className="flex items-center justify-end"
+                className={`flex items-center ${isOuterRow(f.row) ? "justify-start pl-8" : "justify-end"}`}
                 style={{ minHeight: 0, flex: "1 1 0" }}
               >
                 <OrbitFeatureCard
@@ -373,7 +392,7 @@ export function RavenOrbitPanel() {
             {rightFeatures.map((f) => (
               <div
                 key={f.id}
-                className="flex items-center justify-start"
+                className={`flex items-center ${isOuterRow(f.row) ? "justify-end pr-8" : "justify-start"}`}
                 style={{ minHeight: 0, flex: "1 1 0" }}
               >
                 <OrbitFeatureCard
@@ -408,18 +427,22 @@ export function RavenOrbitPanel() {
                   delay: i * 0.15,
                 },
               }}
-              className="flex gap-3 rounded-2xl border px-3 py-3"
+              className="flex h-[84px] items-start gap-3 rounded-2xl border px-3.5 py-3"
               style={{ backgroundColor: CARD_BG, borderColor: CARD_BORDER }}
             >
               <div
-                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full"
-                style={{ backgroundColor: "rgba(34,197,94,0.15)" }}
+                className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full"
+                style={{ backgroundColor: "rgba(16,185,129,0.15)" }}
               >
                 <f.Icon className="h-4 w-4" style={{ color: GREEN }} />
               </div>
-              <div>
-                <p className="text-sm font-bold text-white">{f.title}</p>
-                <p className="mt-0.5 text-[11px] leading-snug text-gray-400">{f.description}</p>
+              <div className="min-w-0 flex-1">
+                <p className="truncate text-[13px] font-semibold leading-tight text-white">
+                  {f.title}
+                </p>
+                <p className="mt-1 line-clamp-2 text-[11px] leading-snug text-gray-400">
+                  {f.description}
+                </p>
               </div>
             </motion.div>
           ))}
@@ -430,23 +453,96 @@ export function RavenOrbitPanel() {
 }
 
 const platformFeatures = [
-  { n: "01", title: "Daily updates, straight to your inbox", desc: "Get curated leads and insights delivered to you every day.", Icon: Mail, accent: "#22C55E" },
-  { n: "02", title: "Automate your lead conversations", desc: "Engage, qualify, and follow up automatically with AI.", Icon: Settings, accent: "#14B8A6" },
-  { n: "03", title: "24/7 lead capture automation", desc: "Capture leads anytime, anywhere with smart QR.", Icon: QrCode, accent: "#3B82F6" },
-  { n: "04", title: "Embed your favorite content", desc: "Share and embed content from your favorite platforms.", Icon: Share2, accent: "#A855F7" },
-  { n: "05", title: "Subscribers and prospect list", desc: "Organize, segment, and nurture your audience effortlessly.", Icon: Users, accent: "#EAB308" },
-  { n: "06", title: "Replies in under 10 seconds", desc: "Instant AI replies keep conversations moving.", Icon: MessageCircle, accent: "#EC4899" },
-  { n: "07", title: "Custom AI follow-up journeys", desc: "Personalized follow-ups that convert more leads.", Icon: Zap, accent: "#F97316" },
-  { n: "08", title: "Turn chats into booked customers", desc: "AI-powered conversations that turn interest into meetings.", Icon: MessageCircle, accent: "#FB7185" },
-  { n: "09", title: "Mobile app for iOS and Android", desc: "Manage leads and chats on the go, from any device.", Icon: Smartphone, accent: "#38BDF8" },
-  { n: "10", title: "Conversion ready", desc: "Built to convert more leads into paying customers.", Icon: BarChart3, accent: "#4ADE80" },
+  {
+    n: "01",
+    title: "Daily updates, straight to your inbox",
+    desc: "Get curated leads and insights delivered to you every day.",
+    Icon: Mail,
+    accent: "#10B981",
+    span: "lg:col-span-3 lg:row-span-2",
+    tall: true,
+  },
+  {
+    n: "02",
+    title: "Automate your lead conversations",
+    desc: "Engage, qualify, and follow up automatically with AI.",
+    Icon: Settings,
+    accent: "#84CC16",
+    span: "lg:col-span-3",
+  },
+  {
+    n: "03",
+    title: "24/7 lead capture automation",
+    desc: "Capture leads anytime, anywhere with smart QR.",
+    Icon: QrCode,
+    accent: "#34D399",
+    span: "lg:col-span-3",
+  },
+  {
+    n: "04",
+    title: "Embed your favorite content",
+    desc: "Share and embed content from your favorite platforms.",
+    Icon: Share2,
+    accent: "#A3E635",
+    span: "lg:col-span-2",
+  },
+  {
+    n: "05",
+    title: "Subscribers and prospect list",
+    desc: "Organize, segment, and nurture your audience effortlessly.",
+    Icon: Users,
+    accent: "#059669",
+    span: "lg:col-span-2",
+  },
+  {
+    n: "06",
+    title: "Replies in under 10 seconds",
+    desc: "Instant AI replies keep conversations moving.",
+    Icon: MessageCircle,
+    accent: "#10B981",
+    span: "lg:col-span-2",
+  },
+  {
+    n: "07",
+    title: "Custom AI follow-up journeys",
+    desc: "Personalized follow-ups that convert more leads.",
+    Icon: Zap,
+    accent: "#84CC16",
+    span: "lg:col-span-4",
+    wide: true,
+  },
+  {
+    n: "08",
+    title: "Turn chats into booked customers",
+    desc: "AI-powered conversations that turn interest into meetings.",
+    Icon: MessageCircle,
+    accent: "#34D399",
+    span: "lg:col-span-2 lg:row-span-2",
+    tall: true,
+  },
+  {
+    n: "09",
+    title: "Mobile app for iOS and Android",
+    desc: "Manage leads and chats on the go, from any device.",
+    Icon: Smartphone,
+    accent: "#6EE7B7",
+    span: "lg:col-span-2",
+  },
+  {
+    n: "10",
+    title: "Conversion ready",
+    desc: "Built to convert more leads into paying customers.",
+    Icon: BarChart3,
+    accent: "#4ADE80",
+    span: "lg:col-span-2",
+  },
 ];
 
 const trustItems = [
-  { title: "Secure & Reliable", desc: "Enterprise-grade security you can trust.", Icon: Shield, color: "#22C55E" },
-  { title: "Easy to Set Up", desc: "Get started in minutes and see results fast.", Icon: Zap, color: "#A855F7" },
-  { title: "Powered by Advanced AI", desc: "Smarter conversations, better results.", Icon: Sparkles, color: "#3B82F6" },
-  { title: "Loved by Sales Teams", desc: "Helping teams close more deals, every day.", Icon: Heart, color: "#EC4899" },
+  { title: "Secure & Reliable", desc: "Enterprise-grade security you can trust.", Icon: Shield, color: "#10B981" },
+  { title: "Easy to Set Up", desc: "Get started in minutes and see results fast.", Icon: Zap, color: "#84CC16" },
+  { title: "Powered by Advanced AI", desc: "Smarter conversations, better results.", Icon: Sparkles, color: "#34D399" },
+  { title: "Loved by Sales Teams", desc: "Helping teams close more deals, every day.", Icon: Heart, color: "#A3E635" },
 ];
 
 export function RavenPlatformGrid() {
@@ -458,14 +554,14 @@ export function RavenPlatformGrid() {
       <div className="text-center">
         <span
           className="inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-[11px] font-semibold uppercase tracking-widest"
-          style={{ borderColor: "rgba(34,197,94,0.4)", color: GREEN }}
+          style={{ borderColor: "rgba(16,185,129,0.4)", color: GREEN }}
         >
           <Sparkles className="h-3.5 w-3.5" />
           All-in-one AI sales platform
         </span>
         <h3 className="mx-auto mt-6 max-w-3xl text-3xl font-extrabold leading-tight text-white sm:text-4xl md:text-[2.75rem]">
           Everything you need to close more deals,{" "}
-          <span className="bg-gradient-to-r from-green-400 via-cyan-400 to-purple-400 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-lime-400 via-[#84CC16] to-emerald-400 bg-clip-text text-transparent">
             on autopilot.
           </span>
         </h3>
@@ -475,48 +571,142 @@ export function RavenPlatformGrid() {
         </p>
       </div>
 
-      <div className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5">
-        {platformFeatures.map((item, i) => (
-          <motion.div
-            key={item.n}
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: i * 0.05, duration: 0.45 }}
-            className="group relative overflow-hidden rounded-2xl border p-4 transition-colors hover:border-white/10"
-            style={{ backgroundColor: "rgba(255,255,255,0.03)", borderColor: "rgba(255,255,255,0.06)" }}
-          >
-            <span className="absolute right-3 top-2 text-2xl font-bold text-white/5">{item.n}</span>
-            <div
-              className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl"
-              style={{ backgroundColor: `${item.accent}22`, color: item.accent }}
+      {/* Cards tessellate into one rectangle - no outer wrapper */}
+      <div className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-6 lg:grid-rows-[repeat(5,minmax(148px,1fr))] lg:gap-3">
+        {platformFeatures.map((item, i) => {
+          const tall = Boolean(item.tall);
+          const wide = Boolean(item.wide);
+
+          return (
+            <motion.div
+              key={item.n}
+              initial={{ opacity: 0, y: 18 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: i * 0.04, duration: 0.4 }}
+              className={`group relative flex h-full min-h-[160px] flex-col overflow-hidden rounded-2xl border p-5 transition-all duration-300 hover:border-emerald-500/30 ${item.span} ${
+                wide
+                  ? "justify-center sm:flex-row sm:items-center sm:gap-4"
+                  : tall
+                    ? "justify-between"
+                    : "justify-between"
+              }`}
+              style={{
+                background: tall
+                  ? "linear-gradient(160deg, rgba(16,185,129,0.14) 0%, rgba(255,255,255,0.03) 48%, rgba(0,0,0,0.18) 100%)"
+                  : "rgba(255,255,255,0.035)",
+                borderColor: "rgba(255,255,255,0.07)",
+                boxShadow: "inset 0 1px 0 rgba(255,255,255,0.04)",
+              }}
             >
-              <item.Icon className="h-5 w-5" strokeWidth={2} />
-            </div>
-            <p className="text-sm font-bold leading-snug text-white">{item.title}</p>
-            <p className="mt-1.5 text-xs leading-relaxed text-gray-500">{item.desc}</p>
-            <div
-              className="mt-4 h-0.5 w-8 rounded-full transition-all group-hover:w-12"
-              style={{ backgroundColor: item.accent }}
-            />
-          </motion.div>
-        ))}
+              <span
+                className={`pointer-events-none absolute font-bold tracking-tight text-white/[0.045] ${
+                  tall ? "right-3 top-0 text-7xl leading-none" : "right-3 top-2 text-4xl leading-none"
+                }`}
+              >
+                {item.n}
+              </span>
+
+              <div
+                className={`relative z-10 ${
+                  wide ? "flex min-w-0 flex-1 items-start gap-4 sm:items-center" : ""
+                }`}
+              >
+                <div
+                  className={`relative z-10 flex shrink-0 items-center justify-center rounded-xl border ${
+                    tall ? "h-11 w-11" : "h-10 w-10"
+                  }`}
+                  style={{
+                    backgroundColor: `${item.accent}18`,
+                    borderColor: `${item.accent}33`,
+                    color: item.accent,
+                  }}
+                >
+                  <item.Icon className={tall ? "h-5 w-5" : "h-[18px] w-[18px]"} strokeWidth={2} />
+                </div>
+
+                <div
+                  className={`relative z-10 ${wide ? "min-w-0" : "mt-4"} ${
+                    tall && item.n === "01" ? "max-w-[55%] sm:max-w-[240px]" : tall ? "max-w-[280px]" : ""
+                  } ${!tall && !wide ? "pr-[96px] sm:pr-[108px]" : ""}`}
+                >
+                  <p
+                    className={`font-semibold leading-snug text-white ${
+                      tall ? "text-base sm:text-lg" : wide ? "text-[15px]" : "text-sm"
+                    }`}
+                  >
+                    {item.title}
+                  </p>
+                  <p
+                    className={`mt-1.5 leading-relaxed text-gray-400 ${
+                      tall ? "text-[13px]" : "text-xs"
+                    }`}
+                  >
+                    {item.desc}
+                  </p>
+
+                  {!wide ? (
+                    <div
+                      className={`mt-4 h-1 rounded-full transition-all duration-300 group-hover:w-14 ${
+                        tall ? "w-12" : "w-8"
+                      }`}
+                      style={{
+                        background: `linear-gradient(90deg, ${item.accent}, transparent)`,
+                      }}
+                    />
+                  ) : null}
+                </div>
+              </div>
+
+              {wide ? (
+                <div
+                  className="relative z-10 mt-3 h-1 w-12 rounded-full sm:mt-0 sm:hidden"
+                  style={{
+                    background: `linear-gradient(90deg, ${item.accent}, transparent)`,
+                  }}
+                />
+              ) : null}
+
+              <FeatureIllustration
+                id={item.n}
+                accent={item.accent}
+                tall={tall}
+                wide={wide}
+              />
+
+              {tall ? (
+                <div
+                  className="pointer-events-none absolute -bottom-10 -right-10 h-32 w-32 rounded-full opacity-25 blur-2xl transition-opacity group-hover:opacity-50"
+                  style={{ backgroundColor: item.accent }}
+                />
+              ) : null}
+            </motion.div>
+          );
+        })}
       </div>
 
       <div
-        className="mt-6 grid grid-cols-1 gap-4 rounded-2xl border p-4 sm:grid-cols-2 lg:grid-cols-4 lg:p-6"
-        style={{ backgroundColor: "rgba(255,255,255,0.03)", borderColor: "rgba(255,255,255,0.06)" }}
+        className="mt-6 grid grid-cols-1 gap-5 rounded-2xl border px-5 py-5 sm:grid-cols-2 lg:grid-cols-4 lg:px-7 lg:py-6"
+        style={{
+          background:
+            "linear-gradient(180deg, rgba(16,185,129,0.06) 0%, rgba(255,255,255,0.02) 100%)",
+          borderColor: "rgba(255,255,255,0.07)",
+        }}
       >
         {trustItems.map((item) => (
           <div key={item.title} className="flex items-start gap-3">
             <div
-              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full"
-              style={{ backgroundColor: `${item.color}22`, color: item.color }}
+              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border"
+              style={{
+                backgroundColor: `${item.color}18`,
+                borderColor: `${item.color}33`,
+                color: item.color,
+              }}
             >
               <item.Icon className="h-5 w-5" strokeWidth={2} />
             </div>
             <div>
-              <p className="text-sm font-bold text-white">{item.title}</p>
-              <p className="mt-0.5 text-xs text-gray-500">{item.desc}</p>
+              <p className="text-sm font-semibold text-white">{item.title}</p>
+              <p className="mt-0.5 text-xs leading-relaxed text-gray-500">{item.desc}</p>
             </div>
           </div>
         ))}

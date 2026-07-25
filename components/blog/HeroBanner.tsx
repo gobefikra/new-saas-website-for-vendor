@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { fadeInUp } from "@/components/motion";
 import { BLOG_HERO_IMAGE } from "@/lib/blog-images";
 
-const NAVY = "#0D1B2A";
+const NAVY = "#0F172A";
 
 export default function HeroBanner() {
   const [imgError, setImgError] = useState(false);
@@ -45,7 +45,7 @@ export default function HeroBanner() {
         )}
         <div className="absolute inset-0 bg-black/35" aria-hidden />
         <div
-          className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#0D1B2A]/70 via-transparent to-[#0D1B2A]/40"
+          className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#0F172A]/70 via-transparent to-[#0F172A]/40"
           aria-hidden
         />
       </div>

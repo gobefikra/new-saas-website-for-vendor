@@ -17,39 +17,39 @@ import {
 import MyLinkrHomeVisual from "@/components/mylinkr/MyLinkrHomeVisual";
 import { fadeInUp, staggerContainer } from "@/components/motion";
 
-const GREEN = "#22C55E";
-const NAVY = "#0D1B2A";
+const GREEN = "#10B981";
+const NAVY = "#0F172A";
 const BODY = "#6B7280";
-const MINT = "#E8F5E9";
+const MINT = "#ECFDF5";
 
 const features = [
   {
     Icon: Link2,
     title: "All-in-one link",
-    desc: "Events, trips, payments & more — all in one place.",
-    iconBg: "#E8F5E9",
-    iconColor: "#2E7D32",
+    desc: "Events, trips, payments & more - all in one place.",
+    iconBg: "#ECFDF5",
+    iconColor: "#10B981",
   },
   {
     Icon: Zap,
     title: "Instant actions",
     desc: "Book, pay, and confirm in seconds.",
-    iconBg: "#DBEAFE",
-    iconColor: "#2563EB",
+    iconBg: "#F7FEE7",
+    iconColor: "#84CC16",
   },
   {
     Icon: BarChart3,
     title: "Built for growth",
     desc: "Capture leads, boost conversions, and grow faster.",
-    iconBg: "#F3E5F5",
-    iconColor: "#9333EA",
+    iconBg: "#ECFDF5",
+    iconColor: "#059669",
   },
   {
     Icon: Shield,
     title: "Secure & reliable",
     desc: "Safe payments, secure data, total peace of mind.",
-    iconBg: "#FFEDD5",
-    iconColor: "#EA580C",
+    iconBg: "#F7FEE7",
+    iconColor: "#65A30D",
   },
 ];
 
@@ -59,40 +59,40 @@ const stats = [
     value: "10K+",
     title: "Links Created",
     desc: "One link for all your bookings & leads",
-    iconBg: "#E8F5E9",
-    iconColor: "#2E7D32",
+    iconBg: "#ECFDF5",
+    iconColor: "#10B981",
   },
   {
     Icon: Calendar,
     value: "2M+",
     title: "Bookings Made",
     desc: "Turning visitors into happy customers",
-    iconBg: "#F3E5F5",
-    iconColor: "#9333EA",
+    iconBg: "#F7FEE7",
+    iconColor: "#84CC16",
   },
   {
     Icon: Users,
     value: "500+",
     title: "Businesses",
     desc: "From startups to scaleups, we've got you covered",
-    iconBg: "#DBEAFE",
-    iconColor: "#2563EB",
+    iconBg: "#ECFDF5",
+    iconColor: "#059669",
   },
   {
     Icon: BarChart3,
     value: "98%",
     title: "Conversion Boost",
     desc: "More bookings with smarter engagement",
-    iconBg: "#FFEDD5",
-    iconColor: "#EA580C",
+    iconBg: "#F7FEE7",
+    iconColor: "#65A30D",
   },
   {
     Icon: Shield,
     value: "100%",
     title: "Secure Payments",
     desc: "Safe, secure & peace of mind",
-    iconBg: "#E8F5E9",
-    iconColor: "#2E7D32",
+    iconBg: "#ECFDF5",
+    iconColor: "#10B981",
   },
 ];
 
@@ -107,8 +107,8 @@ export default function MyLinkrSection() {
       className="w-full overflow-hidden bg-white px-4 py-20 md:py-24 lg:px-8"
     >
       <div className="mx-auto max-w-6xl">
-        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-10">
-          {/* Left — copy & CTAs */}
+        <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-2 lg:items-center lg:gap-10 xl:gap-14">
+          {/* Left - copy & CTAs */}
           <motion.div
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
@@ -117,7 +117,7 @@ export default function MyLinkrSection() {
             <motion.span
               variants={fadeInUp}
               className="inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wide"
-              style={{ borderColor: "#A5D6A7", backgroundColor: MINT, color: "#1B5E20" }}
+              style={{ borderColor: "#A7F3D0", backgroundColor: MINT, color: "#059669" }}
             >
               <Sparkles className="h-3.5 w-3.5" strokeWidth={2.25} />
               NEW FEATURE
@@ -139,7 +139,7 @@ export default function MyLinkrSection() {
               style={{ color: BODY }}
             >
               Create a powerful booking page in minutes. All your events,
-              payments, and more — in one smart link.
+              payments, and more - in one smart link.
             </motion.p>
 
             <motion.ul
@@ -200,13 +200,13 @@ export default function MyLinkrSection() {
             </motion.div>
           </motion.div>
 
-          {/* Right — visual */}
+          {/* Right - visual */}
           <motion.div
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
             variants={fadeInUp}
             transition={{ delay: 0.12 }}
-            className="overflow-visible"
+            className="relative z-0 flex w-full items-center self-stretch overflow-visible lg:justify-self-end"
           >
             <MyLinkrHomeVisual />
           </motion.div>
@@ -218,7 +218,7 @@ export default function MyLinkrSection() {
           animate={inView ? "visible" : "hidden"}
           variants={fadeInUp}
           transition={{ delay: 0.2 }}
-          className="mt-16 overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-[0_8px_40px_rgba(13,27,42,0.06)]"
+          className="relative z-10 mt-8 overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-[0_8px_40px_rgba(13,27,42,0.06)] md:mt-10"
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5">
             {stats.map((stat, index) => (

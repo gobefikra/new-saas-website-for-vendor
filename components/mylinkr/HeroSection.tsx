@@ -45,7 +45,7 @@ export default function MyLinkrHeroSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden bg-gradient-to-b from-[#EEF0FF] to-white py-20 px-6 text-center"
+      className="relative overflow-hidden bg-gradient-to-b from-[#F9FAFB] to-white py-20 px-6 text-center"
     >
       <motion.div
         initial="hidden"
@@ -69,7 +69,7 @@ export default function MyLinkrHeroSection() {
             Create Your Own
           </motion.span>
           <motion.span variants={fadeInUp} className="block text-lime-400">
-            Booking–Ready
+            Booking-Ready
           </motion.span>
           <motion.span variants={fadeInUp} className="block">
             Mini Website
@@ -104,7 +104,7 @@ export default function MyLinkrHeroSection() {
           delay={0.5}
         >
           <div className="w-32 rounded-2xl bg-white p-3 shadow-lg">
-            <div className="rounded-xl bg-purple-600 p-2 text-white">
+            <div className="rounded-xl bg-emerald-600 p-2 text-white">
               <p className="text-xs font-bold">Vergecast</p>
               <p className="text-[10px] opacity-80 mt-0.5">Podcast</p>
             </div>
@@ -139,7 +139,7 @@ export default function MyLinkrHeroSection() {
             ease: "easeInOut",
           }}
         >
-          <div className="w-28 rounded-xl bg-purple-600 p-2 shadow-lg text-white -rotate-6">
+          <div className="w-28 rounded-xl bg-forest-dark p-2 shadow-lg text-white -rotate-6">
             <p className="text-xs font-bold">Vergecast</p>
           </div>
         </motion.div>
@@ -151,12 +151,12 @@ export default function MyLinkrHeroSection() {
         >
           <div className="w-32 rounded-xl bg-white p-3 shadow-lg">
             <div className="flex items-center gap-2">
-              <FaBookmark className="text-orange-500 text-lg" />
+              <FaBookmark className="text-lime-accent text-lg" />
               <p className="text-xs font-semibold text-gray-800">
                 Very Long Press
               </p>
             </div>
-            <span className="mt-2 inline-block rounded-full bg-orange-500 px-2 py-0.5 text-[10px] font-semibold text-white">
+            <span className="mt-2 inline-block rounded-full bg-emerald-500 px-2 py-0.5 text-[10px] font-semibold text-white">
               Subscribe
             </span>
           </div>

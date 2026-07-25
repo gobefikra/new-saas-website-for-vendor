@@ -30,7 +30,7 @@ const faqs = [
   {
     question: "Will the CRM track which platform my leads come from?",
     answer:
-      "Yes. Every lead is tagged with its source — WhatsApp, Instagram, or website — so you always know what's working.",
+      "Yes. Every lead is tagged with its source - WhatsApp, Instagram, or website - so you always know what's working.",
   },
 ];
 

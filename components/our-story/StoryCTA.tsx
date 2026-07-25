@@ -18,7 +18,7 @@ export default function StoryCTA() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 60% 50% at 50% 50%, #0D3D20 0%, #000000 70%)",
+            "radial-gradient(ellipse 60% 50% at 50% 50%, #0D2B1F 0%, #000000 70%)",
         }}
       />
       <motion.div

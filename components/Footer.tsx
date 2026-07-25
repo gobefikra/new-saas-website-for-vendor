@@ -14,11 +14,11 @@ import {
   Youtube,
 } from "lucide-react";
 
-const GREEN = "#22C55E";
-const GREEN_DARK = "#1B5E20";
-const NAVY = "#0D1B2A";
+const GREEN = "#10B981";
+const GREEN_DARK = "#059669";
+const NAVY = "#0F172A";
 const BODY = "#6B7280";
-const MINT = "#E8F5E9";
+const MINT = "#ECFDF5";
 
 const companyLinks = [
   { label: "Home", href: "/" },
@@ -150,7 +150,7 @@ export default function Footer() {
           <div className="lg:border-r lg:border-gray-100 lg:pr-8">
             <Link href="/" className="inline-block">
               <Image
-                src="/icons/footer-logo.png"
+                src="/icons/Nav-logo.png"
                 alt="Befikra Partner"
                 width={180}
                 height={48}
@@ -221,7 +221,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="mt-12 border-t border-gray-100 bg-[#F4F6F8]">
+      <div className="mt-12 border-t border-gray-100 bg-[#F9FAFB]">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 py-5 md:flex-row md:px-8">
           <p
             className="font-dm-sans flex items-center gap-2 text-sm"

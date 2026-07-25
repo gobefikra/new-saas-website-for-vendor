@@ -16,28 +16,28 @@ import { fadeInUp, staggerContainer } from "@/components/motion";
 const stats = [
   {
     icon: "⚡",
-    iconBg: "bg-yellow-50",
+    iconBg: "bg-emerald-50",
     stat: "↓ 92%",
     label: "Response Time",
     desc: "From 15 mins to under 30s with AI replies",
   },
   {
     icon: "⚙️",
-    iconBg: "bg-blue-50",
+    iconBg: "bg-lime-50",
     stat: "↓ 75%",
     label: "Manual Work",
     desc: "Automated replies, follow-ups, and reminders",
   },
   {
     icon: "🎯",
-    iconBg: "bg-teal-50",
+    iconBg: "bg-emerald-50",
     stat: "↑ 2.4×",
     label: "Conversion Rate",
     desc: "Faster replies convert more leads into bookings",
   },
   {
     icon: "📈",
-    iconBg: "bg-green-50",
+    iconBg: "bg-lime-50",
     stat: "↑ 3×",
     label: "Leads Captured",
     desc: "Capture leads from WA, IG, and website",
@@ -96,8 +96,8 @@ const floatingIcons = [
     className: "absolute top-64 left-[12%] hidden lg:flex",
     delay: 2,
     content: (
-      <div className="bg-blue-50 rounded-2xl shadow-md p-4 w-16 h-16 flex items-center justify-center">
-        <FaLink className="text-blue-400 text-2xl" />
+      <div className="bg-emerald-50 rounded-2xl shadow-md p-4 w-16 h-16 flex items-center justify-center">
+        <FaLink className="text-emerald-500 text-2xl" />
       </div>
     ),
   },
@@ -139,7 +139,7 @@ function FeatureCards({
           }}
           className={`rounded-2xl px-6 py-5 ${
             dark
-              ? `bg-[#1A2B3C] ${i === 0 ? "border-l-4 border-emerald-400" : ""}`
+              ? `bg-[#0F1F18] ${i === 0 ? "border-l-4 border-emerald-400" : ""}`
               : `border border-gray-100 bg-gray-50 ${
                   i === 0
                     ? "border-l-4 border-emerald-400 bg-white shadow-sm"
@@ -274,7 +274,7 @@ export default function IntegrationsPage() {
               variants={fadeInUp}
               className="text-gray-500 text-base md:text-lg max-w-xl mx-auto mt-6 leading-relaxed"
             >
-              Save time, reduce manual work, and never miss a lead — Befikra
+              Save time, reduce manual work, and never miss a lead - Befikra
               helps you focus on what matters most: growing your business. Just
               connect, and you&apos;re all set.
             </motion.p>
@@ -328,7 +328,7 @@ export default function IntegrationsPage() {
         <section
           id="whatsapp"
           ref={whatsappRef}
-          className="scroll-mt-[8.5rem] bg-[#0F1B2D] px-8 py-20 text-white md:px-20"
+          className="scroll-mt-[8.5rem] bg-[#0D2B1F] px-8 py-20 text-white md:px-20"
         >
           <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             <div className="max-w-lg">
@@ -344,7 +344,7 @@ export default function IntegrationsPage() {
               </Link>
             </div>
             <div
-              className="hidden lg:block min-h-[320px] rounded-3xl bg-[#1A2B3C]/30"
+              className="hidden lg:block min-h-[320px] rounded-3xl bg-[#0F1F18]/30"
               aria-hidden
             >
               {/* Visual coming soon */}
@@ -387,7 +387,7 @@ export default function IntegrationsPage() {
         <section
           id="website"
           ref={websiteRef}
-          className="scroll-mt-[8.5rem] bg-[#0F1B2D] px-8 py-20 text-white md:px-20"
+          className="scroll-mt-[8.5rem] bg-[#0D2B1F] px-8 py-20 text-white md:px-20"
         >
           <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             <div className="max-w-lg">
@@ -403,7 +403,7 @@ export default function IntegrationsPage() {
               </Link>
             </div>
             <div
-              className="hidden lg:block min-h-[320px] rounded-3xl bg-[#1A2B3C]/30"
+              className="hidden lg:block min-h-[320px] rounded-3xl bg-[#0F1F18]/30"
               aria-hidden
             >
               {/* Visual coming soon */}

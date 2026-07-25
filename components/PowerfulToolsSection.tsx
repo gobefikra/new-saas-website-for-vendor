@@ -16,10 +16,10 @@ import {
 import PowerfulToolsPreview from "@/components/powerful-tools/PowerfulToolsPreview";
 import { fadeInUp, staggerContainer } from "@/components/motion";
 
-const NAVY = "#0D1B2A";
+const NAVY = "#0F172A";
 const BODY = "#6B7280";
-const MINT = "#E8F5E9";
-const GREEN_DARK = "#1B5E20";
+const MINT = "#ECFDF5";
+const GREEN_DARK = "#059669";
 
 const features = [
   {
@@ -44,29 +44,29 @@ const stats = [
     Icon: BarChart3,
     value: "500+",
     label: "Travel Businesses",
-    iconBg: "#E8F5E9",
-    iconColor: "#2E7D32",
+    iconBg: "#ECFDF5",
+    iconColor: "#10B981",
   },
   {
     Icon: Users,
     value: "50K+",
     label: "Happy Customers",
-    iconBg: "#DBEAFE",
-    iconColor: "#2563EB",
+    iconBg: "#F7FEE7",
+    iconColor: "#84CC16",
   },
   {
     Icon: Calendar,
     value: "2.5M+",
     label: "Bookings Managed",
-    iconBg: "#F3E5F5",
-    iconColor: "#9333EA",
+    iconBg: "#ECFDF5",
+    iconColor: "#059669",
   },
   {
     Icon: Star,
     value: "4.8/5",
     label: "User Rating",
-    iconBg: "#FEF9C3",
-    iconColor: "#CA8A04",
+    iconBg: "#F7FEE7",
+    iconColor: "#65A30D",
   },
 ];
 
@@ -82,7 +82,7 @@ export default function PowerfulToolsSection() {
     >
       <div className="mx-auto max-w-6xl">
         <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-2 lg:gap-10">
-          {/* Left — copy & features */}
+          {/* Left - copy & features */}
           <motion.div
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
@@ -91,7 +91,7 @@ export default function PowerfulToolsSection() {
             <motion.span
               variants={fadeInUp}
               className="inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-xs font-semibold"
-              style={{ borderColor: "#A5D6A7", backgroundColor: MINT, color: GREEN_DARK }}
+              style={{ borderColor: "#A7F3D0", backgroundColor: MINT, color: GREEN_DARK }}
             >
               <Zap className="h-3.5 w-3.5" strokeWidth={2.25} />
               Everything you need. All in one place.
@@ -104,7 +104,7 @@ export default function PowerfulToolsSection() {
             >
               Powerful Tools to Run and
               <br />
-              <span className="bg-gradient-to-r from-[#22C55E] via-[#16A34A] to-[#14B8A6] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-lime-400 via-[#84CC16] to-emerald-500 bg-clip-text text-transparent">
                 Grow Your Travel Business
               </span>
             </motion.h2>
@@ -131,7 +131,7 @@ export default function PowerfulToolsSection() {
                     >
                       <Icon
                         className="h-5 w-5"
-                        style={{ color: "#2E7D32" }}
+                        style={{ color: "#10B981" }}
                         strokeWidth={2}
                       />
                     </div>
@@ -156,7 +156,7 @@ export default function PowerfulToolsSection() {
             </motion.ul>
           </motion.div>
 
-          {/* Right — dashboard preview */}
+          {/* Right - dashboard preview */}
           <motion.div
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
@@ -166,7 +166,7 @@ export default function PowerfulToolsSection() {
             <div className="lg:hidden">
               <p
                 className="mb-2 text-center text-base font-semibold italic"
-                style={{ color: "#22C55E", fontFamily: "cursive" }}
+                style={{ color: "#10B981", fontFamily: "cursive" }}
               >
                 See Befikra in action
               </p>

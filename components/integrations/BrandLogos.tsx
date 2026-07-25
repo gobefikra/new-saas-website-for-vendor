@@ -1,3 +1,11 @@
+import {
+  SiGoogleads,
+  SiHubspot,
+  SiMeta,
+  SiZoho,
+} from "react-icons/si";
+import { MdWebhook } from "react-icons/md";
+
 type LogoProps = { className?: string; id?: string };
 
 export function WhatsAppLogo({ className = "h-11 w-11" }: LogoProps) {
@@ -30,78 +38,69 @@ export function InstagramLogo({ className = "h-11 w-11", id = "ig" }: LogoProps)
   );
 }
 
+/** Official multicolor Gmail "M" mark */
 export function GmailLogo({ className = "h-11 w-11" }: LogoProps) {
   return (
-    <svg className={className} viewBox="0 0 24 24" aria-hidden>
+    <svg className={className} viewBox="52 42 88 66" aria-hidden>
+      <path fill="#4285F4" d="M58 108h14V74L52 59v43c0 3.3 2.7 6 6 6z" />
+      <path fill="#34A853" d="M120 108h14c3.3 0 6-2.7 6-6V59l-20 15v34z" />
+      <path fill="#FBBC04" d="M120 48v26l20-15v-8c0-7.4-8.5-11.7-14.4-7.2L120 48z" />
+      <path fill="#EA4335" d="M72 74V48l24 18 24-18v26L96 92 72 74z" />
       <path
-        fill="#EA4335"
-        d="M5.18 4.41L12 10.24l6.82-5.83C17.66 3.19 16.34 3 15 3H9c-1.34 0-2.66.19-3.82.41z"
+        fill="#C5221F"
+        d="M52 48v8l20 15V48l-5.6-4.2C60.5 39.3 52 43.6 52 51v-3z"
       />
-      <path fill="#34A853" d="M3 7.5v9.5c0 .83.67 1.5 1.5 1.5h1V8.91L3 7.5z" />
-      <path fill="#FBBC05" d="M18.5 18.5c.83 0 1.5-.67 1.5-1.5V7.5l-3 2.41v8.59h1.5z" />
-      <path fill="#4285F4" d="M12 11.24L3 5.5v2.41l9 7.74 9-7.74V5.5l-9 5.74z" />
-      <path fill="#C5221F" d="M21 7.5l-3 2.41V18.5h1.5c.83 0 1.5-.67 1.5-1.5V7.5z" />
     </svg>
   );
 }
 
 export function MetaLogo({ className = "h-11 w-11" }: LogoProps) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" aria-hidden>
-      <path
-        fill="#0081FB"
-        d="M12 2.04c-2.89 0-5.26 2.37-5.26 5.26 0 2.04 1.17 3.8 2.87 4.66-.35-1.01-.54-2.09-.54-3.22 0-4.42 3.58-8 8-8s8 3.58 8 8-3.58 8-8 8c-.89 0-1.74-.15-2.54-.42.78.5 1.7.78 2.68.78 3.31 0 6-2.69 6-6s-2.69-6-6-6c-1.2 0-2.32.35-3.26.96.94-1.42 2.55-2.36 4.38-2.36 2.89 0 5.26 2.37 5.26 5.26 0 1.13-.19 2.21-.54 3.22 1.7-.86 2.87-2.62 2.87-4.66 0-2.89-2.37-5.26-5.26-5.26z"
-      />
-      <path
-        fill="#0081FB"
-        d="M6.5 10.5c0-3.04 2.46-5.5 5.5-5.5 1.38 0 2.64.51 3.61 1.35C14.14 4.9 12.1 4 9.8 4 5.36 4 1.74 7.62 1.74 12.06c0 2.15 1.01 4.06 2.58 5.3-.2-.72-.31-1.48-.31-2.26 0-3.31 2.69-6 6-6 1.2 0 2.32.35 3.26.96-.94-1.42-2.55-2.36-4.38-2.36-2.89 0-5.26 2.37-5.26 5.26 0 1.13.19 2.21.54 3.22-1.7-.86-2.87-2.62-2.87-4.66z"
-        opacity={0.9}
-      />
-    </svg>
-  );
+  return <SiMeta className={className} color="#0081FB" aria-hidden />;
 }
 
 export function GoogleAdsLogo({ className = "h-11 w-11" }: LogoProps) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" aria-hidden>
-      <path fill="#FBBC04" d="M12 2L3 20h4.5l1.5-3.5L12 8l3 8.5L16.5 20H21L12 2z" />
-      <path fill="#4285F4" d="M12 8l-3 8.5H3L12 2v6z" />
-      <path fill="#34A853" d="M12 8l3 8.5H21L12 2v6z" />
-      <path fill="#EA4335" d="M9 16.5L12 8l3 8.5h-6z" />
-    </svg>
-  );
+  return <SiGoogleads className={className} color="#4285F4" aria-hidden />;
 }
 
 export function HubSpotLogo({ className = "h-11 w-11" }: LogoProps) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" aria-hidden>
-      <path
-        fill="#FF7A59"
-        d="M18.16 7.93V5.08a1.56 1.56 0 10-3.12 0v2.85a6.24 6.24 0 00-2.47 1.02l-2.02-2.02a1.56 1.56 0 10-2.21 2.21l2.02 2.02a6.24 6.24 0 00-1.02 2.47H5.08a1.56 1.56 0 100 3.12h2.85a6.24 6.24 0 001.02 2.47l-2.02 2.02a1.56 1.56 0 102.21 2.21l2.02-2.02a6.24 6.24 0 002.47 1.02v2.85a1.56 1.56 0 103.12 0v-2.85a6.24 6.24 0 002.47-1.02l2.02 2.02a1.56 1.56 0 102.21-2.21l-2.02-2.02a6.24 6.24 0 001.02-2.47h2.85a1.56 1.56 0 100-3.12h-2.85a6.24 6.24 0 00-1.02-2.47l2.02-2.02a1.56 1.56 0 00-2.21-2.21l-2.02 2.02a6.24 6.24 0 00-2.47-1.02zM12 15.5a3.5 3.5 0 110-7 3.5 3.5 0 010 7z"
-      />
-    </svg>
-  );
+  return <SiHubspot className={className} color="#FF7A59" aria-hidden />;
 }
 
 export function ZohoLogo({ className = "h-11 w-11" }: LogoProps) {
+  return <SiZoho className={className} color="#226DB4" aria-hidden />;
+}
+
+export function WebhooksLogo({ className = "h-11 w-11" }: LogoProps) {
+  return <MdWebhook className={className} color="#E34F26" aria-hidden />;
+}
+
+export function MyLinkrLogo({ className = "h-11 w-11" }: LogoProps) {
   return (
-    <svg className={className} viewBox="0 0 24 24" aria-hidden>
-      <circle cx="9" cy="12" r="5.5" fill="none" stroke="#226DB4" strokeWidth="2.2" />
-      <circle cx="15" cy="12" r="5.5" fill="none" stroke="#226DB4" strokeWidth="2.2" />
+    <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden>
+      <rect width="24" height="24" rx="6" fill="#10B981" />
+      <g
+        stroke="#fff"
+        strokeWidth="2"
+        strokeLinecap="round"
+        transform="translate(3 3) scale(0.75)"
+      >
+        <path d="M9 17H7A5 5 0 0 1 7 7h2" />
+        <path d="M15 7h2a5 5 0 0 1 0 10h-2" />
+        <path d="M8 12h8" />
+      </g>
     </svg>
   );
 }
 
-export function WebhooksLogo({ className = "h-11 w-11" }: LogoProps) {
+export function WebsiteLogo({ className = "h-11 w-11" }: LogoProps) {
   return (
-    <svg className={className} viewBox="0 0 24 24" aria-hidden>
+    <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden>
+      <circle cx="12" cy="12" r="10" stroke="#0F172A" strokeWidth="1.75" />
       <path
-        fill="#E34F26"
-        d="M7.5 4.5a3 3 0 013 3v1.5H9a1.5 1.5 0 100 3h1.5V12a3 3 0 11-6 0V9H6a1.5 1.5 0 110-3h1.5V7.5a3 3 0 013-3zm9 0a3 3 0 013 3v1.5H18a1.5 1.5 0 100 3h1.5V12a3 3 0 11-6 0V9h-1.5a1.5 1.5 0 110-3H18V7.5a3 3 0 013-3z"
-      />
-      <path
-        fill="#C73E1D"
-        d="M12 13.5a3 3 0 013 3V18h1.5a1.5 1.5 0 100-3H15v-1.5a3 3 0 10-6 0V15H7.5a1.5 1.5 0 100 3H9v1.5a3 3 0 006 0v-1.5h1.5a1.5 1.5 0 100-3H12z"
+        d="M2.5 12h19M12 2.5c2.5 2.7 3.8 5.9 3.8 9.5S14.5 18.8 12 21.5C9.5 18.8 8.2 15.6 8.2 12S9.5 5.2 12 2.5z"
+        stroke="#0F172A"
+        strokeWidth="1.75"
+        strokeLinejoin="round"
       />
     </svg>
   );

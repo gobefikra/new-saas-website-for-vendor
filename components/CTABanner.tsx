@@ -14,18 +14,18 @@ import {
 import { OrbitSide } from "@/components/cta/CTABannerOrbit";
 import { fadeInUp } from "@/components/motion";
 
-const GREEN = "#22C55E";
-const GREEN_DARK = "#16A34A";
-const NAVY = "#0D1B2A";
+const GREEN = "#10B981";
+const GREEN_DARK = "#059669";
+const NAVY = "#0F172A";
 const BODY = "#6B7280";
-const MINT = "#E8F5E9";
-const SECTION_BG = "#F4F6F8";
+const MINT = "#ECFDF5";
+const SECTION_BG = "#F9FAFB";
 const CARD_BG = "#F9FAFB";
 
 const features = [
   {
     Icon: Link2,
-    title: "50+ Integrations",
+    title: "Integrations",
     desc: "Connect the tools you already use.",
     iconBg: MINT,
     iconColor: GREEN_DARK,
@@ -73,7 +73,7 @@ export default function CTABanner() {
           aria-hidden
           style={{
             background:
-              "radial-gradient(ellipse 40% 50% at 18% 45%, rgba(34,197,94,0.08), transparent 60%), radial-gradient(ellipse 40% 50% at 82% 45%, rgba(59,130,246,0.06), transparent 60%)",
+              "radial-gradient(ellipse 40% 50% at 18% 45%, rgba(16,185,129,0.10), transparent 60%), radial-gradient(ellipse 40% 50% at 82% 45%, rgba(132,204,22,0.08), transparent 60%)",
           }}
         />
 
@@ -111,13 +111,13 @@ export default function CTABanner() {
               style={{ color: BODY }}
             >
               Connect your favorite tools, streamline your workflows, and grow
-              your business — all from one place.
+              your business - all from one place.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#22C55E] to-[#16A34A] px-7 py-3 text-sm font-semibold text-white shadow-[0_4px_16px_rgba(34,197,94,0.35)] transition-opacity hover:opacity-90"
+                className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#10B981] to-[#059669] px-7 py-3 text-sm font-semibold text-white shadow-[0_4px_16px_rgba(16,185,129,0.35)] transition-opacity hover:opacity-90"
               >
                 Book a demo
                 <ArrowRight className="h-4 w-4" strokeWidth={2.25} />

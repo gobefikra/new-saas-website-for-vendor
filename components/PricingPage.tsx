@@ -15,7 +15,7 @@ import {
   formatPrice,
 } from "@/lib/pricing-data";
 
-const NAVY = "#0D1B2A";
+const NAVY = "#0F172A";
 const BODY = "#6B7280";
 
 function getMobilePlanLabel(planId: PlanId, billing: BillingCycle): string {
@@ -36,7 +36,7 @@ export default function PricingPage() {
       <Navbar />
 
       <main className="pt-16 md:pt-[4.5rem]">
-        {/* Hero — Cassis-style centered */}
+        {/* Hero - Cassis-style centered */}
         <section className="px-4 pb-10 pt-14 text-center md:px-8 md:pb-14 md:pt-20">
           <p
             className="text-xs font-semibold uppercase tracking-widest"
@@ -61,12 +61,12 @@ export default function PricingPage() {
           </div>
         </section>
 
-        {/* Plan cards — Cassis-style grid */}
+        {/* Plan cards - Cassis-style grid */}
         <section className="px-4 pb-16 md:px-8 md:pb-20">
           <PlanCards billing={billing} />
         </section>
 
-        {/* Feature comparison table — Cassis-style grid */}
+        {/* Feature comparison table - Cassis-style grid */}
         <section className="border-t border-gray-100 bg-white px-4 pb-16 md:px-8 md:pb-20">
           <div className="mx-auto max-w-[1200px]">
             <div className="mb-6 lg:hidden">

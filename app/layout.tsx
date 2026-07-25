@@ -17,7 +17,7 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Befikra Partner — India's Intelligent CRM for Travel Brands",
+  title: "Befikra Partner - India's Intelligent CRM for Travel Brands",
   description:
     "India's intelligent CRM for travel brands, combining automation, analytics, and AI to power faster growth.",
 };

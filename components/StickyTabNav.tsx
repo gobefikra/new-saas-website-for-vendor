@@ -70,7 +70,7 @@ export default function StickyTabNav({
     return () => window.removeEventListener("resize", onResize);
   }, [updatePill]);
 
-  /* IntersectionObserver — two-way scroll sync */
+  /* IntersectionObserver - two-way scroll sync */
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {

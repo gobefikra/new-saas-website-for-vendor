@@ -13,9 +13,9 @@ export async function generateMetadata({
   params: { slug: string };
 }): Promise<Metadata> {
   const post = getBlogPostBySlug(params.slug);
-  if (!post) return { title: "Blog — Befikra Partner" };
+  if (!post) return { title: "Blog - Befikra Partner" };
   return {
-    title: `${post.title} — Befikra Partner`,
+    title: `${post.title} - Befikra Partner`,
     description: post.excerpt.slice(0, 160),
   };
 }

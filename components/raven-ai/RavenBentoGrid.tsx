@@ -24,7 +24,7 @@ const socialLinks = [
   { Icon: Pin, label: "Pinterest", hover: "hover:text-red-400 hover:border-red-400/40" },
   { Icon: Twitter, label: "X", hover: "hover:text-sky-400 hover:border-sky-400/40" },
   { Icon: MessageCircle, label: "WhatsApp", hover: "hover:text-emerald-400 hover:border-emerald-400/40" },
-  { Icon: ShoppingBag, label: "MyLinkr", hover: "hover:text-violet-400 hover:border-violet-400/40" },
+  { Icon: ShoppingBag, label: "MyLinkr", hover: "hover:text-lime-400 hover:border-lime-400/40" },
 ];
 
 function BentoShell({
@@ -34,12 +34,11 @@ function BentoShell({
 }: {
   children: React.ReactNode;
   className?: string;
-  glow?: "emerald" | "pink" | "cyan" | "purple";
+  glow?: "emerald" | "lime" | "purple";
 }) {
   const glowMap = {
     emerald: "from-emerald-500/15",
-    pink: "from-pink-500/15",
-    cyan: "from-cyan-500/15",
+    lime: "from-lime-400/15",
     purple: "from-purple-500/15",
   };
 
@@ -133,7 +132,7 @@ function QRTile() {
         className="relative h-16 w-16 md:h-20 md:w-20"
       >
         <div
-          className="absolute inset-0 flex items-center justify-center rounded-lg bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400 text-xs font-bold text-white shadow-lg"
+          className="absolute inset-0 flex items-center justify-center rounded-lg bg-gradient-to-br from-lime-400 via-emerald-500 to-emerald-700 text-xs font-bold text-white shadow-lg"
           style={{ backfaceVisibility: "hidden" }}
         >
           QR
@@ -150,7 +149,7 @@ function QRTile() {
           ))}
         </div>
       </motion.div>
-      <span className="text-xs text-pink-400/90 group-hover:text-pink-300 transition-colors">
+      <span className="text-xs text-lime-400/90 group-hover:text-lime-300 transition-colors">
         {flipped ? "Scan to book" : "Event QR · tap to flip"}
       </span>
     </button>
@@ -219,7 +218,7 @@ export default function RavenBentoGrid() {
         variants={staggerContainer}
         className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3 md:gap-4 auto-rows-min"
       >
-        <BentoShell glow="cyan" className="md:col-span-2 lg:col-span-2 min-h-[110px]">
+        <BentoShell glow="lime" className="md:col-span-2 lg:col-span-2 min-h-[110px]">
           <motion.div
             whileHover={{ rotate: [-2, 2, -2, 0] }}
             transition={{ duration: 0.5 }}
@@ -249,14 +248,14 @@ export default function RavenBentoGrid() {
           </p>
         </BentoShell>
 
-        <BentoShell glow="pink" className="md:col-span-1 lg:col-span-1 items-center">
+        <BentoShell glow="lime" className="md:col-span-1 lg:col-span-1 items-center">
           <QRTile />
         </BentoShell>
 
         <BentoShell glow="emerald" className="md:col-span-1 lg:col-span-1 md:row-span-2 justify-center">
           <LivePulse />
           <p className="text-xs text-gray-400 leading-relaxed mt-2">
-            Capture leads from MyLinkr, event pages & DMs — even at 2 AM before a trek.
+            Capture leads from MyLinkr, event pages & DMs - even at 2 AM before a trek.
           </p>
           <motion.div
             className="mt-auto h-1 w-full rounded-full bg-[#1a2e25] overflow-hidden"
@@ -295,9 +294,9 @@ export default function RavenBentoGrid() {
           <p className="text-[11px] text-gray-500">iOS & Android · ops on the go</p>
         </BentoShell>
 
-        <BentoShell glow="pink" className="md:col-span-1 lg:col-span-1 justify-center">
+        <BentoShell glow="emerald" className="md:col-span-1 lg:col-span-1 justify-center">
           <motion.p
-            className="text-pink-500 font-bold italic text-sm leading-snug"
+            className="text-lime-400 font-bold italic text-sm leading-snug"
             animate={{ opacity: [0.85, 1, 0.85] }}
             transition={{ duration: 3, repeat: Infinity }}
           >

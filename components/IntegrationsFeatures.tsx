@@ -1,50 +1,44 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useRef, useState, type ComponentType } from "react";
 import type { LucideIcon } from "lucide-react";
 import {
   BarChart3,
   Clock,
-  Plus,
   Shield,
   Users,
 } from "lucide-react";
 import {
   GmailLogo,
-  GoogleAdsLogo,
-  HubSpotLogo,
   InstagramLogo,
   MetaLogo,
+  MyLinkrLogo,
   WebhooksLogo,
+  WebsiteLogo,
   WhatsAppLogo,
-  ZohoLogo,
 } from "@/components/integrations/BrandLogos";
 
-const GREEN = "#2E7D32";
-const NAVY = "#0D1B2A";
+const GREEN = "#10B981";
+const NAVY = "#0F172A";
 const BODY_GRAY = "#6B7280";
 const DIVIDER = "#E5E7EB";
-const SECTION_WRAP_BG = "#F1F4F7";
-const FEATURE_STRIP_BG = "#F4F6F8";
+const SECTION_WRAP_BG = "#F9FAFB";
+const FEATURE_STRIP_BG = "#F9FAFB";
 
 type Platform = {
   id: string;
   label: string;
   Logo: ComponentType<{ className?: string; id?: string }>;
-  imageSrc?: string;
 };
 
 const platforms: Platform[] = [
-  { id: "whatsapp", label: "WhatsApp", Logo: WhatsAppLogo },
-  { id: "instagram", label: "Instagram", Logo: InstagramLogo },
+  { id: "mylinkr", label: "MyLinkr", Logo: MyLinkrLogo },
+  { id: "website", label: "Website", Logo: WebsiteLogo },
   { id: "gmail", label: "Gmail", Logo: GmailLogo },
-  { id: "meta", label: "Meta Ads", Logo: MetaLogo, imageSrc: "/icons/meta.png" },
-  { id: "google-ads", label: "Google Ads", Logo: GoogleAdsLogo },
-  { id: "hubspot", label: "HubSpot", Logo: HubSpotLogo },
-  { id: "zoho", label: "Zoho CRM", Logo: ZohoLogo },
   { id: "webhooks", label: "Webhooks", Logo: WebhooksLogo },
+  { id: "instagram", label: "Instagram", Logo: InstagramLogo },
+  { id: "whatsapp", label: "WhatsApp Business", Logo: WhatsAppLogo },
+  { id: "meta", label: "Meta Ads", Logo: MetaLogo },
 ];
 
 function useInViewOnce(threshold = 0.25) {
@@ -72,44 +66,15 @@ function useInViewOnce(threshold = 0.25) {
   return { ref, inView };
 }
 
-function useCountUp(target: number, active: boolean, duration = 1400) {
-  const [value, setValue] = useState(0);
-
-  useEffect(() => {
-    if (!active) return;
-
-    let frame = 0;
-    const start = performance.now();
-
-    const tick = (now: number) => {
-      const progress = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      setValue(Math.round(eased * target));
-      if (progress < 1) frame = requestAnimationFrame(tick);
-    };
-
-    frame = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(frame);
-  }, [active, target, duration]);
-
-  return value;
-}
-
-type MarqueeItem =
-  | { kind: "platform"; platform: Platform; index: number }
-  | { kind: "more"; index: number };
+type MarqueeItem = { platform: Platform; index: number };
 
 function buildMarqueeItems(): MarqueeItem[] {
-  const row: MarqueeItem[] = [
-    ...platforms.map((platform, index) => ({ kind: "platform" as const, platform, index })),
-    { kind: "more", index: platforms.length },
-  ];
+  const row = platforms.map((platform, index) => ({ platform, index }));
   return [...row, ...row];
 }
 
 function IntegrationsStrip() {
   const { ref, inView } = useInViewOnce(0.2);
-  const count = useCountUp(50, inView);
   const marqueeItems = buildMarqueeItems();
 
   return (
@@ -120,20 +85,20 @@ function IntegrationsStrip() {
     >
       <div className="flex flex-col lg:flex-row lg:items-stretch">
         <div
-          className="flex shrink-0 flex-col justify-center border-b px-8 py-8 lg:w-[220px] xl:w-[240px] lg:border-b-0 lg:border-r lg:py-10"
+          className="flex shrink-0 flex-col justify-center border-b px-8 py-8 lg:w-[240px] xl:w-[260px] lg:border-b-0 lg:border-r lg:py-10"
           style={{ borderColor: DIVIDER }}
         >
           <p
             className="text-[22px] font-extrabold leading-tight"
             style={{ color: NAVY }}
           >
-            Connect with
+            Connect Your
           </p>
           <p
             className="text-[22px] font-extrabold leading-tight"
             style={{ color: GREEN }}
           >
-            <span className="tabular-nums">{count}</span>+ platforms
+            Business
           </p>
         </div>
 
@@ -147,23 +112,15 @@ function IntegrationsStrip() {
                 inView ? "integrations-marquee-active" : ""
               }`}
             >
-              {marqueeItems.map((item, i) =>
-                item.kind === "more" ? (
-                  <MorePlatformIcon
-                    key={`more-${i}`}
-                    animateIn={inView}
-                    staggerIndex={item.index}
-                  />
-                ) : (
-                  <PlatformIcon
-                    key={`${item.platform.id}-${i}`}
-                    platform={item.platform}
-                    index={item.index}
-                    animateIn={inView}
-                    staggerIndex={item.index}
-                  />
-                )
-              )}
+              {marqueeItems.map((item, i) => (
+                <PlatformIcon
+                  key={`${item.platform.id}-${i}`}
+                  platform={item.platform}
+                  index={item.index}
+                  animateIn={inView}
+                  staggerIndex={item.index}
+                />
+              ))}
             </div>
           </div>
         </div>
@@ -183,11 +140,11 @@ function PlatformIcon({
   animateIn: boolean;
   staggerIndex: number;
 }) {
-  const { Logo, label, imageSrc } = platform;
+  const { Logo, label } = platform;
 
   return (
     <div
-      className={`integrations-icon-enter group relative flex w-[72px] flex-col items-center gap-2 sm:w-[80px] ${
+      className={`integrations-icon-enter group relative flex w-[84px] flex-col items-center gap-2 sm:w-[92px] ${
         animateIn ? "integrations-icon-visible" : ""
       }`}
       style={{ transitionDelay: `${staggerIndex * 80}ms` }}
@@ -196,17 +153,7 @@ function PlatformIcon({
         className="flex h-11 w-11 items-center justify-center transition-transform duration-300 ease-out group-hover:scale-[1.15] sm:h-12 sm:w-12"
         title={label}
       >
-        {imageSrc ? (
-          <Image
-            src={imageSrc}
-            alt={label}
-            width={44}
-            height={44}
-            className="h-10 w-10 object-contain sm:h-11 sm:w-11"
-          />
-        ) : (
-          <Logo className="h-10 w-10 sm:h-11 sm:w-11" id={`${platform.id}-${index}`} />
-        )}
+        <Logo className="h-10 w-10 sm:h-11 sm:w-11" id={`${platform.id}-${index}`} />
       </div>
       <span
         className="font-dm-sans text-center text-[11px] font-medium leading-tight sm:text-xs"
@@ -215,43 +162,12 @@ function PlatformIcon({
         {label}
       </span>
       <span
-        className="pointer-events-none absolute -top-9 left-1/2 z-20 -translate-x-1/2 whitespace-nowrap rounded-md bg-[#0D1B2A] px-2.5 py-1 text-[11px] font-medium text-white opacity-0 shadow-lg transition-opacity duration-200 group-hover:opacity-100"
+        className="pointer-events-none absolute -top-9 left-1/2 z-20 -translate-x-1/2 whitespace-nowrap rounded-md bg-[#0F172A] px-2.5 py-1 text-[11px] font-medium text-white opacity-0 shadow-lg transition-opacity duration-200 group-hover:opacity-100"
         role="tooltip"
       >
         {label}
       </span>
     </div>
-  );
-}
-
-function MorePlatformIcon({
-  animateIn,
-  staggerIndex,
-}: {
-  animateIn: boolean;
-  staggerIndex: number;
-}) {
-  return (
-    <Link
-      href="/integrations"
-      className={`integrations-icon-enter group relative flex w-[72px] flex-col items-center gap-2 sm:w-[80px] ${
-        animateIn ? "integrations-icon-visible" : ""
-      }`}
-      style={{ transitionDelay: `${staggerIndex * 80}ms` }}
-    >
-      <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#F3F4F6] transition-transform duration-300 ease-out group-hover:scale-[1.15] sm:h-12 sm:w-12">
-        <Plus className="h-5 w-5 text-[#4285F4]" strokeWidth={2.5} />
-      </div>
-      <span
-        className="font-dm-sans text-center text-[11px] font-medium sm:text-xs"
-        style={{ color: BODY_GRAY }}
-      >
-        More
-      </span>
-      <span className="pointer-events-none absolute -top-9 left-1/2 z-20 -translate-x-1/2 whitespace-nowrap rounded-md bg-[#0D1B2A] px-2.5 py-1 text-[11px] font-medium text-white opacity-0 shadow-lg transition-opacity duration-200 group-hover:opacity-100">
-        View all integrations
-      </span>
-    </Link>
   );
 }
 
@@ -270,7 +186,7 @@ const benefitCards: BenefitCard[] = [
     title: "Save Time",
     description: "Automate repetitive tasks and focus on what matters.",
     Icon: Clock,
-    iconBg: "#E8F5E9",
+    iconBg: "#ECFDF5",
     iconColor: GREEN,
   },
   {
@@ -278,24 +194,24 @@ const benefitCards: BenefitCard[] = [
     title: "Delight Customers",
     description: "Personalize every interaction and build loyalty.",
     Icon: Users,
-    iconBg: "#E3F2FD",
-    iconColor: "#1565C0",
+    iconBg: "#F7FEE7",
+    iconColor: "#84CC16",
   },
   {
     id: "performance",
     title: "Improve Performance",
     description: "Real-time analytics to track, measure and improve.",
     Icon: BarChart3,
-    iconBg: "#F3E5F5",
-    iconColor: "#7B1FA2",
+    iconBg: "#ECFDF5",
+    iconColor: "#059669",
   },
   {
     id: "security",
     title: "Enterprise Security",
     description: "Your data is protected with industry-grade security.",
     Icon: Shield,
-    iconBg: "#FFF8E1",
-    iconColor: "#F9A825",
+    iconBg: "#F7FEE7",
+    iconColor: "#65A30D",
   },
 ];
 
