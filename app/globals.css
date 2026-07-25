@@ -46,6 +46,52 @@ body {
   }
 }
 
+@keyframes testimonials-marquee-down {
+  0% {
+    transform: translateY(-50%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes testimonials-marquee-up {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+.testimonials-marquee-track {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  will-change: transform;
+}
+
+.testimonials-marquee-down {
+  animation: testimonials-marquee-down 48s linear infinite;
+}
+
+.testimonials-marquee-up {
+  animation: testimonials-marquee-up 48s linear infinite;
+}
+
+.group\/testimonials:hover .testimonials-marquee-down,
+.group\/testimonials:hover .testimonials-marquee-up {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .testimonials-marquee-down,
+  .testimonials-marquee-up {
+    animation: none;
+    transform: none;
+  }
+}
+
 @keyframes icon-pulse-soft {
   0%,
   100% {
