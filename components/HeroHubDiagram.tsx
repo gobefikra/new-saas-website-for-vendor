@@ -321,7 +321,7 @@ export default function HeroHubDiagram() {
                 transition={{ duration: 3.6, repeat: Infinity, ease: "easeInOut" }}
               />
               <motion.span
-                className="absolute left-1/2 top-1/2 h-[148px] w-[148px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-emerald-400/30 sm:h-[164px] sm:w-[164px]"
+                className="absolute left-1/2 top-1/2 h-[188px] w-[188px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-emerald-400/30 sm:h-[208px] sm:w-[208px]"
                 animate={{ scale: [1, 1.12, 1], opacity: [0.35, 0.08, 0.35] }}
                 transition={{
                   duration: 3.6,
@@ -334,7 +334,7 @@ export default function HeroHubDiagram() {
           )}
 
           <motion.div
-            className="relative flex h-[122px] w-[122px] flex-col items-center justify-center rounded-full border-[5px] border-white bg-white sm:h-[136px] sm:w-[136px]"
+            className="relative flex h-[148px] w-[148px] items-center justify-center rounded-full border-[5px] border-white bg-white sm:h-[168px] sm:w-[168px]"
             style={{
               boxShadow:
                 "0 18px 50px rgba(15,23,42,0.1), 0 0 0 1px rgba(15,23,42,0.03)",
@@ -343,20 +343,28 @@ export default function HeroHubDiagram() {
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
           >
-            <Image
-              src="/icons/Nav-logo.png"
-              alt="Befikra Partner"
-              width={120}
-              height={40}
-              className="h-8 w-auto max-w-[92px] object-contain sm:h-9 sm:max-w-[104px]"
-              priority
-            />
-            <p
-              className="mt-1 text-[11px] font-bold tracking-[0.16em] sm:text-[12px]"
-              style={{ color: GREEN }}
-            >
-              CRM
-            </p>
+            <div className="mt-4 flex w-[78%] flex-col items-center justify-center sm:mt-5">
+              <Image
+                src="/icons/Nav-logo.png"
+                alt="Befikra Partner"
+                width={160}
+                height={52}
+                className="!relative h-10 w-auto object-contain sm:h-11"
+                style={{ marginLeft: "auto", marginRight: "auto" }}
+                priority
+              />
+              <p
+                className="mt-1.5 w-full text-center text-xs font-bold uppercase sm:mt-2 sm:text-[13px]"
+                style={{
+                  color: GREEN,
+                  letterSpacing: "0.22em",
+                  // Tracking adds space after letters — nudge so CRM looks centered
+                  paddingLeft: "0.22em",
+                }}
+              >
+                CRM
+              </p>
+            </div>
           </motion.div>
         </div>
 
