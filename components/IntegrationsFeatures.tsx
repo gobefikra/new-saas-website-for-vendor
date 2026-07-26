@@ -195,7 +195,7 @@ const benefitCards: BenefitCard[] = [
     description: "Personalize every interaction and build loyalty.",
     Icon: Users,
     iconBg: "#F7FEE7",
-    iconColor: "#84CC16",
+    iconColor: "#10B981",
   },
   {
     id: "performance",
@@ -203,7 +203,7 @@ const benefitCards: BenefitCard[] = [
     description: "Real-time analytics to track, measure and improve.",
     Icon: BarChart3,
     iconBg: "#ECFDF5",
-    iconColor: "#059669",
+    iconColor: "#10B981",
   },
   {
     id: "security",
@@ -211,7 +211,7 @@ const benefitCards: BenefitCard[] = [
     description: "Your data is protected with industry-grade security.",
     Icon: Shield,
     iconBg: "#F7FEE7",
-    iconColor: "#65A30D",
+    iconColor: "#059669",
   },
 ];
 

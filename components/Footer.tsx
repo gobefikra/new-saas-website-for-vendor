@@ -15,7 +15,7 @@ import {
 } from "lucide-react";
 
 const GREEN = "#10B981";
-const GREEN_DARK = "#059669";
+const GREEN_DARK = "#10B981";
 const NAVY = "#0F172A";
 const BODY = "#6B7280";
 const MINT = "#ECFDF5";

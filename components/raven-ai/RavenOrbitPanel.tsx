@@ -114,7 +114,7 @@ function CentralOrb() {
         <defs>
           <radialGradient id="orb-core" cx="50%" cy="45%" r="55%">
             <stop offset="0%" stopColor="#4ade80" stopOpacity="0.9" />
-            <stop offset="55%" stopColor="#059669" stopOpacity="0.55" />
+            <stop offset="55%" stopColor="#10B981" stopOpacity="0.55" />
             <stop offset="100%" stopColor="#052e16" stopOpacity="0.2" />
           </radialGradient>
           <pattern id="orb-mesh" width="8" height="8" patternUnits="userSpaceOnUse">
@@ -192,13 +192,13 @@ function OrbitFeatureCard({
           style={{
             backgroundColor: active ? "#122820" : CARD_BG,
             borderColor: active ? GREEN : CARD_BORDER,
-            boxShadow: active ? `0 0 28px rgba(16,185,129,0.22)` : "none",
+            boxShadow: active ? `0 0 28px rgba(16, 185, 129,0.22)` : "none",
             transform: active ? "scale(1.02)" : "scale(1)",
           }}
         >
           <motion.div
             className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full"
-            style={{ backgroundColor: "rgba(16,185,129,0.15)" }}
+            style={{ backgroundColor: "rgba(16, 185, 129,0.15)" }}
             animate={active ? { scale: [1, 1.08, 1] } : { scale: 1 }}
             transition={{ duration: 1.2, repeat: active ? Infinity : 0 }}
           >
@@ -272,7 +272,7 @@ export function RavenOrbitPanel() {
         className="pointer-events-none absolute inset-0 opacity-60"
         style={{
           background:
-            "radial-gradient(ellipse 55% 45% at 50% 45%, rgba(16,185,129,0.14), transparent 70%)",
+            "radial-gradient(ellipse 55% 45% at 50% 45%, rgba(16, 185, 129,0.14), transparent 70%)",
         }}
       />
 
@@ -309,7 +309,7 @@ export function RavenOrbitPanel() {
                   y1={orbitPt.y}
                   x2={f.anchor.x}
                   y2={f.anchor.y}
-                  stroke={active ? GREEN : "rgba(16,185,129,0.35)"}
+                  stroke={active ? GREEN : "rgba(16, 185, 129,0.35)"}
                   strokeWidth={active ? 2 : 1.5}
                   animate={{ strokeOpacity: active ? [0.7, 1, 0.7] : [0.25, 0.45, 0.25] }}
                   transition={{
@@ -420,7 +420,7 @@ export function RavenOrbitPanel() {
             >
               <div
                 className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full"
-                style={{ backgroundColor: "rgba(16,185,129,0.15)" }}
+                style={{ backgroundColor: "rgba(16, 185, 129,0.15)" }}
               >
                 <f.Icon className="h-4 w-4" style={{ color: GREEN }} />
               </div>

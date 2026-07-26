@@ -60,7 +60,7 @@ const trustItems = [
     title: "Loved by Sales Teams",
     desc: "Helping teams close more deals, every day.",
     Icon: Heart,
-    color: "#A3E635",
+    color: "#10B981",
   },
 ];
 
@@ -114,7 +114,7 @@ function InsightRows() {
           style={{
             background:
               i === 0
-                ? "linear-gradient(90deg, rgba(16,185,129,0.22), rgba(16,185,129,0.04))"
+                ? "linear-gradient(90deg, rgba(16, 185, 129,0.22), rgba(16, 185, 129,0.04))"
                 : "rgba(255,255,255,0.03)",
           }}
         >
@@ -210,14 +210,14 @@ export function RavenPlatformGrid() {
       >
         <span
           className="inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-[11px] font-semibold uppercase tracking-widest"
-          style={{ borderColor: "rgba(16,185,129,0.4)", color: GREEN }}
+          style={{ borderColor: "rgba(16, 185, 129,0.4)", color: GREEN }}
         >
           <Sparkles className="h-3.5 w-3.5" />
           All-in-one AI sales platform
         </span>
         <h3 className="mx-auto mt-6 max-w-3xl text-3xl font-extrabold leading-tight text-white sm:text-4xl md:text-[2.75rem]">
           Everything you need to close more deals,{" "}
-          <span className="bg-gradient-to-r from-lime-400 via-[#84CC16] to-emerald-400 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-emerald-400 via-[#10B981] to-emerald-400 bg-clip-text text-transparent">
             on autopilot.
           </span>
         </h3>
@@ -236,7 +236,7 @@ export function RavenPlatformGrid() {
           className="sm:col-span-2 lg:col-span-5 lg:row-span-2 lg:min-h-[360px]"
           style={{
             background:
-              "linear-gradient(160deg, rgba(16,185,129,0.14) 0%, #0A120E 48%, rgba(0,0,0,0.25) 100%)",
+              "linear-gradient(160deg, rgba(16, 185, 129,0.14) 0%, #0A120E 48%, rgba(0,0,0,0.25) 100%)",
           }}
         >
           <div className="relative z-10 flex items-start justify-between gap-3">
@@ -311,12 +311,12 @@ export function RavenPlatformGrid() {
           className="lg:col-span-4"
         >
           <div className="relative z-10 flex items-start justify-between gap-3">
-            <IconBadge Icon={Share2} color="#A3E635" />
-            <IllusEmbed accent="#A3E635" className="h-14 w-24 opacity-85" />
+            <IconBadge Icon={Share2} color="#10B981" />
+            <IllusEmbed accent="#10B981" className="h-14 w-24 opacity-85" />
           </div>
           <h4 className="relative z-10 mt-4 text-base font-bold leading-snug text-white">
             Embed your favorite{" "}
-            <AccentWord color="#A3E635">content</AccentWord>
+            <AccentWord color="#10B981">content</AccentWord>
           </h4>
           <p className="relative z-10 mt-2 text-xs leading-relaxed text-gray-400">
             Share and embed content from your favorite platforms.
@@ -375,7 +375,7 @@ export function RavenPlatformGrid() {
               <span className="pb-1 text-sm font-semibold uppercase tracking-wider text-emerald-400/80">
                 sec
               </span>
-              <Zap className="mb-1.5 h-6 w-6 text-lime-400" />
+              <Zap className="mb-1.5 h-6 w-6 text-emerald-400" />
             </div>
             <p className="mt-2 text-xs text-gray-400">
               Instant AI replies keep conversations moving.
@@ -492,7 +492,7 @@ export function RavenPlatformGrid() {
         className="mt-6 grid grid-cols-1 gap-5 rounded-[1.5rem] border px-5 py-5 sm:grid-cols-2 lg:grid-cols-4 lg:px-7 lg:py-6"
         style={{
           background:
-            "linear-gradient(180deg, rgba(16,185,129,0.06) 0%, rgba(255,255,255,0.02) 100%)",
+            "linear-gradient(180deg, rgba(16, 185, 129,0.06) 0%, rgba(255,255,255,0.02) 100%)",
           borderColor: "rgba(255,255,255,0.07)",
         }}
         initial={reduceMotion ? false : { opacity: 0, y: 24 }}

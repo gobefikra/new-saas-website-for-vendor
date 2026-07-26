@@ -139,7 +139,7 @@ export default function HeroHubDiagram() {
       >
         {/* Atmosphere */}
         <div
-          className="pointer-events-none absolute h-[84%] w-[84%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_50%_45%,rgba(16,185,129,0.14),rgba(226,236,244,0.55)_42%,transparent_70%)]"
+          className="pointer-events-none absolute h-[84%] w-[84%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_50%_45%,rgba(16, 185, 129,0.14),rgba(226,236,244,0.55)_42%,transparent_70%)]"
           style={{ left: `${CENTER_X}%`, top: `${CENTER_Y}%` }}
         />
         <div
@@ -164,7 +164,7 @@ export default function HeroHubDiagram() {
               className="h-full w-full rounded-full"
               style={{
                 background:
-                  "conic-gradient(from 0deg, transparent 0deg, rgba(16,185,129,0.12) 40deg, transparent 70deg)",
+                  "conic-gradient(from 0deg, transparent 0deg, rgba(16, 185, 129,0.12) 40deg, transparent 70deg)",
                 transformOrigin: "50% 50%",
               }}
               animate={{ rotate: 360 }}
@@ -270,10 +270,10 @@ export default function HeroHubDiagram() {
                   className="rounded-2xl bg-white/90 px-3.5 py-3 backdrop-blur-md sm:px-4 sm:py-3.5"
                   style={{
                     border: isActive
-                      ? "1px solid rgba(16,185,129,0.4)"
+                      ? "1px solid rgba(16, 185, 129,0.4)"
                       : "1px solid rgba(15,23,42,0.06)",
                     boxShadow: isActive
-                      ? "0 20px 44px rgba(16,185,129,0.16), 0 6px 16px rgba(15,23,42,0.05)"
+                      ? "0 20px 44px rgba(16, 185, 129,0.16), 0 6px 16px rgba(15,23,42,0.05)"
                       : "0 10px 28px rgba(15,23,42,0.06)",
                   }}
                 >
@@ -282,7 +282,7 @@ export default function HeroHubDiagram() {
                       className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full sm:h-9 sm:w-9"
                       style={{
                         background: `linear-gradient(145deg, #34D399, ${GREEN})`,
-                        boxShadow: "0 6px 14px rgba(16,185,129,0.3)",
+                        boxShadow: "0 6px 14px rgba(16, 185, 129,0.3)",
                       }}
                     >
                       <node.Icon

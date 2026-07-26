@@ -23,8 +23,8 @@ export default function Eyebrow({
         uppercase ? "uppercase tracking-wider" : ""
       } ${className}`}
       style={{
-        borderColor: isDark ? "rgba(16,185,129,0.35)" : brand.mintBorder,
-        backgroundColor: isDark ? "rgba(16,185,129,0.12)" : brand.mint,
+        borderColor: isDark ? "rgba(16, 185, 129,0.35)" : brand.mintBorder,
+        backgroundColor: isDark ? "rgba(16, 185, 129,0.12)" : brand.mint,
         color: isDark ? brand.primary : brand.primaryDark,
       }}
     >

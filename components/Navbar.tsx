@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
@@ -22,8 +21,8 @@ const navLinks: NavLink[] = [
   { label: "AI Features", href: "/#raven-ai-section", highlight: true },
   { label: "Pricing", href: "/pricing" },
   { label: "Our Story", href: "/our-story" },
-  { label: "Contact", href: "/contact" },
   { label: "Blogs", href: "/blogs" },
+  { label: "Contact", href: "/contact" },
 ];
 
 function AiFeaturesLabel({ className }: { className?: string }) {
@@ -47,6 +46,45 @@ function isActive(pathname: string, href: string) {
   if (href.startsWith("/#") || href.startsWith("#")) return false;
   if (href === "/") return pathname === "/";
   return pathname === href || pathname.startsWith(`${href}/`);
+}
+
+function BrandLogo({
+  isDark,
+  className,
+}: {
+  isDark: boolean;
+  className?: string;
+}) {
+  // Instant swap. Dark logo renders slightly smaller so it matches light logo optical weight.
+  const sizeClass = className ?? (isDark ? "h-9" : "h-10");
+
+  return (
+    <span
+      className={`relative inline-flex shrink-0 items-center ${sizeClass}`}
+      aria-hidden
+    >
+      <img
+        src="/icons/Nav-logo.png"
+        alt=""
+        width={138}
+        height={40}
+        decoding="async"
+        draggable={false}
+        className="h-full w-auto"
+        style={{ display: isDark ? "none" : "block" }}
+      />
+      <img
+        src="/icons/Nav-logo-dark.png"
+        alt=""
+        width={138}
+        height={40}
+        decoding="async"
+        draggable={false}
+        className="h-full w-auto"
+        style={{ display: isDark ? "block" : "none" }}
+      />
+    </span>
+  );
 }
 
 type NavbarProps = {
@@ -91,7 +129,7 @@ export default function Navbar({ theme = "light" }: NavbarProps) {
     const active = isActive(pathname, href);
     if (isDark) {
       return active
-        ? "font-semibold text-lime-400"
+        ? "font-semibold text-emerald-400"
         : "font-medium text-gray-300 hover:text-white";
     }
     return active
@@ -103,7 +141,7 @@ export default function Navbar({ theme = "light" }: NavbarProps) {
     const active = isActive(pathname, href);
     if (isDark) {
       return active
-        ? "font-semibold text-lime-400 bg-emerald-500/10 border-l-2 border-lime-400"
+        ? "font-semibold text-emerald-400 bg-emerald-500/10 border-l-2 border-emerald-400"
         : "font-medium text-gray-300 hover:text-white border-l-2 border-transparent";
     }
     return active
@@ -112,11 +150,11 @@ export default function Navbar({ theme = "light" }: NavbarProps) {
   };
 
   const desktopHighlightClass = isDark
-    ? "font-semibold text-lime-400"
+    ? "font-semibold text-emerald-400"
     : "font-semibold text-emerald-600";
 
   const mobileHighlightClass = isDark
-    ? "font-semibold text-lime-400 border-l-2 border-transparent"
+    ? "font-semibold text-emerald-400 border-l-2 border-transparent"
     : "font-semibold text-emerald-600 border-l-2 border-transparent";
 
   const ctaClass = isDark
@@ -129,18 +167,11 @@ export default function Navbar({ theme = "light" }: NavbarProps) {
         initial="hidden"
         animate="visible"
         variants={fadeInDown}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${headerClass}`}
+        className={`fixed top-0 left-0 right-0 z-50 ${headerClass}`}
       >
         <nav className="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-[4.5rem] flex items-center justify-between gap-4">
-          <Link href="/" className="shrink-0">
-            <Image
-              src="/icons/Nav-logo.png"
-              alt="Befikra Partner"
-              width={160}
-              height={40}
-              className="h-10 w-auto"
-              priority
-            />
+          <Link href="/" className="shrink-0" aria-label="Befikra Partner home">
+            <BrandLogo isDark={isDark} />
           </Link>
 
           <ul className="hidden lg:flex items-center gap-5 xl:gap-7">
@@ -172,7 +203,7 @@ export default function Navbar({ theme = "light" }: NavbarProps) {
                       <motion.span
                         layoutId="nav-active-underline"
                         className={`absolute -bottom-1 left-0 right-0 h-0.5 rounded-full ${
-                          isDark ? "bg-lime-400" : "bg-emerald-500"
+                          isDark ? "bg-emerald-400" : "bg-emerald-500"
                         }`}
                         transition={{ type: "spring", stiffness: 380, damping: 30 }}
                       />
@@ -224,13 +255,9 @@ export default function Navbar({ theme = "light" }: NavbarProps) {
                   isDark ? "border-[#1A3A25]" : "border-gray-100"
                 }`}
               >
-                <Image
-                  src="/icons/Nav-logo.png"
-                  alt="Befikra Partner"
-                  width={140}
-                  height={36}
-                  className="h-9 w-auto"
-                />
+                <Link href="/" onClick={() => setMobileOpen(false)} aria-label="Befikra Partner home">
+                  <BrandLogo isDark={isDark} className={isDark ? "h-8" : "h-9"} />
+                </Link>
                 <button
                   type="button"
                   onClick={() => setMobileOpen(false)}

@@ -35,21 +35,21 @@ const features = [
     title: "Instant actions",
     desc: "Book, pay, and confirm in seconds.",
     iconBg: "#F7FEE7",
-    iconColor: "#84CC16",
+    iconColor: "#10B981",
   },
   {
     Icon: BarChart3,
     title: "Built for growth",
     desc: "Capture leads, boost conversions, and grow faster.",
     iconBg: "#ECFDF5",
-    iconColor: "#059669",
+    iconColor: "#10B981",
   },
   {
     Icon: Shield,
     title: "Secure & reliable",
     desc: "Safe payments, secure data, total peace of mind.",
     iconBg: "#F7FEE7",
-    iconColor: "#65A30D",
+    iconColor: "#059669",
   },
 ];
 
@@ -68,7 +68,7 @@ const stats = [
     title: "Bookings Made",
     desc: "Turning visitors into happy customers",
     iconBg: "#F7FEE7",
-    iconColor: "#84CC16",
+    iconColor: "#10B981",
   },
   {
     Icon: Users,
@@ -76,7 +76,7 @@ const stats = [
     title: "Businesses",
     desc: "From startups to scaleups, we've got you covered",
     iconBg: "#ECFDF5",
-    iconColor: "#059669",
+    iconColor: "#10B981",
   },
   {
     Icon: BarChart3,
@@ -84,7 +84,7 @@ const stats = [
     title: "Conversion Boost",
     desc: "More bookings with smarter engagement",
     iconBg: "#F7FEE7",
-    iconColor: "#65A30D",
+    iconColor: "#059669",
   },
   {
     Icon: Shield,
@@ -117,7 +117,7 @@ export default function MyLinkrSection() {
             <motion.span
               variants={fadeInUp}
               className="inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wide"
-              style={{ borderColor: "#A7F3D0", backgroundColor: MINT, color: "#059669" }}
+              style={{ borderColor: "#A7F3D0", backgroundColor: MINT, color: "#10B981" }}
             >
               <Sparkles className="h-3.5 w-3.5" strokeWidth={2.25} />
               NEW FEATURE

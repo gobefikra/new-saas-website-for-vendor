@@ -41,7 +41,7 @@ const floatChips: ChipDef[] = [
     label: "Custom Themes",
     Icon: Palette,
     iconBg: "#F7FEE7",
-    iconColor: "#84CC16",
+    iconColor: "#10B981",
     side: "left",
     row: 1,
     delay: 0.3,
@@ -61,7 +61,7 @@ const floatChips: ChipDef[] = [
     label: "Instant Payments",
     Icon: CreditCard,
     iconBg: "#ECFDF5",
-    iconColor: "#059669",
+    iconColor: "#10B981",
     side: "right",
     row: 0,
     delay: 0.1,
@@ -71,7 +71,7 @@ const floatChips: ChipDef[] = [
     label: "Share Anywhere",
     Icon: Share2,
     iconBg: "#F7FEE7",
-    iconColor: "#65A30D",
+    iconColor: "#059669",
     side: "right",
     row: 1,
     delay: 0.4,
@@ -134,10 +134,10 @@ export default function MyLinkrHomeVisual() {
           aria-hidden
         >
           <path d="M280 300 Q200 140 90 60" fill="none" stroke="#10B981" strokeWidth="1.2" strokeDasharray="4 4" opacity="0.3" />
-          <path d="M280 300 Q190 300 90 300" fill="none" stroke="#84CC16" strokeWidth="1.2" strokeDasharray="4 4" opacity="0.3" />
+          <path d="M280 300 Q190 300 90 300" fill="none" stroke="#10B981" strokeWidth="1.2" strokeDasharray="4 4" opacity="0.3" />
           <path d="M280 300 Q190 460 100 540" fill="none" stroke="#10B981" strokeWidth="1.2" strokeDasharray="4 4" opacity="0.3" />
-          <path d="M280 300 Q360 140 470 60" fill="none" stroke="#059669" strokeWidth="1.2" strokeDasharray="4 4" opacity="0.3" />
-          <path d="M280 300 Q370 300 470 300" fill="none" stroke="#65A30D" strokeWidth="1.2" strokeDasharray="4 4" opacity="0.3" />
+          <path d="M280 300 Q360 140 470 60" fill="none" stroke="#10B981" strokeWidth="1.2" strokeDasharray="4 4" opacity="0.3" />
+          <path d="M280 300 Q370 300 470 300" fill="none" stroke="#059669" strokeWidth="1.2" strokeDasharray="4 4" opacity="0.3" />
           <path d="M280 300 Q370 460 470 540" fill="none" stroke="#10B981" strokeWidth="1.2" strokeDasharray="4 4" opacity="0.3" />
         </svg>
 

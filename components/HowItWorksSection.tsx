@@ -13,7 +13,7 @@ import {
 import { fadeInUp, staggerContainer } from "@/components/motion";
 
 const GREEN = "#10B981";
-const GREEN_DARK = "#059669";
+const GREEN_DARK = "#10B981";
 const NAVY = "#0F172A";
 const BODY = "#6B7280";
 const MINT = "#ECFDF5";
@@ -84,7 +84,7 @@ function StepColumn({ step }: { step: (typeof steps)[number] }) {
       {/* Icon bubble */}
       <div className="relative z-10 flex h-[5.5rem] w-[5.5rem] items-center justify-center sm:h-24 sm:w-24">
         <div
-          className="flex h-14 w-14 items-center justify-center rounded-xl shadow-[0_8px_24px_rgba(16,185,129,0.25)] sm:h-[3.75rem] sm:w-[3.75rem]"
+          className="flex h-14 w-14 items-center justify-center rounded-xl shadow-[0_8px_24px_rgba(16, 185, 129,0.25)] sm:h-[3.75rem] sm:w-[3.75rem]"
           style={{ backgroundColor: GREEN }}
         >
           <Icon className="h-6 w-6 text-white sm:h-7 sm:w-7" strokeWidth={2} />
@@ -148,7 +148,7 @@ export default function HowItWorksSection() {
         aria-hidden
         style={{
           background:
-            "radial-gradient(ellipse 50% 40% at 15% 45%, rgba(16,185,129,0.07), transparent 60%), radial-gradient(ellipse 50% 40% at 85% 45%, rgba(16,185,129,0.07), transparent 60%)",
+            "radial-gradient(ellipse 50% 40% at 15% 45%, rgba(16, 185, 129,0.07), transparent 60%), radial-gradient(ellipse 50% 40% at 85% 45%, rgba(16, 185, 129,0.07), transparent 60%)",
         }}
       />
 

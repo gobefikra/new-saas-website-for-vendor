@@ -18,13 +18,13 @@ export interface BlogCardProps {
 const categoryGradients: Record<string, string> = {
   "Automation & CRM": "from-emerald-500 to-forest-dark",
   "CRM Automation": "from-emerald-500 to-forest-dark",
-  "Booking Systems": "from-lime-400 to-emerald-600",
-  "Booking Workflow": "from-lime-400 to-emerald-600",
+  "Booking Systems": "from-emerald-400 to-emerald-600",
+  "Booking Workflow": "from-emerald-400 to-emerald-600",
   "Operations Management": "from-emerald-400 to-emerald-700",
   "AI & Insights": "from-lime-accent to-emerald-500",
-  "Growth Strategies": "from-lime-400 to-emerald-600",
+  "Growth Strategies": "from-emerald-400 to-emerald-600",
   "Lead Management": "from-emerald-400 to-forest-dark",
-  "Customer Experience": "from-lime-300 to-emerald-500",
+  "Customer Experience": "from-emerald-300 to-emerald-500",
   "Quick Insights": "from-emerald-300 to-emerald-600",
 };
 

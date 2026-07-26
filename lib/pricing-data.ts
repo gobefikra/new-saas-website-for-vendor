@@ -848,7 +848,7 @@ export function getPlanStrike(plan: Plan, billing: BillingCycle): PlanStrike {
     return { text: plan.pricing.strike };
   }
   if (billing === "monthly") {
-    return { text: "Billed monthly" };
+    return { text: "Billed monthly · cancel anytime" };
   }
   return {
     text: plan.pricing.annualYearTotal,

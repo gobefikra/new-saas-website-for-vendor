@@ -32,7 +32,7 @@ import {
   TransactionsView,
 } from "@/components/smart-dashboard/views";
 
-const GREEN_DARK = "#059669";
+const GREEN_DARK = "#10B981";
 const SIDEBAR_BG = "#0B1F17";
 
 const NAV_ICONS: Record<
