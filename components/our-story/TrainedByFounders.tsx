@@ -3,6 +3,7 @@
 import { useRef, useEffect, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { fadeInUp, staggerContainer } from "@/components/motion";
+import { PipelineIllustration } from "@/components/our-story/illustrations";
 
 const processCards = [
   {
@@ -25,42 +26,42 @@ const processCards = [
 function CountUp({
   end,
   suffix = "",
-  inView,
+  duration = 1800,
 }: {
   end: number;
   suffix?: string;
-  inView: boolean;
+  duration?: number;
 }) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, amount: 0.6 });
   const [value, setValue] = useState(0);
 
   useEffect(() => {
     if (!inView) return;
-    const duration = 1500;
+
+    let frame = 0;
     const start = performance.now();
+    const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
+
     const tick = (now: number) => {
       const progress = Math.min((now - start) / duration, 1);
-      setValue(Math.floor(progress * end));
-      if (progress < 1) requestAnimationFrame(tick);
+      setValue(Math.round(easeOut(progress) * end));
+      if (progress < 1) {
+        frame = requestAnimationFrame(tick);
+      }
     };
-    requestAnimationFrame(tick);
-  }, [inView, end]);
+
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
+  }, [inView, end, duration]);
 
   return (
-    <span>
+    <span ref={ref} className="tabular-nums">
       {value}
       {suffix}
     </span>
   );
 }
-
-const codeLines = [
-  { text: "if (lead.source === 'whatsapp') {", className: "text-emerald-400" },
-  {
-    text: "  await system.routeToAvailableAgent(lead);",
-    className: "text-emerald-300/90",
-  },
-  { text: "}", className: "text-emerald-400" },
-];
 
 const cardShell =
   "group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#0A1510] p-6 transition-colors duration-300 hover:border-emerald-400/30 hover:bg-[#0D1F14] md:p-7";
@@ -69,7 +70,7 @@ const badge =
   "inline-flex w-fit items-center rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1 font-mono text-[10px] font-medium tracking-[0.2em] text-emerald-400/80";
 
 const nestedPanel =
-  "rounded-xl border border-white/8 bg-black/40 p-4 md:p-5";
+  "rounded-xl border border-white/10 bg-black/40 p-4 md:p-5";
 
 export default function TrainedByFounders() {
   const ref = useRef(null);
@@ -157,15 +158,8 @@ export default function TrainedByFounders() {
               spreadsheet chaos into clean, automated background pipelines.
             </p>
 
-            <div className={`${nestedPanel} mt-auto pt-5 font-mono text-[13px]`}>
-              <p className="mb-3 text-[10px] tracking-wider text-gray-600">
-                pipeline_logic_v2.ts
-              </p>
-              {codeLines.map((line) => (
-                <p key={line.text} className={`${line.className} leading-relaxed`}>
-                  {line.text}
-                </p>
-              ))}
+            <div className="mt-auto flex items-center justify-center pt-5">
+              <PipelineIllustration className="w-full max-w-md" />
             </div>
           </motion.div>
 
@@ -186,7 +180,7 @@ export default function TrainedByFounders() {
               <div className="grid grid-cols-2 gap-3">
                 <div className={nestedPanel}>
                   <p className="text-2xl font-semibold tracking-tight text-white md:text-3xl">
-                    <CountUp end={340} suffix="+" inView={inView} />
+                    <CountUp end={340} suffix="+" />
                   </p>
                   <p className="mt-1 text-[10px] uppercase tracking-[0.15em] text-gray-600">
                     Updates Shipped
@@ -194,7 +188,7 @@ export default function TrainedByFounders() {
                 </div>
                 <div className={nestedPanel}>
                   <p className="text-2xl font-semibold tracking-tight text-white md:text-3xl">
-                    <CountUp end={100} suffix="%" inView={inView} />
+                    <CountUp end={100} suffix="%" />
                   </p>
                   <p className="mt-1 text-[10px] uppercase tracking-[0.15em] text-gray-600">
                     Founder Led

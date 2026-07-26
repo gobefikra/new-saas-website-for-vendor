@@ -1,13 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import Footer from "@/components/Footer";
+import dynamic from "next/dynamic";
 import BillingToggle from "@/components/pricing/BillingToggle";
-import HelperRow from "@/components/pricing/HelperRow";
 import PlanCards from "@/components/pricing/PlanCards";
-import PricingCTA from "@/components/pricing/PricingCTA";
-import PricingFAQ from "@/components/pricing/PricingFAQ";
-import PricingTable from "@/components/pricing/PricingTable";
 import Eyebrow from "@/components/ui/Eyebrow";
 import { brand } from "@/lib/brand-theme";
 import {
@@ -17,6 +13,22 @@ import {
   type PlanId,
   formatPrice,
 } from "@/lib/pricing-data";
+
+const SectionFallback = () => <div className="min-h-[28vh] w-full bg-[#FAFBFC]" aria-hidden />;
+
+const HelperRow = dynamic(() => import("@/components/pricing/HelperRow"), {
+  loading: () => null,
+});
+const PricingTable = dynamic(() => import("@/components/pricing/PricingTable"), {
+  loading: SectionFallback,
+});
+const PricingFAQ = dynamic(() => import("@/components/pricing/PricingFAQ"), {
+  loading: SectionFallback,
+});
+const PricingCTA = dynamic(() => import("@/components/pricing/PricingCTA"), {
+  loading: SectionFallback,
+});
+const Footer = dynamic(() => import("@/components/Footer"), { loading: () => null });
 
 function getMobilePlanLabel(planId: PlanId, billing: BillingCycle): string {
   const plan = PLANS.find((p) => p.id === planId)!;

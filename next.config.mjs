@@ -8,20 +8,16 @@ const nextConfig = {
         hostname: "images.unsplash.com",
         pathname: "/photo-**",
       },
-      {
-        protocol: "https",
-        hostname: "picsum.photos",
-      },
-      {
-        protocol: "https",
-        hostname: "fastly.picsum.photos",
-      },
     ],
   },
-  // OneDrive/sync corrupts .next — disable disk cache & poll files in dev
+  // Tree-shake icon packages so route JS stays smaller / faster to parse
+  experimental: {
+    optimizePackageImports: ["lucide-react", "react-icons"],
+  },
+  // OneDrive/sync can corrupt filesystem webpack cache — use in-memory instead of disabling entirely
   webpack: (config, { dev }) => {
     if (dev) {
-      config.cache = false;
+      config.cache = { type: "memory" };
       config.watchOptions = {
         poll: 1000,
         aggregateTimeout: 300,

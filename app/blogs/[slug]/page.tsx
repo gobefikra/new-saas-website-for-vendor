@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import BlogDetailPage from "@/components/BlogDetailPage";
-import { blogPost, getBlogPostBySlug, blogSlugs } from "@/lib/blog-data";
+import JsonLd from "@/components/JsonLd";
+import { getBlogPostBySlug, blogSlugs } from "@/lib/blog-data";
+import { blogPostingSchema, breadcrumbSchema } from "@/lib/schema";
+import { toIsoDate } from "@/lib/site";
 
 export async function generateStaticParams() {
   return blogSlugs.map((slug) => ({ slug }));
@@ -13,15 +16,49 @@ export async function generateMetadata({
   params: { slug: string };
 }): Promise<Metadata> {
   const post = getBlogPostBySlug(params.slug);
-  if (!post) return { title: "Blog - Befikra Partner" };
+  if (!post) return { title: "Blog" };
+
+  const description = post.excerpt.slice(0, 160);
+  const url = `/blogs/${post.slug}`;
+
   return {
-    title: `${post.title} - Befikra Partner`,
-    description: post.excerpt.slice(0, 160),
+    title: post.title,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      type: "article",
+      title: post.title,
+      description,
+      url,
+      publishedTime: toIsoDate(post.date),
+      authors: [post.author.name],
+      section: post.category,
+      images: [{ url: post.imageSrc, width: 1200, height: 720, alt: post.title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description,
+      images: [post.imageSrc],
+    },
   };
 }
 
 export default function BlogDetail({ params }: { params: { slug: string } }) {
   const post = getBlogPostBySlug(params.slug);
   if (!post) notFound();
-  return <BlogDetailPage />;
+
+  return (
+    <>
+      <JsonLd data={blogPostingSchema(post)} />
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Blogs", path: "/blogs" },
+          { name: post.title, path: `/blogs/${post.slug}` },
+        ])}
+      />
+      <BlogDetailPage post={post} />
+    </>
+  );
 }

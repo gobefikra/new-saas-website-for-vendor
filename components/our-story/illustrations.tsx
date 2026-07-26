@@ -4,119 +4,115 @@ type IllustProps = {
   className?: string;
 };
 
-export function SparkIllustration({ className = "" }: IllustProps) {
-  return (
-    <svg
-      viewBox="0 0 420 320"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={className}
-      aria-hidden
-    >
-      <defs>
-        <linearGradient id="spark-g" x1="60" y1="40" x2="360" y2="280" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#10B981" stopOpacity="0.9" />
-          <stop offset="1" stopColor="#10B981" stopOpacity="0.35" />
-        </linearGradient>
-        <radialGradient id="spark-glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(210 160) rotate(90) scale(140 120)">
-          <stop stopColor="#10B981" stopOpacity="0.25" />
-          <stop offset="1" stopColor="#10B981" stopOpacity="0" />
-        </radialGradient>
-      </defs>
-      <ellipse cx="210" cy="160" rx="150" ry="120" fill="url(#spark-glow)" />
-      <rect x="90" y="70" width="240" height="170" rx="28" stroke="#1A3A25" strokeWidth="1.5" fill="#0A1510" />
-      <rect x="112" y="98" width="120" height="10" rx="5" fill="#1A3A25" />
-      <rect x="112" y="122" width="180" height="8" rx="4" fill="#122818" />
-      <rect x="112" y="142" width="160" height="8" rx="4" fill="#122818" />
-      <rect x="112" y="162" width="140" height="8" rx="4" fill="#122818" />
-      <circle cx="290" cy="200" r="36" fill="url(#spark-g)" opacity="0.9" />
-      <path d="M290 182v36M272 200h36" stroke="#052e16" strokeWidth="3" strokeLinecap="round" />
-      <path d="M70 240c40-50 90-70 140-40s100 20 140-20" stroke="#10B981" strokeOpacity="0.35" strokeWidth="2" strokeDasharray="6 8" />
-      <circle cx="78" cy="108" r="4" fill="#10B981" opacity="0.7" />
-      <circle cx="348" cy="88" r="3" fill="#10B981" opacity="0.6" />
-      <circle cx="360" cy="210" r="5" fill="#10B981" opacity="0.45" />
-    </svg>
-  );
-}
-
-export function FoundersIllustration({ className = "" }: IllustProps) {
-  return (
-    <svg
-      viewBox="0 0 420 360"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={className}
-      aria-hidden
-    >
-      <defs>
-        <linearGradient id="found-g" x1="120" y1="80" x2="320" y2="300" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#10B981" />
-          <stop offset="1" stopColor="#10B981" />
-        </linearGradient>
-        <radialGradient id="found-glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(210 180) rotate(90) scale(100)">
-          <stop stopColor="#10B981" stopOpacity="0.35" />
-          <stop offset="1" stopColor="#10B981" stopOpacity="0" />
-        </radialGradient>
-      </defs>
-      <circle cx="210" cy="180" r="100" fill="url(#found-glow)" />
-      <circle cx="210" cy="180" r="72" stroke="#1A3A25" strokeWidth="1" strokeDasharray="4 6" opacity="0.7" />
-      <circle cx="210" cy="180" r="40" fill="#0D2B1A" stroke="#10B981" strokeWidth="1.5" />
-      <path d="M198 180l8 8 16-18" stroke="#10B981" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-
-      {[
-        [90, 90],
-        [330, 90],
-        [90, 270],
-        [330, 270],
-      ].map(([x, y], i) => (
-        <g key={i}>
-          <line
-            x1="210"
-            y1="180"
-            x2={x}
-            y2={y}
-            stroke="#1A4030"
-            strokeWidth="1.5"
-            strokeDasharray="4 6"
-          />
-          <circle cx={x} cy={y} r="22" fill="#0A1510" stroke="#10B981" strokeWidth="1.25" strokeOpacity="0.5" />
-          <circle cx={x} cy={y} r="7" fill={i % 2 ? "#34D399" : "#10B981"} opacity="0.85" />
-        </g>
-      ))}
-    </svg>
-  );
-}
-
 export function PipelineIllustration({ className = "" }: IllustProps) {
   return (
     <svg
-      viewBox="0 0 480 200"
+      viewBox="0 0 440 220"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
       aria-hidden
     >
       <defs>
-        <linearGradient id="pipe-g" x1="40" y1="100" x2="440" y2="100" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#10B981" stopOpacity="0.2" />
-          <stop offset="0.5" stopColor="#10B981" stopOpacity="0.7" />
+        <linearGradient id="cif-flow" x1="130" y1="110" x2="310" y2="110" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#10B981" stopOpacity="0.15" />
+          <stop offset="0.5" stopColor="#34D399" stopOpacity="0.85" />
           <stop offset="1" stopColor="#10B981" stopOpacity="0.2" />
         </linearGradient>
+        <radialGradient id="cif-glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(220 108) rotate(90) scale(70 90)">
+          <stop stopColor="#10B981" stopOpacity="0.35" />
+          <stop offset="1" stopColor="#10B981" stopOpacity="0" />
+        </radialGradient>
+        <linearGradient id="cif-sheet" x1="36" y1="48" x2="120" y2="170" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#1A3A25" />
+          <stop offset="1" stopColor="#0D1F14" />
+        </linearGradient>
       </defs>
+
+      {/* Soft stage glow */}
+      <ellipse cx="220" cy="110" rx="90" ry="70" fill="url(#cif-glow)" />
+
+      {/* —— LEFT: spreadsheet chaos —— */}
+      <g transform="translate(18 42) rotate(-6 60 70)">
+        <rect width="118" height="136" rx="14" fill="url(#cif-sheet)" stroke="#1F4A32" strokeWidth="1.25" />
+        <rect x="14" y="16" width="54" height="8" rx="3" fill="#10B981" fillOpacity="0.35" />
+        <rect x="14" y="36" width="90" height="6" rx="3" fill="#243F30" />
+        <rect x="14" y="50" width="72" height="6" rx="3" fill="#243F30" />
+        <rect x="14" y="64" width="84" height="6" rx="3" fill="#243F30" />
+        <rect x="14" y="78" width="60" height="6" rx="3" fill="#243F30" />
+        {/* Broken / crossed cells */}
+        <rect x="14" y="98" width="40" height="22" rx="5" fill="#122018" stroke="#3F2A2A" strokeWidth="1" />
+        <path d="M22 104l24 12M46 104L22 116" stroke="#EF4444" strokeOpacity="0.55" strokeWidth="1.5" strokeLinecap="round" />
+        <rect x="62" y="98" width="40" height="22" rx="5" fill="#122018" stroke="#1A3A25" strokeWidth="1" />
+        <rect x="14" y="128" width="90" height="6" rx="3" fill="#243F30" opacity="0.55" />
+      </g>
+
+      {/* Chat bubbles floating off the sheet */}
+      <g transform="translate(88 28)">
+        <rect width="52" height="28" rx="10" fill="#0D2B1A" stroke="#10B981" strokeOpacity="0.45" strokeWidth="1.2" />
+        <circle cx="16" cy="14" r="3" fill="#34D399" opacity="0.8" />
+        <rect x="24" y="11" width="18" height="3" rx="1.5" fill="#1A4030" />
+        <rect x="24" y="17" width="12" height="3" rx="1.5" fill="#1A4030" />
+      </g>
+      <g transform="translate(102 168)">
+        <rect width="44" height="24" rx="9" fill="#0D2B1A" stroke="#10B981" strokeOpacity="0.3" strokeWidth="1" />
+        <rect x="10" y="10" width="24" height="3" rx="1.5" fill="#1A4030" />
+      </g>
+
+      {/* —— CENTER: transform / logic node —— */}
       <path
-        d="M40 100 H440"
-        stroke="url(#pipe-g)"
-        strokeWidth="3"
+        d="M148 110 H186"
+        stroke="url(#cif-flow)"
+        strokeWidth="2"
+        strokeDasharray="4 6"
         strokeLinecap="round"
       />
-      {[80, 240, 400].map((x, i) => (
-        <g key={x}>
-          <circle cx={x} cy="100" r="28" fill="#0A1510" stroke="#10B981" strokeWidth="1.5" />
-          <circle cx={x} cy="100" r="10" fill={i === 1 ? "#34D399" : "#10B981"} opacity={i === 1 ? 1 : 0.55} />
-          <rect x={x - 26} y="142" width="52" height="8" rx="4" fill="#1A3A25" />
-        </g>
-      ))}
-      <path d="M120 100h88M272 100h88" stroke="#10B981" strokeOpacity="0.35" strokeWidth="2" strokeDasharray="3 7" />
+      <g transform="translate(198 78)">
+        <rect width="44" height="64" rx="14" fill="#07140f" stroke="#34D399" strokeWidth="1.6" />
+        <circle cx="22" cy="22" r="7" fill="#10B981" opacity="0.9" />
+        <path d="M22 17v10M17 22h10" stroke="#052e16" strokeWidth="2" strokeLinecap="round" />
+        <rect x="10" y="38" width="24" height="4" rx="2" fill="#1A3A25" />
+        <rect x="12" y="46" width="20" height="4" rx="2" fill="#1A3A25" opacity="0.7" />
+        <rect x="14" y="54" width="16" height="4" rx="2" fill="#1A3A25" opacity="0.45" />
+      </g>
+      <path
+        d="M254 110 H292"
+        stroke="url(#cif-flow)"
+        strokeWidth="2"
+        strokeDasharray="4 6"
+        strokeLinecap="round"
+      />
+
+      {/* —— RIGHT: clean automated pipeline —— */}
+      <g transform="translate(300 48)">
+        <rect width="120" height="124" rx="16" fill="#0A1510" stroke="#1A3A25" strokeWidth="1.25" />
+        {/* Pipeline stages stacked cleanly */}
+        {[
+          { y: 18, labelW: 58 },
+          { y: 52, labelW: 72 },
+          { y: 86, labelW: 50 },
+        ].map((row, i) => (
+          <g key={row.y}>
+            <circle cx="28" cy={row.y + 10} r="10" fill="#07140f" stroke="#34D399" strokeWidth="1.4" />
+            <circle cx="28" cy={row.y + 10} r="4" fill={i === 1 ? "#34D399" : "#10B981"} />
+            <rect x="46" y={row.y + 5} width={row.labelW} height="10" rx="5" fill="#122818" />
+            {i < 2 && (
+              <path
+                d={`M28 ${row.y + 22} V${row.y + 40}`}
+                stroke="#10B981"
+                strokeOpacity="0.35"
+                strokeWidth="1.5"
+                strokeDasharray="2 4"
+              />
+            )}
+          </g>
+        ))}
+      </g>
+
+      {/* Floating particles — motion cues */}
+      <circle cx="168" cy="72" r="2.5" fill="#34D399" opacity="0.55" />
+      <circle cx="276" cy="148" r="2" fill="#10B981" opacity="0.45" />
+      <circle cx="190" cy="150" r="1.8" fill="#6EE7B7" opacity="0.4" />
     </svg>
   );
 }
@@ -243,22 +239,6 @@ export function ValuesIllustration({ className = "" }: IllustProps) {
           </g>
         );
       })}
-    </svg>
-  );
-}
-
-export function MountainMark({ className = "" }: IllustProps) {
-  return (
-    <svg
-      viewBox="0 0 120 72"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={className}
-      aria-hidden
-    >
-      <path d="M8 64 L40 18 L58 40 L78 12 L112 64 Z" fill="#0D2B1A" stroke="#1A3A25" strokeWidth="1.25" />
-      <path d="M40 18 L48 30 L36 30 Z" fill="#10B981" opacity="0.7" />
-      <path d="M78 12 L86 26 L72 26 Z" fill="#10B981" opacity="0.55" />
     </svg>
   );
 }

@@ -5,6 +5,7 @@ import Image from "next/image";
 import {
   motion,
   useInView,
+  useReducedMotion,
   useScroll,
   useTransform,
   type MotionValue,
@@ -40,70 +41,40 @@ const milestones = [
     id: "01",
     flag: "Base Camp",
     phase: "The Signal",
-    title: "A pattern we kept hearing",
-    body: "Travel founders were exceptional at crafting experiences — and drowning in the systems meant to support them.",
-    points: [
-      "Missed leads from slow replies",
-      "Miscommunication across channels",
-      "Delayed follow-ups that cost bookings",
-      "Spreadsheets that broke under pressure",
-    ],
+    title: "One problem, clearly seen",
+    body: "June 2025. We started with a single question: why do travel agents run world-class experiences on scattered, broken tools? The idea was simple — an AI-powered back office where marketing, documents, customers, finance, and teams finally live in one place.",
     side: "left" as const,
   },
   {
     id: "02",
     flag: "Listening Ridge",
     phase: "Field Notes",
-    title: "Built from real conversations",
-    body: "We sat with adventure operators, trek companies, and travel teams. Same friction. Same ambition. Different tools that never fit.",
-    points: [
-      "Founder interviews across India",
-      "Ops walkthroughs on live batches",
-      "Lead flow mapping from WhatsApp to close",
-      "Where automation actually helps",
-    ],
+    title: "Three months, in the field",
+    body: "We didn't build on assumptions. Over three months of deep research, we studied 30+ dashboards and tools to understand what travel businesses truly need — and where every existing system quietly fails them.",
     side: "right" as const,
   },
   {
     id: "03",
     flag: "Route Sketch",
     phase: "The Blueprint",
-    title: "A system shaped for travel",
-    body: "Not another generic CRM. A platform designed around batches, seats, seasonal demand, and the way adventure businesses actually run.",
-    points: [
-      "Lead capture built for multi-channel",
-      "Batch & booking logic first",
-      "Team workflows with clear ownership",
-      "Automation without losing the human touch",
-    ],
+    title: "Designed to feel effortless",
+    body: "Then we built. Clean, intuitive, uncluttered — an interface an operator can open and understand on day one. Not another heavy CRM, but a system shaped around how travel teams already work.",
     side: "left" as const,
   },
   {
     id: "04",
     flag: "Shared Camp",
     phase: "Co-Created",
-    title: "Raised with founders, not for them",
-    body: "Every module was pressure-tested with operators in the field — refined until it felt native to how they already work.",
-    points: [
-      "Pilot runs with early partners",
-      "Feedback loops into every release",
-      "Training shaped by real ops teams",
-      "Features that earn their place",
-    ],
+    title: "Refined with real operators",
+    body: "We put it in front of agency owners and listened hard. Their real struggles — payments, leads, integrations, customer experience — became our roadmap. Every rough edge we heard about, we solved.",
     side: "right" as const,
   },
   {
     id: "05",
     flag: "Open Trail",
     phase: "Onward",
-    title: "Still walking with you",
-    body: "Befikra is not a finished product dropped at summit. It is a living trail — growing with the founders who trust us with their operations.",
-    points: [
-      "Continuous product evolution",
-      "Support that knows travel ops",
-      "AI that reduces busywork",
-      "A partner for the long climb",
-    ],
+    title: "Growing, together",
+    body: "August 2026 — just over a year in — we launched. Travel partners are already onboard, our team has grown past 10, and we're in full growth mode. Befikra isn't a finished summit; it's a living trail we keep walking with the founders who trust us.",
     side: "left" as const,
   },
 ];
@@ -214,6 +185,7 @@ function MilestoneCard({
   index: number;
 }) {
   const ref = useRef(null);
+  const reduceMotion = useReducedMotion();
   const inView = useInView(ref, {
     once: true,
     amount: 0.45,
@@ -234,7 +206,9 @@ function MilestoneCard({
         className="pointer-events-none absolute left-1/2 top-1/2 z-20 hidden -translate-x-1/2 -translate-y-1/2 lg:block"
       >
         <motion.div
-          animate={inView ? { y: [0, -4, 0, 4, 0] } : undefined}
+          animate={
+            inView && !reduceMotion ? { y: [0, -4, 0, 4, 0] } : undefined
+          }
           transition={{
             duration: 5.5,
             repeat: Infinity,
@@ -252,14 +226,22 @@ function MilestoneCard({
         }`}
       >
         <motion.article
-          initial={{
-            opacity: 0,
-            x: fromLeft ? -56 : 56,
-            y: 40,
-            rotate: fromLeft ? -3.5 : 3.5,
-          }}
+          initial={
+            reduceMotion
+              ? { opacity: 0 }
+              : {
+                  opacity: 0,
+                  x: fromLeft ? -56 : 56,
+                  y: 40,
+                  rotate: fromLeft ? -3.5 : 3.5,
+                }
+          }
           animate={
-            inView ? { opacity: 1, x: 0, y: 0, rotate: 0 } : undefined
+            inView
+              ? reduceMotion
+                ? { opacity: 1 }
+                : { opacity: 1, x: 0, y: 0, rotate: 0 }
+              : undefined
           }
           transition={{
             duration: 0.9,
@@ -270,7 +252,7 @@ function MilestoneCard({
         >
           <motion.div
             animate={
-              inView
+              inView && !reduceMotion
                 ? {
                     y: [0, fromLeft ? -5 : 5, 0, fromLeft ? 5 : -5, 0],
                   }
@@ -369,7 +351,8 @@ function JourneyTrail() {
           className="font-dm-sans mx-auto mt-5 max-w-xl text-[15px] leading-relaxed text-gray-400"
         >
           Scroll the path. Each milestone is a chapter in how Befikra grew from
-          a shared frustration into a platform built for adventure businesses.
+          a single frustration into a platform built for the way adventure
+          businesses actually run.
         </motion.p>
       </div>
 
