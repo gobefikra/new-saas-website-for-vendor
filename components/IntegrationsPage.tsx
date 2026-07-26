@@ -26,8 +26,7 @@ import {
 } from "lucide-react";
 import Footer from "@/components/Footer";
 import StickyTabNav from "@/components/StickyTabNav";
-import IntegrationFAQ from "@/components/IntegrationFAQ";
-import IntegrationsCTA from "@/components/IntegrationsCTA";
+import dynamic from "next/dynamic";
 import {
   GmailLogo,
   GoogleAdsLogo,
@@ -41,6 +40,9 @@ import {
   ZohoLogo,
 } from "@/components/integrations/BrandLogos";
 import { fadeInUp, staggerContainer } from "@/components/motion";
+
+const IntegrationFAQ = dynamic(() => import("@/components/IntegrationFAQ"));
+const IntegrationsCTA = dynamic(() => import("@/components/IntegrationsCTA"));
 
 const GREEN = "#10B981";
 const GREEN_DARK = "#10B981";

@@ -1,11 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, Sparkles, X } from "lucide-react";
 import { fadeInDown } from "@/components/motion";
+import { PREFETCH_ROUTES } from "@/lib/nav-routes";
 
 type NavLink = {
   label: string;
@@ -93,14 +94,28 @@ type NavbarProps = {
 
 export default function Navbar({ theme = "light" }: NavbarProps) {
   const pathname = usePathname();
+  const router = useRouter();
   const isDark =
     theme === "dark" || pathname === "/our-story" || pathname.startsWith("/our-story/");
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
+  const prefetchRoute = useCallback(
+    (href: string) => {
+      const path = href.split("#")[0] || "/";
+      if (!path || path === pathname) return;
+      try {
+        router.prefetch(path);
+      } catch {
+        // ignore
+      }
+    },
+    [pathname, router]
+  );
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
-    window.addEventListener("scroll", onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
@@ -108,7 +123,20 @@ export default function Navbar({ theme = "light" }: NavbarProps) {
   useEffect(() => {
     setMobileOpen(false);
     setScrolled(window.scrollY > 8);
-  }, [pathname]);
+    // Warm sibling routes after each navigation settles
+    const id = window.setTimeout(() => {
+      for (const href of PREFETCH_ROUTES) {
+        if (href !== pathname) {
+          try {
+            router.prefetch(href);
+          } catch {
+            // ignore
+          }
+        }
+      }
+    }, 120);
+    return () => window.clearTimeout(id);
+  }, [pathname, router]);
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
@@ -170,7 +198,7 @@ export default function Navbar({ theme = "light" }: NavbarProps) {
         className={`fixed top-0 left-0 right-0 z-50 ${headerClass}`}
       >
         <nav className="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-[4.5rem] flex items-center justify-between gap-4">
-          <Link href="/" className="shrink-0" aria-label="Befikra Partner home">
+          <Link href="/" className="shrink-0" aria-label="Befikra Partner home" prefetch onMouseEnter={() => prefetchRoute("/")}>
             <BrandLogo isDark={isDark} />
           </Link>
 
@@ -183,6 +211,9 @@ export default function Navbar({ theme = "light" }: NavbarProps) {
                   <li key={link.label} className="relative">
                     <Link
                       href={link.href}
+                      prefetch
+                      onMouseEnter={() => prefetchRoute(link.href)}
+                      onFocus={() => prefetchRoute(link.href)}
                       className={`relative inline-block py-1 text-sm transition-colors ${desktopHighlightClass}`}
                     >
                       <AiFeaturesLabel />
@@ -195,6 +226,9 @@ export default function Navbar({ theme = "light" }: NavbarProps) {
                 <li key={link.label} className="relative">
                   <Link
                     href={link.href}
+                    prefetch
+                    onMouseEnter={() => prefetchRoute(link.href)}
+                    onFocus={() => prefetchRoute(link.href)}
                     className={`relative inline-block py-1 text-sm transition-colors ${desktopLinkClass(link.href)}`}
                     aria-current={active ? "page" : undefined}
                   >
@@ -215,7 +249,12 @@ export default function Navbar({ theme = "light" }: NavbarProps) {
           </ul>
 
           <div className="hidden lg:block shrink-0">
-            <Link href="/contact" className={ctaClass}>
+            <Link
+              href="/contact"
+              prefetch
+              onMouseEnter={() => prefetchRoute("/contact")}
+              className={ctaClass}
+            >
               Get a demo
             </Link>
           </div>
@@ -276,7 +315,10 @@ export default function Navbar({ theme = "light" }: NavbarProps) {
                       <li key={link.label}>
                         <Link
                           href={link.href}
+                          prefetch
                           onClick={() => setMobileOpen(false)}
+                          onMouseEnter={() => prefetchRoute(link.href)}
+                          onTouchStart={() => prefetchRoute(link.href)}
                           className={`block rounded-r-lg px-4 py-3 text-base transition-colors ${mobileHighlightClass}`}
                         >
                           <AiFeaturesLabel />
@@ -289,7 +331,10 @@ export default function Navbar({ theme = "light" }: NavbarProps) {
                     <li key={link.label}>
                       <Link
                         href={link.href}
+                        prefetch
                         onClick={() => setMobileOpen(false)}
+                        onMouseEnter={() => prefetchRoute(link.href)}
+                        onTouchStart={() => prefetchRoute(link.href)}
                         aria-current={active ? "page" : undefined}
                         className={`block rounded-r-lg px-4 py-3 text-base transition-colors ${mobileLinkClass(link.href)}`}
                       >

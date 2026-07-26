@@ -10,9 +10,10 @@ import {
 } from "@/components/legal/LegalContent";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy - Befikra Partner",
+  title: "Privacy Policy",
   description:
     "How Befikra collects, uses, stores, and protects your information when you use our website and services.",
+  alternates: { canonical: "/privacy-policy" },
 };
 
 export default function PrivacyPolicyPage() {

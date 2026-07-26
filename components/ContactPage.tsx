@@ -1,10 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, type ReactNode } from "react";
 import {
   Briefcase,
   ChevronDown,
@@ -14,6 +10,9 @@ import {
   ShieldCheck,
   Zap,
 } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { motion, useInView } from "framer-motion";
 import Footer from "@/components/Footer";
 import Button from "@/components/ui/Button";
 import Eyebrow from "@/components/ui/Eyebrow";
@@ -21,22 +20,19 @@ import { fadeInUp, staggerContainer } from "@/components/motion";
 
 const featureCards = [
   {
-    iconSrc: "/icons/Picture__5_.png",
-    fallback: <Zap className="w-6 h-6 text-lime-accent" />,
+    icon: <Zap className="h-6 w-6 text-emerald-500" />,
     title: "Setup in days, not weeks",
     desc: "Fast implementation with zero downtime.",
     highlight: true,
   },
   {
-    iconSrc: "/icons/Picture__4_.png",
-    fallback: <Briefcase className="w-6 h-6 text-gray-700" />,
+    icon: <Briefcase className="h-6 w-6 text-gray-700" />,
     title: "Built for modern travel businesses",
     desc: "Tailored workflows for agencies and operators.",
     highlight: false,
   },
   {
-    iconSrc: "/icons/Picture__3_.png",
-    fallback: <Rocket className="w-6 h-6 text-emerald-500" />,
+    icon: <Rocket className="h-6 w-6 text-emerald-500" />,
     title: "Start capturing leads instantly",
     desc: "Never miss a customer inquiry again.",
     highlight: false,
@@ -45,52 +41,48 @@ const featureCards = [
 
 const connectCards = [
   {
-    iconSrc: "/icons/Picture.png",
-    fallback: <Monitor className="w-10 h-10 text-emerald-600" />,
+    icon: <Monitor className="h-10 w-10 text-emerald-600" />,
     title: "Book Demo",
     desc: "Schedule a 1-on-1 walkthrough of the Befikra platform.",
     link: "Schedule Demo →",
     href: "/contact",
   },
   {
-    iconSrc: "/icons/Picture__1_.png",
-    fallback: (
+    icon: (
       <Image
         src="/icons/whatsapp.png"
         alt=""
         width={40}
         height={40}
-        className="w-10 h-10 object-contain"
+        className="h-10 w-10 object-contain"
       />
     ),
     title: "WhatsApp",
     desc: "Chat with our support and sales team instantly.",
     link: "Start a Chat →",
-    href: "/contact",
+    href: "mailto:support@befikra.com",
   },
   {
-    iconSrc: "/icons/Picture__2_.png",
-    fallback: (
+    icon: (
       <Image
         src="/icons/instagram.png"
         alt=""
         width={40}
         height={40}
-        className="w-10 h-10 object-contain"
+        className="h-10 w-10 object-contain"
       />
     ),
     title: "Instagram",
     desc: "Follow our updates or slide into our DMs.",
     link: "Send Message →",
-    href: "/contact",
+    href: "https://instagram.com/befikrapartner",
   },
   {
-    iconSrc: null,
-    fallback: <Mail className="w-10 h-10 text-emerald-600" />,
+    icon: <Mail className="h-10 w-10 text-emerald-600" />,
     title: "Email",
     desc: "For detailed inquiries, partnerships, or support.",
     link: "Get in Touch →",
-    href: "/contact",
+    href: "mailto:support@befikra.com",
   },
 ];
 
@@ -131,56 +123,16 @@ const interestOptions = [
   "Full Platform Demo",
 ];
 
-function FeatureIcon({
-  src,
-  fallback,
-}: {
-  src: string;
-  fallback: React.ReactNode;
-}) {
-  const [failed, setFailed] = useState(false);
-  if (failed) {
-    return (
-      <div className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center shrink-0">
-        {fallback}
-      </div>
-    );
-  }
+function FeatureIcon({ icon }: { icon: ReactNode }) {
   return (
-    <Image
-      src={src}
-      alt=""
-      width={40}
-      height={40}
-      className="w-10 h-10 rounded-xl object-contain shrink-0"
-      onError={() => setFailed(true)}
-    />
+    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gray-50">
+      {icon}
+    </div>
   );
 }
 
-function ConnectIcon({
-  src,
-  fallback,
-}: {
-  src: string | null;
-  fallback: React.ReactNode;
-}) {
-  const [failed, setFailed] = useState(false);
-  if (!src || failed) {
-    return <div className="mb-4 flex justify-center">{fallback}</div>;
-  }
-  return (
-    <div className="mb-4 flex justify-center">
-      <Image
-        src={src}
-        alt=""
-        width={48}
-        height={48}
-        className="w-12 h-12 object-contain"
-        onError={() => setFailed(true)}
-      />
-    </div>
-  );
+function ConnectIcon({ icon }: { icon: ReactNode }) {
+  return <div className="mb-4 flex justify-center">{icon}</div>;
 }
 
 const inputClass =
@@ -241,7 +193,7 @@ export default function ContactPage() {
                       : "border-gray-200"
                   }`}
                 >
-                  <FeatureIcon src={card.iconSrc} fallback={card.fallback} />
+                  <FeatureIcon icon={card.icon} />
                   <div>
                     <p className="font-semibold text-gray-900">{card.title}</p>
                     <p className="text-gray-400 text-sm mt-0.5">{card.desc}</p>
@@ -268,15 +220,15 @@ export default function ContactPage() {
                   <label className={labelClass}>First Name</label>
                   <input
                     type="text"
-                    placeholder="Last Name"
+                    placeholder="First Name"
                     className={inputClass}
                   />
                 </div>
                 <div>
-                  <label className={labelClass}>First Name</label>
+                  <label className={labelClass}>Last Name</label>
                   <input
                     type="text"
-                    placeholder="First Name"
+                    placeholder="Last Name"
                     className={inputClass}
                   />
                 </div>
@@ -287,7 +239,7 @@ export default function ContactPage() {
                   <label className={labelClass}>Email</label>
                   <input
                     type="email"
-                    placeholder="Email"
+                    placeholder="you@company.com"
                     className={inputClass}
                   />
                 </div>
@@ -295,7 +247,7 @@ export default function ContactPage() {
                   <label className={labelClass}>Company Name</label>
                   <input
                     type="text"
-                    placeholder="Email"
+                    placeholder="Your company"
                     className={inputClass}
                   />
                 </div>
@@ -369,12 +321,15 @@ export default function ContactPage() {
               variants={fadeInUp}
               className="bg-emerald-50 border border-emerald-100 rounded-3xl p-8 flex flex-col items-center text-center hover:shadow-md transition-shadow"
             >
-              <ConnectIcon src={card.iconSrc} fallback={card.fallback} />
+              <ConnectIcon icon={card.icon} />
               <h3 className="font-bold text-gray-900 text-xl">{card.title}</h3>
               <p className="text-gray-500 text-sm mt-2">{card.desc}</p>
               <Link
                 href={card.href}
                 className="text-emerald-600 font-semibold text-sm mt-4 hover:text-emerald-700"
+                {...(card.href.startsWith("http")
+                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
               >
                 {card.link}
               </Link>

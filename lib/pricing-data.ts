@@ -803,12 +803,6 @@ export const PRICING_FAQS = [
   },
 ];
 
-export const PRICING_SUMMARY = {
-  text: "Doing ₹5L/month in bookings? You save ₹17,500 on platform fees alone by upgrading from Starter to Business AI.",
-  highlightParts: ["₹5L/month", "₹17,500"] as const,
-  cta: "Run my numbers",
-};
-
 export const PRICING_HERO = {
   title: "Choose the tier that fits your journey.",
   subtitle: "Simple pricing with clear value and no surprises.",

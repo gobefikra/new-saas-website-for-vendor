@@ -1,6 +1,6 @@
 "use client";
 
-import type { ReactElement, ReactNode } from "react";
+import type { ReactNode } from "react";
 import { motion } from "framer-motion";
 
 type IllusProps = {
@@ -294,67 +294,5 @@ export function IllusConversion({ accent, className }: IllusProps) {
         <path d="M88 26 L100 14" stroke={accent} strokeWidth="1.6" strokeLinecap="round" />
       </svg>
     </Float>
-  );
-}
-
-const ILLUSTRATIONS: Record<string, (props: IllusProps) => ReactElement> = {
-  "01": IllusInbox,
-  "02": IllusChatAuto,
-  "03": IllusQrCapture,
-  "04": IllusEmbed,
-  "05": IllusAudience,
-  "06": IllusInstantReply,
-  "07": IllusJourney,
-  "08": IllusBooked,
-  "09": IllusMobile,
-  "10": IllusConversion,
-};
-
-export function FeatureIllustration({
-  id,
-  accent,
-  tall,
-  wide,
-}: {
-  id: string;
-  accent: string;
-  tall?: boolean;
-  wide?: boolean;
-}) {
-  const Comp = ILLUSTRATIONS[id];
-  if (!Comp) return null;
-
-  if (tall && id === "01") {
-    return (
-      <Comp
-        accent={accent}
-        className="pointer-events-none absolute bottom-3 right-2 z-[1] h-[110px] w-[148px] opacity-90 sm:h-[128px] sm:w-[168px]"
-      />
-    );
-  }
-
-  if (tall && id === "08") {
-    return (
-      <Comp
-        accent={accent}
-        className="pointer-events-none absolute bottom-2 left-1/2 z-[1] h-[150px] w-[130px] -translate-x-1/2 opacity-90 sm:h-[168px] sm:w-[140px]"
-      />
-    );
-  }
-
-  if (wide) {
-    return (
-      <Comp
-        accent={accent}
-        className="pointer-events-none relative z-[1] mt-3 h-[64px] w-full max-w-[240px] opacity-90 sm:mt-0 sm:ml-auto sm:h-[72px] sm:w-[220px] sm:shrink-0"
-      />
-    );
-  }
-
-  return (
-    <Comp
-      accent={accent}
-      className="pointer-events-none absolute bottom-2 right-2 z-[1] h-[64px] w-[100px] opacity-80 sm:h-[72px] sm:w-[112px]"
-    />
   );
 }

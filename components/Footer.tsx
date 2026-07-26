@@ -48,7 +48,7 @@ const socialLinks = [
   { Icon: Instagram, label: "Instagram", href: "https://instagram.com/befikrapartner" },
   { Icon: Twitter, label: "X", href: "https://x.com/befikrapartner" },
   { Icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com/company/befikra" },
-  { Icon: MessageCircle, label: "WhatsApp", href: "https://wa.me/919999999999" },
+  { Icon: MessageCircle, label: "WhatsApp", href: "mailto:support@befikra.com" },
   { Icon: Youtube, label: "YouTube", href: "https://youtube.com/@befikra" },
 ];
 
@@ -117,7 +117,14 @@ export default function Footer() {
 
             <form
               className="flex w-full flex-col gap-2 sm:flex-row sm:items-center lg:max-w-md lg:shrink-0"
-              onSubmit={(e) => e.preventDefault()}
+              onSubmit={(e) => {
+                e.preventDefault();
+                const email = new FormData(e.currentTarget).get("email");
+                if (!email) return;
+                window.location.href = `mailto:support@befikra.com?subject=${encodeURIComponent(
+                  "Newsletter signup"
+                )}&body=${encodeURIComponent(`Please add ${email} to the newsletter.`)}`;
+              }}
             >
               <div className="relative flex-1">
                 <Mail
@@ -126,6 +133,8 @@ export default function Footer() {
                 />
                 <input
                   type="email"
+                  name="email"
+                  required
                   placeholder="Enter your email"
                   aria-label="Email address"
                   className="font-dm-sans w-full rounded-xl border border-gray-200 bg-white py-3 pl-11 pr-4 text-sm outline-none transition-colors focus:border-green-400 focus:ring-2 focus:ring-green-100"
