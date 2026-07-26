@@ -57,8 +57,8 @@ export default function MyLinkrCTA() {
             <span
               className="inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-bold uppercase tracking-wider"
               style={{
-                borderColor: "rgba(16,185,129,0.35)",
-                backgroundColor: "rgba(16,185,129,0.12)",
+                borderColor: "rgba(16, 185, 129,0.35)",
+                backgroundColor: "rgba(16, 185, 129,0.12)",
                 color: brand.primary,
               }}
             >
@@ -79,7 +79,7 @@ export default function MyLinkrCTA() {
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#10B981] to-[#059669] px-7 py-3 text-sm font-semibold text-white shadow-[0_4px_16px_rgba(16,185,129,0.35)] transition-opacity hover:opacity-90"
+                className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#10B981] to-[#059669] px-7 py-3 text-sm font-semibold text-white shadow-[0_4px_16px_rgba(16, 185, 129,0.35)] transition-opacity hover:opacity-90"
               >
                 Book a demo
                 <ArrowRight className="h-4 w-4" strokeWidth={2.25} />
@@ -116,7 +116,7 @@ export default function MyLinkrCTA() {
               >
                 <div
                   className="flex h-10 w-10 items-center justify-center rounded-full"
-                  style={{ backgroundColor: "rgba(16,185,129,0.15)" }}
+                  style={{ backgroundColor: "rgba(16, 185, 129,0.15)" }}
                 >
                   <item.Icon
                     className="h-5 w-5"

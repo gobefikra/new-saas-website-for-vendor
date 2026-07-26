@@ -209,11 +209,11 @@ export default function PowerfulToolsPreview() {
           className="flex w-full items-center justify-between px-4 py-3 text-left transition-opacity hover:opacity-90 sm:px-5"
           style={{ backgroundColor: MINT }}
         >
-          <span className="inline-flex items-center gap-2 text-xs font-semibold sm:text-sm" style={{ color: "#059669" }}>
+          <span className="inline-flex items-center gap-2 text-xs font-semibold sm:text-sm" style={{ color: "#10B981" }}>
             <Sparkles className="h-4 w-4" strokeWidth={2.25} />
             Watch 1-min product tour
           </span>
-          <ArrowRight className="h-4 w-4" style={{ color: "#059669" }} strokeWidth={2.25} />
+          <ArrowRight className="h-4 w-4" style={{ color: "#10B981" }} strokeWidth={2.25} />
         </button>
       </div>
     </div>

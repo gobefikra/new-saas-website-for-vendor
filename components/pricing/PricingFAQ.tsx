@@ -15,7 +15,7 @@ export default function PricingFAQ() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section ref={ref} className="bg-white px-4 py-20 md:px-8 md:py-24">
+    <section ref={ref} className="border-t border-gray-100 bg-white px-4 py-16 md:px-8 md:py-20">
       <div className="mx-auto max-w-3xl">
         <motion.div
           initial="hidden"
@@ -27,7 +27,7 @@ export default function PricingFAQ() {
             FAQ
           </Eyebrow>
           <h2
-            className="mt-5 text-3xl font-extrabold leading-tight md:text-4xl lg:text-[2.75rem]"
+            className="mt-5 text-2xl font-extrabold leading-tight tracking-tight md:text-3xl lg:text-4xl"
             style={{ color: brand.navy }}
           >
             Everything you want to know

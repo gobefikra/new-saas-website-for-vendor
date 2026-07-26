@@ -6,7 +6,7 @@
 export const brand = {
   primary: "#10B981", // primary-green / emerald-500
   primaryDark: "#059669", // emerald-600 - CTAs, emphasis
-  lime: "#84CC16", // lime-accent
+  lime: "#10B981", // accent green (aligned with primary)
   forest: "#0D2B1F", // forest-dark
   navy: "#0F172A", // navy-dark
   nearBlack: "#111827",

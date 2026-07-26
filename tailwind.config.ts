@@ -10,7 +10,7 @@ const config: Config = {
     extend: {
       colors: {
         "primary-green": "#10B981",
-        "lime-accent": "#84CC16",
+        "lime-accent": "#10B981",
         "forest-dark": "#0D2B1F",
         "navy-dark": "#0F172A",
         "near-black": "#111827",

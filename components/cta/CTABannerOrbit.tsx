@@ -25,7 +25,7 @@ type OrbitApp = {
 
 function HubCircle({ children }: { children: ReactNode }) {
   return (
-    <div className="relative flex h-[4.5rem] w-[4.5rem] items-center justify-center rounded-full border border-gray-100 bg-white shadow-[0_12px_40px_rgba(16,185,129,0.15)] sm:h-20 sm:w-20">
+    <div className="relative flex h-[4.5rem] w-[4.5rem] items-center justify-center rounded-full border border-gray-100 bg-white shadow-[0_12px_40px_rgba(16, 185, 129,0.15)] sm:h-20 sm:w-20">
       <div
         className="absolute inset-0 rounded-full opacity-40 blur-xl"
         style={{

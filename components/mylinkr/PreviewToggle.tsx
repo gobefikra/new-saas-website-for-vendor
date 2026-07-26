@@ -14,7 +14,7 @@ export default function PreviewToggle() {
     <section className="w-full bg-white py-20 px-6 text-center">
       <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
         See It. Adjust It.{" "}
-        <span className="text-lime-400">Launch It.</span>
+        <span className="text-emerald-400">Launch It.</span>
       </h2>
       <p className="text-gray-400 text-base mt-4 max-w-lg mx-auto">
         Experience your MyLinkr exactly how your audience will see it, perfectly

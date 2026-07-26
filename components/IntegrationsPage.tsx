@@ -43,7 +43,7 @@ import {
 import { fadeInUp, staggerContainer } from "@/components/motion";
 
 const GREEN = "#10B981";
-const GREEN_DARK = "#059669";
+const GREEN_DARK = "#10B981";
 const NAVY = "#0F172A";
 const BODY = "#6B7280";
 const HERO_BG = "#F7F8F4";
@@ -1031,7 +1031,7 @@ function IntegrationShowcase({
     <div
       className={`relative min-h-[510px] overflow-hidden rounded-[2rem] lg:min-h-[590px] ${
         dark
-          ? "bg-[radial-gradient(circle_at_top_right,rgba(16,185,129,0.18),transparent_42%),#0A2118]"
+          ? "bg-[radial-gradient(circle_at_top_right,rgba(16, 185, 129,0.18),transparent_42%),#0A2118]"
           : "bg-[radial-gradient(circle_at_top_right,rgba(225,48,108,0.12),transparent_42%),#F1F5F9]"
       }`}
     >

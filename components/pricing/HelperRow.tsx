@@ -1,46 +1,63 @@
-import { Check, Infinity } from "lucide-react";
+import { Check, Minus } from "lucide-react";
+import { brand } from "@/lib/brand-theme";
 
 const items = [
   {
     icon: (
-      <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-[#10B981] text-white">
-        <Check className="h-3 w-3" strokeWidth={3} />
+      <span
+        className="inline-flex h-5 w-5 items-center justify-center rounded-full"
+        style={{ backgroundColor: brand.mint }}
+      >
+        <Check
+          className="h-3 w-3"
+          style={{ color: brand.primaryDark }}
+          strokeWidth={3}
+        />
       </span>
     ),
     label: "Included",
   },
   {
     icon: (
-      <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-gray-100 text-xs font-bold text-gray-400">
-        -
-      </span>
+      <Minus className="h-4 w-4" style={{ color: brand.muted }} strokeWidth={2.25} />
     ),
     label: "Not available",
   },
   {
     icon: (
-      <span className="rounded-md border border-emerald-200 bg-emerald-50 px-2 py-0.5 font-mono text-[10px] font-semibold text-emerald-700">
-        value
+      <span
+        className="rounded px-1.5 py-0.5 text-[11px] font-semibold"
+        style={{ backgroundColor: brand.mint, color: brand.primaryDark }}
+      >
+        Limit
       </span>
     ),
     label: "Specific limit",
   },
   {
-    icon: <Infinity className="h-4 w-4 text-[#10B981]" strokeWidth={2.5} />,
-    label: "Unlimited",
+    icon: (
+      <span
+        className="text-[11px] font-semibold"
+        style={{ color: brand.primaryDark }}
+      >
+        Unlimited
+      </span>
+    ),
+    label: "No cap",
   },
 ];
 
 export default function HelperRow() {
   return (
-    <div className="mb-5 flex flex-wrap gap-3 rounded-2xl border border-gray-100 bg-white px-4 py-3.5 shadow-sm md:gap-5 md:px-5">
+    <div className="mb-5 flex flex-wrap items-center gap-x-5 gap-y-2.5 rounded-xl border border-gray-100 bg-[#F9FAFB] px-4 py-3 md:px-5">
       {items.map(({ icon, label }) => (
         <div
           key={label}
-          className="flex items-center gap-2 text-[13px] text-gray-600"
+          className="font-dm-sans flex items-center gap-2 text-[13px]"
+          style={{ color: brand.subtext }}
         >
           {icon}
-          <span className="font-dm-sans">{label}</span>
+          <span>{label}</span>
         </div>
       ))}
     </div>

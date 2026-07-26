@@ -38,7 +38,7 @@ const testimonials: Testimonial[] = [
     quote: "MyLinkr made sharing and booking incredibly simple.",
     body: "We share one MyLinkr page with customers, and they can view events, see details, and book instantly. It looks professional and saves a lot of manual effort.",
     date: "Feb 28, 2026",
-    accent: "#059669",
+    accent: "#10B981",
   },
   {
     name: "Sneha Kapoor",
@@ -46,7 +46,7 @@ const testimonials: Testimonial[] = [
     quote: "The WhatsApp and Instagram integration is a game changer.",
     body: "All messages automatically become leads in the CRM. We respond faster and manage everything from one dashboard without switching between apps.",
     date: "March 5, 2026",
-    accent: "#65A30D",
+    accent: "#059669",
   },
   {
     name: "Neha Joshi",
@@ -182,7 +182,7 @@ export default function Testimonials() {
       className="w-full overflow-hidden px-4 py-20 md:px-8 md:py-24"
       style={{
         background:
-          "radial-gradient(ellipse 65% 45% at 50% 0%, rgba(16,185,129,0.07), transparent 60%), #FFFFFF",
+          "radial-gradient(ellipse 65% 45% at 50% 0%, rgba(16, 185, 129,0.07), transparent 60%), #FFFFFF",
       }}
     >
       <div className="mx-auto max-w-6xl">
@@ -195,7 +195,7 @@ export default function Testimonials() {
           <span
             className="inline-flex items-center gap-2 rounded-full border bg-emerald-50 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-widest"
             style={{
-              borderColor: "rgba(16,185,129,0.25)",
+              borderColor: "rgba(16, 185, 129,0.25)",
               color: brand.primaryDark,
             }}
           >
@@ -204,7 +204,7 @@ export default function Testimonials() {
           </span>
           <h2 className="mx-auto mt-5 max-w-3xl text-3xl font-extrabold leading-tight text-slate-900 sm:text-4xl md:text-[2.75rem]">
             Trusted by travel teams{" "}
-            <span className="bg-gradient-to-r from-lime-600 via-[#65A30D] to-emerald-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-emerald-600 via-[#059669] to-emerald-600 bg-clip-text text-transparent">
               growing with Befikra
             </span>
           </h2>

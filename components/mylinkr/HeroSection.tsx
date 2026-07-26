@@ -104,7 +104,7 @@ export default function MyLinkrHeroSection() {
             </motion.span>
             <motion.span
               variants={fadeInUp}
-              className="mt-1 block bg-gradient-to-r from-lime-500 to-emerald-500 bg-clip-text pb-2 text-transparent"
+              className="mt-1 block bg-gradient-to-r from-emerald-500 to-emerald-500 bg-clip-text pb-2 text-transparent"
             >
               Booking-Ready Mini Website
             </motion.span>
@@ -157,15 +157,15 @@ export default function MyLinkrHeroSection() {
             rotate={5}
             className="w-[clamp(8.5rem,18vw,12.5rem)]"
           >
-            <div className={`${cardShell} border-lime-100`}>
-              <p className="text-[10px] font-semibold uppercase tracking-wider text-lime-600">
+            <div className={`${cardShell} border-emerald-100`}>
+              <p className="text-[10px] font-semibold uppercase tracking-wider text-emerald-600">
                 Booking live
               </p>
               <p className="mt-2 text-xs font-bold text-slate-800 sm:text-sm">
                 Manali Weekend Trek
               </p>
               <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-slate-100">
-                <div className="h-full w-4/5 rounded-full bg-gradient-to-r from-lime-400 to-emerald-500" />
+                <div className="h-full w-4/5 rounded-full bg-gradient-to-r from-emerald-400 to-emerald-500" />
               </div>
               <p className="mt-1.5 text-[10px] text-slate-400">16 of 20 spots filled</p>
             </div>
@@ -312,8 +312,8 @@ export default function MyLinkrHeroSection() {
             className="hidden md:block"
           >
             <div className="flex items-center gap-2 rounded-full border border-gray-100 bg-white py-2 pl-2.5 pr-4 shadow-[0_14px_40px_rgba(15,23,42,0.1)]">
-              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-lime-50">
-                <MousePointerClick className="h-3.5 w-3.5 text-lime-600" strokeWidth={2.25} />
+              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-emerald-50">
+                <MousePointerClick className="h-3.5 w-3.5 text-emerald-600" strokeWidth={2.25} />
               </span>
               <div className="text-left">
                 <p className="text-[11px] font-bold leading-none text-slate-800">1.2k link clicks</p>

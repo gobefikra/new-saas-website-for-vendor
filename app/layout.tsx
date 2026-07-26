@@ -37,6 +37,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${plusJakarta.variable} ${dmSans.variable}`}>
+      <head>
+        {/* Preload both logos so dark/light swap never waits on a network fetch */}
+        <link rel="preload" as="image" href="/icons/Nav-logo.png" />
+        <link rel="preload" as="image" href="/icons/Nav-logo-dark.png" />
+      </head>
       <body className="font-sans antialiased">
         <Navbar />
         {children}

@@ -31,10 +31,10 @@ import { brand } from "@/lib/brand-theme";
 
 const GREEN = brand.primary;
 const LIME = brand.lime;
-const LIME_DARK = "#65A30D";
+const LIME_DARK = "#059669";
 
 const cardBase =
-  "group relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-emerald-100 bg-white p-5 shadow-[0_18px_55px_-34px_rgba(15,23,42,0.28)] transition-all duration-300 hover:-translate-y-0.5 hover:border-emerald-300 hover:shadow-[0_24px_65px_-32px_rgba(16,185,129,0.28)] md:p-6";
+  "group relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-emerald-100 bg-white p-5 shadow-[0_18px_55px_-34px_rgba(15,23,42,0.28)] transition-all duration-300 hover:-translate-y-0.5 hover:border-emerald-300 hover:shadow-[0_24px_65px_-32px_rgba(16, 185, 129,0.28)] md:p-6";
 
 function AccentWord({
   children,
@@ -123,10 +123,10 @@ function HubLinkBoard({ reduceMotion }: { reduceMotion: boolean | null }) {
             className="flex items-center gap-2.5 rounded-xl border px-3 py-2.5"
             style={{
               borderColor: link.hot
-                ? "rgba(16,185,129,0.4)"
+                ? "rgba(16, 185, 129,0.4)"
                 : "rgba(148,163,184,0.25)",
               background: link.hot
-                ? "linear-gradient(90deg, rgba(16,185,129,0.14), rgba(236,253,245,0.5))"
+                ? "linear-gradient(90deg, rgba(16, 185, 129,0.14), rgba(236,253,245,0.5))"
                 : "rgba(248,250,252,0.9)",
             }}
             initial={reduceMotion ? false : { opacity: 0, x: -12 }}
@@ -227,13 +227,13 @@ function LayoutBlocks({ reduceMotion }: { reduceMotion: boolean | null }) {
         >
           <GripVertical
             className="h-3.5 w-3.5 shrink-0"
-            style={{ color: block.active ? "#65A30D" : "#94A3B8" }}
+            style={{ color: block.active ? "#059669" : "#94A3B8" }}
           />
           <span className={block.active ? "text-slate-900" : "text-slate-500"}>
             {block.label}
           </span>
           {block.active ? (
-            <MousePointerClick className="ml-auto h-3.5 w-3.5 text-lime-400" />
+            <MousePointerClick className="ml-auto h-3.5 w-3.5 text-emerald-400" />
           ) : (
             <span className="ml-auto h-1.5 w-8 rounded-full bg-slate-200" />
           )}
@@ -325,10 +325,10 @@ function BookingWidget() {
             className="rounded-full border px-2.5 py-1 text-[10px]"
             style={{
               borderColor:
-                i === 1 ? "rgba(16,185,129,0.4)" : "rgba(148,163,184,0.25)",
+                i === 1 ? "rgba(16, 185, 129,0.4)" : "rgba(148,163,184,0.25)",
               backgroundColor:
-                i === 1 ? "rgba(16,185,129,0.1)" : "#F8FAFC",
-              color: i === 1 ? "#047857" : "#64748B",
+                i === 1 ? "rgba(16, 185, 129,0.1)" : "#F8FAFC",
+              color: i === 1 ? "#059669" : "#64748B",
             }}
           >
             {slot}
@@ -378,10 +378,10 @@ function ContentReelFan({ reduceMotion }: { reduceMotion: boolean | null }) {
             className="rounded-full border px-2.5 py-1 text-[10px] font-medium"
             style={{
               borderColor:
-                i === 0 ? "rgba(16,185,129,0.4)" : "rgba(148,163,184,0.25)",
+                i === 0 ? "rgba(16, 185, 129,0.4)" : "rgba(148,163,184,0.25)",
               backgroundColor:
-                i === 0 ? "rgba(16,185,129,0.1)" : "#F8FAFC",
-              color: i === 0 ? "#047857" : "#64748B",
+                i === 0 ? "rgba(16, 185, 129,0.1)" : "#F8FAFC",
+              color: i === 0 ? "#059669" : "#64748B",
             }}
           >
             {tab}
@@ -459,7 +459,7 @@ export default function FeaturesGrid() {
       className="w-full overflow-hidden px-4 py-16 md:px-8 md:py-24"
       style={{
         background:
-          "radial-gradient(ellipse 70% 50% at 50% 0%, rgba(16,185,129,0.08), transparent 65%), #F8FAF9",
+          "radial-gradient(ellipse 70% 50% at 50% 0%, rgba(16, 185, 129,0.08), transparent 65%), #F8FAF9",
       }}
     >
       <div className="mx-auto max-w-[1200px]">
@@ -475,14 +475,14 @@ export default function FeaturesGrid() {
         >
           <span
             className="inline-flex items-center gap-2 rounded-full border bg-emerald-50 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-widest"
-            style={{ borderColor: "rgba(16,185,129,0.25)", color: brand.primaryDark }}
+            style={{ borderColor: "rgba(16, 185, 129,0.25)", color: brand.primaryDark }}
           >
             <Sparkles className="h-3.5 w-3.5" />
             Next level features
           </span>
           <h2 className="mx-auto mt-6 max-w-3xl text-3xl font-extrabold leading-tight text-slate-900 sm:text-4xl md:text-[2.75rem]">
             Everything Connected in{" "}
-            <span className="bg-gradient-to-r from-lime-600 via-[#65A30D] to-emerald-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-emerald-600 via-[#059669] to-emerald-600 bg-clip-text text-transparent">
               One Place
             </span>
           </h2>
@@ -533,7 +533,7 @@ export default function FeaturesGrid() {
           >
             <div className="relative z-10 flex items-start justify-between gap-3">
               <IconBadge Icon={GripVertical} color={LIME} />
-              <span className="text-[10px] font-bold uppercase tracking-[0.14em] text-lime-600">
+              <span className="text-[10px] font-bold uppercase tracking-[0.14em] text-emerald-600">
                 Drag &amp; drop
               </span>
             </div>
@@ -551,7 +551,7 @@ export default function FeaturesGrid() {
             reduceMotion={reduceMotion}
             className="min-h-[190px] lg:col-span-3"
           >
-            <IconBadge Icon={Share2} color="#A3E635" />
+            <IconBadge Icon={Share2} color="#10B981" />
             <h3 className="relative z-10 mt-4 text-sm font-bold leading-snug text-slate-900 md:text-base">
               Keep every profile{" "}
               <AccentWord color={LIME_DARK}>connected</AccentWord>
@@ -626,7 +626,7 @@ export default function FeaturesGrid() {
           >
             <div className="relative z-10 flex items-start justify-between gap-3">
               <IconBadge Icon={QrCode} color={LIME} />
-              <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-lime-700">
+              <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-emerald-700">
                 Smart QR
               </span>
             </div>

@@ -15,7 +15,7 @@ import { OrbitSide } from "@/components/cta/CTABannerOrbit";
 import { fadeInUp } from "@/components/motion";
 
 const GREEN = "#10B981";
-const GREEN_DARK = "#059669";
+const GREEN_DARK = "#10B981";
 const NAVY = "#0F172A";
 const BODY = "#6B7280";
 const MINT = "#ECFDF5";
@@ -73,7 +73,7 @@ export default function CTABanner() {
           aria-hidden
           style={{
             background:
-              "radial-gradient(ellipse 40% 50% at 18% 45%, rgba(16,185,129,0.10), transparent 60%), radial-gradient(ellipse 40% 50% at 82% 45%, rgba(132,204,22,0.08), transparent 60%)",
+              "radial-gradient(ellipse 40% 50% at 18% 45%, rgba(16, 185, 129,0.10), transparent 60%), radial-gradient(ellipse 40% 50% at 82% 45%, rgba(132,204,22,0.08), transparent 60%)",
           }}
         />
 
@@ -117,7 +117,7 @@ export default function CTABanner() {
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#10B981] to-[#059669] px-7 py-3 text-sm font-semibold text-white shadow-[0_4px_16px_rgba(16,185,129,0.35)] transition-opacity hover:opacity-90"
+                className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#10B981] to-[#059669] px-7 py-3 text-sm font-semibold text-white shadow-[0_4px_16px_rgba(16, 185, 129,0.35)] transition-opacity hover:opacity-90"
               >
                 Book a demo
                 <ArrowRight className="h-4 w-4" strokeWidth={2.25} />

@@ -24,7 +24,7 @@ const socialLinks = [
   { Icon: Pin, label: "Pinterest", hover: "hover:text-red-400 hover:border-red-400/40" },
   { Icon: Twitter, label: "X", hover: "hover:text-sky-400 hover:border-sky-400/40" },
   { Icon: MessageCircle, label: "WhatsApp", hover: "hover:text-emerald-400 hover:border-emerald-400/40" },
-  { Icon: ShoppingBag, label: "MyLinkr", hover: "hover:text-lime-400 hover:border-lime-400/40" },
+  { Icon: ShoppingBag, label: "MyLinkr", hover: "hover:text-emerald-400 hover:border-emerald-400/40" },
 ];
 
 function BentoShell({
@@ -38,7 +38,7 @@ function BentoShell({
 }) {
   const glowMap = {
     emerald: "from-emerald-500/15",
-    lime: "from-lime-400/15",
+    lime: "from-emerald-400/15",
     purple: "from-purple-500/15",
   };
 
@@ -105,10 +105,10 @@ function AnimatedLeadCount() {
 
 function LivePulse() {
   return (
-    <span className="inline-flex items-center gap-2 text-lime-400 font-bold text-base md:text-lg leading-snug">
+    <span className="inline-flex items-center gap-2 text-emerald-400 font-bold text-base md:text-lg leading-snug">
       <span className="relative flex h-2.5 w-2.5">
-        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-lime-400 opacity-60" />
-        <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-lime-400" />
+        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
+        <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-400" />
       </span>
       24/7 lead capture
     </span>
@@ -132,7 +132,7 @@ function QRTile() {
         className="relative h-16 w-16 md:h-20 md:w-20"
       >
         <div
-          className="absolute inset-0 flex items-center justify-center rounded-lg bg-gradient-to-br from-lime-400 via-emerald-500 to-emerald-700 text-xs font-bold text-white shadow-lg"
+          className="absolute inset-0 flex items-center justify-center rounded-lg bg-gradient-to-br from-emerald-400 via-emerald-500 to-emerald-700 text-xs font-bold text-white shadow-lg"
           style={{ backfaceVisibility: "hidden" }}
         >
           QR
@@ -149,7 +149,7 @@ function QRTile() {
           ))}
         </div>
       </motion.div>
-      <span className="text-xs text-lime-400/90 group-hover:text-lime-300 transition-colors">
+      <span className="text-xs text-emerald-400/90 group-hover:text-emerald-300 transition-colors">
         {flipped ? "Scan to book" : "Event QR · tap to flip"}
       </span>
     </button>
@@ -263,7 +263,7 @@ export default function RavenBentoGrid() {
             animate={inView ? { opacity: 1 } : { opacity: 0 }}
           >
             <motion.div
-              className="h-full rounded-full bg-gradient-to-r from-lime-400 to-emerald-500"
+              className="h-full rounded-full bg-gradient-to-r from-emerald-400 to-emerald-500"
               animate={{ x: ["-100%", "100%"] }}
               transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }}
               style={{ width: "40%" }}
@@ -278,14 +278,14 @@ export default function RavenBentoGrid() {
               transition={{ duration: 2, repeat: Infinity }}
               aria-hidden
             >
-              🍎
+              ðŸŽ
             </motion.span>
             <motion.span
               animate={{ y: [0, -4, 0] }}
               transition={{ duration: 2, repeat: Infinity, delay: 0.3 }}
               aria-hidden
             >
-              🤖
+              ðŸ¤–
             </motion.span>
           </div>
           <p className="text-sm font-semibold leading-snug">
@@ -296,7 +296,7 @@ export default function RavenBentoGrid() {
 
         <BentoShell glow="emerald" className="md:col-span-1 lg:col-span-1 justify-center">
           <motion.p
-            className="text-lime-400 font-bold italic text-sm leading-snug"
+            className="text-emerald-400 font-bold italic text-sm leading-snug"
             animate={{ opacity: [0.85, 1, 0.85] }}
             transition={{ duration: 3, repeat: Infinity }}
           >
@@ -374,7 +374,7 @@ export default function RavenBentoGrid() {
           >
             <span
               className="text-transparent"
-              style={{ WebkitTextStroke: "1.5px #84CC16" }}
+              style={{ WebkitTextStroke: "1.5px #10B981" }}
             >
               Conversion
             </span>{" "}

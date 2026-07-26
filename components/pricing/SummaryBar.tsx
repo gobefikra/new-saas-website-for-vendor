@@ -20,7 +20,7 @@ export default function SummaryBar() {
       <div className="flex items-start gap-4">
         <span
           className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl"
-          style={{ backgroundColor: "rgba(16,185,129,0.15)" }}
+          style={{ backgroundColor: "rgba(16, 185, 129,0.15)" }}
         >
           <TrendingUp className="h-5 w-5" style={{ color: GREEN }} strokeWidth={2.25} />
         </span>

@@ -18,7 +18,7 @@ import { fadeInUp, staggerContainer } from "@/components/motion";
 const NAVY = "#0F172A";
 const BODY = "#6B7280";
 const MINT = "#ECFDF5";
-const GREEN_DARK = "#059669";
+const GREEN_DARK = "#10B981";
 
 const features = [
   {
@@ -51,21 +51,21 @@ const stats = [
     value: "50K+",
     label: "Happy Customers",
     iconBg: "#F7FEE7",
-    iconColor: "#84CC16",
+    iconColor: "#10B981",
   },
   {
     Icon: Calendar,
     value: "2.5M+",
     label: "Bookings Managed",
     iconBg: "#ECFDF5",
-    iconColor: "#059669",
+    iconColor: "#10B981",
   },
   {
     Icon: Star,
     value: "4.8/5",
     label: "User Rating",
     iconBg: "#F7FEE7",
-    iconColor: "#65A30D",
+    iconColor: "#059669",
   },
 ];
 
@@ -103,7 +103,7 @@ export default function PowerfulToolsSection() {
             >
               Powerful Tools to Run and
               <br />
-              <span className="bg-gradient-to-r from-lime-400 via-[#84CC16] to-emerald-500 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-emerald-400 via-[#10B981] to-emerald-500 bg-clip-text text-transparent">
                 Grow Your Travel Business
               </span>
             </motion.h2>
