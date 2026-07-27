@@ -119,7 +119,7 @@ export default function ChannelsSection() {
     <section
       id="customer-channels"
       ref={ref}
-      className="w-full overflow-hidden bg-white px-4 py-20 md:py-28"
+      className="w-full overflow-hidden bg-white px-4 py-16 md:py-20"
     >
       <div className="mx-auto max-w-6xl">
         {/* Badge */}
@@ -196,7 +196,7 @@ export default function ChannelsSection() {
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
           variants={staggerContainer}
-          className="mt-14 grid grid-cols-1 items-stretch gap-6 lg:grid-cols-3"
+          className="mt-10 grid grid-cols-1 items-stretch gap-6 lg:grid-cols-3"
         >
           {integrationCards.map((card) => (
             <motion.article
@@ -290,7 +290,7 @@ export default function ChannelsSection() {
           animate={inView ? "visible" : "hidden"}
           variants={fadeInUp}
           transition={{ delay: 0.2 }}
-          className="mt-16 grid grid-cols-1 items-center gap-8 border-t border-gray-100 pt-12 lg:grid-cols-[1fr_auto_1fr]"
+          className="mt-12 grid grid-cols-1 items-center gap-8 border-t border-gray-100 pt-10 lg:grid-cols-[1fr_auto_1fr]"
         >
           <div className="flex items-center gap-3 lg:justify-start">
             <div

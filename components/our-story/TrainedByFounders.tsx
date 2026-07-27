@@ -79,7 +79,7 @@ export default function TrainedByFounders() {
   return (
     <section
       ref={ref}
-      className="relative overflow-hidden border-t border-white/5 bg-black px-6 py-24 md:px-8 md:py-32"
+      className="relative overflow-hidden border-t border-white/5 bg-black px-6 py-16 md:px-8 md:py-20"
     >
       <div className="mx-auto max-w-3xl text-center">
         <motion.p

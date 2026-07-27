@@ -13,7 +13,7 @@ import {
 import { fadeInUp, staggerContainer } from "@/components/motion";
 
 const GREEN = "#10B981";
-const GREEN_DARK = "#10B981";
+const GREEN_DARK = "#059669";
 const NAVY = "#0F172A";
 const BODY = "#6B7280";
 const MINT = "#ECFDF5";
@@ -140,7 +140,7 @@ export default function HowItWorksSection() {
     <section
       id="how-it-works"
       ref={ref}
-      className="relative w-full overflow-hidden bg-white px-4 py-20 md:py-24 lg:px-8"
+      className="relative w-full overflow-hidden bg-white px-4 py-16 md:py-20 lg:px-8"
     >
       {/* Background glows */}
       <div

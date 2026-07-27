@@ -41,7 +41,7 @@ export default function MyLinkrFAQ() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section ref={ref} className="w-full bg-white px-4 py-20 md:py-24">
+    <section ref={ref} className="w-full bg-white px-4 py-14 md:py-16">
       <div className="mx-auto max-w-3xl">
         <motion.div
           initial="hidden"

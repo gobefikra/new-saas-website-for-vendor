@@ -16,7 +16,7 @@ export default function RavenAISection() {
   return (
     <section id="raven-ai-section" className="w-full overflow-x-hidden">
       {/* White header */}
-      <div ref={topRef} className="bg-white px-4 py-16 text-center md:py-20">
+      <div ref={topRef} className="bg-white px-4 py-12 text-center md:py-16">
         <motion.h2
           initial="hidden"
           animate={topInView ? "visible" : "hidden"}
@@ -52,7 +52,7 @@ export default function RavenAISection() {
 
       {/* Dark platform grid - part 2 */}
       <div
-        className="px-4 py-16 md:py-24"
+        className="px-4 py-14 md:py-16"
         style={{ backgroundColor: brand.ravenDark }}
       >
         <div className="mx-auto max-w-[1200px]">

@@ -45,10 +45,10 @@ const IntegrationFAQ = dynamic(() => import("@/components/IntegrationFAQ"));
 const IntegrationsCTA = dynamic(() => import("@/components/IntegrationsCTA"));
 
 const GREEN = "#10B981";
-const GREEN_DARK = "#10B981";
+const GREEN_DARK = "#059669";
 const NAVY = "#0F172A";
 const BODY = "#6B7280";
-const HERO_BG = "#F7F8F4";
+const HERO_BG = "#F9FAFB";
 
 type StatCard = {
   Icon: LucideIcon;
@@ -65,7 +65,7 @@ type StatCard = {
 const stats: StatCard[] = [
   {
     Icon: Zap,
-    iconColor: "#F97316",
+    iconColor: "#10B981",
     iconBg: "#ECFDF5",
     stat: "↓ 92%",
     label: "Response Time",
@@ -75,8 +75,8 @@ const stats: StatCard[] = [
   },
   {
     Icon: Settings2,
-    iconColor: "#8B5CF6",
-    iconBg: "#F7FEE7",
+    iconColor: "#059669",
+    iconBg: "#ECFDF5",
     stat: "↓ 75%",
     label: "Manual Work",
     desc: "Automated replies, follow-ups, and reminders",
@@ -85,8 +85,8 @@ const stats: StatCard[] = [
   },
   {
     Icon: Target,
-    iconColor: "#F43F5E",
-    iconBg: "#F0F9FF",
+    iconColor: "#10B981",
+    iconBg: "#ECFDF5",
     stat: "↑ 2.4×",
     label: "Conversion Rate",
     desc: "Faster replies convert more leads into bookings",
@@ -95,8 +95,8 @@ const stats: StatCard[] = [
   },
   {
     Icon: TrendingUp,
-    iconColor: "#3B82F6",
-    iconBg: "#FFFBEB",
+    iconColor: "#059669",
+    iconBg: "#ECFDF5",
     stat: "↑ 3×",
     label: "Leads Captured",
     desc: "Capture leads from WA, IG, and website",

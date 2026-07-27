@@ -358,8 +358,8 @@ function JourneyTrail() {
 
       {/* Path + milestones: progress starts with card 01 */}
       <div ref={milestonesRef} className="relative z-10 pb-28 md:pb-36">
-        {/* Desktop winding track — scoped to milestones only */}
-        <div className="pointer-events-none absolute inset-y-0 left-1/2 z-[1] hidden w-[400px] -translate-x-1/2 lg:block">
+        {/* Winding track — same wavy path on mobile and desktop */}
+        <div className="pointer-events-none absolute inset-y-0 left-1/2 z-[1] w-[min(100%,280px)] -translate-x-1/2 sm:w-[340px] lg:w-[400px]">
           <svg
             viewBox="0 0 400 1850"
             preserveAspectRatio="none"
@@ -384,17 +384,6 @@ function JourneyTrail() {
               style={{ pathLength: pathLength as MotionValue<number> }}
             />
           </svg>
-        </div>
-
-        {/* Mobile spine — same scroll sync */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute bottom-16 left-6 top-16 w-[14px] -translate-x-1/2 overflow-hidden rounded-full bg-white/[0.06] lg:hidden"
-        >
-          <motion.div
-            className="absolute inset-x-[5px] top-0 origin-top rounded-full bg-emerald-500"
-            style={{ scaleY: pathLength, height: "100%" }}
-          />
         </div>
 
         {milestones.map((mile, index) => (

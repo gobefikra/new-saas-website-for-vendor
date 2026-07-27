@@ -214,10 +214,10 @@ function LayoutBlocks({ reduceMotion }: { reduceMotion: boolean | null }) {
           className="flex items-center gap-2 rounded-xl border px-3 py-2 text-[11px]"
           style={{
             borderColor: block.active
-              ? "rgba(132,204,22,0.35)"
+              ? "rgba(16,185,129,0.35)"
               : "rgba(148,163,184,0.25)",
             background: block.active
-              ? "linear-gradient(90deg, rgba(132,204,22,0.13), rgba(247,254,231,0.7))"
+              ? "linear-gradient(90deg, rgba(16,185,129,0.13), rgba(236,253,245,0.7))"
               : "rgba(248,250,252,0.9)",
           }}
           animate={
@@ -456,7 +456,7 @@ export default function FeaturesGrid() {
   return (
     <section
       ref={ref}
-      className="w-full overflow-hidden px-4 py-16 md:px-8 md:py-24"
+      className="w-full overflow-hidden px-4 py-14 md:px-8 md:py-16"
       style={{
         background:
           "radial-gradient(ellipse 70% 50% at 50% 0%, rgba(16, 185, 129,0.08), transparent 65%), #F8FAF9",
@@ -501,7 +501,7 @@ export default function FeaturesGrid() {
             className="min-h-[380px] sm:col-span-2 lg:col-span-5 lg:row-span-2 lg:min-h-[440px]"
             style={{
               background:
-                "linear-gradient(145deg, #ECFDF5 0%, #FFFFFF 48%, #F7FEE7 100%)",
+                "linear-gradient(145deg, #ECFDF5 0%, #FFFFFF 48%, #ECFDF5 100%)",
             }}
           >
             <div className="relative z-10 flex items-start justify-between gap-3">
@@ -621,7 +621,7 @@ export default function FeaturesGrid() {
             className="min-h-[240px] lg:col-span-6"
             style={{
               background:
-                "linear-gradient(145deg, #F7FEE7 0%, #FFFFFF 65%)",
+                "linear-gradient(145deg, #ECFDF5 0%, #FFFFFF 65%)",
             }}
           >
             <div className="relative z-10 flex items-start justify-between gap-3">
