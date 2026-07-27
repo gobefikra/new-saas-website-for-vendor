@@ -39,14 +39,14 @@ type HubNode = {
   y: number;
   /** Vertical bend for the ribbon curve */
   cy: number;
-  /** Push this card farther from the hub on mobile/tablet */
+  /** Push this card farther from the hub (hex stagger) */
   outward?: boolean;
 };
 
 /**
  * Uniform two-column layout — every left card shares LEFT_X,
  * every right card shares RIGHT_X. Middle-row cards nudge
- * outward on smaller screens for a hex-style stagger.
+ * outward for a hex-style stagger on all breakpoints.
  */
 const LEFT_X = 1.5;
 const RIGHT_X = 98.5;
@@ -54,6 +54,7 @@ const CARD_SHIFT_Y = 6;
 /** Extra % the middle left/right cards move away from the hub */
 const MIDDLE_OUTWARD_MOBILE = 7;
 const MIDDLE_OUTWARD_TABLET = 5;
+const MIDDLE_OUTWARD_DESKTOP = 8;
 
 const hubNodes: HubNode[] = [
   {
@@ -125,9 +126,13 @@ const hubNodes: HubNode[] = [
 type Viewport = "mobile" | "tablet" | "desktop";
 
 function nodeX(node: HubNode, viewport: Viewport) {
-  if (!node.outward || viewport === "desktop") return node.x;
+  if (!node.outward) return node.x;
   const outward =
-    viewport === "mobile" ? MIDDLE_OUTWARD_MOBILE : MIDDLE_OUTWARD_TABLET;
+    viewport === "mobile"
+      ? MIDDLE_OUTWARD_MOBILE
+      : viewport === "tablet"
+        ? MIDDLE_OUTWARD_TABLET
+        : MIDDLE_OUTWARD_DESKTOP;
   return node.side === "left" ? node.x - outward : node.x + outward;
 }
 

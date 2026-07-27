@@ -75,54 +75,54 @@ function StepColumn({ step }: { step: (typeof steps)[number] }) {
     <motion.div variants={fadeInUp} className="relative flex flex-col items-center">
       {/* Glow */}
       <div
-        className="pointer-events-none absolute top-0 h-28 w-28 rounded-full opacity-60 blur-2xl"
+        className="pointer-events-none absolute top-0 h-20 w-20 rounded-full opacity-60 blur-2xl sm:h-28 sm:w-28"
         style={{
           background: `radial-gradient(circle, ${GREEN}33 0%, transparent 70%)`,
         }}
       />
 
       {/* Icon bubble */}
-      <div className="relative z-10 flex h-[5.5rem] w-[5.5rem] items-center justify-center sm:h-24 sm:w-24">
+      <div className="relative z-10 flex h-14 w-14 items-center justify-center sm:h-[5.5rem] sm:w-[5.5rem] lg:h-24 lg:w-24">
         <div
-          className="flex h-14 w-14 items-center justify-center rounded-xl shadow-[0_8px_24px_rgba(16, 185, 129,0.25)] sm:h-[3.75rem] sm:w-[3.75rem]"
+          className="flex h-10 w-10 items-center justify-center rounded-lg shadow-[0_8px_24px_rgba(16,185,129,0.25)] sm:h-14 sm:w-14 sm:rounded-xl lg:h-[3.75rem] lg:w-[3.75rem]"
           style={{ backgroundColor: GREEN }}
         >
-          <Icon className="h-6 w-6 text-white sm:h-7 sm:w-7" strokeWidth={2} />
+          <Icon className="h-4 w-4 text-white sm:h-6 sm:w-6 lg:h-7 lg:w-7" strokeWidth={2} />
         </div>
       </div>
 
       {/* Step number */}
       <span
-        className="relative z-20 -mt-3 rounded-md px-2.5 py-0.5 text-xs font-bold text-white shadow-sm"
+        className="relative z-20 -mt-2 rounded-md px-1.5 py-0.5 text-[10px] font-bold text-white shadow-sm sm:-mt-3 sm:px-2.5 sm:text-xs"
         style={{ backgroundColor: GREEN_DARK }}
       >
         {num}
       </span>
 
       {/* Card */}
-      <article className="relative z-10 mt-3 flex w-full flex-1 flex-col rounded-2xl border border-gray-100 bg-white p-5 shadow-[0_4px_24px_rgba(13,27,42,0.05)] sm:p-6">
+      <article className="relative z-10 mt-2 flex w-full flex-1 flex-col rounded-xl border border-gray-100 bg-white p-3 shadow-[0_4px_24px_rgba(13,27,42,0.05)] sm:mt-3 sm:rounded-2xl sm:p-5 lg:p-6">
         <h3
-          className="text-sm font-bold leading-snug sm:text-base"
+          className="text-[11px] font-bold leading-snug sm:text-sm lg:text-base"
           style={{ color: NAVY }}
         >
           {title}
         </h3>
         <span
-          className="mt-2.5 block h-1 w-8 rounded-full"
+          className="mt-1.5 block h-0.5 w-6 rounded-full sm:mt-2.5 sm:h-1 sm:w-8"
           style={{ backgroundColor: GREEN }}
         />
         <p
-          className="font-dm-sans mt-3 flex-1 text-sm leading-relaxed"
+          className="font-dm-sans mt-2 flex-1 text-[10px] leading-relaxed sm:mt-3 sm:text-sm"
           style={{ color: BODY }}
         >
           {desc}
         </p>
         <div
-          className="mt-5 flex h-8 w-8 items-center justify-center rounded-full"
+          className="mt-3 flex h-6 w-6 items-center justify-center rounded-full sm:mt-5 sm:h-8 sm:w-8"
           style={{ backgroundColor: MINT }}
         >
           <ArrowRight
-            className="h-4 w-4"
+            className="h-3 w-3 sm:h-4 sm:w-4"
             style={{ color: GREEN_DARK }}
             strokeWidth={2.25}
           />
@@ -194,7 +194,7 @@ export default function HowItWorksSection() {
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
             variants={staggerContainer}
-            className="relative z-10 grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4 lg:gap-5"
+            className="relative z-10 grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-4 lg:gap-5"
           >
             {steps.map((step) => (
               <StepColumn key={step.num} step={step} />

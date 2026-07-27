@@ -290,34 +290,38 @@ export default function ChannelsSection() {
           animate={inView ? "visible" : "hidden"}
           variants={fadeInUp}
           transition={{ delay: 0.2 }}
-          className="mt-12 grid grid-cols-1 items-center gap-8 border-t border-gray-100 pt-10 lg:grid-cols-[1fr_auto_1fr]"
+          className="mt-8 grid grid-cols-2 items-start gap-x-3 gap-y-6 border-t border-gray-100 pt-8 sm:mt-10 sm:gap-x-6 sm:pt-10 lg:mt-12 lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:gap-8"
         >
-          <div className="flex items-center gap-3 lg:justify-start">
+          <div className="order-1 flex items-start gap-2.5 sm:items-center sm:gap-3 lg:justify-start">
             <div
-              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full"
+              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full sm:h-11 sm:w-11"
               style={{ backgroundColor: MINT }}
             >
-              <ShieldCheck className="h-5 w-5" style={{ color: GREEN }} strokeWidth={2} />
+              <ShieldCheck
+                className="h-4 w-4 sm:h-5 sm:w-5"
+                style={{ color: GREEN }}
+                strokeWidth={2}
+              />
             </div>
-            <div>
-              <p className="text-sm font-bold" style={{ color: NAVY }}>
+            <div className="min-w-0">
+              <p className="text-xs font-bold leading-snug sm:text-sm" style={{ color: NAVY }}>
                 Secure & Reliable
               </p>
-              <p className="font-dm-sans text-xs" style={{ color: BODY }}>
+              <p className="font-dm-sans mt-0.5 text-[10px] leading-snug sm:text-xs" style={{ color: BODY }}>
                 Your data is safe with enterprise-grade security.
               </p>
             </div>
           </div>
 
-          <div className="text-center">
-            <p className="font-dm-sans text-sm font-medium" style={{ color: BODY }}>
+          <div className="order-3 col-span-2 text-center lg:order-2 lg:col-span-1">
+            <p className="font-dm-sans text-xs font-medium sm:text-sm" style={{ color: BODY }}>
               Trusted by 500+ travel brands and startups
             </p>
-            <div className="mt-4 flex flex-wrap items-center justify-center gap-5 opacity-50 grayscale">
+            <div className="mt-3 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 opacity-50 grayscale sm:mt-4 sm:gap-5">
               {brandLogos.map((name) => (
                 <span
                   key={name}
-                  className={`font-dm-sans text-[11px] font-bold uppercase tracking-wider text-gray-500 ${
+                  className={`font-dm-sans text-[9px] font-bold uppercase tracking-wider text-gray-500 sm:text-[11px] ${
                     name === "tripoto" ? "normal-case tracking-normal" : ""
                   }`}
                 >
@@ -327,18 +331,22 @@ export default function ChannelsSection() {
             </div>
           </div>
 
-          <div className="flex items-center gap-3 lg:justify-end">
+          <div className="order-2 flex items-start gap-2.5 sm:items-center sm:gap-3 lg:order-3 lg:justify-end">
             <div
-              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full"
+              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full sm:h-11 sm:w-11"
               style={{ backgroundColor: MINT }}
             >
-              <Zap className="h-5 w-5" style={{ color: GREEN }} strokeWidth={2} />
+              <Zap
+                className="h-4 w-4 sm:h-5 sm:w-5"
+                style={{ color: GREEN }}
+                strokeWidth={2}
+              />
             </div>
-            <div>
-              <p className="text-sm font-bold" style={{ color: NAVY }}>
+            <div className="min-w-0">
+              <p className="text-xs font-bold leading-snug sm:text-sm" style={{ color: NAVY }}>
                 Quick & Easy Setup
               </p>
-              <p className="font-dm-sans text-xs" style={{ color: BODY }}>
+              <p className="font-dm-sans mt-0.5 text-[10px] leading-snug sm:text-xs" style={{ color: BODY }}>
                 Connect your channels in just a few clicks.
               </p>
             </div>
@@ -351,21 +359,21 @@ export default function ChannelsSection() {
           animate={inView ? "visible" : "hidden"}
           variants={fadeInUp}
           transition={{ delay: 0.25 }}
-          className="mt-10 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 font-dm-sans text-sm"
+          className="mt-6 grid grid-cols-3 gap-2 border-t border-gray-50 pt-5 font-dm-sans text-[10px] sm:mt-10 sm:flex sm:flex-wrap sm:items-center sm:justify-center sm:gap-x-4 sm:gap-y-2 sm:border-0 sm:pt-0 sm:text-sm"
           style={{ color: BODY }}
         >
-          <span className="inline-flex items-center gap-2">
-            <Code2 className="h-4 w-4" strokeWidth={2} />
+          <span className="inline-flex flex-col items-center gap-1 text-center sm:flex-row sm:gap-2 sm:text-left">
+            <Code2 className="h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4" strokeWidth={2} />
             No coding required
           </span>
           <span className="hidden text-gray-300 sm:inline">|</span>
-          <span className="inline-flex items-center gap-2">
-            <Clock className="h-4 w-4" strokeWidth={2} />
+          <span className="inline-flex flex-col items-center gap-1 text-center sm:flex-row sm:gap-2 sm:text-left">
+            <Clock className="h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4" strokeWidth={2} />
             5-min setup
           </span>
           <span className="hidden text-gray-300 sm:inline">|</span>
-          <span className="inline-flex items-center gap-2">
-            <Headphones className="h-4 w-4" strokeWidth={2} />
+          <span className="inline-flex flex-col items-center gap-1 text-center sm:flex-row sm:gap-2 sm:text-left">
+            <Headphones className="h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4" strokeWidth={2} />
             24/7 support
           </span>
         </motion.div>

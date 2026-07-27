@@ -80,35 +80,35 @@ function IntegrationsStrip() {
   return (
     <div
       ref={ref}
-      className="overflow-hidden rounded-2xl border bg-white shadow-[0_4px_24px_rgba(13,27,42,0.06)]"
+      className="overflow-hidden rounded-xl border bg-white shadow-[0_4px_24px_rgba(13,27,42,0.06)] sm:rounded-2xl"
       style={{ borderColor: DIVIDER }}
     >
       <div className="flex flex-col lg:flex-row lg:items-stretch">
         <div
-          className="flex shrink-0 flex-col justify-center border-b px-8 py-8 lg:w-[240px] xl:w-[260px] lg:border-b-0 lg:border-r lg:py-10"
+          className="flex shrink-0 flex-col justify-center border-b px-4 py-3 sm:px-6 sm:py-4 lg:w-[240px] lg:border-b-0 lg:border-r lg:px-8 lg:py-10 xl:w-[260px]"
           style={{ borderColor: DIVIDER }}
         >
           <p
-            className="text-[22px] font-extrabold leading-tight"
+            className="text-[16px] font-extrabold leading-snug sm:text-[18px] lg:text-[22px] lg:leading-tight"
             style={{ color: NAVY }}
           >
             Connect Your
           </p>
           <p
-            className="text-[22px] font-extrabold leading-tight"
+            className="text-[16px] font-extrabold leading-snug sm:text-[18px] lg:text-[22px] lg:leading-tight"
             style={{ color: GREEN }}
           >
             Business
           </p>
         </div>
 
-        <div className="relative min-w-0 flex-1 overflow-hidden py-6 lg:py-8">
-          <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-white to-transparent" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-white to-transparent" />
+        <div className="relative min-w-0 flex-1 overflow-hidden py-3 sm:py-4 lg:py-8">
+          <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-8 bg-gradient-to-r from-white to-transparent sm:w-12" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-8 bg-gradient-to-l from-white to-transparent sm:w-12" />
 
           <div className="integrations-marquee group/marquee flex">
             <div
-              className={`integrations-marquee-track flex min-w-max items-start gap-10 px-6 sm:gap-12 sm:px-8 ${
+              className={`integrations-marquee-track flex min-w-max items-start gap-6 px-4 sm:gap-10 sm:px-6 lg:gap-12 lg:px-8 ${
                 inView ? "integrations-marquee-active" : ""
               }`}
             >
@@ -144,25 +144,25 @@ function PlatformIcon({
 
   return (
     <div
-      className={`integrations-icon-enter group relative flex w-[84px] flex-col items-center gap-2 sm:w-[92px] ${
+      className={`integrations-icon-enter group relative flex w-[68px] flex-col items-center gap-1 sm:w-[84px] sm:gap-2 lg:w-[92px] ${
         animateIn ? "integrations-icon-visible" : ""
       }`}
       style={{ transitionDelay: `${staggerIndex * 80}ms` }}
     >
       <div
-        className="flex h-11 w-11 items-center justify-center transition-transform duration-300 ease-out group-hover:scale-[1.15] sm:h-12 sm:w-12"
+        className="flex h-8 w-8 items-center justify-center transition-transform duration-300 ease-out group-hover:scale-[1.15] sm:h-11 sm:w-11 lg:h-12 lg:w-12"
         title={label}
       >
-        <Logo className="h-10 w-10 sm:h-11 sm:w-11" id={`${platform.id}-${index}`} />
+        <Logo className="h-7 w-7 sm:h-10 sm:w-10 lg:h-11 lg:w-11" id={`${platform.id}-${index}`} />
       </div>
       <span
-        className="font-dm-sans text-center text-[11px] font-medium leading-tight sm:text-xs"
+        className="font-dm-sans text-center text-[9px] font-medium leading-tight sm:text-[11px] lg:text-xs"
         style={{ color: BODY_GRAY }}
       >
         {label}
       </span>
       <span
-        className="pointer-events-none absolute -top-9 left-1/2 z-20 -translate-x-1/2 whitespace-nowrap rounded-md bg-[#0F172A] px-2.5 py-1 text-[11px] font-medium text-white opacity-0 shadow-lg transition-opacity duration-200 group-hover:opacity-100"
+        className="pointer-events-none absolute -top-8 left-1/2 z-20 -translate-x-1/2 whitespace-nowrap rounded-md bg-[#0F172A] px-2 py-0.5 text-[10px] font-medium text-white opacity-0 shadow-lg transition-opacity duration-200 group-hover:opacity-100 sm:-top-9 sm:px-2.5 sm:py-1 sm:text-[11px]"
         role="tooltip"
       >
         {label}
