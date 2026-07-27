@@ -129,7 +129,7 @@ export default function PhoneCarousel() {
           <br />
           Visitors into Customers
         </h2>
-        <p className="mx-auto mt-4 max-w-xl text-base text-gray-400">
+        <p className="mx-auto mt-4 max-w-xl text-base text-subtext">
           Pick a template, customize your branding, and create a powerful link
           hub for your business.
         </p>

@@ -68,7 +68,7 @@ export default function BuiltWithFounders() {
             Built With <span className="text-brand-green">Founders</span>, Not Just
             For Founders
           </h2>
-          <p className="font-sans mt-6 max-w-md text-[15px] leading-relaxed text-gray-400">
+          <p className="font-sans mt-6 max-w-md text-[15px] leading-relaxed text-subtext">
             Befikra was built through continuous discussions with travel
             founders and their teams.
           </p>
@@ -126,7 +126,7 @@ export default function BuiltWithFounders() {
                   <p className="text-sm font-semibold text-white">
                     One seamless system
                   </p>
-                  <p className="font-sans text-[12px] text-gray-400">
+                  <p className="font-sans text-[12px] text-subtext">
                     Inquiry → booking → payment
                   </p>
                 </div>
@@ -140,7 +140,7 @@ export default function BuiltWithFounders() {
             <div className="relative space-y-2.5">
               <div
                 aria-hidden
-                className="absolute bottom-7 left-[34px] top-7 w-px bg-gradient-to-b from-brand-green/80 via-brand-green/40 to-brand-green/10"
+                className="absolute bottom-7 left-[33px] top-7 w-[2px] rounded-full bg-gradient-to-b from-[#A7D7BC] via-brand-green/70 to-brand-green/15 shadow-[0_0_10px_rgba(167,215,188,0.35)]"
               />
 
               {pillars.map((item, i) => (

@@ -145,7 +145,8 @@ body {
   }
 
   .script-accent {
-    @apply font-script leading-none text-brand-green;
+    @apply font-script font-normal leading-none text-brand-green;
+    font-synthesis: none;
   }
 
   /* Escape-style gold underline (matches GoBefikra accent) */
@@ -164,6 +165,13 @@ body {
   .script-lockup {
     /* Room for the dashed trail + arrowhead on the right */
     padding-right: 2.25rem;
+    font-weight: 400;
+    font-synthesis: none;
+  }
+
+  .script-lockup .font-script {
+    font-weight: 400;
+    font-synthesis: none;
   }
 
   .script-trail {

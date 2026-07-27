@@ -38,14 +38,14 @@ export default function HeroBanner() {
           <div className="absolute inset-0 bg-gradient-to-br from-[#06140F] via-[#07140f] to-black" />
         )}
 
-        {/* Atmospheric washes — deepen the type zone so brand green stays readable */}
+        {/* Atmospheric washes — darken the type zone for clean contrast */}
         <div
           aria-hidden
-          className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/45 to-transparent"
+          className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-transparent"
         />
         <div
           aria-hidden
-          className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.55)_0%,rgba(0,0,0,0.28)_42%,transparent_72%)]"
+          className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.62)_0%,rgba(0,0,0,0.32)_40%,transparent_70%)]"
         />
 
         {/* Soft blurred dissolve into the white page below */}
@@ -133,10 +133,9 @@ export default function HeroBanner() {
           initial="hidden"
           animate="visible"
           variants={fadeInUp}
-          className="text-[11px] font-medium uppercase tracking-[0.35em] text-brand-green"
+          className="text-[11px] font-medium uppercase tracking-[0.35em] text-[#A7D7BC]"
           style={{
-            textShadow:
-              "0 0 18px rgba(255,255,255,0.55), 0 1px 3px rgba(0,0,0,0.85), 0 0 1px rgba(255,255,255,0.7)",
+            textShadow: "0 1px 8px rgba(0,0,0,0.75)",
           }}
         >
           Befikra Insights
@@ -151,15 +150,7 @@ export default function HeroBanner() {
         >
           Insights to scale your
           <br />
-          <span
-            className="text-brand-green"
-            style={{
-              textShadow:
-                "0 0 28px rgba(255,255,255,0.5), 0 0 8px rgba(255,255,255,0.35), 0 2px 10px rgba(0,0,0,0.9), 0 0 1px rgba(255,255,255,0.65)",
-            }}
-          >
-            trekking business
-          </span>
+          <span className="text-white">trekking business</span>
         </motion.h1>
 
         <motion.div
@@ -167,13 +158,12 @@ export default function HeroBanner() {
           animate="visible"
           variants={fadeInUp}
           transition={{ delay: 0.12 }}
-          className="mt-3 [&_.font-script]:text-brand-green"
-          style={{
-            // Soft white halo keeps brand-green script clear on dark photo
-            filter: "drop-shadow(0 0 10px rgba(255,255,255,0.45)) drop-shadow(0 2px 6px rgba(0,0,0,0.85))",
-          }}
+          className="mt-3"
         >
-          <ScriptAccent size="lg">
+          <ScriptAccent
+            size="lg"
+            className="[&_.font-script]:text-white"
+          >
             without chaos
           </ScriptAccent>
         </motion.div>

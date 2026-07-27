@@ -195,7 +195,7 @@ export default function ContactPage() {
                   <FeatureIcon icon={card.icon} />
                   <div>
                     <p className="font-semibold text-navy">{card.title}</p>
-                    <p className="text-gray-400 text-sm mt-0.5">{card.desc}</p>
+                    <p className="text-subtext text-sm mt-0.5">{card.desc}</p>
                   </div>
                 </motion.div>
               ))}
@@ -271,7 +271,7 @@ export default function ContactPage() {
                       </option>
                     ))}
                   </select>
-                  <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
+                  <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-subtext pointer-events-none" />
                 </div>
               </div>
 
@@ -290,7 +290,7 @@ export default function ContactPage() {
 
               <div className="flex items-center gap-2 mt-3">
                 <ShieldCheck className="text-brand-green w-4 h-4 shrink-0" />
-                <p className="text-gray-400 text-xs">
+                <p className="text-subtext text-xs">
                   Your information is secure and will never be shared.
                 </p>
               </div>
@@ -304,7 +304,7 @@ export default function ContactPage() {
         <h2 className="text-4xl font-display font-semibold tracking-[-0.02em] text-navy text-center">
           Other ways to connect
         </h2>
-        <p className="text-gray-400 text-center mt-3 max-w-xl mx-auto">
+        <p className="text-subtext text-center mt-3 max-w-xl mx-auto">
           Choose the best way to reach us based on your needs and workflow.
         </p>
 
@@ -321,7 +321,9 @@ export default function ContactPage() {
               className="card-brand-soft flex flex-col items-center p-8 text-center"
             >
               <ConnectIcon icon={card.icon} />
-              <h3 className="font-bold text-navy text-xl">{card.title}</h3>
+              <h3 className="font-display text-xl font-semibold tracking-[-0.02em] text-navy">
+                {card.title}
+              </h3>
               <p className="text-subtext text-sm mt-2">{card.desc}</p>
               <Link
                 href={card.href}
@@ -342,7 +344,7 @@ export default function ContactPage() {
         <h2 className="text-4xl font-display font-semibold tracking-[-0.02em] text-navy text-center">
           Help and Support
         </h2>
-        <p className="text-gray-400 text-center mt-3 max-w-lg mx-auto">
+        <p className="text-subtext text-center mt-3 max-w-lg mx-auto">
           Everything you need to know about getting started with Befikra.
         </p>
 
@@ -372,7 +374,7 @@ export default function ContactPage() {
               <p className="font-semibold text-navy text-base leading-snug">
                 {card.q}
               </p>
-              <p className="text-gray-400 text-sm mt-3 leading-relaxed">
+              <p className="text-subtext text-sm mt-3 leading-relaxed">
                 {card.a}
               </p>
             </motion.div>

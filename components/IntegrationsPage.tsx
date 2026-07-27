@@ -956,7 +956,7 @@ function IntegrationShowcase({
                     ? "border-brand-green bg-[#12281C] shadow-card"
                     : "border-brand-green bg-white shadow-card"
                   : dark
-                    ? "border-white/[0.06] bg-[#0F1F18] hover:border-white/15"
+                    ? "border-white/[0.06] bg-dark-elevated hover:border-white/15"
                     : "border-border-default bg-off-white hover:border-brand-green"
               }`}
               aria-pressed={active}
@@ -1020,7 +1020,7 @@ function IntegrationShowcase({
         } ${
           dark
             ? "border border-white/60 text-white hover:bg-white hover:text-navy"
-            : "bg-brand-green-dark text-white hover:bg-brand-green-dark"
+            : "bg-brand-green text-white shadow-cta-glow hover:bg-brand-green-dark"
         }`}
       >
         Book Demo
@@ -1063,7 +1063,7 @@ function IntegrationShowcase({
       id={kind}
       className={`scroll-mt-[9.5rem] px-5 pb-28 md:px-10 md:pb-36 lg:px-16 xl:px-20 ${
         whatsappTopSpacing ? "pt-36 md:pt-44" : "pt-28 md:pt-36"
-      } ${dark ? "bg-[#1F4D38] text-white" : "bg-white text-navy"}`}
+      } ${dark ? "bg-dark text-white" : "bg-white text-navy"}`}
     >
       <div
         className={`mx-auto grid max-w-7xl items-stretch gap-10 lg:gap-14 ${
@@ -1236,11 +1236,10 @@ export default function IntegrationsPage() {
               >
               <Link
                 href="/contact"
-                  className="inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-base font-semibold text-white transition-opacity hover:opacity-90"
-                style={{ backgroundColor: GREEN_DARK }}
+                className="inline-flex items-center gap-2 rounded-full bg-brand-green px-7 py-3.5 text-base font-semibold text-white shadow-cta-glow transition-all duration-200 ease-brand hover:bg-brand-green-dark active:scale-95"
               >
                 Book a Demo
-                  <ArrowRight className="h-4 w-4" strokeWidth={2.5} />
+                <ArrowRight className="h-4 w-4" strokeWidth={2.5} />
               </Link>
             </motion.div>
             </motion.div>

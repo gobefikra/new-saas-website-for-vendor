@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import Eyebrow from "@/components/ui/Eyebrow";
 
 type StoryCard = {
   title: string;
@@ -216,20 +217,20 @@ export default function StoryHeroSection() {
       />
 
       <div className="relative mx-auto max-w-4xl text-center">
-        <motion.p
+        <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-green md:text-sm"
+          className="flex justify-center"
         >
-          Our Story
-        </motion.p>
+          <Eyebrow tone="dark">Our Story</Eyebrow>
+        </motion.div>
 
         <motion.h1
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.08 }}
-          className="mt-4 text-3xl font-bold leading-[1.1] tracking-[-0.03em] text-white md:text-5xl lg:text-[3.5rem]"
+          className="mt-4 font-display text-3xl font-semibold leading-[1.1] tracking-[-0.02em] text-white md:text-5xl lg:text-[3.5rem]"
         >
           Built for the ones who build journeys
         </motion.h1>

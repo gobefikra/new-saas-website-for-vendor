@@ -57,7 +57,7 @@ export default function PlanHeader({ billing, mobilePlan }: PlanHeaderProps) {
 
   return (
     <div
-      className={`${GRID} sticky top-16 z-30 rounded-t-2xl border-b border-border-default bg-white/95 backdrop-blur-md md:top-[4.5rem]`}
+      className={`${GRID} sticky top-16 z-30 rounded-t-2xl border-b border-border-default bg-white md:top-[4.5rem]`}
     >
       <div className="hidden border-r border-border-default lg:block" />
 

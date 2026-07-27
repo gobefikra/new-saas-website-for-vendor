@@ -41,7 +41,7 @@ export default function Sidebar({
             <p className="text-sm font-semibold text-navy">
               {post.author.name}
             </p>
-            <p className="text-xs text-gray-400">{post.author.role}</p>
+            <p className="text-xs text-subtext">{post.author.role}</p>
           </div>
         </div>
         <p className="mt-4 text-sm leading-relaxed text-subtext">
@@ -59,7 +59,7 @@ export default function Sidebar({
         <h3 className="text-lg font-bold leading-snug text-white">
           Ready to scale your trekking agency?
         </h3>
-        <p className="mt-2 text-sm leading-relaxed text-gray-400">
+        <p className="mt-2 text-sm leading-relaxed text-subtext">
           Stop wrestling with spreadsheets. Let Befikra handle the bookings,
           waivers, and payments so you can focus on the climb.
         </p>
@@ -93,7 +93,7 @@ export default function Sidebar({
                   <p className="text-sm font-semibold leading-snug text-gray-800">
                     {article.title}
                   </p>
-                  <p className="mt-0.5 text-xs text-gray-400">{article.meta}</p>
+                  <p className="mt-0.5 text-xs text-subtext">{article.meta}</p>
                 </div>
               </>
             );

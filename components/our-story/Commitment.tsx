@@ -31,17 +31,17 @@ export default function Commitment() {
               sizes="(max-width: 1024px) 100vw, 45vw"
             />
 
-            {/* Deep bottom blend so the half-compass melts into the photo */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+            {/* Soft bottom wash so the half-compass melts into the photo */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
             <div
               aria-hidden
-              className="absolute inset-x-0 bottom-0 h-[45%] bg-gradient-to-t from-emerald-950/35 via-emerald-950/10 to-transparent"
+              className="absolute inset-x-0 bottom-0 h-[50%] bg-gradient-to-t from-emerald-950/40 via-emerald-950/10 to-transparent"
             />
 
-            {/* Half-visible compass — oversized, flush to bottom edge */}
+            {/* Half-visible compass — cropped at mid-line, blend into landscape */}
             <div className="pointer-events-none absolute inset-x-0 bottom-0 flex justify-center overflow-hidden">
-              <div className="w-[125%] max-w-none translate-y-[32%] opacity-90 md:w-[120%] md:translate-y-[34%] md:opacity-95">
-                <CompassIllustration className="w-full drop-shadow-[0_0_18px_rgba(232,243,238,0.25)]" />
+              <div className="w-[130%] max-w-none translate-y-[52%] opacity-80 mix-blend-soft-light md:w-[125%] md:translate-y-[54%] md:opacity-85">
+                <CompassIllustration className="w-full" />
               </div>
             </div>
           </div>
@@ -62,7 +62,7 @@ export default function Commitment() {
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
             variants={fadeInUp}
-            className="font-sans mt-8 text-[15px] leading-relaxed text-gray-400 md:text-base"
+            className="font-sans mt-8 text-[15px] leading-relaxed text-subtext md:text-base"
           >
             Befikra is not a finished product. It is an evolving platform. We
             continuously work on improving workflows, adding new features, and

@@ -21,7 +21,7 @@ export function LegalSection({
         showDivider ? "border-t border-border-default mt-10 pt-10" : "mt-0"
       }
     >
-      <h2 className="text-xl font-bold text-navy mb-3">
+      <h2 className="mb-3 font-display text-xl font-semibold tracking-[-0.02em] text-navy">
         {number}. {title}
       </h2>
       {children}

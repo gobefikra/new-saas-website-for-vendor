@@ -41,17 +41,13 @@ export default function SectionHeading({
         </Eyebrow>
       ) : null}
 
-      <Tag className="section-title">
-        {title}
-        {script ? (
-          <>
-            <br />
-            <ScriptAccent size="lg" kite={scriptKite} className="mt-1">
-              {script}
-            </ScriptAccent>
-          </>
-        ) : null}
-      </Tag>
+      <Tag className="section-title">{title}</Tag>
+
+      {script ? (
+        <ScriptAccent size="lg" kite={scriptKite} className="mt-2">
+          {script}
+        </ScriptAccent>
+      ) : null}
 
       {description ? (
         <p className="mt-4 max-w-2xl font-sans text-[15px] leading-relaxed text-subtext md:text-base">

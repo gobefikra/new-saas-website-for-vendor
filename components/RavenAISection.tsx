@@ -6,7 +6,6 @@ import { fadeInUp } from "@/components/motion";
 import { RavenOrbitPanel } from "@/components/raven-ai/RavenOrbitPanel";
 import { RavenPlatformGrid } from "@/components/raven-ai/RavenPlatformBento";
 import SectionHeading from "@/components/ui/SectionHeading";
-import { brand } from "@/lib/brand-theme";
 
 export default function RavenAISection() {
   const topRef = useRef(null);
@@ -44,11 +43,8 @@ export default function RavenAISection() {
         </motion.div>
       </div>
 
-      {/* Dark platform grid - part 2 */}
-      <div
-        className="px-4 py-14 md:py-16"
-        style={{ backgroundColor: brand.ravenDark }}
-      >
+      {/* Dark platform grid — deep forest canvas */}
+      <div className="bg-dark px-4 py-14 md:py-16">
         <div className="mx-auto max-w-[1200px]">
           <RavenPlatformGrid />
         </div>

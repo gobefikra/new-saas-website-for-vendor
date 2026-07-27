@@ -15,7 +15,7 @@ export default function LegalPageLayout({
     <main className="min-h-screen bg-white">
       <article className="max-w-3xl mx-auto px-6 py-16">
         <h1 className="text-4xl font-display font-semibold tracking-[-0.02em] text-navy mb-2">{title}</h1>
-        <p className="text-gray-400 text-sm mb-6">Last updated: {lastUpdated}</p>
+        <p className="mb-6 text-sm text-subtext">Last updated: {lastUpdated}</p>
         {children}
       </article>
       <Footer />
