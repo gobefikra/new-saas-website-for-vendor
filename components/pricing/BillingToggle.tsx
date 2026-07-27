@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import type { BillingCycle } from "@/lib/pricing-data";
 
-const GREEN = "#22C55E";
+const GREEN = "#10B981";
 
 type BillingToggleProps = {
   billing: BillingCycle;
@@ -37,7 +37,7 @@ export default function BillingToggle({ billing, onChange }: BillingToggleProps)
   return (
     <div
       ref={navRef}
-      className="relative inline-flex items-center rounded-full bg-[#F4F6F8] p-1"
+      className="relative inline-flex items-center rounded-full bg-[#F9FAFB] p-1"
     >
       <span
         aria-hidden
@@ -68,7 +68,7 @@ export default function BillingToggle({ billing, onChange }: BillingToggleProps)
         Yearly
         <span
           className="rounded-md px-1.5 py-0.5 text-[10px] font-bold"
-          style={{ backgroundColor: "#E8F5E9", color: GREEN }}
+          style={{ backgroundColor: "#ECFDF5", color: GREEN }}
         >
           -20%
         </span>

@@ -1,9 +1,11 @@
 "use client";
 
-import Link from "next/link";
 import { useRef } from "react";
+import Image from "next/image";
 import { motion, useInView } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 import { fadeInUp } from "@/components/motion";
+import Button from "@/components/ui/Button";
 
 export default function StoryCTA() {
   const ref = useRef(null);
@@ -12,62 +14,45 @@ export default function StoryCTA() {
   return (
     <section
       ref={ref}
-      className="relative bg-black py-28 px-6 text-center overflow-hidden"
+      className="relative overflow-hidden border-t border-white/5"
     >
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse 60% 50% at 50% 50%, #0D3D20 0%, #000000 70%)",
-        }}
-      />
+      <div className="absolute inset-0">
+        <Image
+          src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1920&h=1080&auto=format&fit=crop"
+          alt=""
+          fill
+          className="object-cover object-center opacity-50"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/75 to-black/35" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/25" />
+      </div>
+
       <motion.div
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
-        variants={{
-          hidden: { opacity: 0, y: 24, scale: 0.96 },
-          visible: {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
-          },
-        }}
-        className="relative z-10 max-w-4xl mx-auto"
+        variants={fadeInUp}
+        className="relative z-10 mx-auto flex max-w-6xl flex-col items-start justify-center px-6 py-28 md:px-8 md:py-36"
       >
-        <h2 className="text-white text-4xl md:text-5xl font-extrabold leading-tight">
+        <p className="mb-5 text-[11px] font-medium uppercase tracking-[0.35em] text-emerald-400">
+          Ready when you are
+        </p>
+        <h2 className="max-w-2xl text-3xl font-semibold leading-[1.15] tracking-[-0.03em] text-white md:text-5xl lg:text-[3.25rem]">
           Join the Travel
           <br />
           Businesses Building
           <br />
           Smarter Systems
         </h2>
-        <motion.div
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          variants={{
-            hidden: {},
-            visible: { transition: { staggerChildren: 0.1, delayChildren: 0.2 } },
-          }}
-          className="mt-10 flex gap-4 justify-center flex-wrap"
-        >
-          <motion.div variants={fadeInUp}>
-            <Link
-              href="/contact"
-              className="inline-block bg-emerald-500 text-white rounded-full px-8 py-3.5 font-semibold hover:bg-emerald-600 transition-colors"
-            >
-              Book a demo
-            </Link>
-          </motion.div>
-          <motion.div variants={fadeInUp}>
-            <Link
-              href="/contact"
-              className="inline-block border border-gray-600 text-white rounded-full px-8 py-3.5 font-semibold hover:border-gray-400 transition-colors"
-            >
-              Get Started
-            </Link>
-          </motion.div>
-        </motion.div>
+        <div className="mt-10 flex flex-wrap gap-3">
+          <Button href="/contact" variant="primary" size="lg">
+            Book a demo
+            <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-0.5" />
+          </Button>
+          <Button href="/contact" variant="outline" tone="dark" size="lg">
+            Get Started
+          </Button>
+        </div>
       </motion.div>
     </section>
   );

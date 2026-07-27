@@ -12,11 +12,11 @@ import {
 } from "lucide-react";
 import { fadeInUp, staggerContainer } from "@/components/motion";
 
-const GREEN = "#22C55E";
-const GREEN_DARK = "#16A34A";
-const NAVY = "#0D1B2A";
+const GREEN = "#10B981";
+const GREEN_DARK = "#10B981";
+const NAVY = "#0F172A";
 const BODY = "#6B7280";
-const MINT = "#E8F5E9";
+const MINT = "#ECFDF5";
 
 const steps = [
   {
@@ -48,13 +48,13 @@ const steps = [
 function WavyConnector({ animate }: { animate: boolean }) {
   return (
     <svg
-      className="pointer-events-none absolute left-[8%] right-[8%] top-[3.25rem] z-0 hidden h-16 lg:block"
-      viewBox="0 0 900 64"
+      className="pointer-events-none absolute left-[12.5%] right-[12.5%] top-0 z-0 hidden h-24 lg:block"
+      viewBox="0 0 900 96"
       preserveAspectRatio="none"
       aria-hidden
     >
       <motion.path
-        d="M 0 40 C 90 8 140 8 225 40 S 360 72 450 40 S 540 8 675 40 S 810 72 900 40"
+        d="M 0 48 C 100 18 200 78 300 48 C 400 18 500 18 600 48 C 700 78 800 78 900 48"
         fill="none"
         stroke={GREEN}
         strokeWidth="2"
@@ -63,29 +63,6 @@ function WavyConnector({ animate }: { animate: boolean }) {
         initial={{ pathLength: 0, opacity: 0 }}
         animate={animate ? { pathLength: 1, opacity: 0.55 } : { pathLength: 0, opacity: 0 }}
         transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-      />
-      {[112, 337, 562, 787].map((cx, i) => (
-        <motion.circle
-          key={cx}
-          cx={cx}
-          cy={i % 2 === 0 ? 40 : 24}
-          r="5"
-          fill={GREEN}
-          initial={{ scale: 0, opacity: 0 }}
-          animate={animate ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
-          transition={{ delay: 0.5 + i * 0.15, duration: 0.35 }}
-        />
-      ))}
-      <motion.path
-        d="M 888 36 L 900 40 L 888 44"
-        fill="none"
-        stroke={GREEN}
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        initial={{ opacity: 0 }}
-        animate={animate ? { opacity: 0.55 } : { opacity: 0 }}
-        transition={{ delay: 1.2, duration: 0.3 }}
       />
     </svg>
   );
@@ -105,9 +82,9 @@ function StepColumn({ step }: { step: (typeof steps)[number] }) {
       />
 
       {/* Icon bubble */}
-      <div className="relative z-10 flex h-[5.5rem] w-[5.5rem] items-center justify-center rounded-full border border-gray-100 bg-white shadow-[0_8px_32px_rgba(34,197,94,0.12)] sm:h-24 sm:w-24">
+      <div className="relative z-10 flex h-[5.5rem] w-[5.5rem] items-center justify-center sm:h-24 sm:w-24">
         <div
-          className="flex h-14 w-14 items-center justify-center rounded-xl shadow-sm sm:h-[3.75rem] sm:w-[3.75rem]"
+          className="flex h-14 w-14 items-center justify-center rounded-xl shadow-[0_8px_24px_rgba(16, 185, 129,0.25)] sm:h-[3.75rem] sm:w-[3.75rem]"
           style={{ backgroundColor: GREEN }}
         >
           <Icon className="h-6 w-6 text-white sm:h-7 sm:w-7" strokeWidth={2} />
@@ -171,7 +148,7 @@ export default function HowItWorksSection() {
         aria-hidden
         style={{
           background:
-            "radial-gradient(ellipse 50% 40% at 15% 45%, rgba(34,197,94,0.07), transparent 60%), radial-gradient(ellipse 50% 40% at 85% 45%, rgba(34,197,94,0.07), transparent 60%)",
+            "radial-gradient(ellipse 50% 40% at 15% 45%, rgba(16, 185, 129,0.07), transparent 60%), radial-gradient(ellipse 50% 40% at 85% 45%, rgba(16, 185, 129,0.07), transparent 60%)",
         }}
       />
 
@@ -185,7 +162,7 @@ export default function HowItWorksSection() {
         >
           <span
             className="inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-semibold uppercase tracking-wider"
-            style={{ borderColor: "#A5D6A7", backgroundColor: MINT, color: GREEN_DARK }}
+            style={{ borderColor: "#A7F3D0", backgroundColor: MINT, color: GREEN_DARK }}
           >
             <Sparkles className="h-3.5 w-3.5" strokeWidth={2.25} />
             Our Process
@@ -204,7 +181,7 @@ export default function HowItWorksSection() {
             style={{ color: BODY }}
           >
             Run your entire travel business in 4 simple steps. Capture leads,
-            convert bookings, and manage operations — all from one powerful
+            convert bookings, and manage operations - all from one powerful
             platform.
           </p>
         </motion.div>
@@ -235,7 +212,7 @@ export default function HowItWorksSection() {
         >
           <span
             className="inline-flex items-center gap-2 rounded-full border px-5 py-2 text-sm font-semibold"
-            style={{ borderColor: "#A5D6A7", backgroundColor: MINT, color: GREEN_DARK }}
+            style={{ borderColor: "#A7F3D0", backgroundColor: MINT, color: GREEN_DARK }}
           >
             <Sparkles className="h-4 w-4" strokeWidth={2.25} />
             One Platform. Endless Possibilities.

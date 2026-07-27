@@ -1,7 +1,7 @@
 export default function DashboardMockup({ className = "" }: { className?: string }) {
   return (
     <div
-      className={`rounded-2xl overflow-hidden bg-[#0F1B2D] shadow-xl ${className}`}
+      className={`rounded-2xl overflow-hidden bg-[#0D2B1F] shadow-xl ${className}`}
     >
       <p className="text-xs text-gray-400 px-4 pt-3">
         USERS: LAST 7 DAYS USING MEDIAN ▾
@@ -16,7 +16,7 @@ export default function DashboardMockup({ className = "" }: { className?: string
                 y={80 - h}
                 width="10"
                 height={h}
-                fill={i === 7 ? "#60A5FA" : "#3B82F6"}
+                fill={i === 7 ? "#34D399" : "#10B981"}
                 rx="1"
               />
             ))}

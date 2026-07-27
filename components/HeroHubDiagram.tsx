@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
 import {
   BarChart3,
@@ -13,18 +13,18 @@ import {
   Zap,
 } from "lucide-react";
 
-const GREEN = "#2E7D32";
-const GREEN_LIGHT = "#4CAF50";
-const NAVY = "#0D1B2A";
-const BODY_GRAY = "#6B7280";
-const RING_INNER = "#E3ECF3";
-const RING_MID = "#D6E4EF";
+const GREEN = "#10B981";
+const NAVY = "#0F172A";
 
-const SIZE = 720;
-const CX = SIZE / 2;
-const CY = SIZE / 2;
-const ICON_RING_R = 122;
-const OUTER_RING_R = 228;
+/** Hub center — midpoint between left/right card columns */
+const CENTER_X = 50;
+const CENTER_Y = 50;
+
+/**
+ * Card width as % of the stage (190px at max-w 680px).
+ * Used so ribbons meet the inner edge of each card.
+ */
+const CARD_WIDTH_PCT = 27;
 
 type HubNode = {
   id: string;
@@ -32,28 +32,41 @@ type HubNode = {
   description: string;
   Icon: LucideIcon;
   side: "left" | "right";
-  /** Inner edge anchor (where line meets card) */
-  anchor: { x: number; y: number };
+  /** Left cards: left edge %. Right cards: right edge %. */
+  x: number;
+  y: number;
+  /** Vertical bend for the ribbon curve */
+  cy: number;
 };
+
+/**
+ * Balanced two-column layout. Stagger kept; columns sit near the
+ * stage edges so ribbons have a clear path to the hub.
+ */
+const CARD_SHIFT_Y = 10;
+/** Push both columns away from the hub (left ← / right →) */
+const CARD_OUTWARD = 8;
 
 const hubNodes: HubNode[] = [
   {
     id: "automate",
     title: "Automate & Engage",
-    description:
-      "Automate conversations and follow-ups across all channels.",
+    description: "Automate conversations and follow-ups across all channels.",
     Icon: Users,
     side: "left",
-    anchor: { x: 200, y: 128 },
+    x: 2 - CARD_OUTWARD,
+    y: 12 + CARD_SHIFT_Y,
+    cy: 30 + CARD_SHIFT_Y,
   },
   {
     id: "leads",
     title: "Capture Quality Leads",
-    description:
-      "Capture, qualify & organize leads from multiple platforms.",
+    description: "Capture, qualify & organize leads from multiple platforms.",
     Icon: MessageCircle,
     side: "left",
-    anchor: { x: 172, y: CY },
+    x: -6 - CARD_OUTWARD,
+    y: 42 + CARD_SHIFT_Y,
+    cy: 50 + CARD_SHIFT_Y,
   },
   {
     id: "relationships",
@@ -62,25 +75,29 @@ const hubNodes: HubNode[] = [
       "Stay connected and build lasting relationships with your travelers.",
     Icon: ShieldCheck,
     side: "left",
-    anchor: { x: 200, y: 592 },
+    x: 4 - CARD_OUTWARD,
+    y: 72 + CARD_SHIFT_Y,
+    cy: 68 + CARD_SHIFT_Y,
   },
   {
     id: "insights",
     title: "AI-Powered Insights",
-    description:
-      "Get real-time insights to make smarter, faster decisions.",
+    description: "Get real-time insights to make smarter, faster decisions.",
     Icon: BarChart3,
     side: "right",
-    anchor: { x: 520, y: 128 },
+    x: 98 + CARD_OUTWARD,
+    y: 12 + CARD_SHIFT_Y,
+    cy: 30 + CARD_SHIFT_Y,
   },
   {
     id: "conversions",
     title: "Increase Conversions",
-    description:
-      "Nurture leads with personalized journeys that convert.",
+    description: "Nurture leads with personalized journeys that convert.",
     Icon: Zap,
     side: "right",
-    anchor: { x: 548, y: CY },
+    x: 106 + CARD_OUTWARD,
+    y: 42 + CARD_SHIFT_Y,
+    cy: 50 + CARD_SHIFT_Y,
   },
   {
     id: "growth",
@@ -89,228 +106,284 @@ const hubNodes: HubNode[] = [
       "Track performance, measure results and grow your travel business.",
     Icon: PieChart,
     side: "right",
-    anchor: { x: 520, y: 592 },
+    x: 96 + CARD_OUTWARD,
+    y: 72 + CARD_SHIFT_Y,
+    cy: 68 + CARD_SHIFT_Y,
   },
 ];
 
-function polar(cx: number, cy: number, r: number, deg: number) {
-  const rad = (deg * Math.PI) / 180;
-  return { x: cx + r * Math.cos(rad), y: cy + r * Math.sin(rad) };
-}
-
-function pct(n: number) {
-  return `${(n / SIZE) * 100}%`;
-}
-
-function angleToPoint(x: number, y: number) {
-  return (Math.atan2(y - CY, x - CX) * 180) / Math.PI;
-}
-
 export default function HeroHubDiagram() {
-  const [activeId, setActiveId] = useState<string | null>(null);
+  const reduceMotion = useReducedMotion();
+  const [activeId, setActiveId] = useState(hubNodes[0].id);
+  const [hovered, setHovered] = useState(false);
+
+  useEffect(() => {
+    if (hovered || reduceMotion) return;
+    const id = window.setInterval(() => {
+      setActiveId((prev) => {
+        const i = hubNodes.findIndex((n) => n.id === prev);
+        return hubNodes[(i + 1) % hubNodes.length].id;
+      });
+    }, 3200);
+    return () => window.clearInterval(id);
+  }, [hovered, reduceMotion]);
+
+  const active = hubNodes.find((n) => n.id === activeId) ?? hubNodes[0];
 
   return (
-    <div className="relative mx-auto w-full max-w-[700px] overflow-visible px-1 sm:px-0">
+    <div className="relative mx-auto w-full max-w-[680px]">
       <div
-        className="relative mx-auto w-full overflow-visible"
-        style={{ aspectRatio: "1 / 1", maxHeight: "min(92vw, 700px)" }}
+        className="relative isolate w-full overflow-visible"
+        style={{ aspectRatio: "1 / 1.02" }}
+        onMouseLeave={() => setHovered(false)}
       >
+        {/* Atmosphere */}
+        <div
+          className="pointer-events-none absolute h-[84%] w-[84%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_50%_45%,rgba(16, 185, 129,0.14),rgba(226,236,244,0.55)_42%,transparent_70%)]"
+          style={{ left: `${CENTER_X}%`, top: `${CENTER_Y}%` }}
+        />
+        <div
+          className="pointer-events-none absolute h-[64%] w-[64%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-emerald-200/40"
+          style={{ left: `${CENTER_X}%`, top: `${CENTER_Y}%` }}
+        />
+        <div
+          className="pointer-events-none absolute h-[44%] w-[44%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-emerald-300/50"
+          style={{ left: `${CENTER_X}%`, top: `${CENTER_Y}%` }}
+        />
+
+        {/* Radar sweep */}
+        {!reduceMotion && (
+          <div
+            className="pointer-events-none absolute h-[64%] w-[64%] -translate-x-1/2 -translate-y-1/2"
+            style={{
+              left: `${CENTER_X}%`,
+              top: `${CENTER_Y}%`,
+            }}
+          >
+            <motion.div
+              className="h-full w-full rounded-full"
+              style={{
+                background:
+                  "conic-gradient(from 0deg, transparent 0deg, rgba(16, 185, 129,0.12) 40deg, transparent 70deg)",
+                transformOrigin: "50% 50%",
+              }}
+              animate={{ rotate: 360 }}
+              transition={{ duration: 14, repeat: Infinity, ease: "linear" }}
+            />
+          </div>
+        )}
+
+        {/* Curved ribbons + traveling spark */}
         <svg
-          viewBox={`0 0 ${SIZE} ${SIZE}`}
-          className="absolute inset-0 h-full w-full overflow-visible"
+          className="pointer-events-none absolute inset-0 h-full w-full overflow-visible"
+          viewBox="0 0 100 100"
+          preserveAspectRatio="none"
           aria-hidden
         >
-          <circle cx={CX} cy={CY} r={104} fill={RING_INNER} />
-          <circle cx={CX} cy={CY} r={146} fill={RING_MID} />
-
-          <g>
-            <animateTransform
-              attributeName="transform"
-              type="rotate"
-              from={`0 ${CX} ${CY}`}
-              to={`360 ${CX} ${CY}`}
-              dur="56s"
-              repeatCount="indefinite"
-            />
-            <circle
-              cx={CX}
-              cy={CY}
-              r={OUTER_RING_R}
-              fill="none"
-              stroke={GREEN}
-              strokeWidth="1.5"
-              strokeDasharray="6 8"
-              opacity={0.45}
-            />
-          </g>
-
-          {hubNodes.map((node, i) => {
-            const deg = angleToPoint(node.anchor.x, node.anchor.y);
-            const iconPt = polar(CX, CY, ICON_RING_R, deg);
-            const isActive = activeId === node.id;
-            const d = `M ${CX} ${CY} L ${iconPt.x} ${iconPt.y} L ${node.anchor.x} ${node.anchor.y}`;
-
+          <defs>
+            <linearGradient id="ribbon-active" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor={GREEN} stopOpacity="0.15" />
+              <stop offset="50%" stopColor={GREEN} stopOpacity="0.9" />
+              <stop offset="100%" stopColor={GREEN} stopOpacity="0.15" />
+            </linearGradient>
+          </defs>
+          {hubNodes.map((node) => {
+            const isActive = node.id === activeId;
+            // Meet the card on the edge that faces the hub
+            const endX =
+              node.side === "left"
+                ? node.x + CARD_WIDTH_PCT - 2
+                : node.x - CARD_WIDTH_PCT + 2;
+            const endY = node.y;
+            const cx =
+              node.side === "left"
+                ? CENTER_X - (CENTER_X - endX) * 0.5
+                : CENTER_X + (endX - CENTER_X) * 0.5;
+            const cy = node.cy;
+            const d = `M ${CENTER_X} ${CENTER_Y} Q ${cx} ${cy} ${endX} ${endY}`;
             return (
-              <motion.path
-                key={`line-${node.id}`}
-                d={d}
-                fill="none"
-                stroke={isActive ? GREEN : GREEN_LIGHT}
-                strokeWidth={isActive ? 2 : 1.5}
-                strokeDasharray="5 7"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                opacity={isActive ? 0.9 : 0.5}
-                initial={false}
-                animate={{ pathLength: 1, opacity: isActive ? 0.9 : 0.5 }}
-                transition={{
-                  pathLength: { duration: 0.7, delay: 0.3 + i * 0.07, ease: "easeOut" },
-                  opacity: { duration: 0.3, delay: 0.3 + i * 0.07 },
-                }}
-              />
+              <g key={`path-${node.id}`}>
+                <path
+                  d={d}
+                  fill="none"
+                  stroke={isActive ? "url(#ribbon-active)" : "#A7F3D0"}
+                  strokeWidth={isActive ? 0.55 : 0.28}
+                  strokeLinecap="round"
+                  opacity={isActive ? 1 : 0.35}
+                  vectorEffect="non-scaling-stroke"
+                  style={{
+                    strokeWidth: isActive ? 2.2 : 1.2,
+                    transition: "opacity 0.35s ease, stroke 0.35s ease",
+                  }}
+                />
+                {isActive && !reduceMotion && (
+                  <circle r="1.1" fill={GREEN}>
+                    <animateMotion dur="2.4s" repeatCount="indefinite" path={d} />
+                  </circle>
+                )}
+              </g>
             );
           })}
         </svg>
 
+        {/* Feature cards */}
         {hubNodes.map((node, i) => {
-          const deg = angleToPoint(node.anchor.x, node.anchor.y);
-          const hub = polar(CX, CY, ICON_RING_R, deg);
-          const isActive = activeId === node.id;
-
+          const isActive = node.id === activeId;
           return (
-            <motion.div
-              key={`hub-icon-${node.id}`}
-              className="absolute z-[15] flex h-9 w-9 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full shadow-[0_2px_12px_rgba(46,125,50,0.35)] sm:h-10 sm:w-10"
+            <div
+              key={node.id}
+              className="absolute z-20 w-[min(44%,190px)] -translate-y-1/2"
               style={{
-                left: pct(hub.x),
-                top: pct(hub.y),
-                backgroundColor: GREEN,
-              }}
-              initial={false}
-              animate={{
-                scale: isActive ? 1.15 : [1, 1.06, 1],
-                opacity: 1,
-              }}
-              transition={{
-                scale: isActive
-                  ? { duration: 0.2 }
-                  : { duration: 2.8, repeat: Infinity, delay: i * 0.35, ease: "easeInOut" },
+                left: node.side === "left" ? `${node.x}%` : "auto",
+                right: node.side === "right" ? `${100 - node.x}%` : "auto",
+                top: `${node.y}%`,
+                zIndex: isActive ? 30 : 20,
               }}
             >
-              <node.Icon
-                className="h-4 w-4 text-white sm:h-[18px] sm:w-[18px]"
-                strokeWidth={2.25}
-              />
-            </motion.div>
+              <motion.button
+                type="button"
+                className="w-full text-left outline-none"
+                initial={{ opacity: 0, y: 16, scale: 0.96 }}
+                animate={{
+                  opacity: isActive ? 1 : 0.72,
+                  y: isActive ? -4 : 0,
+                  scale: isActive ? 1.04 : 1,
+                }}
+                transition={{
+                  opacity: {
+                    duration: 0.4,
+                    delay: reduceMotion ? 0 : 0.15 + i * 0.06,
+                  },
+                  y: { duration: 0.35 },
+                  scale: { duration: 0.35 },
+                }}
+                onMouseEnter={() => {
+                  setHovered(true);
+                  setActiveId(node.id);
+                }}
+                onFocus={() => {
+                  setHovered(true);
+                  setActiveId(node.id);
+                }}
+              >
+                <div
+                  className="rounded-2xl bg-white/90 px-3.5 py-3 backdrop-blur-md sm:px-4 sm:py-3.5"
+                  style={{
+                    border: isActive
+                      ? "1px solid rgba(16, 185, 129,0.4)"
+                      : "1px solid rgba(15,23,42,0.06)",
+                    boxShadow: isActive
+                      ? "0 20px 44px rgba(16, 185, 129,0.16), 0 6px 16px rgba(15,23,42,0.05)"
+                      : "0 10px 28px rgba(15,23,42,0.06)",
+                  }}
+                >
+                  <div className="flex gap-2.5">
+                    <span
+                      className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full sm:h-9 sm:w-9"
+                      style={{
+                        background: `linear-gradient(145deg, #34D399, ${GREEN})`,
+                        boxShadow: "0 6px 14px rgba(16, 185, 129,0.3)",
+                      }}
+                    >
+                      <node.Icon
+                        className="h-3.5 w-3.5 text-white sm:h-4 sm:w-4"
+                        strokeWidth={2.25}
+                      />
+                    </span>
+                    <span className="min-w-0">
+                      <span
+                        className="block text-[12px] font-semibold leading-snug tracking-tight sm:text-[13px]"
+                        style={{ color: NAVY }}
+                      >
+                        {node.title}
+                      </span>
+                      <span className="font-dm-sans mt-1 block text-[10px] leading-relaxed text-slate-500 sm:text-[11px]">
+                        {node.description}
+                      </span>
+                    </span>
+                  </div>
+                </div>
+              </motion.button>
+            </div>
           );
         })}
 
-        {hubNodes.map((node, i) => (
-          <FeatureCard
-            key={node.id}
-            node={node}
-            index={i}
-            isActive={activeId === node.id}
-            onHover={() => setActiveId(node.id)}
-            onLeave={() => setActiveId(null)}
-          />
-        ))}
-
-        <motion.div
-          className="pointer-events-none absolute left-1/2 top-1/2 z-[40] flex h-[118px] w-[118px] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full border-[5px] border-white bg-white shadow-[0_12px_48px_rgba(13,27,42,0.12)] sm:h-[132px] sm:w-[132px]"
-          initial={false}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+        {/* Center emblem */}
+        <div
+          className="pointer-events-none absolute z-40 -translate-x-1/2 -translate-y-1/2"
+          style={{ left: `${CENTER_X}%`, top: `${CENTER_Y}%` }}
         >
-          <Image
-            src="/icons/Nav-logo.png"
-            alt="Befikra"
-            width={72}
-            height={72}
-            className="h-11 w-11 object-contain sm:h-[52px] sm:w-[52px]"
-            priority
-          />
-          <p
-            className="mt-0.5 font-serif text-[15px] font-bold leading-none sm:text-[17px]"
-            style={{ color: NAVY }}
-          >
-            Befikra
-          </p>
-          <p
-            className="mt-0.5 text-[10px] font-bold tracking-wide sm:text-[11px]"
-            style={{ color: GREEN }}
-          >
-            CRM
-          </p>
-        </motion.div>
-      </div>
-    </div>
-  );
-}
+          {!reduceMotion && (
+            <>
+              <motion.span
+                className="absolute left-1/2 top-1/2 h-[168px] w-[168px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-emerald-300/50 sm:h-[186px] sm:w-[186px]"
+                animate={{ scale: [1, 1.08, 1], opacity: [0.45, 0.15, 0.45] }}
+                transition={{ duration: 3.6, repeat: Infinity, ease: "easeInOut" }}
+              />
+              <motion.span
+                className="absolute left-1/2 top-1/2 h-[188px] w-[188px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-emerald-400/30 sm:h-[208px] sm:w-[208px]"
+                animate={{ scale: [1, 1.12, 1], opacity: [0.35, 0.08, 0.35] }}
+                transition={{
+                  duration: 3.6,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 0.6,
+                }}
+              />
+            </>
+          )}
 
-function FeatureCard({
-  node,
-  index,
-  isActive,
-  onHover,
-  onLeave,
-}: {
-  node: HubNode;
-  index: number;
-  isActive: boolean;
-  onHover: () => void;
-  onLeave: () => void;
-}) {
-  const { title, description, Icon, side, anchor } = node;
-  const transform = side === "left" ? "translate(-100%, -50%)" : "translate(0%, -50%)";
-
-  return (
-    <div
-      className="absolute z-[25] w-[max(148px,38vw)] max-w-[178px] sm:w-[178px]"
-      style={{
-        left: pct(anchor.x),
-        top: pct(anchor.y),
-        transform,
-      }}
-    >
-      <motion.div
-        className="cursor-default rounded-2xl border bg-white px-3 py-2.5 shadow-lg sm:px-3.5 sm:py-3"
-        style={{
-          borderColor: isActive ? GREEN : "#E5E7EB",
-          boxShadow: isActive
-            ? "0 14px 40px rgba(46, 125, 50, 0.2)"
-            : "0 8px 28px rgba(13, 27, 42, 0.08)",
-        }}
-        initial={false}
-        animate={{ opacity: 1, x: 0, scale: isActive ? 1.04 : 1 }}
-        transition={{
-          scale: { duration: 0.2 },
-        }}
-        onMouseEnter={onHover}
-        onMouseLeave={onLeave}
-      >
-        <div className="flex gap-2.5">
-          <div
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full sm:h-10 sm:w-10"
-            style={{ backgroundColor: GREEN }}
+          <motion.div
+            className="relative flex h-[148px] w-[148px] items-center justify-center rounded-full border-[5px] border-white bg-white sm:h-[168px] sm:w-[168px]"
+            style={{
+              boxShadow:
+                "0 18px 50px rgba(15,23,42,0.1), 0 0 0 1px rgba(15,23,42,0.03)",
+            }}
+            initial={{ scale: 0.88, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
           >
-            <Icon className="h-4 w-4 text-white sm:h-[17px] sm:w-[17px]" strokeWidth={2.25} />
-          </div>
-          <div className="min-w-0 flex-1">
-            <p
-              className="text-[11.5px] font-bold leading-snug sm:text-[13px]"
-              style={{ color: NAVY }}
-            >
-              {title}
-            </p>
-            <p
-              className="font-dm-sans mt-0.5 text-[10px] leading-snug text-[#6B7280] sm:text-[11px]"
-            >
-              {description}
-            </p>
-          </div>
+            <div className="mt-4 flex w-[78%] flex-col items-center justify-center sm:mt-5">
+              <Image
+                src="/icons/Nav-logo.png"
+                alt="Befikra Partner"
+                width={160}
+                height={52}
+                className="!relative h-10 w-auto object-contain sm:h-11"
+                style={{ marginLeft: "auto", marginRight: "auto" }}
+                priority
+              />
+              <p
+                className="mt-1.5 w-full text-center text-xs font-bold uppercase sm:mt-2 sm:text-[13px]"
+                style={{
+                  color: GREEN,
+                  letterSpacing: "0.22em",
+                  // Tracking adds space after letters — nudge so CRM looks centered
+                  paddingLeft: "0.22em",
+                }}
+              >
+                CRM
+              </p>
+            </div>
+          </motion.div>
         </div>
-      </motion.div>
+
+        {/* Active label chip under center (desktop) */}
+        <div
+          className="pointer-events-none absolute bottom-[6%] z-30 hidden -translate-x-1/2 sm:block"
+          style={{ left: `${CENTER_X}%` }}
+        >
+          <motion.p
+            key={active.id}
+            className="whitespace-nowrap rounded-full bg-white/80 px-4 py-1.5 text-center text-[11px] font-medium text-slate-500 shadow-sm backdrop-blur-sm ring-1 ring-slate-200/80"
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            {active.title}
+          </motion.p>
+        </div>
+      </div>
     </div>
   );
 }

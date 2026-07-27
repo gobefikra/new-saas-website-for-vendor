@@ -1,10 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, type ReactNode } from "react";
 import {
   Briefcase,
   ChevronDown,
@@ -14,28 +10,29 @@ import {
   ShieldCheck,
   Zap,
 } from "lucide-react";
-import Navbar from "@/components/Navbar";
+import Image from "next/image";
+import Link from "next/link";
+import { motion, useInView } from "framer-motion";
 import Footer from "@/components/Footer";
+import Button from "@/components/ui/Button";
+import Eyebrow from "@/components/ui/Eyebrow";
 import { fadeInUp, staggerContainer } from "@/components/motion";
 
 const featureCards = [
   {
-    iconSrc: "/icons/Picture__5_.png",
-    fallback: <Zap className="w-6 h-6 text-amber-500" />,
+    icon: <Zap className="h-6 w-6 text-emerald-500" />,
     title: "Setup in days, not weeks",
     desc: "Fast implementation with zero downtime.",
     highlight: true,
   },
   {
-    iconSrc: "/icons/Picture__4_.png",
-    fallback: <Briefcase className="w-6 h-6 text-gray-700" />,
+    icon: <Briefcase className="h-6 w-6 text-gray-700" />,
     title: "Built for modern travel businesses",
     desc: "Tailored workflows for agencies and operators.",
     highlight: false,
   },
   {
-    iconSrc: "/icons/Picture__3_.png",
-    fallback: <Rocket className="w-6 h-6 text-indigo-500" />,
+    icon: <Rocket className="h-6 w-6 text-emerald-500" />,
     title: "Start capturing leads instantly",
     desc: "Never miss a customer inquiry again.",
     highlight: false,
@@ -44,52 +41,48 @@ const featureCards = [
 
 const connectCards = [
   {
-    iconSrc: "/icons/Picture.png",
-    fallback: <Monitor className="w-10 h-10 text-emerald-600" />,
+    icon: <Monitor className="h-10 w-10 text-emerald-600" />,
     title: "Book Demo",
     desc: "Schedule a 1-on-1 walkthrough of the Befikra platform.",
     link: "Schedule Demo →",
     href: "/contact",
   },
   {
-    iconSrc: "/icons/Picture__1_.png",
-    fallback: (
+    icon: (
       <Image
         src="/icons/whatsapp.png"
         alt=""
         width={40}
         height={40}
-        className="w-10 h-10 object-contain"
+        className="h-10 w-10 object-contain"
       />
     ),
     title: "WhatsApp",
     desc: "Chat with our support and sales team instantly.",
     link: "Start a Chat →",
-    href: "/contact",
+    href: "mailto:support@befikra.com",
   },
   {
-    iconSrc: "/icons/Picture__2_.png",
-    fallback: (
+    icon: (
       <Image
         src="/icons/instagram.png"
         alt=""
         width={40}
         height={40}
-        className="w-10 h-10 object-contain"
+        className="h-10 w-10 object-contain"
       />
     ),
     title: "Instagram",
     desc: "Follow our updates or slide into our DMs.",
     link: "Send Message →",
-    href: "/contact",
+    href: "https://instagram.com/befikrapartner",
   },
   {
-    iconSrc: null,
-    fallback: <Mail className="w-10 h-10 text-emerald-600" />,
+    icon: <Mail className="h-10 w-10 text-emerald-600" />,
     title: "Email",
     desc: "For detailed inquiries, partnerships, or support.",
     link: "Get in Touch →",
-    href: "/contact",
+    href: "mailto:support@befikra.com",
   },
 ];
 
@@ -130,56 +123,16 @@ const interestOptions = [
   "Full Platform Demo",
 ];
 
-function FeatureIcon({
-  src,
-  fallback,
-}: {
-  src: string;
-  fallback: React.ReactNode;
-}) {
-  const [failed, setFailed] = useState(false);
-  if (failed) {
-    return (
-      <div className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center shrink-0">
-        {fallback}
-      </div>
-    );
-  }
+function FeatureIcon({ icon }: { icon: ReactNode }) {
   return (
-    <Image
-      src={src}
-      alt=""
-      width={40}
-      height={40}
-      className="w-10 h-10 rounded-xl object-contain shrink-0"
-      onError={() => setFailed(true)}
-    />
+    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gray-50">
+      {icon}
+    </div>
   );
 }
 
-function ConnectIcon({
-  src,
-  fallback,
-}: {
-  src: string | null;
-  fallback: React.ReactNode;
-}) {
-  const [failed, setFailed] = useState(false);
-  if (!src || failed) {
-    return <div className="mb-4 flex justify-center">{fallback}</div>;
-  }
-  return (
-    <div className="mb-4 flex justify-center">
-      <Image
-        src={src}
-        alt=""
-        width={48}
-        height={48}
-        className="w-12 h-12 object-contain"
-        onError={() => setFailed(true)}
-      />
-    </div>
-  );
+function ConnectIcon({ icon }: { icon: ReactNode }) {
+  return <div className="mb-4 flex justify-center">{icon}</div>;
 }
 
 const inputClass =
@@ -194,9 +147,7 @@ export default function ContactPage() {
 
   return (
     <main className="min-h-screen overflow-x-hidden bg-white">
-      <Navbar />
-
-      {/* Section 1 — Hero / Form */}
+      {/* Section 1 - Hero / Form */}
       <section className="bg-white py-20 px-6 md:px-16">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start max-w-6xl mx-auto">
           <motion.div
@@ -204,12 +155,11 @@ export default function ContactPage() {
             animate="visible"
             variants={staggerContainer}
           >
-            <motion.span
-              variants={fadeInUp}
-              className="bg-emerald-50 border border-emerald-200 text-emerald-600 text-sm font-medium px-4 py-1.5 rounded-full inline-block mb-6"
-            >
-              Response within 24 hours
-            </motion.span>
+            <motion.div variants={fadeInUp} className="mb-6">
+              <Eyebrow icon={<Zap className="h-3 w-3" strokeWidth={2.5} />}>
+                Response within 24 hours
+              </Eyebrow>
+            </motion.div>
             <motion.h1
               variants={fadeInUp}
               className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mt-4"
@@ -226,7 +176,7 @@ export default function ContactPage() {
             >
               Tell us about your business, and we&apos;ll show you how Befikra
               helps you capture leads, automate conversations, and convert
-              inquiries into confirmed bookings — all from one unified platform.
+              inquiries into confirmed bookings - all from one unified platform.
             </motion.p>
 
             <motion.div
@@ -243,7 +193,7 @@ export default function ContactPage() {
                       : "border-gray-200"
                   }`}
                 >
-                  <FeatureIcon src={card.iconSrc} fallback={card.fallback} />
+                  <FeatureIcon icon={card.icon} />
                   <div>
                     <p className="font-semibold text-gray-900">{card.title}</p>
                     <p className="text-gray-400 text-sm mt-0.5">{card.desc}</p>
@@ -270,15 +220,15 @@ export default function ContactPage() {
                   <label className={labelClass}>First Name</label>
                   <input
                     type="text"
-                    placeholder="Last Name"
+                    placeholder="First Name"
                     className={inputClass}
                   />
                 </div>
                 <div>
-                  <label className={labelClass}>First Name</label>
+                  <label className={labelClass}>Last Name</label>
                   <input
                     type="text"
-                    placeholder="First Name"
+                    placeholder="Last Name"
                     className={inputClass}
                   />
                 </div>
@@ -289,7 +239,7 @@ export default function ContactPage() {
                   <label className={labelClass}>Email</label>
                   <input
                     type="email"
-                    placeholder="Email"
+                    placeholder="you@company.com"
                     className={inputClass}
                   />
                 </div>
@@ -297,7 +247,7 @@ export default function ContactPage() {
                   <label className={labelClass}>Company Name</label>
                   <input
                     type="text"
-                    placeholder="Email"
+                    placeholder="Your company"
                     className={inputClass}
                   />
                 </div>
@@ -335,12 +285,9 @@ export default function ContactPage() {
                 />
               </div>
 
-              <button
-                type="button"
-                className="w-full mt-2 bg-emerald-500 text-white rounded-full py-4 font-semibold text-base hover:bg-emerald-600 transition"
-              >
+              <Button type="button" variant="primary" size="lg" className="mt-2 w-full">
                 Send Message
-              </button>
+              </Button>
 
               <div className="flex items-center gap-2 mt-3">
                 <ShieldCheck className="text-emerald-500 w-4 h-4 shrink-0" />
@@ -353,7 +300,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Section 2 — Other ways to connect */}
+      {/* Section 2 - Other ways to connect */}
       <section ref={connectRef} className="bg-white py-20 px-6">
         <h2 className="text-4xl font-extrabold text-gray-900 text-center">
           Other ways to connect
@@ -374,12 +321,15 @@ export default function ContactPage() {
               variants={fadeInUp}
               className="bg-emerald-50 border border-emerald-100 rounded-3xl p-8 flex flex-col items-center text-center hover:shadow-md transition-shadow"
             >
-              <ConnectIcon src={card.iconSrc} fallback={card.fallback} />
+              <ConnectIcon icon={card.icon} />
               <h3 className="font-bold text-gray-900 text-xl">{card.title}</h3>
               <p className="text-gray-500 text-sm mt-2">{card.desc}</p>
               <Link
                 href={card.href}
                 className="text-emerald-600 font-semibold text-sm mt-4 hover:text-emerald-700"
+                {...(card.href.startsWith("http")
+                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
               >
                 {card.link}
               </Link>
@@ -388,7 +338,7 @@ export default function ContactPage() {
         </motion.div>
       </section>
 
-      {/* Section 3 — Help and Support */}
+      {/* Section 3 - Help and Support */}
       <section ref={helpRef} className="bg-white py-20 px-6">
         <h2 className="text-4xl font-extrabold text-gray-900 text-center">
           Help and Support

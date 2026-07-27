@@ -1,6 +1,5 @@
 "use client";
 
-import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ReadingProgressBar from "@/components/blog/ReadingProgressBar";
 import HeroBlock from "@/components/blog/BlogDetail/HeroBlock";
@@ -8,25 +7,24 @@ import ArticleBody from "@/components/blog/BlogDetail/ArticleBody";
 import Sidebar from "@/components/blog/BlogDetail/Sidebar";
 import MoreBlogs from "@/components/blog/BlogDetail/MoreBlogs";
 import DetailCTA from "@/components/blog/BlogDetail/DetailCTA";
-import { blogPost } from "@/lib/blog-data";
+import type { BlogPost } from "@/lib/blog-data";
 
-export default function BlogDetailPage() {
+export default function BlogDetailPage({ post }: { post: BlogPost }) {
   return (
-    <main className="min-h-screen bg-white pt-16 md:pt-[4.5rem]">
-      <Navbar />
+    <main className="min-h-screen bg-white">
       <ReadingProgressBar />
-      <HeroBlock post={blogPost} />
-      <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-12 max-w-6xl mx-auto px-6 md:px-10 py-12">
+      <HeroBlock post={post} />
+      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 px-6 py-12 md:px-10 lg:grid-cols-[1fr_340px]">
         <div>
-          <ArticleBody />
-          <MoreBlogs />
+          <ArticleBody post={post} />
+          <MoreBlogs currentSlug={post.slug} />
         </div>
         <aside className="hidden lg:block">
-          <Sidebar post={blogPost} />
+          <Sidebar post={post} />
         </aside>
       </div>
-      <div className="lg:hidden max-w-6xl mx-auto px-6 md:px-10 pb-12">
-        <Sidebar post={blogPost} sticky={false} />
+      <div className="mx-auto max-w-6xl px-6 pb-12 md:px-10 lg:hidden">
+        <Sidebar post={post} sticky={false} />
       </div>
       <DetailCTA />
       <Footer />

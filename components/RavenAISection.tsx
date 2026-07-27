@@ -3,9 +3,11 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { fadeInUp } from "@/components/motion";
-import { RavenOrbitPanel, RavenPlatformGrid } from "@/components/raven-ai/RavenOrbitPanel";
+import { RavenOrbitPanel } from "@/components/raven-ai/RavenOrbitPanel";
+import { RavenPlatformGrid } from "@/components/raven-ai/RavenPlatformBento";
+import { brand } from "@/lib/brand-theme";
 
-const GREEN = "#22C55E";
+const GREEN = brand.primary;
 
 export default function RavenAISection() {
   const topRef = useRef(null);
@@ -19,11 +21,11 @@ export default function RavenAISection() {
           initial="hidden"
           animate={topInView ? "visible" : "hidden"}
           variants={fadeInUp}
-          className="mx-auto max-w-4xl text-3xl font-extrabold leading-[1.2] text-[#0D1B2A] md:text-5xl lg:text-[3.25rem]"
+          className="mx-auto max-w-4xl text-3xl font-extrabold leading-[1.2] text-[#0F172A] md:text-5xl lg:text-[3.25rem]"
         >
           Meet{" "}
           <span style={{ color: GREEN }}>Raven AI</span>
-          <span className="hidden sm:inline"> —</span>
+          <span className="hidden sm:inline"> -</span>
           <br className="sm:hidden" />
           <span className="sm:ml-1">Your CRM&apos;s Smartest Teammate</span>
         </motion.h2>
@@ -48,10 +50,10 @@ export default function RavenAISection() {
         </motion.div>
       </div>
 
-      {/* Dark platform grid — part 2 */}
+      {/* Dark platform grid - part 2 */}
       <div
         className="px-4 py-16 md:py-24"
-        style={{ backgroundColor: "#060908" }}
+        style={{ backgroundColor: brand.ravenDark }}
       >
         <div className="mx-auto max-w-[1200px]">
           <RavenPlatformGrid />

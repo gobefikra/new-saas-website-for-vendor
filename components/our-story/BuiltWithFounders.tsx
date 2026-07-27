@@ -3,13 +3,18 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import {
-  TrendingUp,
   Database,
   CalendarCheck,
   UserCheck,
   Settings,
+  Sparkles,
 } from "lucide-react";
-import { fadeInLeft, fadeInRight } from "@/components/motion";
+import {
+  fadeInLeft,
+  fadeInRight,
+  fadeInUp,
+  staggerContainer,
+} from "@/components/motion";
 
 const insights = [
   "How manual work slows down growth.",
@@ -18,11 +23,27 @@ const insights = [
   "We understood how leads arrive from multiple platforms.",
 ];
 
-const corners = [
-  { label: "Lead Management", icon: Database, pos: "top-[8%] left-[2%]" },
-  { label: "Booking System", icon: CalendarCheck, pos: "top-[8%] right-[2%]" },
-  { label: "Account Management", icon: UserCheck, pos: "bottom-[8%] left-[2%]" },
-  { label: "Automation & AI", icon: Settings, pos: "bottom-[8%] right-[2%]" },
+const pillars = [
+  {
+    label: "Lead Management",
+    caption: "Capture every inquiry",
+    icon: Database,
+  },
+  {
+    label: "Booking System",
+    caption: "Batches, dates & seats",
+    icon: CalendarCheck,
+  },
+  {
+    label: "Account Management",
+    caption: "Teams & permissions",
+    icon: UserCheck,
+  },
+  {
+    label: "Automation & AI",
+    caption: "Workflows that run themselves",
+    icon: Settings,
+  },
 ];
 
 export default function BuiltWithFounders() {
@@ -30,38 +51,53 @@ export default function BuiltWithFounders() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section ref={ref} className="bg-black py-24 px-6 md:px-16">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
+    <section
+      ref={ref}
+      className="relative overflow-hidden border-t border-white/5 bg-[#070b09] px-6 py-24 md:px-8 md:py-32"
+    >
+      <div className="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-2 lg:gap-16">
         <motion.div
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
           variants={fadeInLeft}
         >
-          <p className="text-emerald-400 text-xs font-semibold tracking-[0.25em] uppercase mb-4">
+          <p className="text-[11px] font-medium uppercase tracking-[0.35em] text-emerald-400">
             CO-CREATED ECOSYSTEM
           </p>
-          <h2 className="text-4xl md:text-5xl font-extrabold text-white leading-tight">
-            Built With <span className="text-lime-400">Founders</span>, Not Just
+          <h2 className="mt-5 text-3xl font-semibold leading-[1.15] tracking-[-0.03em] text-white md:text-5xl">
+            Built With <span className="text-emerald-400">Founders</span>, Not Just
             For Founders
           </h2>
-          <p className="text-gray-400 text-base mt-6 max-w-sm">
+          <p className="font-dm-sans mt-6 max-w-md text-[15px] leading-relaxed text-gray-400">
             Befikra was built through continuous discussions with travel
             founders and their teams.
           </p>
-          <div className="space-y-3 mt-8">
-            {insights.map((text) => (
-              <div
+
+          <motion.ul
+            initial="hidden"
+            animate={inView ? "visible" : "hidden"}
+            variants={staggerContainer}
+            className="mt-10 space-y-3"
+          >
+            {insights.map((text, i) => (
+              <motion.li
                 key={text}
-                className="bg-[#0D2B1A] border border-[#1A4030] rounded-full px-5 py-3 flex items-center gap-3 w-fit max-w-full"
+                variants={fadeInUp}
+                className="flex gap-4 rounded-xl border border-white/[0.07] bg-white/[0.02] px-4 py-3.5 transition-colors hover:border-emerald-400/25 hover:bg-white/[0.04]"
               >
-                <span className="w-3 h-3 rounded-full bg-emerald-500 shrink-0" />
-                <span className="text-gray-300 text-sm">{text}</span>
-              </div>
+                <span className="font-mono text-[11px] font-semibold text-emerald-400">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span className="font-dm-sans text-sm leading-snug text-gray-300">
+                  {text}
+                </span>
+              </motion.li>
             ))}
-          </div>
-          <p className="text-gray-400 text-sm mt-8 max-w-sm leading-relaxed">
-            So we built a platform that connects everything — from inquiry to
-            booking to payment — into one seamless system. A system designed
+          </motion.ul>
+
+          <p className="font-dm-sans mt-8 max-w-md text-sm leading-relaxed text-gray-500">
+            So we built a platform that connects everything - from inquiry to
+            booking to payment - into one seamless system. A system designed
             specifically for trekking companies, travel operators, and
             experience-based businesses.
           </p>
@@ -71,60 +107,74 @@ export default function BuiltWithFounders() {
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
           variants={fadeInRight}
-          className="relative h-80 md:h-96 w-full"
+          className="relative mx-auto w-full max-w-md"
         >
-          <motion.div
-            className="absolute bg-emerald-500 opacity-10 blur-3xl rounded-full w-48 h-48 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-            animate={{ opacity: [0.1, 0.25, 0.1] }}
-            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          {/* ambient */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -inset-6 rounded-[2.5rem] bg-gradient-to-br from-emerald-500/10 via-transparent to-emerald-400/10 blur-2xl"
           />
 
-          <svg
-            className="absolute inset-0 w-full h-full pointer-events-none"
-            viewBox="0 0 100 100"
-            preserveAspectRatio="none"
-          >
-            {[
-              { x1: 50, y1: 50, x2: 14, y2: 20 },
-              { x1: 50, y1: 50, x2: 86, y2: 20 },
-              { x1: 50, y1: 50, x2: 14, y2: 80 },
-              { x1: 50, y1: 50, x2: 86, y2: 80 },
-            ].map((line, i) => (
-              <motion.line
-                key={i}
-                x1={line.x1}
-                y1={line.y1}
-                x2={line.x2}
-                y2={line.y2}
-                stroke="#1A4030"
-                strokeWidth="0.4"
-                strokeDasharray="2 2"
-                initial={{ pathLength: 0, opacity: 0 }}
-                animate={
-                  inView
-                    ? { pathLength: 1, opacity: 1 }
-                    : { pathLength: 0, opacity: 0 }
-                }
-                transition={{ duration: 0.8, delay: i * 0.1 }}
-              />
-            ))}
-          </svg>
-
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#0D2B1A] border border-emerald-800 rounded-2xl w-16 h-16 flex items-center justify-center shadow-lg shadow-emerald-900/50 z-10">
-            <TrendingUp className="text-emerald-400 text-2xl" />
-          </div>
-
-          {corners.map((item) => (
-            <div
-              key={item.label}
-              className={`absolute ${item.pos} bg-[#0D1F14] border border-[#1A3A25] rounded-xl px-4 py-2.5 flex items-center gap-2 z-10`}
-            >
-              <item.icon className="text-emerald-400 text-sm shrink-0" />
-              <span className="text-white text-sm font-medium whitespace-nowrap">
-                {item.label}
+          <div className="relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-[#0A1510]/80 p-5 md:p-6">
+            {/* crown */}
+            <div className="mb-5 flex items-center justify-between rounded-2xl border border-emerald-400/20 bg-gradient-to-r from-emerald-500/15 to-emerald-400/10 px-4 py-3.5">
+              <div className="flex items-center gap-3">
+                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-400 text-black">
+                  <Sparkles className="h-5 w-5" strokeWidth={2.25} />
+                </span>
+                <div>
+                  <p className="text-sm font-semibold text-white">
+                    One seamless system
+                  </p>
+                  <p className="font-dm-sans text-[12px] text-gray-400">
+                    Inquiry → booking → payment
+                  </p>
+                </div>
+              </div>
+              <span className="hidden rounded-full bg-black/30 px-2.5 py-1 font-mono text-[10px] text-emerald-400 sm:inline">
+                LIVE
               </span>
             </div>
-          ))}
+
+            {/* stacked layers */}
+            <div className="relative space-y-2.5">
+              <div
+                aria-hidden
+                className="absolute bottom-7 left-[34px] top-7 w-px bg-gradient-to-b from-emerald-400/80 via-emerald-500/40 to-emerald-500/10"
+              />
+
+              {pillars.map((item, i) => (
+                <motion.div
+                  key={item.label}
+                  initial={{ opacity: 0, x: 18 }}
+                  animate={
+                    inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 18 }
+                  }
+                  transition={{ delay: 0.2 + i * 0.1, duration: 0.4 }}
+                  className="group relative flex items-center gap-3.5 rounded-2xl border border-white/[0.08] bg-black/35 py-3.5 pl-3.5 pr-4 transition-all duration-300 hover:border-emerald-400/30 hover:bg-black/50"
+                >
+                  <span className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-emerald-400/30 bg-[#0A1510] text-emerald-400 shadow-[0_0_0_4px_rgba(10,21,16,1)]">
+                    <item.icon className="h-4 w-4" strokeWidth={1.75} />
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-sm font-semibold text-white">
+                      {item.label}
+                    </p>
+                    <p className="font-dm-sans mt-0.5 text-[12px] text-gray-500">
+                      {item.caption}
+                    </p>
+                  </div>
+                  <span className="font-mono text-[10px] text-white/20 transition-colors group-hover:text-emerald-400/50">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                </motion.div>
+              ))}
+            </div>
+
+            <p className="font-dm-sans mt-5 text-center text-[11px] tracking-wide text-gray-600">
+              Four layers · One platform · Founder-shaped
+            </p>
+          </div>
         </motion.div>
       </div>
     </section>

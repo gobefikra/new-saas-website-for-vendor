@@ -1,19 +1,33 @@
 "use client";
 
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import dynamic from "next/dynamic";
 import MyLinkrHeroSection from "@/components/mylinkr/HeroSection";
-import PhoneCarousel from "@/components/mylinkr/PhoneCarousel";
-import PreviewToggle from "@/components/mylinkr/PreviewToggle";
-import FeaturesGrid from "@/components/mylinkr/FeaturesGrid";
-import Testimonials from "@/components/mylinkr/Testimonials";
-import MyLinkrFAQ from "@/components/mylinkr/MyLinkrFAQ";
-import MyLinkrCTA from "@/components/mylinkr/MyLinkrCTA";
+
+const SectionFallback = () => <div className="min-h-[36vh] w-full bg-white" aria-hidden />;
+
+const PhoneCarousel = dynamic(() => import("@/components/mylinkr/PhoneCarousel"), {
+  loading: SectionFallback,
+});
+const PreviewToggle = dynamic(() => import("@/components/mylinkr/PreviewToggle"), {
+  loading: SectionFallback,
+});
+const FeaturesGrid = dynamic(() => import("@/components/mylinkr/FeaturesGrid"), {
+  loading: SectionFallback,
+});
+const Testimonials = dynamic(() => import("@/components/mylinkr/Testimonials"), {
+  loading: SectionFallback,
+});
+const MyLinkrFAQ = dynamic(() => import("@/components/mylinkr/MyLinkrFAQ"), {
+  loading: SectionFallback,
+});
+const MyLinkrCTA = dynamic(() => import("@/components/mylinkr/MyLinkrCTA"), {
+  loading: SectionFallback,
+});
+const Footer = dynamic(() => import("@/components/Footer"), { loading: () => null });
 
 export default function MyLinkrPage() {
   return (
     <main className="min-h-screen bg-white">
-      <Navbar />
       <MyLinkrHeroSection />
       <PhoneCarousel />
       <PreviewToggle />

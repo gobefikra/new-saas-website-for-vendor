@@ -1,12 +1,14 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Minus, Plus } from "lucide-react";
+import { motion, useInView } from "framer-motion";
+import { CircleHelp } from "lucide-react";
 import { fadeInUp } from "@/components/motion";
+import Eyebrow from "@/components/ui/Eyebrow";
+import FaqAccordion, { type Faq } from "@/components/ui/FaqAccordion";
+import { brand } from "@/lib/brand-theme";
 
-const faqs = [
+const faqs: Faq[] = [
   {
     question: "Which platforms can I connect with Befikra CRM?",
     answer:
@@ -30,84 +32,47 @@ const faqs = [
   {
     question: "Will the CRM track which platform my leads come from?",
     answer:
-      "Yes. Every lead is tagged with its source — WhatsApp, Instagram, or website — so you always know what's working.",
+      "Yes. Every lead is tagged with its source - WhatsApp, Instagram, or website - so you always know what's working.",
   },
 ];
 
 export default function IntegrationFAQ() {
-  const [openIndex, setOpenIndex] = useState(0);
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section ref={ref} className="w-full bg-white py-20 px-4">
-      <motion.div
-        initial="hidden"
-        animate={inView ? "visible" : "hidden"}
-        variants={fadeInUp}
-        className="text-center"
-      >
-        <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 leading-tight">
-          Common{" "}
-          <span className="text-lime-400">Questions</span>
-          <br />
-          About Integrations
-        </h2>
-      </motion.div>
+    <section ref={ref} className="w-full bg-white px-4 py-20 md:py-24">
+      <div className="mx-auto max-w-3xl">
+        <motion.div
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          variants={fadeInUp}
+          className="text-center"
+        >
+          <Eyebrow icon={<CircleHelp className="h-3 w-3" strokeWidth={2.5} />}>
+            FAQ
+          </Eyebrow>
+          <h2
+            className="mt-5 text-3xl font-extrabold leading-tight md:text-4xl lg:text-[2.75rem]"
+            style={{ color: brand.navy }}
+          >
+            Common{" "}
+            <span style={{ color: brand.primary }}>Questions</span>
+            <br />
+            About Integrations
+          </h2>
+        </motion.div>
 
-      <motion.div
-        initial="hidden"
-        animate={inView ? "visible" : "hidden"}
-        variants={fadeInUp}
-        transition={{ delay: 0.1 }}
-        className="max-w-2xl mx-auto mt-12 space-y-4"
-      >
-        {faqs.map((faq, index) => {
-          const isOpen = openIndex === index;
-          return (
-            <div
-              key={faq.question}
-              className="border border-gray-200 rounded-2xl px-6 py-5 cursor-pointer"
-              onClick={() => setOpenIndex(isOpen ? -1 : index)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                  e.preventDefault();
-                  setOpenIndex(isOpen ? -1 : index);
-                }
-              }}
-              role="button"
-              tabIndex={0}
-              aria-expanded={isOpen}
-            >
-              <div className="flex items-center justify-between gap-4">
-                <h3 className="font-bold text-gray-900 text-left text-base">
-                  {faq.question}
-                </h3>
-                {isOpen ? (
-                  <Minus className="w-5 h-5 text-emerald-500 shrink-0" />
-                ) : (
-                  <Plus className="w-5 h-5 text-emerald-500 shrink-0" />
-                )}
-              </div>
-              <AnimatePresence initial={false}>
-                {isOpen && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                    className="overflow-hidden"
-                  >
-                    <p className="text-gray-500 text-sm mt-3 leading-relaxed">
-                      {faq.answer}
-                    </p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          );
-        })}
-      </motion.div>
+        <motion.div
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          variants={fadeInUp}
+          transition={{ delay: 0.1 }}
+          className="mt-10"
+        >
+          <FaqAccordion faqs={faqs} />
+        </motion.div>
+      </div>
     </section>
   );
 }

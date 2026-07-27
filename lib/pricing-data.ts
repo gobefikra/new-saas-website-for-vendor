@@ -72,7 +72,7 @@ export const PLANS: Plan[] = [
     name: "Starter",
     description: "Perfect for solo operators testing the waters.",
     highlights: [
-      "Free forever — no credit card",
+      "Free forever - no credit card",
       "Up to 50 bookings per month",
       "WhatsApp & website lead capture",
       "Basic CRM & payment links",
@@ -142,7 +142,7 @@ export const PLANS: Plan[] = [
       "Dedicated account manager",
       "Custom AI model training",
       "ERP & Salesforce integrations",
-      "Negotiated fees (0.5–1%)",
+      "Negotiated fees (0.5-1%)",
     ],
     featured: false,
     pricing: {
@@ -150,7 +150,7 @@ export const PLANS: Plan[] = [
       headline: "Let's talk",
       strike: "Custom pricing",
     },
-    feeTag: { text: "0.5–1% platform fee", variant: "green" },
+    feeTag: { text: "0.5-1% platform fee", variant: "green" },
     cta: "Talk to sales",
   },
 ];
@@ -229,7 +229,7 @@ export const PRICING_CATEGORIES: PricingCategory[] = [
           starter: badge("5%", "rust"),
           creator: badge("3%", "amber"),
           business: badge("1.5%", "green"),
-          enterprise: badge("0.5–1%", "green"),
+          enterprise: badge("0.5-1%", "green"),
         },
       },
     ],
@@ -280,7 +280,7 @@ export const PRICING_CATEGORIES: PricingCategory[] = [
       },
       {
         name: "AI Itinerary Generator",
-        description: "Customize Your Event — AI builds trip plans",
+        description: "Customize Your Event - AI builds trip plans",
         values: {
           starter: dash(),
           creator: dash(),
@@ -740,7 +740,7 @@ export const PRICING_CATEGORIES: PricingCategory[] = [
         name: "Response SLA",
         description: "Guaranteed response time",
         values: {
-          starter: badge("3–5 days"),
+          starter: badge("3-5 days"),
           creator: badge("24 hours", "green"),
           business: badge("4 hours", "green"),
           enterprise: badge("24/7 priority", "green"),
@@ -774,12 +774,12 @@ export const PRICING_FAQS = [
   {
     question: "What does the platform fee mean?",
     answer:
-      "The platform fee is a small percentage deducted from each booking that comes through Befikra. It covers the infrastructure, payment processing, marketplace exposure, and continuous platform improvements. Lower plans pay a higher fee; upgrading reduces it significantly — often saving more than the subscription itself.",
+      "The platform fee is a small percentage deducted from each booking that comes through Befikra. It covers the infrastructure, payment processing, marketplace exposure, and continuous platform improvements. Lower plans pay a higher fee; upgrading reduces it significantly - often saving more than the subscription itself.",
   },
   {
     question: "How do AI credits work?",
     answer:
-      "Every AI action — generating an event description, running an itinerary, lead scoring, AI replies — consumes credits. Creator Pro includes 500 credits/month, Business AI includes 5,000. Unused credits roll over for 30 days. You can buy extra credit packs anytime starting at ₹499 for 1,000 credits.",
+      "Every AI action - generating an event description, running an itinerary, lead scoring, AI replies - consumes credits. Creator Pro includes 500 credits/month, Business AI includes 5,000. Unused credits roll over for 30 days. You can buy extra credit packs anytime starting at ₹499 for 1,000 credits.",
   },
   {
     question: "Can I switch plans anytime?",
@@ -789,7 +789,7 @@ export const PRICING_FAQS = [
   {
     question: "Is there a free trial for paid plans?",
     answer:
-      "Instead of a trial, we offer a 14-day money-back guarantee on Creator Pro and Business AI. You get full access from day one — if it's not working for you, get a full refund within 14 days, no questions asked.",
+      "Instead of a trial, we offer a 14-day money-back guarantee on Creator Pro and Business AI. You get full access from day one - if it's not working for you, get a full refund within 14 days, no questions asked.",
   },
   {
     question: "How does the Verified Organizer Badge work?",
@@ -799,15 +799,9 @@ export const PRICING_FAQS = [
   {
     question: "What's included in Enterprise?",
     answer:
-      "Everything in Business AI plus white-label platform, multi-brand management, custom AI model training, dedicated account manager, 99.9% SLA, custom integrations (ERP, Salesforce, etc.), and negotiated platform fees (typically 0.5–1%). Book a call with our sales team to design the right setup.",
+      "Everything in Business AI plus white-label platform, multi-brand management, custom AI model training, dedicated account manager, 99.9% SLA, custom integrations (ERP, Salesforce, etc.), and negotiated platform fees (typically 0.5-1%). Book a call with our sales team to design the right setup.",
   },
 ];
-
-export const PRICING_SUMMARY = {
-  text: "Doing ₹5L/month in bookings? You save ₹17,500 on platform fees alone by upgrading from Starter to Business AI.",
-  highlightParts: ["₹5L/month", "₹17,500"] as const,
-  cta: "Run my numbers",
-};
 
 export const PRICING_HERO = {
   title: "Choose the tier that fits your journey.",
@@ -848,7 +842,7 @@ export function getPlanStrike(plan: Plan, billing: BillingCycle): PlanStrike {
     return { text: plan.pricing.strike };
   }
   if (billing === "monthly") {
-    return { text: "Billed monthly" };
+    return { text: "Billed monthly · cancel anytime" };
   }
   return {
     text: plan.pricing.annualYearTotal,

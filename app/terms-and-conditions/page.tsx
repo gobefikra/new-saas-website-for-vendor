@@ -10,9 +10,10 @@ import {
 } from "@/components/legal/LegalContent";
 
 export const metadata: Metadata = {
-  title: "Terms & Conditions — Befikra Partner",
+  title: "Terms & Conditions",
   description:
     "Terms and conditions governing your access to and use of Befikra's website, applications, and services.",
+  alternates: { canonical: "/terms-and-conditions" },
 };
 
 export default function TermsAndConditionsPage() {

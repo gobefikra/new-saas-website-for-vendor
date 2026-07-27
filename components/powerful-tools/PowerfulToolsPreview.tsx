@@ -12,9 +12,9 @@ import {
   Wallet,
 } from "lucide-react";
 
-const GREEN = "#22C55E";
-const NAVY = "#0D1B2A";
-const MINT = "#E8F5E9";
+const GREEN = "#10B981";
+const NAVY = "#0F172A";
+const MINT = "#ECFDF5";
 
 const statCards = [
   { label: "New Leads", value: "128", change: "+18%" },
@@ -209,11 +209,11 @@ export default function PowerfulToolsPreview() {
           className="flex w-full items-center justify-between px-4 py-3 text-left transition-opacity hover:opacity-90 sm:px-5"
           style={{ backgroundColor: MINT }}
         >
-          <span className="inline-flex items-center gap-2 text-xs font-semibold sm:text-sm" style={{ color: "#1B5E20" }}>
+          <span className="inline-flex items-center gap-2 text-xs font-semibold sm:text-sm" style={{ color: "#10B981" }}>
             <Sparkles className="h-4 w-4" strokeWidth={2.25} />
             Watch 1-min product tour
           </span>
-          <ArrowRight className="h-4 w-4" style={{ color: "#1B5E20" }} strokeWidth={2.25} />
+          <ArrowRight className="h-4 w-4" style={{ color: "#10B981" }} strokeWidth={2.25} />
         </button>
       </div>
     </div>

@@ -19,12 +19,13 @@ import {
 } from "lucide-react";
 import { InstagramLogo } from "@/components/integrations/BrandLogos";
 import { fadeInUp, staggerContainer } from "@/components/motion";
+import { brand } from "@/lib/brand-theme";
 
-const GREEN = "#2E7D32";
-const GREEN_DARK = "#1B5E20";
-const NAVY = "#0D1B2A";
-const MINT = "#E8F5E9";
-const BODY = "#6B7280";
+const GREEN = brand.primary;
+const GREEN_DARK = brand.primaryDark;
+const NAVY = brand.navy;
+const MINT = brand.mint;
+const BODY = brand.subtext;
 
 const topFeatures = [
   {
@@ -130,7 +131,7 @@ export default function ChannelsSection() {
         >
           <span
             className="inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-sm font-medium"
-            style={{ borderColor: "#A5D6A7", backgroundColor: MINT, color: GREEN_DARK }}
+            style={{ borderColor: "#A7F3D0", backgroundColor: MINT, color: GREEN_DARK }}
           >
             <Link2 className="h-4 w-4" strokeWidth={2.25} />
             All your channels. One smart CRM.
@@ -158,7 +159,7 @@ export default function ChannelsSection() {
           style={{ color: BODY }}
         >
           Capture leads, reply instantly, and manage bookings from WhatsApp,
-          Instagram, and Befikra — all in one CRM.
+          Instagram, and Befikra - all in one CRM.
         </motion.p>
 
         {/* Top 3 features */}

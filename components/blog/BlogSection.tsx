@@ -2,48 +2,40 @@
 
 import { useRef, useState } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import BlogCard, { type BlogCardProps } from "@/components/blog/BlogCard";
+import BlogCard, {
+  type BlogCardProps,
+  type BlogCardVariant,
+} from "@/components/blog/BlogCard";
 import FilterTabs from "@/components/blog/FilterTabs";
-import { fadeInUp } from "@/components/motion";
 
 interface BlogSectionProps {
+  id?: string;
   label: string;
   heading: string;
   cards: BlogCardProps[];
   tabs?: string[];
   defaultTab?: string;
-  showArrows?: boolean;
 }
 
-function ArrowButtons() {
-  return (
-    <div className="flex gap-2 shrink-0">
-      <button
-        type="button"
-        aria-label="Previous"
-        className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 transition cursor-pointer"
-      >
-        <ChevronLeft className="w-5 h-5 text-gray-600" />
-      </button>
-      <button
-        type="button"
-        aria-label="Next"
-        className="w-10 h-10 rounded-full border border-gray-800 bg-gray-900 flex items-center justify-center hover:bg-gray-800 transition cursor-pointer"
-      >
-        <ChevronRight className="w-5 h-5 text-white" />
-      </button>
-    </div>
-  );
-}
+const TAB_LAYOUTS: Record<string, BlogCardVariant> = {
+  "Automation & CRM": "standard",
+  "Booking Systems": "overlay",
+  "Operations Management": "standard",
+  "AI & Insights": "compact",
+  "Growth Strategies": "overlay",
+  "CRM Automation": "standard",
+  "Lead Management": "overlay",
+  "Booking Workflow": "compact",
+  "Customer Experience": "overlay",
+};
 
 export default function BlogSection({
+  id,
   label,
   heading,
   cards,
   tabs,
   defaultTab,
-  showArrows = true,
 }: BlogSectionProps) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
@@ -53,14 +45,18 @@ export default function BlogSection({
     ? cards.filter((card) => card.category === activeTab)
     : cards;
 
+  const variant: BlogCardVariant =
+    (tabs && TAB_LAYOUTS[activeTab]) || "standard";
+
   return (
-    <section ref={ref} className="bg-white py-16 px-6 md:px-10">
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 mb-6">
-        <div>
-          <p className="text-gray-400 text-sm font-medium mb-1">{label}</p>
-          <h2 className="text-4xl font-extrabold text-gray-900">{heading}</h2>
-        </div>
-        {showArrows && <ArrowButtons />}
+    <section
+      id={id}
+      ref={ref}
+      className="scroll-mt-24 bg-white px-6 py-16 md:px-10"
+    >
+      <div className="mb-6">
+        <p className="mb-1 text-sm font-medium text-gray-400">{label}</p>
+        <h2 className="text-4xl font-extrabold text-gray-900">{heading}</h2>
       </div>
 
       {tabs && tabs.length > 0 && (
@@ -71,31 +67,50 @@ export default function BlogSection({
         />
       )}
 
-      <motion.div
-        initial="hidden"
-        animate={inView ? "visible" : "hidden"}
-        variants={{
-          hidden: {},
-          visible: { transition: { staggerChildren: 0.1 } },
-        }}
-      >
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={tabs ? activeTab : "static"}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.2 }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-          >
-            {filteredCards.map((card, i) => (
-              <motion.div key={`${card.title}-${i}`} variants={fadeInUp}>
-                <BlogCard {...card} />
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={tabs ? activeTab : "static"}
+          initial={{ opacity: 0, y: 12 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+          exit={{ opacity: 0, y: -8 }}
+          transition={{ duration: 0.25 }}
+          className={
+            variant === "compact"
+              ? "grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
+              : "grid grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-3"
+          }
+        >
+          {filteredCards.length === 0 ? (
+            <p className="col-span-full py-10 text-center text-sm text-gray-400">
+              No articles in this category yet.
+            </p>
+          ) : (
+            filteredCards.map((card, i) => (
+              <motion.div
+                key={card.slug ?? `${card.title}-${i}`}
+                initial={{ opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.35,
+                  delay: 0.04 * i,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className={
+                  variant === "overlay" && i === 0
+                    ? "sm:col-span-2 lg:col-span-2"
+                    : undefined
+                }
+              >
+                <BlogCard
+                  {...card}
+                  variant={variant}
+                  featured={variant === "overlay" && i === 0}
+                />
               </motion.div>
-            ))}
-          </motion.div>
-        </AnimatePresence>
-      </motion.div>
+            ))
+          )}
+        </motion.div>
+      </AnimatePresence>
     </section>
   );
 }

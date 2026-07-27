@@ -1,9 +1,15 @@
 "use client";
 
-import { useRef } from "react";
-import Link from "next/link";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useLayoutEffect, useRef, useState } from "react";
+import { ArrowRight } from "lucide-react";
+import {
+  motion,
+  useMotionValue,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import PhoneMockup, { MYLINKR_SCREENS } from "@/components/mylinkr/PhoneMockup";
+import Button from "@/components/ui/Button";
 
 const carouselPhones = [
   { screen: MYLINKR_SCREENS.carousel[0], scale: "scale-95" },
@@ -16,13 +22,75 @@ const carouselPhones = [
   { screen: MYLINKR_SCREENS.carousel[7], scale: "scale-100" },
 ];
 
+// Breathing room left between the last mockup and the viewport's right edge
+const END_GUTTER = 48;
+
 export default function PhoneCarousel() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const firstPhoneRef = useRef<HTMLDivElement>(null);
+  const lastPhoneRef = useRef<HTMLDivElement>(null);
+
+  const startX = useMotionValue(0);
+  const endX = useMotionValue(0);
+  const [sectionHeight, setSectionHeight] = useState("300vh");
+
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end end"],
   });
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-60%"]);
+
+  // startX → first phone centered; endX → last phone flush with viewport right
+  const x = useTransform(
+    [scrollYProgress, startX, endX],
+    ([progress, start, end]) =>
+      (start as number) +
+      ((end as number) - (start as number)) * (progress as number)
+  );
+
+  useLayoutEffect(() => {
+    const measure = () => {
+      const track = trackRef.current;
+      const first = firstPhoneRef.current;
+      const last = lastPhoneRef.current;
+      const viewport = track?.parentElement;
+      if (!track || !first || !last || !viewport) return;
+
+      const viewportWidth = viewport.clientWidth;
+      const firstCenter = first.offsetLeft + first.offsetWidth / 2;
+      const lastRight = last.offsetLeft + last.offsetWidth;
+
+      const nextStart = viewportWidth / 2 - firstCenter;
+      const nextEnd = viewportWidth - lastRight - END_GUTTER;
+
+      startX.set(nextStart);
+      endX.set(nextEnd);
+
+      // Travel distance drives section height so motion feels paced, not rushed
+      const travel = Math.abs(nextStart - nextEnd);
+      const vh = window.innerHeight;
+      const heightPx = Math.max(vh * 2.5, travel * 1.35 + vh);
+      setSectionHeight(`${Math.round(heightPx)}px`);
+    };
+
+    measure();
+
+    const ro = new ResizeObserver(measure);
+    const track = trackRef.current;
+    const viewport = track?.parentElement;
+    if (track) ro.observe(track);
+    if (viewport) ro.observe(viewport);
+
+    const images = track?.querySelectorAll("img") ?? [];
+    images.forEach((img) => img.addEventListener("load", measure));
+    window.addEventListener("resize", measure);
+
+    return () => {
+      ro.disconnect();
+      images.forEach((img) => img.removeEventListener("load", measure));
+      window.removeEventListener("resize", measure);
+    };
+  }, [startX, endX]);
 
   return (
     <section className="w-full bg-white">
@@ -36,23 +104,38 @@ export default function PhoneCarousel() {
           Pick a template, customize your branding, and create a powerful link
           hub for your business.
         </p>
-        <Link
-          href="/contact"
-          className="mt-8 mx-auto w-fit flex items-center gap-2 bg-emerald-500 text-white rounded-full px-8 py-3.5 font-semibold hover:bg-emerald-600 transition-colors"
-        >
-          Get Started for Free ›
-        </Link>
+        <div className="mt-8 flex justify-center">
+          <Button href="/contact" variant="primary" size="lg">
+            Get Started for Free
+            <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-0.5" />
+          </Button>
+        </div>
         <p className="mt-12 mb-6 text-gray-500 font-medium text-sm text-center">
           Social Hub
         </p>
       </div>
 
-      <div ref={sectionRef} className="relative h-[400vh]">
+      <div
+        ref={sectionRef}
+        className="relative"
+        style={{ height: sectionHeight }}
+      >
         <div className="sticky top-0 h-screen flex items-center overflow-hidden">
-          <motion.div style={{ x }} className="flex gap-6 pl-6 md:pl-12 w-max">
+          <motion.div
+            ref={trackRef}
+            style={{ x }}
+            className="flex gap-6 w-max will-change-transform"
+          >
             {carouselPhones.map((phone, i) => (
               <div
                 key={`${phone.screen}-${i}`}
+                ref={
+                  i === 0
+                    ? firstPhoneRef
+                    : i === carouselPhones.length - 1
+                      ? lastPhoneRef
+                      : undefined
+                }
                 className={`flex-shrink-0 ${phone.scale}`}
               >
                 <PhoneMockup

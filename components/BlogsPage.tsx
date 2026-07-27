@@ -1,10 +1,7 @@
 "use client";
 
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import dynamic from "next/dynamic";
 import HeroBanner from "@/components/blog/HeroBanner";
-import BlogSection from "@/components/blog/BlogSection";
-import BlogsCTA from "@/components/blog/BlogsCTA";
 import {
   featuredReadsCards,
   quickInsightsCards,
@@ -13,12 +10,22 @@ import {
   inDepthTabs,
 } from "@/components/blog/blogData";
 
+const SectionFallback = () => <div className="min-h-[32vh] w-full bg-white" aria-hidden />;
+
+const BlogSection = dynamic(() => import("@/components/blog/BlogSection"), {
+  loading: SectionFallback,
+});
+const BlogsCTA = dynamic(() => import("@/components/blog/BlogsCTA"), {
+  loading: SectionFallback,
+});
+const Footer = dynamic(() => import("@/components/Footer"), { loading: () => null });
+
 export default function BlogsPage() {
   return (
-    <main className="min-h-screen bg-white pt-16 md:pt-[4.5rem]">
-      <Navbar />
+    <main className="min-h-screen bg-white">
       <HeroBanner />
       <BlogSection
+        id="featured-reads"
         label="Featured Reads"
         heading="Learn. Optimize. Scale."
         cards={featuredReadsCards}
@@ -29,7 +36,6 @@ export default function BlogsPage() {
         label="Quick Insights"
         heading="Quick Insights For Busy Operators"
         cards={quickInsightsCards}
-        showArrows
       />
       <BlogSection
         label="In-Depth Guides"

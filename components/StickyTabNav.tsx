@@ -6,7 +6,6 @@ import {
   useLayoutEffect,
   useRef,
   useState,
-  type RefObject,
 } from "react";
 
 export type TabId = "whatsapp" | "instagram" | "website";
@@ -20,22 +19,37 @@ const TABS: { id: TabId; label: string }[] = [
 const SECTION_IDS: TabId[] = ["whatsapp", "instagram", "website"];
 
 const ACTIVE_GREEN = "#25D366";
-const NAV_HEIGHT = 52;
+/** Approx secondary nav height for scroll offset calculations */
+const NAV_HEIGHT = 60;
+/**
+ * Main navbar is h-16 (4rem) / md:h-[4.5rem].
+ * Keep a small gap (~0.75rem) between main navbar and this secondary bar.
+ */
+const STICKY_TOP_CLASS = "top-[calc(4rem+0.75rem)] md:top-[calc(4.5rem+0.75rem)]";
+const STICKY_TOP_PX = { mobile: 64 + 12, desktop: 72 + 12 };
 
 type StickyTabNavProps = {
-  /** When set, nav only shows while this zone is in view */
-  zoneRef?: RefObject<HTMLElement | null>;
-  /** Distance from viewport top (clears fixed navbar) */
+  /** Distance from viewport top used for section scroll sync */
   topOffset?: number;
+  className?: string;
 };
 
+function getStickyTopPx() {
+  if (typeof window === "undefined") return STICKY_TOP_PX.desktop;
+  return window.matchMedia("(min-width: 768px)").matches
+    ? STICKY_TOP_PX.desktop
+    : STICKY_TOP_PX.mobile;
+}
+
 export default function StickyTabNav({
-  zoneRef,
-  topOffset = 72,
+  topOffset,
+  className = "",
 }: StickyTabNavProps) {
   const [activeTab, setActiveTab] = useState<TabId>("whatsapp");
-  const [visible, setVisible] = useState(false);
   const [pill, setPill] = useState({ width: 0, x: 0 });
+  const [resolvedTop, setResolvedTop] = useState(
+    topOffset ?? STICKY_TOP_PX.desktop
+  );
 
   const navRef = useRef<HTMLDivElement>(null);
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
@@ -46,6 +60,17 @@ export default function StickyTabNav({
     website: 0,
   });
 
+  useEffect(() => {
+    if (topOffset != null) {
+      setResolvedTop(topOffset);
+      return;
+    }
+    const sync = () => setResolvedTop(getStickyTopPx());
+    sync();
+    window.addEventListener("resize", sync);
+    return () => window.removeEventListener("resize", sync);
+  }, [topOffset]);
+
   const updatePill = useCallback(() => {
     const index = TABS.findIndex((t) => t.id === activeTab);
     const btn = tabRefs.current[index];
@@ -54,15 +79,19 @@ export default function StickyTabNav({
 
     const navBox = nav.getBoundingClientRect();
     const btnBox = btn.getBoundingClientRect();
-    setPill({
-      width: btnBox.width,
-      x: btnBox.left - navBox.left,
-    });
+    const pad = 6; // matches p-1.5
+    const maxRight = navBox.width - pad;
+    const rawX = btnBox.left - navBox.left;
+    const rawW = btnBox.width;
+    const x = Math.max(pad, Math.min(rawX, maxRight - rawW));
+    const width = Math.min(rawW, maxRight - x);
+
+    setPill({ width, x });
   }, [activeTab]);
 
   useLayoutEffect(() => {
     updatePill();
-  }, [activeTab, updatePill, visible]);
+  }, [activeTab, updatePill]);
 
   useEffect(() => {
     const onResize = () => updatePill();
@@ -70,7 +99,7 @@ export default function StickyTabNav({
     return () => window.removeEventListener("resize", onResize);
   }, [updatePill]);
 
-  /* IntersectionObserver — two-way scroll sync */
+  /* IntersectionObserver - two-way scroll sync */
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -99,7 +128,7 @@ export default function StickyTabNav({
       },
       {
         threshold: [0, 0.25, 0.5, 0.75, 1],
-        rootMargin: `-${topOffset + NAV_HEIGHT + 8}px 0px -45% 0px`,
+        rootMargin: `-${resolvedTop + NAV_HEIGHT + 8}px 0px -45% 0px`,
       }
     );
 
@@ -109,23 +138,7 @@ export default function StickyTabNav({
     });
 
     return () => observer.disconnect();
-  }, [topOffset]);
-
-  /* Show nav only while integration zone is on screen */
-  useEffect(() => {
-    if (!zoneRef?.current) {
-      setVisible(true);
-      return;
-    }
-
-    const zoneObserver = new IntersectionObserver(
-      ([entry]) => setVisible(entry.isIntersecting),
-      { threshold: 0, rootMargin: `-${topOffset}px 0px 0px 0px` }
-    );
-
-    zoneObserver.observe(zoneRef.current);
-    return () => zoneObserver.disconnect();
-  }, [zoneRef, topOffset]);
+  }, [resolvedTop]);
 
   const scrollToSection = (id: TabId) => {
     const el = document.getElementById(id);
@@ -137,7 +150,7 @@ export default function StickyTabNav({
     const top =
       el.getBoundingClientRect().top +
       window.scrollY -
-      topOffset -
+      resolvedTop -
       NAV_HEIGHT -
       12;
 
@@ -150,25 +163,17 @@ export default function StickyTabNav({
 
   return (
     <div
-      className={`fixed inset-x-0 z-[100] flex justify-center px-3 transition-all duration-300 sm:px-4 ${
-        visible
-          ? "pointer-events-none translate-y-0 opacity-100"
-          : "pointer-events-none -translate-y-3 opacity-0"
-      }`}
-      style={{ top: topOffset }}
-      aria-hidden={!visible}
+      className={`sticky z-40 flex justify-center px-3 py-0 sm:px-4 ${STICKY_TOP_CLASS} ${className}`}
     >
       <div
         ref={navRef}
-        className="pointer-events-auto relative flex w-full rounded-full border border-white/40 bg-white/75 p-1.5 shadow-[0_8px_32px_rgba(13,27,42,0.12)] backdrop-blur-[12px] sm:max-w-[360px]"
-        style={{ WebkitBackdropFilter: "blur(12px)" }}
+        className="relative flex w-full items-center overflow-hidden rounded-full bg-white p-1.5 shadow-[0_10px_30px_rgba(0,0,0,0.18)] sm:max-w-[380px]"
         role="tablist"
         aria-label="Integration sections"
       >
-        {/* Sliding active pill */}
         <span
           aria-hidden
-          className="absolute bottom-1.5 top-1.5 rounded-full transition-[transform,width] duration-300 ease-out"
+          className="pointer-events-none absolute bottom-1.5 left-0 top-1.5 rounded-full transition-[transform,width] duration-300 ease-out"
           style={{
             width: pill.width,
             transform: `translateX(${pill.x}px)`,
@@ -189,10 +194,10 @@ export default function StickyTabNav({
               aria-selected={isActive}
               aria-controls={tab.id}
               onClick={() => scrollToSection(tab.id)}
-              className={`relative z-10 flex-1 rounded-full px-3 py-2 text-[14px] transition-colors duration-300 sm:flex-none sm:px-6 sm:py-2.5 sm:text-[15px] ${
+              className={`relative z-10 flex-1 rounded-full px-4 py-2.5 text-[14px] transition-colors duration-300 sm:flex-none sm:px-7 sm:py-3 sm:text-[15px] ${
                 isActive
                   ? "font-semibold text-white"
-                  : "font-medium text-[#555555] hover:text-[#333333]"
+                  : "font-medium text-[#6B7280] hover:text-[#374151]"
               }`}
             >
               {tab.label}

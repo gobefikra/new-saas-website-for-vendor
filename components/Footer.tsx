@@ -14,11 +14,11 @@ import {
   Youtube,
 } from "lucide-react";
 
-const GREEN = "#22C55E";
-const GREEN_DARK = "#1B5E20";
-const NAVY = "#0D1B2A";
+const GREEN = "#10B981";
+const GREEN_DARK = "#10B981";
+const NAVY = "#0F172A";
 const BODY = "#6B7280";
-const MINT = "#E8F5E9";
+const MINT = "#ECFDF5";
 
 const companyLinks = [
   { label: "Home", href: "/" },
@@ -48,7 +48,7 @@ const socialLinks = [
   { Icon: Instagram, label: "Instagram", href: "https://instagram.com/befikrapartner" },
   { Icon: Twitter, label: "X", href: "https://x.com/befikrapartner" },
   { Icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com/company/befikra" },
-  { Icon: MessageCircle, label: "WhatsApp", href: "https://wa.me/919999999999" },
+  { Icon: MessageCircle, label: "WhatsApp", href: "mailto:support@befikra.com" },
   { Icon: Youtube, label: "YouTube", href: "https://youtube.com/@befikra" },
 ];
 
@@ -117,7 +117,14 @@ export default function Footer() {
 
             <form
               className="flex w-full flex-col gap-2 sm:flex-row sm:items-center lg:max-w-md lg:shrink-0"
-              onSubmit={(e) => e.preventDefault()}
+              onSubmit={(e) => {
+                e.preventDefault();
+                const email = new FormData(e.currentTarget).get("email");
+                if (!email) return;
+                window.location.href = `mailto:support@befikra.com?subject=${encodeURIComponent(
+                  "Newsletter signup"
+                )}&body=${encodeURIComponent(`Please add ${email} to the newsletter.`)}`;
+              }}
             >
               <div className="relative flex-1">
                 <Mail
@@ -126,6 +133,8 @@ export default function Footer() {
                 />
                 <input
                   type="email"
+                  name="email"
+                  required
                   placeholder="Enter your email"
                   aria-label="Email address"
                   className="font-dm-sans w-full rounded-xl border border-gray-200 bg-white py-3 pl-11 pr-4 text-sm outline-none transition-colors focus:border-green-400 focus:ring-2 focus:ring-green-100"
@@ -150,7 +159,7 @@ export default function Footer() {
           <div className="lg:border-r lg:border-gray-100 lg:pr-8">
             <Link href="/" className="inline-block">
               <Image
-                src="/icons/footer-logo.png"
+                src="/icons/Nav-logo.png"
                 alt="Befikra Partner"
                 width={180}
                 height={48}
@@ -221,7 +230,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="mt-12 border-t border-gray-100 bg-[#F4F6F8]">
+      <div className="mt-12 border-t border-gray-100 bg-[#F9FAFB]">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 py-5 md:flex-row md:px-8">
           <p
             className="font-dm-sans flex items-center gap-2 text-sm"
