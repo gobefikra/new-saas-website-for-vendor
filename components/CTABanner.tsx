@@ -15,12 +15,12 @@ import { OrbitSide } from "@/components/cta/CTABannerOrbit";
 import { fadeInUp } from "@/components/motion";
 
 const GREEN = "#10B981";
-const GREEN_DARK = "#10B981";
+const GREEN_DARK = "#059669";
 const NAVY = "#0F172A";
 const BODY = "#6B7280";
 const MINT = "#ECFDF5";
 const SECTION_BG = "#F9FAFB";
-const CARD_BG = "#F9FAFB";
+const CARD_BG = "#FFFFFF";
 
 const features = [
   {
@@ -60,7 +60,7 @@ export default function CTABanner() {
   return (
     <section
       ref={ref}
-      className="w-full overflow-hidden px-4 py-16 md:py-20 lg:px-8"
+      className="w-full overflow-hidden px-4 py-14 md:py-16 lg:px-8"
       style={{ backgroundColor: SECTION_BG }}
     >
       <div
@@ -73,7 +73,7 @@ export default function CTABanner() {
           aria-hidden
           style={{
             background:
-              "radial-gradient(ellipse 40% 50% at 18% 45%, rgba(16, 185, 129,0.10), transparent 60%), radial-gradient(ellipse 40% 50% at 82% 45%, rgba(132,204,22,0.08), transparent 60%)",
+              "radial-gradient(ellipse 40% 50% at 18% 45%, rgba(16, 185, 129,0.10), transparent 60%), radial-gradient(ellipse 40% 50% at 82% 45%, rgba(5, 150, 105,0.08), transparent 60%)",
           }}
         />
 

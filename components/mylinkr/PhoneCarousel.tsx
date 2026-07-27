@@ -94,7 +94,7 @@ export default function PhoneCarousel() {
 
   return (
     <section className="w-full bg-white">
-      <div className="py-20 px-6 text-center">
+      <div className="py-14 px-6 text-center md:py-16">
         <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
           Templates Built to Convert
           <br />

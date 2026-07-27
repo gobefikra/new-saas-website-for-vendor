@@ -15,7 +15,7 @@ import {
 } from "lucide-react";
 
 const GREEN = "#10B981";
-const GREEN_DARK = "#10B981";
+const GREEN_DARK = "#059669";
 const NAVY = "#0F172A";
 const BODY = "#6B7280";
 const MINT = "#ECFDF5";
@@ -137,7 +137,7 @@ export default function Footer() {
                   required
                   placeholder="Enter your email"
                   aria-label="Email address"
-                  className="font-dm-sans w-full rounded-xl border border-gray-200 bg-white py-3 pl-11 pr-4 text-sm outline-none transition-colors focus:border-green-400 focus:ring-2 focus:ring-green-100"
+                  className="font-dm-sans w-full rounded-xl border border-gray-200 bg-white py-3 pl-11 pr-4 text-sm outline-none transition-colors focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100"
                   style={{ color: NAVY }}
                 />
               </div>

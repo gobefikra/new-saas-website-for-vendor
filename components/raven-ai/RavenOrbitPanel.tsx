@@ -75,18 +75,31 @@ function angleTo(x: number, y: number) {
   return (Math.atan2(y - CY, x - CX) * 180) / Math.PI;
 }
 
-function CentralOrb() {
+function CentralOrb({ compact = false }: { compact?: boolean }) {
+  const size = compact
+    ? "relative h-[120px] w-[120px] sm:h-[140px] sm:w-[140px]"
+    : "relative h-[200px] w-[200px] sm:h-[240px] sm:w-[240px]";
+  const glow = compact
+    ? "absolute left-1/2 top-1/2 h-[160px] w-[160px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-2xl"
+    : "absolute left-1/2 top-1/2 h-[280px] w-[280px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl";
+
   return (
-    <div className="pointer-events-none absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2">
+    <div
+      className={
+        compact
+          ? "pointer-events-none relative z-20 mx-auto"
+          : "pointer-events-none absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2"
+      }
+    >
       <motion.div
-        className="absolute left-1/2 top-1/2 h-[280px] w-[280px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl"
+        className={glow}
         style={{ background: `radial-gradient(circle, ${GREEN} 0%, transparent 70%)` }}
         animate={{ opacity: [0.3, 0.55, 0.3], scale: [0.95, 1.08, 0.95] }}
         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.svg
         viewBox="0 0 200 200"
-        className="relative h-[200px] w-[200px] sm:h-[240px] sm:w-[240px]"
+        className={size}
         aria-hidden
         animate={{ scale: [1, 1.03, 1] }}
         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
@@ -112,12 +125,12 @@ function CentralOrb() {
           })}
         </motion.g>
         <defs>
-          <radialGradient id="orb-core" cx="50%" cy="45%" r="55%">
+          <radialGradient id={compact ? "orb-core-mobile" : "orb-core"} cx="50%" cy="45%" r="55%">
             <stop offset="0%" stopColor="#4ade80" stopOpacity="0.9" />
             <stop offset="55%" stopColor="#10B981" stopOpacity="0.55" />
             <stop offset="100%" stopColor="#052e16" stopOpacity="0.2" />
           </radialGradient>
-          <pattern id="orb-mesh" width="8" height="8" patternUnits="userSpaceOnUse">
+          <pattern id={compact ? "orb-mesh-mobile" : "orb-mesh"} width="8" height="8" patternUnits="userSpaceOnUse">
             <path d="M0 8 L8 0" stroke="#86efac" strokeWidth="0.35" opacity="0.35" />
           </pattern>
         </defs>
@@ -125,7 +138,7 @@ function CentralOrb() {
           cx="100"
           cy="100"
           r="58"
-          fill="url(#orb-core)"
+          fill={`url(#${compact ? "orb-core-mobile" : "orb-core"})`}
           animate={{ opacity: [0.85, 1, 0.85] }}
           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
         />
@@ -134,7 +147,7 @@ function CentralOrb() {
           animate={{ rotate: 360 }}
           transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
         >
-          <circle cx="100" cy="100" r="58" fill="url(#orb-mesh)" />
+          <circle cx="100" cy="100" r="58" fill={`url(#${compact ? "orb-mesh-mobile" : "orb-mesh"})`} />
         </motion.g>
         <ellipse cx="100" cy="100" rx="58" ry="58" fill="none" stroke="#86efac" strokeOpacity="0.35" strokeWidth="0.75" />
       </motion.svg>
@@ -261,7 +274,7 @@ export function RavenOrbitPanel() {
   return (
     <div
       ref={panelRef}
-      className="relative mx-auto mt-10 max-w-[1100px] overflow-hidden rounded-[28px] border px-2 py-8 sm:px-4 sm:py-10 md:py-12"
+      className="relative mx-auto mt-10 max-w-[1100px] overflow-hidden rounded-[22px] border px-3 py-6 sm:rounded-[28px] sm:px-4 sm:py-10 md:py-12"
       style={{
         backgroundColor: DARK_PANEL,
         borderColor: CARD_BORDER,
@@ -397,38 +410,32 @@ export function RavenOrbitPanel() {
         </div>
       </div>
 
-      {/* Mobile / tablet grid */}
-      <div className="relative z-10 mx-auto max-w-md px-2 lg:hidden">
-        <CentralOrb />
-        <div className="mt-[220px] grid grid-cols-1 gap-3 sm:grid-cols-2">
+      {/* Mobile / tablet — orb on top, clean left-aligned cards below */}
+      <div className="relative z-10 mx-auto w-full max-w-lg px-1 sm:px-2 lg:hidden">
+        <div className="relative flex items-center justify-center py-2">
+          <CentralOrb compact />
+        </div>
+        <div className="mt-3 grid grid-cols-1 gap-2.5 sm:mt-4 sm:grid-cols-2 sm:gap-3">
           {orbitFeatures.map((f, i) => (
             <motion.div
               key={f.id}
               initial={{ opacity: 0, y: 16 }}
-              animate={inView ? { opacity: 1, y: [0, -4, 0] } : { opacity: 0, y: 16 }}
-              transition={{
-                opacity: { duration: 0.45, delay: i * 0.06 },
-                y: {
-                  duration: 3 + i * 0.2,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: i * 0.15,
-                },
-              }}
-              className="flex h-[84px] items-start gap-3 rounded-2xl border px-3.5 py-3"
+              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+              transition={{ duration: 0.4, delay: i * 0.05 }}
+              className="flex items-start gap-2.5 rounded-2xl border px-3 py-2.5 text-left sm:gap-3 sm:px-3.5 sm:py-3"
               style={{ backgroundColor: CARD_BG, borderColor: CARD_BORDER }}
             >
               <div
-                className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full"
+                className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full sm:h-9 sm:w-9"
                 style={{ backgroundColor: "rgba(16, 185, 129,0.15)" }}
               >
-                <f.Icon className="h-4 w-4" style={{ color: GREEN }} />
+                <f.Icon className="h-3.5 w-3.5 sm:h-4 sm:w-4" style={{ color: GREEN }} />
               </div>
-              <div className="min-w-0 flex-1">
-                <p className="truncate text-[13px] font-semibold leading-tight text-white">
+              <div className="min-w-0 flex-1 text-left">
+                <p className="text-[12px] font-semibold leading-tight text-white sm:text-[13px]">
                   {f.title}
                 </p>
-                <p className="mt-1 line-clamp-2 text-[11px] leading-snug text-gray-400">
+                <p className="mt-1 text-[10px] leading-snug text-gray-400 sm:text-[11px]">
                   {f.description}
                 </p>
               </div>

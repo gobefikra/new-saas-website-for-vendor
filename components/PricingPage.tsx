@@ -14,7 +14,7 @@ import {
   formatPrice,
 } from "@/lib/pricing-data";
 
-const SectionFallback = () => <div className="min-h-[28vh] w-full bg-[#FAFBFC]" aria-hidden />;
+const SectionFallback = () => <div className="min-h-[28vh] w-full bg-[#F9FAFB]" aria-hidden />;
 
 const HelperRow = dynamic(() => import("@/components/pricing/HelperRow"), {
   loading: () => null,
@@ -72,7 +72,7 @@ export default function PricingPage() {
         </section>
 
         {/* Feature comparison */}
-        <section className="border-t border-gray-100 bg-[#FAFBFC] px-4 py-16 md:px-8 md:py-20">
+        <section className="border-t border-gray-100 bg-[#F9FAFB] px-4 py-16 md:px-8 md:py-20">
           <div className="mx-auto max-w-[1200px]">
             <div className="mb-8 text-center md:mb-10">
               <h2

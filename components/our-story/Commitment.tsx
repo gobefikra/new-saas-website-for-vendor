@@ -13,7 +13,7 @@ export default function Commitment() {
   return (
     <section
       ref={ref}
-      className="relative overflow-hidden border-t border-white/5 bg-[#070b09] px-6 py-24 md:px-8 md:py-32"
+      className="relative overflow-hidden border-t border-white/5 bg-[#070b09] px-6 py-16 md:px-8 md:py-20"
     >
       <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2 lg:gap-16">
         <motion.div

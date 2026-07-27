@@ -31,7 +31,7 @@ export default function CtaBand({
   return (
     <section
       ref={ref}
-      className={`relative w-full overflow-hidden px-4 py-24 text-center md:px-8 md:py-28 ${className}`}
+      className={`relative w-full overflow-hidden px-4 py-16 text-center md:px-8 md:py-20 ${className}`}
       style={{
         background: `radial-gradient(ellipse 70% 80% at 50% 45%, ${brand.forest} 0%, ${brand.footerDark} 55%, ${brand.navy} 100%)`,
       }}

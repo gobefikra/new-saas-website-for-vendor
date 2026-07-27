@@ -11,10 +11,10 @@ export default function PreviewToggle() {
   const [activeView, setActiveView] = useState<"app" | "website">("app");
 
   return (
-    <section className="w-full bg-white py-20 px-6 text-center">
+    <section className="w-full bg-white py-14 px-6 text-center md:py-16">
       <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
         See It. Adjust It.{" "}
-        <span className="text-emerald-400">Launch It.</span>
+        <span className="text-emerald-500">Launch It.</span>
       </h2>
       <p className="text-gray-400 text-base mt-4 max-w-lg mx-auto">
         Experience your MyLinkr exactly how your audience will see it, perfectly

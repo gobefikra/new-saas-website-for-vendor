@@ -235,8 +235,8 @@ export default function StoryHeroSection() {
       </div>
 
       <div
-        className="relative mx-auto -mt-2 flex w-full max-w-6xl touch-pan-y select-none items-center justify-center md:-mt-6"
-        style={{ height: arcHeight, transform: "translateY(-48px)" }}
+        className="relative mx-auto mt-12 flex w-full max-w-6xl touch-pan-y select-none items-center justify-center sm:mt-10 md:-mt-6 md:-translate-y-12"
+        style={{ height: arcHeight }}
         onPointerDown={handlePointerDown}
         onPointerUp={handlePointerUp}
         onPointerCancel={() => (dragStartX.current = null)}
