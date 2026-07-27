@@ -14,11 +14,13 @@ import {
 } from "lucide-react";
 import PowerfulToolsPreview from "@/components/powerful-tools/PowerfulToolsPreview";
 import { fadeInUp, staggerContainer } from "@/components/motion";
+import SectionHeading from "@/components/ui/SectionHeading";
+import { brand } from "@/lib/brand-theme";
 
-const NAVY = "#0F172A";
-const BODY = "#6B7280";
-const MINT = "#ECFDF5";
-const GREEN_DARK = "#059669";
+const NAVY = brand.navy;
+const BODY = brand.muted;
+const MINT = brand.greenLight;
+const GREEN_DARK = brand.greenDark;
 
 const features = [
   {
@@ -43,29 +45,29 @@ const stats = [
     Icon: BarChart3,
     value: "500+",
     label: "Travel Businesses",
-    iconBg: "#ECFDF5",
-    iconColor: "#10B981",
+    iconBg: "#E8F3EE",
+    iconColor: "#2D6A4F",
   },
   {
     Icon: Users,
     value: "50K+",
     label: "Happy Customers",
-    iconBg: "#ECFDF5",
-    iconColor: "#10B981",
+    iconBg: "#E8F3EE",
+    iconColor: "#2D6A4F",
   },
   {
     Icon: Calendar,
     value: "2.5M+",
     label: "Bookings Managed",
-    iconBg: "#ECFDF5",
-    iconColor: "#10B981",
+    iconBg: "#E8F3EE",
+    iconColor: "#2D6A4F",
   },
   {
     Icon: Star,
     value: "4.8/5",
     label: "User Rating",
-    iconBg: "#ECFDF5",
-    iconColor: "#059669",
+    iconBg: "#E8F3EE",
+    iconColor: "#1F4D38",
   },
 ];
 
@@ -87,42 +89,23 @@ export default function PowerfulToolsSection() {
             animate={inView ? "visible" : "hidden"}
             variants={staggerContainer}
           >
-            <motion.span
-              variants={fadeInUp}
-              className="inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-xs font-semibold"
-              style={{ borderColor: "#A7F3D0", backgroundColor: MINT, color: GREEN_DARK }}
-            >
-              <Zap className="h-3.5 w-3.5" strokeWidth={2.25} />
-              Everything you need. All in one place.
-            </motion.span>
+            <motion.div variants={fadeInUp}>
+              <SectionHeading
+                align="left"
+                eyebrow="Everything you need. All in one place."
+                eyebrowIcon={<Zap className="h-3.5 w-3.5" strokeWidth={2.25} />}
+                title="Powerful Tools to Run and"
+                script="grow your business"
+                description="Manage leads, bookings, payments, customers, and operations in one unified platform built for modern travel businesses."
+              />
+            </motion.div>
 
-            <motion.h2
-              variants={fadeInUp}
-              className="mt-5 text-3xl font-extrabold leading-[1.15] tracking-tight md:text-4xl lg:text-[2.75rem]"
-              style={{ color: NAVY }}
-            >
-              Powerful Tools to Run and
-              <br />
-              <span className="bg-gradient-to-r from-emerald-400 via-[#10B981] to-emerald-500 bg-clip-text text-transparent">
-                Grow Your Travel Business
-              </span>
-            </motion.h2>
-
-            <motion.p
-              variants={fadeInUp}
-              className="font-dm-sans mt-4 max-w-lg text-base leading-relaxed"
-              style={{ color: BODY }}
-            >
-              Manage leads, bookings, payments, customers, and operations in one
-              unified platform built for modern travel businesses.
-            </motion.p>
-
-            <motion.ul variants={staggerContainer} className="mt-8 divide-y divide-gray-100">
+            <motion.ul variants={staggerContainer} className="mt-8 divide-y divide-border-default">
               {features.map(({ Icon, title, desc }) => (
                 <motion.li key={title} variants={fadeInUp}>
                   <button
                     type="button"
-                    className="group flex w-full items-start gap-4 py-5 text-left transition-colors hover:bg-gray-50/60"
+                    className="group flex w-full items-start gap-4 py-5 text-left transition-colors hover:bg-off-white/60"
                   >
                     <div
                       className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl"
@@ -130,7 +113,7 @@ export default function PowerfulToolsSection() {
                     >
                       <Icon
                         className="h-5 w-5"
-                        style={{ color: "#10B981" }}
+                        style={{ color: "#2D6A4F" }}
                         strokeWidth={2}
                       />
                     </div>
@@ -139,7 +122,7 @@ export default function PowerfulToolsSection() {
                         {title}
                       </p>
                       <p
-                        className="font-dm-sans mt-1 text-sm leading-relaxed"
+                        className="font-sans mt-1 text-sm leading-relaxed"
                         style={{ color: BODY }}
                       >
                         {desc}
@@ -162,11 +145,11 @@ export default function PowerfulToolsSection() {
             <div className="lg:hidden">
               <p
                 className="mb-2 text-center text-base font-semibold italic"
-                style={{ color: "#10B981", fontFamily: "cursive" }}
+                style={{ color: "#2D6A4F", fontFamily: "cursive" }}
               >
                 See Befikra in action
               </p>
-              <p className="font-dm-sans mb-4 text-center text-xs text-gray-500">
+              <p className="font-sans mb-4 text-center text-xs text-subtext">
                 A quick overview of how everything works together.
               </p>
             </div>
@@ -180,15 +163,15 @@ export default function PowerfulToolsSection() {
           animate={inView ? "visible" : "hidden"}
           variants={fadeInUp}
           transition={{ delay: 0.2 }}
-          className="mt-14 overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-[0_8px_40px_rgba(13,27,42,0.06)]"
+          className="card-brand-static mt-14 overflow-hidden"
         >
           <div className="grid grid-cols-2 lg:grid-cols-4">
             {stats.map((stat, index) => (
               <div
                 key={stat.label}
                 className={`flex flex-col items-center px-5 py-7 text-center ${
-                  index % 2 === 0 ? "border-r border-gray-100" : ""
-                } ${index < 2 ? "border-b border-gray-100 lg:border-b-0" : ""} ${
+                  index % 2 === 0 ? "border-r border-border-default" : ""
+                } ${index < 2 ? "border-b border-border-default lg:border-b-0" : ""} ${
                   index < 3 ? "lg:border-r lg:border-b-0" : ""
                 }`}
               >
@@ -203,13 +186,13 @@ export default function PowerfulToolsSection() {
                   />
                 </div>
                 <p
-                  className="mt-3 text-2xl font-extrabold tracking-tight"
+                  className="mt-3 text-2xl font-display font-semibold tracking-[-0.02em] tracking-tight"
                   style={{ color: NAVY }}
                 >
                   {stat.value}
                 </p>
                 <p
-                  className="font-dm-sans mt-0.5 text-sm"
+                  className="font-sans mt-0.5 text-sm"
                   style={{ color: BODY }}
                 >
                   {stat.label}

@@ -16,7 +16,7 @@ function AnimatedH2({ children }: { children: React.ReactNode }) {
       initial="hidden"
       animate={inView ? "visible" : "hidden"}
       variants={fadeInUp}
-      className="mt-10 mb-4 text-2xl font-bold text-gray-900"
+      className="mt-10 mb-4 text-2xl font-bold text-navy"
     >
       {children}
     </motion.h2>
@@ -80,17 +80,17 @@ function CalloutBox({ title, text }: { title: string; text: string }) {
       initial={{ opacity: 0, scale: 0.98 }}
       animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.98 }}
       transition={{ duration: 0.4 }}
-      className="my-8 rounded-2xl border border-emerald-200 border-l-4 border-l-emerald-500 bg-emerald-50 p-5"
+      className="my-8 rounded-2xl border border-brand-green/30 border-l-4 border-l-emerald-500 bg-brand-green-light p-5"
     >
-      <p className="mb-2 text-sm font-semibold text-emerald-700">{title}</p>
-      <p className="text-sm leading-relaxed text-gray-600">{text}</p>
+      <p className="mb-2 text-sm font-semibold text-brand-green-dark">{title}</p>
+      <p className="text-sm leading-relaxed text-subtext">{text}</p>
     </motion.div>
   );
 }
 
 export default function ArticleBody({ post }: { post: BlogPost }) {
   return (
-    <article key={post.slug} className="text-base leading-relaxed text-gray-600">
+    <article key={post.slug} className="text-base leading-relaxed text-subtext">
       {post.body.map((block, i) => {
         const key = `${post.slug}-${block.type}-${i}`;
         switch (block.type) {

@@ -49,11 +49,11 @@ const items = [
 
 export default function HelperRow() {
   return (
-    <div className="mb-5 flex flex-wrap items-center gap-x-5 gap-y-2.5 rounded-xl border border-gray-100 bg-[#F9FAFB] px-4 py-3 md:px-5">
+    <div className="mb-5 flex flex-wrap items-center gap-x-5 gap-y-2.5 rounded-xl border border-border-default bg-[#F9FAFB] px-4 py-3 md:px-5">
       {items.map(({ icon, label }) => (
         <div
           key={label}
-          className="font-dm-sans flex items-center gap-2 text-[13px]"
+          className="font-sans flex items-center gap-2 text-[13px]"
           style={{ color: brand.subtext }}
         >
           {icon}

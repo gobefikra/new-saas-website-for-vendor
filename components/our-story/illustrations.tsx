@@ -15,17 +15,17 @@ export function PipelineIllustration({ className = "" }: IllustProps) {
     >
       <defs>
         <linearGradient id="cif-flow" x1="130" y1="110" x2="310" y2="110" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#10B981" stopOpacity="0.15" />
-          <stop offset="0.5" stopColor="#34D399" stopOpacity="0.85" />
-          <stop offset="1" stopColor="#10B981" stopOpacity="0.2" />
+          <stop stopColor="#2D6A4F" stopOpacity="0.15" />
+          <stop offset="0.5" stopColor="#2D6A4F" stopOpacity="0.85" />
+          <stop offset="1" stopColor="#2D6A4F" stopOpacity="0.2" />
         </linearGradient>
         <radialGradient id="cif-glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(220 108) rotate(90) scale(70 90)">
-          <stop stopColor="#10B981" stopOpacity="0.35" />
-          <stop offset="1" stopColor="#10B981" stopOpacity="0" />
+          <stop stopColor="#2D6A4F" stopOpacity="0.35" />
+          <stop offset="1" stopColor="#2D6A4F" stopOpacity="0" />
         </radialGradient>
         <linearGradient id="cif-sheet" x1="36" y1="48" x2="120" y2="170" gradientUnits="userSpaceOnUse">
           <stop stopColor="#1A3A25" />
-          <stop offset="1" stopColor="#0D1F14" />
+          <stop offset="1" stopColor="#1F4D38" />
         </linearGradient>
       </defs>
 
@@ -35,7 +35,7 @@ export function PipelineIllustration({ className = "" }: IllustProps) {
       {/* —— LEFT: spreadsheet chaos —— */}
       <g transform="translate(18 42) rotate(-6 60 70)">
         <rect width="118" height="136" rx="14" fill="url(#cif-sheet)" stroke="#1F4A32" strokeWidth="1.25" />
-        <rect x="14" y="16" width="54" height="8" rx="3" fill="#10B981" fillOpacity="0.35" />
+        <rect x="14" y="16" width="54" height="8" rx="3" fill="#2D6A4F" fillOpacity="0.35" />
         <rect x="14" y="36" width="90" height="6" rx="3" fill="#243F30" />
         <rect x="14" y="50" width="72" height="6" rx="3" fill="#243F30" />
         <rect x="14" y="64" width="84" height="6" rx="3" fill="#243F30" />
@@ -49,13 +49,13 @@ export function PipelineIllustration({ className = "" }: IllustProps) {
 
       {/* Chat bubbles floating off the sheet */}
       <g transform="translate(88 28)">
-        <rect width="52" height="28" rx="10" fill="#0D2B1A" stroke="#10B981" strokeOpacity="0.45" strokeWidth="1.2" />
-        <circle cx="16" cy="14" r="3" fill="#34D399" opacity="0.8" />
+        <rect width="52" height="28" rx="10" fill="#0D2B1A" stroke="#2D6A4F" strokeOpacity="0.45" strokeWidth="1.2" />
+        <circle cx="16" cy="14" r="3" fill="#2D6A4F" opacity="0.8" />
         <rect x="24" y="11" width="18" height="3" rx="1.5" fill="#1A4030" />
         <rect x="24" y="17" width="12" height="3" rx="1.5" fill="#1A4030" />
       </g>
       <g transform="translate(102 168)">
-        <rect width="44" height="24" rx="9" fill="#0D2B1A" stroke="#10B981" strokeOpacity="0.3" strokeWidth="1" />
+        <rect width="44" height="24" rx="9" fill="#0D2B1A" stroke="#2D6A4F" strokeOpacity="0.3" strokeWidth="1" />
         <rect x="10" y="10" width="24" height="3" rx="1.5" fill="#1A4030" />
       </g>
 
@@ -68,8 +68,8 @@ export function PipelineIllustration({ className = "" }: IllustProps) {
         strokeLinecap="round"
       />
       <g transform="translate(198 78)">
-        <rect width="44" height="64" rx="14" fill="#07140f" stroke="#34D399" strokeWidth="1.6" />
-        <circle cx="22" cy="22" r="7" fill="#10B981" opacity="0.9" />
+        <rect width="44" height="64" rx="14" fill="#07140f" stroke="#2D6A4F" strokeWidth="1.6" />
+        <circle cx="22" cy="22" r="7" fill="#2D6A4F" opacity="0.9" />
         <path d="M22 17v10M17 22h10" stroke="#052e16" strokeWidth="2" strokeLinecap="round" />
         <rect x="10" y="38" width="24" height="4" rx="2" fill="#1A3A25" />
         <rect x="12" y="46" width="20" height="4" rx="2" fill="#1A3A25" opacity="0.7" />
@@ -85,7 +85,7 @@ export function PipelineIllustration({ className = "" }: IllustProps) {
 
       {/* —— RIGHT: clean automated pipeline —— */}
       <g transform="translate(300 48)">
-        <rect width="120" height="124" rx="16" fill="#0A1510" stroke="#1A3A25" strokeWidth="1.25" />
+        <rect width="120" height="124" rx="16" fill="#06140F" stroke="#1A3A25" strokeWidth="1.25" />
         {/* Pipeline stages stacked cleanly */}
         {[
           { y: 18, labelW: 58 },
@@ -93,13 +93,13 @@ export function PipelineIllustration({ className = "" }: IllustProps) {
           { y: 86, labelW: 50 },
         ].map((row, i) => (
           <g key={row.y}>
-            <circle cx="28" cy={row.y + 10} r="10" fill="#07140f" stroke="#34D399" strokeWidth="1.4" />
-            <circle cx="28" cy={row.y + 10} r="4" fill={i === 1 ? "#34D399" : "#10B981"} />
+            <circle cx="28" cy={row.y + 10} r="10" fill="#07140f" stroke="#2D6A4F" strokeWidth="1.4" />
+            <circle cx="28" cy={row.y + 10} r="4" fill={i === 1 ? "#2D6A4F" : "#2D6A4F"} />
             <rect x="46" y={row.y + 5} width={row.labelW} height="10" rx="5" fill="#122818" />
             {i < 2 && (
               <path
                 d={`M28 ${row.y + 22} V${row.y + 40}`}
-                stroke="#10B981"
+                stroke="#2D6A4F"
                 strokeOpacity="0.35"
                 strokeWidth="1.5"
                 strokeDasharray="2 4"
@@ -110,8 +110,8 @@ export function PipelineIllustration({ className = "" }: IllustProps) {
       </g>
 
       {/* Floating particles — motion cues */}
-      <circle cx="168" cy="72" r="2.5" fill="#34D399" opacity="0.55" />
-      <circle cx="276" cy="148" r="2" fill="#10B981" opacity="0.45" />
+      <circle cx="168" cy="72" r="2.5" fill="#2D6A4F" opacity="0.55" />
+      <circle cx="276" cy="148" r="2" fill="#2D6A4F" opacity="0.45" />
       <circle cx="190" cy="150" r="1.8" fill="#6EE7B7" opacity="0.4" />
     </svg>
   );
@@ -126,36 +126,36 @@ export function CompassIllustration({ className = "" }: IllustProps) {
       className={className}
       aria-hidden
     >
-      <circle cx="120" cy="120" r="108" stroke="#10B981" strokeWidth="1.25" opacity="0.14" />
+      <circle cx="120" cy="120" r="108" stroke="#2D6A4F" strokeWidth="1.25" opacity="0.28" />
       <circle
         cx="120"
         cy="120"
         r="84"
-        stroke="#10B981"
+        stroke="#2D6A4F"
         strokeWidth="1.1"
         strokeDasharray="4 7"
-        opacity="0.22"
+        opacity="0.4"
       />
       <circle
         cx="120"
         cy="120"
         r="48"
-        fill="rgba(16,185,129,0.04)"
-        stroke="#10B981"
+        fill="rgba(45,106,79,0.08)"
+        stroke="#2D6A4F"
         strokeWidth="1.5"
-        strokeOpacity="0.35"
+        strokeOpacity="0.55"
       />
-      <path d="M120 42 L138 120 L120 198 L102 120 Z" fill="#10B981" opacity="0.45" />
-      <path d="M42 120 L120 102 L198 120 L120 138 Z" fill="#10B981" opacity="0.16" />
-      <circle cx="120" cy="120" r="6" fill="#ECFDF5" opacity="0.4" />
+      <path d="M120 42 L138 120 L120 198 L102 120 Z" fill="#2D6A4F" opacity="0.7" />
+      <path d="M42 120 L120 102 L198 120 L120 138 Z" fill="#2D6A4F" opacity="0.28" />
+      <circle cx="120" cy="120" r="6" fill="#E8F3EE" opacity="0.75" />
       <text
         x="120"
         y="26"
         textAnchor="middle"
-        fill="#10B981"
+        fill="#2D6A4F"
         fontSize="16"
         fontFamily="monospace"
-        opacity="0.4"
+        opacity="0.65"
       >
         N
       </text>
@@ -192,8 +192,8 @@ export function ValuesIllustration({ className = "" }: IllustProps) {
           y2="58"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stopColor="#10B981" stopOpacity="0.5" />
-          <stop offset="1" stopColor="#10B981" />
+          <stop stopColor="#2D6A4F" stopOpacity="0.5" />
+          <stop offset="1" stopColor="#2D6A4F" />
         </linearGradient>
       </defs>
 
@@ -201,7 +201,7 @@ export function ValuesIllustration({ className = "" }: IllustProps) {
       <path
         d={TRAIL_PATH}
         transform="translate(0 20)"
-        stroke="#10B981"
+        stroke="#2D6A4F"
         strokeOpacity="0.18"
         strokeWidth="2"
         strokeDasharray="4 9"
@@ -217,7 +217,7 @@ export function ValuesIllustration({ className = "" }: IllustProps) {
 
       {TRAIL_STOPS.map((stop, i) => {
         const isLast = i === TRAIL_STOPS.length - 1;
-        const color = isLast ? "#34D399" : "#10B981";
+        const color = isLast ? "#2D6A4F" : "#2D6A4F";
         return (
           <g key={`${stop.x}-${stop.y}`}>
             <circle

@@ -13,8 +13,8 @@ import {
   Zap,
 } from "lucide-react";
 
-const GREEN = "#10B981";
-const NAVY = "#0F172A";
+const GREEN = "#2D6A4F";
+const NAVY = "#0A1E3B";
 
 /** Hub center — midpoint between left/right card columns */
 const CENTER_X = 50;
@@ -184,11 +184,11 @@ export default function HeroHubDiagram() {
       >
         {/* Atmosphere */}
         <div
-          className="pointer-events-none absolute h-[84%] w-[84%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_50%_45%,rgba(16, 185, 129,0.14),rgba(226,236,244,0.55)_42%,transparent_70%)]"
+          className="pointer-events-none absolute h-[84%] w-[84%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_50%_45%,rgba(45, 106, 79,0.14),rgba(226,236,244,0.55)_42%,transparent_70%)]"
           style={{ left: `${CENTER_X}%`, top: `${CENTER_Y}%` }}
         />
         <div
-          className="pointer-events-none absolute h-[64%] w-[64%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-emerald-200/40"
+          className="pointer-events-none absolute h-[64%] w-[64%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-brand-green/30/40"
           style={{ left: `${CENTER_X}%`, top: `${CENTER_Y}%` }}
         />
         <div
@@ -209,7 +209,7 @@ export default function HeroHubDiagram() {
               className="h-full w-full rounded-full"
               style={{
                 background:
-                  "conic-gradient(from 0deg, transparent 0deg, rgba(16, 185, 129,0.12) 40deg, transparent 70deg)",
+                  "conic-gradient(from 0deg, transparent 0deg, rgba(45, 106, 79,0.12) 40deg, transparent 70deg)",
                 transformOrigin: "50% 50%",
               }}
               animate={{ rotate: 360 }}
@@ -252,7 +252,7 @@ export default function HeroHubDiagram() {
                 <path
                   d={d}
                   fill="none"
-                  stroke={isActive ? "url(#ribbon-active)" : "#A7F3D0"}
+                  stroke={isActive ? "url(#ribbon-active)" : "#A7D7BC"}
                   strokeWidth={isActive ? 0.55 : 0.28}
                   strokeLinecap="round"
                   opacity={isActive ? 1 : 0.35}
@@ -317,19 +317,19 @@ export default function HeroHubDiagram() {
                   className="rounded-xl bg-white/90 px-2.5 py-2 backdrop-blur-md sm:rounded-2xl sm:px-3.5 sm:py-3 lg:px-4 lg:py-3.5"
                   style={{
                     border: isActive
-                      ? "1px solid rgba(16, 185, 129,0.4)"
-                      : "1px solid rgba(15,23,42,0.06)",
+                      ? "1px solid rgba(45, 106, 79,0.4)"
+                      : "1px solid rgba(10,30,59,0.06)",
                     boxShadow: isActive
-                      ? "0 20px 44px rgba(16, 185, 129,0.16), 0 6px 16px rgba(15,23,42,0.05)"
-                      : "0 10px 28px rgba(15,23,42,0.06)",
+                      ? "0 20px 44px rgba(45, 106, 79,0.16), 0 6px 16px rgba(10,30,59,0.05)"
+                      : "0 10px 28px rgba(10,30,59,0.06)",
                   }}
                 >
                   <div className="flex gap-1.5 sm:gap-2.5">
                     <span
                       className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full sm:h-8 sm:w-8 lg:h-9 lg:w-9"
                       style={{
-                        background: `linear-gradient(145deg, #34D399, ${GREEN})`,
-                        boxShadow: "0 6px 14px rgba(16, 185, 129,0.3)",
+                        background: `linear-gradient(145deg, #2D6A4F, ${GREEN})`,
+                        boxShadow: "0 6px 14px rgba(45, 106, 79,0.3)",
                       }}
                     >
                       <node.Icon
@@ -344,7 +344,7 @@ export default function HeroHubDiagram() {
                       >
                         {node.title}
                       </span>
-                      <span className="font-dm-sans mt-0.5 block text-[8.5px] leading-relaxed text-slate-500 sm:mt-1 sm:text-[10px] lg:text-[11px]">
+                      <span className="font-sans mt-0.5 block text-[8.5px] leading-relaxed text-subtext sm:mt-1 sm:text-[10px] lg:text-[11px]">
                         {node.description}
                       </span>
                     </span>
@@ -368,7 +368,7 @@ export default function HeroHubDiagram() {
                 transition={{ duration: 3.6, repeat: Infinity, ease: "easeInOut" }}
               />
               <motion.span
-                className="absolute left-1/2 top-1/2 h-[122px] w-[122px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-emerald-400/30 sm:h-[136px] sm:w-[136px] md:h-[156px] md:w-[156px] lg:h-[208px] lg:w-[208px]"
+                className="absolute left-1/2 top-1/2 h-[122px] w-[122px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-brand-green/30 sm:h-[136px] sm:w-[136px] md:h-[156px] md:w-[156px] lg:h-[208px] lg:w-[208px]"
                 animate={{ scale: [1, 1.12, 1], opacity: [0.35, 0.08, 0.35] }}
                 transition={{
                   duration: 3.6,
@@ -384,11 +384,11 @@ export default function HeroHubDiagram() {
             className="relative flex h-[96px] w-[96px] items-center justify-center rounded-full border-[3px] border-white bg-white sm:h-[110px] sm:w-[110px] sm:border-[4px] md:h-[128px] md:w-[128px] lg:h-[168px] lg:w-[168px] lg:border-[5px]"
             style={{
               boxShadow:
-                "0 18px 50px rgba(15,23,42,0.1), 0 0 0 1px rgba(15,23,42,0.03)",
+                "0 18px 50px rgba(10,30,59,0.1), 0 0 0 1px rgba(10,30,59,0.03)",
             }}
             initial={{ scale: 0.88, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="mt-2 flex w-[78%] flex-col items-center justify-center sm:mt-3 md:mt-3.5 lg:mt-5">
               <Image
@@ -422,7 +422,7 @@ export default function HeroHubDiagram() {
         >
           <motion.p
             key={active.id}
-            className="whitespace-nowrap rounded-full bg-white/80 px-4 py-1.5 text-center text-[11px] font-medium text-slate-500 shadow-sm backdrop-blur-sm ring-1 ring-slate-200/80"
+            className="whitespace-nowrap rounded-full bg-white/80 px-4 py-1.5 text-center text-[11px] font-medium text-subtext shadow-sm backdrop-blur-sm ring-1 ring-slate-200/80"
             initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}

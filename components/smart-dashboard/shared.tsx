@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 
-export const NAVY = "#0F172A";
-export const GREEN = "#10B981";
+export const NAVY = "#0A1E3B";
+export const GREEN = "#2D6A4F";
 
 export type DashboardNavId =
   | "Dashboard"
@@ -81,11 +81,11 @@ export function SoftBadge({
   tone?: "green" | "red" | "orange" | "blue" | "gray" | "purple";
 }) {
   const map = {
-    green: "bg-emerald-50 text-emerald-700",
+    green: "bg-brand-green-light text-brand-green-dark",
     red: "bg-red-50 text-red-600",
     orange: "bg-orange-50 text-orange-600",
     blue: "bg-sky-50 text-sky-700",
-    gray: "bg-gray-100 text-gray-500",
+    gray: "bg-gray-100 text-subtext",
     purple: "bg-violet-50 text-violet-700",
   };
   return (

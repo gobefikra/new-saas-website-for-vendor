@@ -9,7 +9,7 @@ export default function ReadingProgressBar() {
   return (
     <motion.div
       style={{ width }}
-      className="fixed top-16 md:top-[4.5rem] left-0 h-1 bg-emerald-500 z-[45] rounded-r-full origin-left"
+      className="fixed top-16 md:top-[4.5rem] left-0 h-1 bg-brand-green z-[45] rounded-r-full origin-left"
     />
   );
 }

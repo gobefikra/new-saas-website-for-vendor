@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useReducedMotion } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
 import {
   BarChart3,
@@ -13,7 +13,7 @@ import {
   UserCheck,
 } from "lucide-react";
 
-const GREEN = "#10B981";
+const GREEN = "#2D6A4F";
 const DARK_PANEL = "#0a120e";
 const CARD_BG = "#0f1f18";
 const CARD_BORDER = "#1a3328";
@@ -76,6 +76,7 @@ function angleTo(x: number, y: number) {
 }
 
 function CentralOrb({ compact = false }: { compact?: boolean }) {
+  const reduceMotion = useReducedMotion();
   const size = compact
     ? "relative h-[120px] w-[120px] sm:h-[140px] sm:w-[140px]"
     : "relative h-[200px] w-[200px] sm:h-[240px] sm:w-[240px]";
@@ -94,27 +95,47 @@ function CentralOrb({ compact = false }: { compact?: boolean }) {
       <motion.div
         className={glow}
         style={{ background: `radial-gradient(circle, ${GREEN} 0%, transparent 70%)` }}
-        animate={{ opacity: [0.3, 0.55, 0.3], scale: [0.95, 1.08, 0.95] }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+        animate={
+          reduceMotion
+            ? { opacity: 0.4 }
+            : { opacity: [0.3, 0.55, 0.3], scale: [0.95, 1.08, 0.95] }
+        }
+        transition={
+          reduceMotion
+            ? { duration: 0 }
+            : { duration: 4, repeat: Infinity, ease: "easeInOut" }
+        }
       />
       <motion.svg
         viewBox="0 0 200 200"
         className={size}
         aria-hidden
-        animate={{ scale: [1, 1.03, 1] }}
-        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+        animate={reduceMotion ? undefined : { scale: [1, 1.03, 1] }}
+        transition={
+          reduceMotion
+            ? undefined
+            : { duration: 5, repeat: Infinity, ease: "easeInOut" }
+        }
       >
         <motion.g
           style={{ transformOrigin: "100px 100px" }}
-          animate={{ rotate: 360 }}
-          transition={{ duration: 48, repeat: Infinity, ease: "linear" }}
+          animate={reduceMotion ? undefined : { rotate: 360 }}
+          transition={
+            reduceMotion
+              ? undefined
+              : { duration: 48, repeat: Infinity, ease: "linear" }
+          }
         >
           <circle cx="100" cy="100" r="92" fill="none" stroke={GREEN} strokeOpacity="0.2" strokeWidth="1" strokeDasharray="6 8" />
         </motion.g>
         <motion.g
           style={{ transformOrigin: "100px 100px" }}
-          animate={{ rotate: -360 }}
-          transition={{ duration: 32, repeat: Infinity, ease: "linear" }}
+          animate={reduceMotion ? undefined : { rotate: -360 }}
+          transition={
+            reduceMotion
+              ? undefined
+              : { duration: 32, repeat: Infinity, ease: "linear" }
+          }
         >
           <circle cx="100" cy="100" r="72" fill="none" stroke={GREEN} strokeOpacity="0.45" strokeWidth="1" strokeDasharray="4 6" />
           {[0, 60, 120, 180, 240, 300].map((deg) => {
@@ -127,7 +148,7 @@ function CentralOrb({ compact = false }: { compact?: boolean }) {
         <defs>
           <radialGradient id={compact ? "orb-core-mobile" : "orb-core"} cx="50%" cy="45%" r="55%">
             <stop offset="0%" stopColor="#4ade80" stopOpacity="0.9" />
-            <stop offset="55%" stopColor="#10B981" stopOpacity="0.55" />
+            <stop offset="55%" stopColor="#2D6A4F" stopOpacity="0.55" />
             <stop offset="100%" stopColor="#052e16" stopOpacity="0.2" />
           </radialGradient>
           <pattern id={compact ? "orb-mesh-mobile" : "orb-mesh"} width="8" height="8" patternUnits="userSpaceOnUse">
@@ -139,13 +160,21 @@ function CentralOrb({ compact = false }: { compact?: boolean }) {
           cy="100"
           r="58"
           fill={`url(#${compact ? "orb-core-mobile" : "orb-core"})`}
-          animate={{ opacity: [0.85, 1, 0.85] }}
-          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          animate={reduceMotion ? { opacity: 1 } : { opacity: [0.85, 1, 0.85] }}
+          transition={
+            reduceMotion
+              ? { duration: 0 }
+              : { duration: 3, repeat: Infinity, ease: "easeInOut" }
+          }
         />
         <motion.g
           style={{ transformOrigin: "100px 100px" }}
-          animate={{ rotate: 360 }}
-          transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+          animate={reduceMotion ? undefined : { rotate: 360 }}
+          transition={
+            reduceMotion
+              ? undefined
+              : { duration: 60, repeat: Infinity, ease: "linear" }
+          }
         >
           <circle cx="100" cy="100" r="58" fill={`url(#${compact ? "orb-mesh-mobile" : "orb-mesh"})`} />
         </motion.g>
@@ -173,6 +202,7 @@ function OrbitFeatureCard({
   const { title, description, Icon, row } = feature;
   const floatDelay = row * 0.4;
   const outer = isOuterRow(row);
+  const reduceMotion = useReducedMotion();
 
   return (
     <motion.div
@@ -192,26 +222,30 @@ function OrbitFeatureCard({
       onMouseLeave={onLeave}
     >
       <motion.div
-        animate={{ y: [0, -5, 0] }}
-        transition={{
-          duration: 3.2,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: floatDelay,
-        }}
+        animate={reduceMotion ? undefined : { y: [0, -5, 0] }}
+        transition={
+          reduceMotion
+            ? undefined
+            : {
+                duration: 3.2,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: floatDelay,
+              }
+        }
       >
         <div
           className="flex h-[84px] items-start gap-3 rounded-2xl border px-3.5 py-3 transition-colors duration-300"
           style={{
             backgroundColor: active ? "#122820" : CARD_BG,
             borderColor: active ? GREEN : CARD_BORDER,
-            boxShadow: active ? `0 0 28px rgba(16, 185, 129,0.22)` : "none",
+            boxShadow: active ? `0 0 28px rgba(45, 106, 79,0.22)` : "none",
             transform: active ? "scale(1.02)" : "scale(1)",
           }}
         >
           <motion.div
             className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full"
-            style={{ backgroundColor: "rgba(16, 185, 129,0.15)" }}
+            style={{ backgroundColor: "rgba(45, 106, 79,0.15)" }}
             animate={active ? { scale: [1, 1.08, 1] } : { scale: 1 }}
             transition={{ duration: 1.2, repeat: active ? Infinity : 0 }}
           >
@@ -285,7 +319,7 @@ export function RavenOrbitPanel() {
         className="pointer-events-none absolute inset-0 opacity-60"
         style={{
           background:
-            "radial-gradient(ellipse 55% 45% at 50% 45%, rgba(16, 185, 129,0.14), transparent 70%)",
+            "radial-gradient(ellipse 55% 45% at 50% 45%, rgba(45, 106, 79,0.14), transparent 70%)",
         }}
       />
 
@@ -322,7 +356,7 @@ export function RavenOrbitPanel() {
                   y1={orbitPt.y}
                   x2={f.anchor.x}
                   y2={f.anchor.y}
-                  stroke={active ? GREEN : "rgba(16, 185, 129,0.35)"}
+                  stroke={active ? GREEN : "rgba(45, 106, 79,0.35)"}
                   strokeWidth={active ? 2 : 1.5}
                   animate={{ strokeOpacity: active ? [0.7, 1, 0.7] : [0.25, 0.45, 0.25] }}
                   transition={{
@@ -427,7 +461,7 @@ export function RavenOrbitPanel() {
             >
               <div
                 className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full sm:h-9 sm:w-9"
-                style={{ backgroundColor: "rgba(16, 185, 129,0.15)" }}
+                style={{ backgroundColor: "rgba(45, 106, 79,0.15)" }}
               >
                 <f.Icon className="h-3.5 w-3.5 sm:h-4 sm:w-4" style={{ color: GREEN }} />
               </div>

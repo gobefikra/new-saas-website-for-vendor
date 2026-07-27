@@ -3,14 +3,51 @@
 @tailwind utilities;
 
 :root {
-  --primary-green: #10b981;
-  --lime-accent: #10b981;
-  --forest-dark: #0d2b1f;
-  --navy-dark: #0f172a;
-  --near-black: #111827;
-  --body: #374151;
-  --subtext: #6b7280;
-  --footer-dark: #0a1f14;
+  /* GoBefikra / Travel Befikra colour tokens */
+  --color-navy: #0a1e3b;
+  --color-green: #2d6a4f;
+  --color-green-dark: #1f4d38;
+  --color-green-light: #e8f3ee;
+  --color-action: #1a5c3a;
+  --color-muted: #6b7280;
+  --color-orange: #f5a623;
+  --color-star: #fbbf24;
+  --color-border: #e5e7eb;
+  --color-surface-hover: #f9fafb;
+  --color-ink: #111827;
+  --color-danger: #e74c3c;
+  --color-info: #2563eb;
+  --color-footer: #06140f;
+  --color-footer-link: #a8b4c8;
+  --color-accent-mint: #6ee7b7;
+  --color-body: #4a4a4a;
+  --color-white: #ffffff;
+  --color-dark: #06140f;
+  --color-dark-card: #0e1f13;
+  --color-dark-panel: #0a1510;
+  --color-dark-elevated: #12281c;
+  --focus-ring: 2px solid #2d6a4f;
+
+  /* Shadows (navy-tinted) */
+  --shadow-card: 0 2px 12px rgba(10, 30, 59, 0.06);
+  --shadow-card-hover: 0 8px 28px rgba(10, 30, 59, 0.12);
+  --shadow-modal: 0 24px 80px rgba(10, 30, 59, 0.28);
+  --shadow-cta-glow: 0 4px 14px rgba(31, 77, 56, 0.25);
+
+  /* Motion */
+  --ease-brand: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-ui: 200ms;
+  --duration-enter: 280ms;
+
+  /* Legacy aliases */
+  --primary-green: var(--color-green);
+  --lime-accent: var(--color-green);
+  --forest-dark: var(--color-green-dark);
+  --navy-dark: var(--color-navy);
+  --near-black: var(--color-ink);
+  --body: var(--color-body);
+  --subtext: var(--color-muted);
+  --footer-dark: var(--color-footer);
 }
 
 html {
@@ -18,9 +55,19 @@ html {
 }
 
 body {
-  color: var(--body);
-  background: #ffffff;
+  color: var(--color-body);
+  background: var(--color-white);
   overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-green-light);
+  color: var(--color-navy);
+}
+
+:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: 2px;
 }
 
 @keyframes nav-progress {
@@ -36,21 +83,105 @@ body {
 }
 
 .nav-progress-bar {
-  animation: nav-progress 1.1s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+  animation: nav-progress 1.1s var(--ease-brand) infinite;
   transform-origin: left center;
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-brand-green px-7 py-3 text-sm font-semibold text-white shadow-cta-glow transition-all duration-200 ease-brand hover:bg-brand-green-dark active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-green/60 focus-visible:ring-offset-2;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-border-default bg-white px-7 py-3 text-sm font-semibold text-navy transition-all duration-200 ease-brand hover:border-brand-green hover:bg-off-white active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-green/60 focus-visible:ring-offset-2;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-1 text-sm font-semibold text-brand-green-dark underline-offset-4 transition-colors duration-200 hover:text-brand-green hover:underline;
+  }
+
+  .card-brand {
+    @apply rounded-2xl border border-border-default bg-white shadow-card transition-all duration-200 ease-brand hover:-translate-y-1.5 hover:border-brand-green hover:shadow-card-hover;
+  }
+
+  .card-brand-static {
+    @apply rounded-2xl border border-border-default bg-white shadow-card;
+  }
+
+  .card-brand-soft {
+    @apply rounded-2xl border border-brand-green/20 bg-brand-green-light shadow-card transition-all duration-200 ease-brand hover:-translate-y-1.5 hover:border-brand-green hover:shadow-card-hover;
+  }
+
+  .card-brand-dark {
+    @apply rounded-2xl border border-white/10 bg-[var(--color-dark-elevated)] shadow-card transition-all duration-200 ease-brand hover:-translate-y-1 hover:border-brand-green/40 hover:shadow-card-hover;
+  }
+
+  .card-brand-featured {
+    @apply rounded-2xl border-2 border-brand-green bg-white shadow-card-hover transition-all duration-200 ease-brand hover:-translate-y-1.5 hover:shadow-card-hover;
+  }
+
+  .input-brand {
+    @apply w-full rounded-xl border border-[#D1D5DB] bg-white px-4 py-3 text-sm text-navy outline-none transition-all duration-200 placeholder:text-subtext focus:border-brand-green focus:ring-2 focus:ring-brand-green/20;
+  }
+
+  .chip-open {
+    @apply inline-flex items-center gap-1.5 rounded-full bg-brand-green-light px-3 py-1 text-xs font-semibold text-brand-green-dark;
+  }
+
+  .chip-progress {
+    @apply inline-flex items-center gap-1.5 rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700;
+  }
+
+  .chip-awaiting {
+    @apply inline-flex items-center gap-1.5 rounded-full bg-amber-50 px-3 py-1 text-xs font-semibold text-amber-700;
+  }
+
+  .section-eyebrow {
+    @apply inline-flex items-center gap-2 font-sans text-eyebrow font-semibold uppercase text-brand-green;
+  }
+
+  .section-title {
+    @apply font-display text-[1.875rem] font-semibold leading-[1.12] tracking-[-0.02em] text-navy md:text-[2.5rem] lg:text-[2.75rem];
+  }
+
+  .script-accent {
+    @apply font-script leading-none text-brand-green;
+  }
+
+  /* Escape-style gold underline (matches GoBefikra accent) */
+  .script-gold-underline {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 10' fill='none'%3E%3Cpath d='M3 7.2C22 3.8 48 2.2 78 3.6C104 4.9 132 6.4 157 4.8' stroke='%23F5A623' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: left 92%;
+    background-size: 92% 0.42em;
+    padding-bottom: 0.12em;
+  }
+
+  .script-underline {
+    @apply script-gold-underline;
+  }
+
+  .script-lockup {
+    /* Room for the dashed trail + arrowhead on the right */
+    padding-right: 2.25rem;
+  }
+
+  .script-trail {
+    transform-origin: left bottom;
+  }
 }
 
 @layer utilities {
   .text-gradient-cta {
-    @apply bg-gradient-to-b from-white via-white to-lime-accent bg-clip-text text-transparent;
+    @apply bg-gradient-to-b from-white via-white to-brand-green-light bg-clip-text text-transparent;
   }
 
   .text-gradient-lime-emerald {
-    @apply bg-gradient-to-r from-emerald-400 to-emerald-600 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-brand-green to-brand-green-dark bg-clip-text text-transparent;
   }
 
   .text-gradient-custom-ai {
-    @apply bg-gradient-to-r from-pink-400 via-purple-500 to-blue-500 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-brand-green via-explore to-brand-green-dark bg-clip-text text-transparent;
   }
 }
 
@@ -103,9 +234,18 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .testimonials-marquee-down,
-  .testimonials-marquee-up {
-    animation: none;
-    transform: none;
+  .testimonials-marquee-up,
+  .integrations-marquee-track.integrations-marquee-active,
+  .icon-pulse-soft,
+  .dashboard-glow {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .feature-card,
+  .integrations-icon-enter,
+  .card-brand {
+    transition: none !important;
   }
 }
 
@@ -131,8 +271,8 @@ body {
   opacity: 0;
   transform: translateX(28px);
   transition:
-    opacity 0.55s ease,
-    transform 0.55s ease;
+    opacity 0.55s var(--ease-brand),
+    transform 0.55s var(--ease-brand);
 }
 
 .integrations-icon-enter.integrations-icon-visible {
@@ -144,10 +284,11 @@ body {
   opacity: 0;
   transform: translateY(22px);
   transition:
-    opacity 0.55s ease,
-    transform 0.55s ease,
+    opacity 0.55s var(--ease-brand),
+    transform 0.55s var(--ease-brand),
     background-color 0.3s ease,
-    box-shadow 0.3s ease;
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
 }
 
 .feature-card.feature-card-visible {
@@ -157,7 +298,9 @@ body {
 
 .feature-card:hover {
   background-color: #ffffff;
-  box-shadow: 0 8px 28px rgba(13, 27, 42, 0.08);
+  border-color: var(--color-green);
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-6px);
 }
 
 .feature-card-title::after {
@@ -167,8 +310,8 @@ body {
   bottom: -4px;
   height: 2px;
   width: 0;
-  background-color: #10B981;
-  transition: width 0.3s ease;
+  background-color: var(--color-green);
+  transition: width 0.3s var(--ease-brand);
 }
 
 .feature-card:hover .feature-card-title::after {
@@ -200,7 +343,7 @@ body {
 }
 
 .dashboard-overlay-in {
-  animation: dashboard-overlay-fade 0.4s ease forwards;
+  animation: dashboard-overlay-fade 0.4s var(--ease-brand) forwards;
 }
 
 @keyframes dashboard-overlay-fade {
@@ -215,7 +358,7 @@ body {
 /* Custom dashboard mock scrollbar */
 .dashboard-scroll {
   scrollbar-width: thin;
-  scrollbar-color: #10b981 #ecfdf5;
+  scrollbar-color: var(--color-green) var(--color-green-light);
 }
 
 .dashboard-scroll::-webkit-scrollbar {
@@ -225,20 +368,30 @@ body {
 
 .dashboard-scroll::-webkit-scrollbar-track {
   margin: 6px 0;
-  background: linear-gradient(180deg, #ecfdf5 0%, #f0fdf4 100%);
+  background: linear-gradient(180deg, var(--color-green-light) 0%, #f0f7f3 100%);
   border-radius: 999px;
-  border: 1px solid #d1fae5;
+  border: 1px solid #d1e8dc;
 }
 
 .dashboard-scroll::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #34d399 0%, #10b981 55%, #059669 100%);
+  background: linear-gradient(
+    180deg,
+    #3d8a64 0%,
+    var(--color-green) 55%,
+    var(--color-green-dark) 100%
+  );
   border-radius: 999px;
-  border: 2px solid #ecfdf5;
+  border: 2px solid var(--color-green-light);
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35);
 }
 
 .dashboard-scroll::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #34d399 0%, #10b981 45%, #047857 100%);
+  background: linear-gradient(
+    180deg,
+    #3d8a64 0%,
+    var(--color-green) 45%,
+    #145230 100%
+  );
 }
 
 .dashboard-scroll::-webkit-scrollbar-corner {

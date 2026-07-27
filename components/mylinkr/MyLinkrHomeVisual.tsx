@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 import PhoneMockup, { MYLINKR_SCREENS } from "@/components/mylinkr/PhoneMockup";
 
-const GREEN = "#10B981";
+const GREEN = "#2D6A4F";
 
 type ChipDef = {
   id: string;
@@ -30,7 +30,7 @@ const floatChips: ChipDef[] = [
     id: "event",
     label: "Event Booking",
     Icon: Calendar,
-    iconBg: "#ECFDF5",
+    iconBg: "#E8F3EE",
     iconColor: GREEN,
     side: "left",
     row: 0,
@@ -40,8 +40,8 @@ const floatChips: ChipDef[] = [
     id: "themes",
     label: "Custom Themes",
     Icon: Palette,
-    iconBg: "#ECFDF5",
-    iconColor: "#10B981",
+    iconBg: "#E8F3EE",
+    iconColor: "#2D6A4F",
     side: "left",
     row: 1,
     delay: 0.3,
@@ -50,7 +50,7 @@ const floatChips: ChipDef[] = [
     id: "live",
     label: "Live Overview",
     Icon: Activity,
-    iconBg: "#ECFDF5",
+    iconBg: "#E8F3EE",
     iconColor: GREEN,
     side: "left",
     row: 2,
@@ -60,8 +60,8 @@ const floatChips: ChipDef[] = [
     id: "payments",
     label: "Instant Payments",
     Icon: CreditCard,
-    iconBg: "#ECFDF5",
-    iconColor: "#10B981",
+    iconBg: "#E8F3EE",
+    iconColor: "#2D6A4F",
     side: "right",
     row: 0,
     delay: 0.1,
@@ -70,8 +70,8 @@ const floatChips: ChipDef[] = [
     id: "share",
     label: "Share Anywhere",
     Icon: Share2,
-    iconBg: "#ECFDF5",
-    iconColor: "#059669",
+    iconBg: "#E8F3EE",
+    iconColor: "#1F4D38",
     side: "right",
     row: 1,
     delay: 0.4,
@@ -80,7 +80,7 @@ const floatChips: ChipDef[] = [
     id: "track",
     label: "Track Everything",
     Icon: BarChart3,
-    iconBg: "#ECFDF5",
+    iconBg: "#E8F3EE",
     iconColor: GREEN,
     side: "right",
     row: 2,
@@ -104,7 +104,7 @@ function FloatChipCard({ chip }: { chip: ChipDef }) {
         repeat: Infinity,
         ease: "easeInOut",
       }}
-      className={`absolute z-20 flex -translate-y-1/2 items-center gap-2 rounded-xl border border-gray-100 bg-white px-2.5 py-2 shadow-[0_4px_16px_rgba(13,27,42,0.08)] ${
+      className={`absolute z-20 flex -translate-y-1/2 items-center gap-2 rounded-xl border border-border-default bg-white px-2.5 py-2 shadow-[0_4px_16px_rgba(13,27,42,0.08)] ${
         side === "left" ? "left-0" : "right-0"
       }`}
       style={{ top: ROW_TOP[row] }}
@@ -133,12 +133,12 @@ export default function MyLinkrHomeVisual() {
           preserveAspectRatio="none"
           aria-hidden
         >
-          <path d="M280 300 Q200 140 90 60" fill="none" stroke="#10B981" strokeWidth="1.2" strokeDasharray="4 4" opacity="0.3" />
-          <path d="M280 300 Q190 300 90 300" fill="none" stroke="#10B981" strokeWidth="1.2" strokeDasharray="4 4" opacity="0.3" />
-          <path d="M280 300 Q190 460 100 540" fill="none" stroke="#10B981" strokeWidth="1.2" strokeDasharray="4 4" opacity="0.3" />
-          <path d="M280 300 Q360 140 470 60" fill="none" stroke="#10B981" strokeWidth="1.2" strokeDasharray="4 4" opacity="0.3" />
-          <path d="M280 300 Q370 300 470 300" fill="none" stroke="#059669" strokeWidth="1.2" strokeDasharray="4 4" opacity="0.3" />
-          <path d="M280 300 Q370 460 470 540" fill="none" stroke="#10B981" strokeWidth="1.2" strokeDasharray="4 4" opacity="0.3" />
+          <path d="M280 300 Q200 140 90 60" fill="none" stroke="#2D6A4F" strokeWidth="1.2" strokeDasharray="4 4" opacity="0.3" />
+          <path d="M280 300 Q190 300 90 300" fill="none" stroke="#2D6A4F" strokeWidth="1.2" strokeDasharray="4 4" opacity="0.3" />
+          <path d="M280 300 Q190 460 100 540" fill="none" stroke="#2D6A4F" strokeWidth="1.2" strokeDasharray="4 4" opacity="0.3" />
+          <path d="M280 300 Q360 140 470 60" fill="none" stroke="#2D6A4F" strokeWidth="1.2" strokeDasharray="4 4" opacity="0.3" />
+          <path d="M280 300 Q370 300 470 300" fill="none" stroke="#1F4D38" strokeWidth="1.2" strokeDasharray="4 4" opacity="0.3" />
+          <path d="M280 300 Q370 460 470 540" fill="none" stroke="#2D6A4F" strokeWidth="1.2" strokeDasharray="4 4" opacity="0.3" />
         </svg>
 
         <div className="absolute left-1/2 top-1/2 z-10 w-[min(42%,220px)] -translate-x-1/2 -translate-y-1/2">
@@ -149,7 +149,7 @@ export default function MyLinkrHomeVisual() {
           >
             <PhoneMockup
               screenSrc={MYLINKR_SCREENS.hero}
-              className="w-full drop-shadow-[0_24px_48px_rgba(15,23,42,0.18)]"
+              className="w-full drop-shadow-[0_24px_48px_rgba(10,30,59,0.18)]"
               frameWidth={220}
               frameHeight={456}
               priority
@@ -186,7 +186,7 @@ export default function MyLinkrHomeVisual() {
           {floatChips.map(({ id, label, Icon, iconBg, iconColor }) => (
             <span
               key={id}
-              className="inline-flex items-center gap-1.5 rounded-full border border-gray-100 bg-white px-3 py-1.5 text-xs font-semibold text-gray-800 shadow-sm"
+              className="inline-flex items-center gap-1.5 rounded-full border border-border-default bg-white px-3 py-1.5 text-xs font-semibold text-gray-800 shadow-sm"
             >
               <span
                 className="flex h-5 w-5 items-center justify-center rounded-md"

@@ -19,13 +19,14 @@ import {
 } from "lucide-react";
 import { InstagramLogo } from "@/components/integrations/BrandLogos";
 import { fadeInUp, staggerContainer } from "@/components/motion";
+import SectionHeading from "@/components/ui/SectionHeading";
 import { brand } from "@/lib/brand-theme";
 
-const GREEN = brand.primary;
-const GREEN_DARK = brand.primaryDark;
+const GREEN = brand.green;
+const GREEN_DARK = brand.greenDark;
 const NAVY = brand.navy;
-const MINT = brand.mint;
-const BODY = brand.subtext;
+const MINT = brand.greenLight;
+const BODY = brand.muted;
 
 const topFeatures = [
   {
@@ -122,45 +123,19 @@ export default function ChannelsSection() {
       className="w-full overflow-hidden bg-white px-4 py-16 md:py-20"
     >
       <div className="mx-auto max-w-6xl">
-        {/* Badge */}
         <motion.div
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
           variants={fadeInUp}
-          className="flex justify-center"
         >
-          <span
-            className="inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-sm font-medium"
-            style={{ borderColor: "#A7F3D0", backgroundColor: MINT, color: GREEN_DARK }}
-          >
-            <Link2 className="h-4 w-4" strokeWidth={2.25} />
-            All your channels. One smart CRM.
-          </span>
+          <SectionHeading
+            eyebrow="All your channels. One smart CRM."
+            eyebrowIcon={<Link2 className="h-3.5 w-3.5" strokeWidth={2.25} />}
+            title="Connect Your"
+            script="customer channels"
+            description="Capture leads, reply instantly, and manage bookings from WhatsApp, Instagram, and Befikra - all in one CRM."
+          />
         </motion.div>
-
-        {/* Heading */}
-        <motion.h2
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          variants={fadeInUp}
-          className="mx-auto mt-6 max-w-3xl text-center text-3xl font-extrabold leading-tight md:text-4xl lg:text-[2.75rem]"
-          style={{ color: NAVY }}
-        >
-          Connect Your{" "}
-          <span style={{ color: GREEN }}>Customer Channels</span>
-        </motion.h2>
-
-        <motion.p
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          variants={fadeInUp}
-          transition={{ delay: 0.08 }}
-          className="mx-auto mt-4 max-w-2xl text-center font-dm-sans text-base md:text-lg"
-          style={{ color: BODY }}
-        >
-          Capture leads, reply instantly, and manage bookings from WhatsApp,
-          Instagram, and Befikra - all in one CRM.
-        </motion.p>
 
         {/* Top 3 features */}
         <motion.div
@@ -184,7 +159,7 @@ export default function ChannelsSection() {
               <p className="mt-3 text-sm font-bold" style={{ color: NAVY }}>
                 {title}
               </p>
-              <p className="mt-0.5 font-dm-sans text-sm" style={{ color: BODY }}>
+              <p className="mt-0.5 font-sans text-sm" style={{ color: BODY }}>
                 {desc}
               </p>
             </motion.div>
@@ -202,10 +177,11 @@ export default function ChannelsSection() {
             <motion.article
               key={card.id}
               variants={fadeInUp}
-              className={`relative flex flex-col overflow-hidden rounded-2xl bg-white shadow-[0_4px_24px_rgba(13,27,42,0.06)] ${
-                card.featured ? "border-2 z-10 lg:-mt-1 lg:mb-1" : "border border-gray-100"
+              className={`relative flex flex-col overflow-hidden rounded-2xl bg-white shadow-card transition-all duration-200 ease-brand hover:-translate-y-1.5 hover:shadow-card-hover ${
+                card.featured
+                  ? "z-10 border-2 border-brand-green lg:-mt-1 lg:mb-1"
+                  : "border border-border-default hover:border-brand-green"
               }`}
-              style={card.featured ? { borderColor: GREEN } : undefined}
             >
               {card.badge && (
                 <span
@@ -248,13 +224,13 @@ export default function ChannelsSection() {
                 <h3 className="text-lg font-bold" style={{ color: NAVY }}>
                   {card.title}
                 </h3>
-                <p className="mt-2 font-dm-sans text-sm leading-relaxed" style={{ color: BODY }}>
+                <p className="mt-2 font-sans text-sm leading-relaxed" style={{ color: BODY }}>
                   {card.desc}
                 </p>
 
                 <ul className="mt-5 flex-1 space-y-2.5 pb-6">
                   {card.items.map((item) => (
-                    <li key={item} className="flex items-start gap-2.5 font-dm-sans text-sm" style={{ color: BODY }}>
+                    <li key={item} className="flex items-start gap-2.5 font-sans text-sm" style={{ color: BODY }}>
                       <Check
                         className="mt-0.5 h-4 w-4 shrink-0"
                         style={{ color: GREEN }}
@@ -290,7 +266,7 @@ export default function ChannelsSection() {
           animate={inView ? "visible" : "hidden"}
           variants={fadeInUp}
           transition={{ delay: 0.2 }}
-          className="mt-8 grid grid-cols-2 items-start gap-x-3 gap-y-6 border-t border-gray-100 pt-8 sm:mt-10 sm:gap-x-6 sm:pt-10 lg:mt-12 lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:gap-8"
+          className="mt-8 grid grid-cols-2 items-start gap-x-3 gap-y-6 border-t border-border-default pt-8 sm:mt-10 sm:gap-x-6 sm:pt-10 lg:mt-12 lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:gap-8"
         >
           <div className="order-1 flex items-start gap-2.5 sm:items-center sm:gap-3 lg:justify-start">
             <div
@@ -307,21 +283,21 @@ export default function ChannelsSection() {
               <p className="text-xs font-bold leading-snug sm:text-sm" style={{ color: NAVY }}>
                 Secure & Reliable
               </p>
-              <p className="font-dm-sans mt-0.5 text-[10px] leading-snug sm:text-xs" style={{ color: BODY }}>
+              <p className="font-sans mt-0.5 text-[10px] leading-snug sm:text-xs" style={{ color: BODY }}>
                 Your data is safe with enterprise-grade security.
               </p>
             </div>
           </div>
 
           <div className="order-3 col-span-2 text-center lg:order-2 lg:col-span-1">
-            <p className="font-dm-sans text-xs font-medium sm:text-sm" style={{ color: BODY }}>
+            <p className="font-sans text-xs font-medium sm:text-sm" style={{ color: BODY }}>
               Trusted by 500+ travel brands and startups
             </p>
             <div className="mt-3 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 opacity-50 grayscale sm:mt-4 sm:gap-5">
               {brandLogos.map((name) => (
                 <span
                   key={name}
-                  className={`font-dm-sans text-[9px] font-bold uppercase tracking-wider text-gray-500 sm:text-[11px] ${
+                  className={`font-sans text-[9px] font-bold uppercase tracking-wider text-subtext sm:text-[11px] ${
                     name === "tripoto" ? "normal-case tracking-normal" : ""
                   }`}
                 >
@@ -346,7 +322,7 @@ export default function ChannelsSection() {
               <p className="text-xs font-bold leading-snug sm:text-sm" style={{ color: NAVY }}>
                 Quick & Easy Setup
               </p>
-              <p className="font-dm-sans mt-0.5 text-[10px] leading-snug sm:text-xs" style={{ color: BODY }}>
+              <p className="font-sans mt-0.5 text-[10px] leading-snug sm:text-xs" style={{ color: BODY }}>
                 Connect your channels in just a few clicks.
               </p>
             </div>
@@ -359,7 +335,7 @@ export default function ChannelsSection() {
           animate={inView ? "visible" : "hidden"}
           variants={fadeInUp}
           transition={{ delay: 0.25 }}
-          className="mt-6 grid grid-cols-3 gap-2 border-t border-gray-50 pt-5 font-dm-sans text-[10px] sm:mt-10 sm:flex sm:flex-wrap sm:items-center sm:justify-center sm:gap-x-4 sm:gap-y-2 sm:border-0 sm:pt-0 sm:text-sm"
+          className="mt-6 grid grid-cols-3 gap-2 border-t border-gray-50 pt-5 font-sans text-[10px] sm:mt-10 sm:flex sm:flex-wrap sm:items-center sm:justify-center sm:gap-x-4 sm:gap-y-2 sm:border-0 sm:pt-0 sm:text-sm"
           style={{ color: BODY }}
         >
           <span className="inline-flex flex-col items-center gap-1 text-center sm:flex-row sm:gap-2 sm:text-left">

@@ -15,10 +15,10 @@ export default function MoreBlogs({ currentSlug }: { currentSlug: string }) {
   return (
     <section ref={ref} className="mt-16">
       <div className="mb-8 flex items-center justify-between">
-        <h2 className="text-2xl font-bold text-gray-900">More from the blog</h2>
+        <h2 className="text-2xl font-bold text-navy">More from the blog</h2>
         <Link
           href="/blogs"
-          className="text-sm font-semibold text-emerald-500 hover:text-emerald-600"
+          className="text-sm font-semibold text-brand-green hover:text-brand-green-dark"
         >
           View All ›
         </Link>

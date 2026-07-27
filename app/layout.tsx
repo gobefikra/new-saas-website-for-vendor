@@ -1,5 +1,6 @@
+import type { CSSProperties } from "react";
 import type { Metadata } from "next";
-import { DM_Sans, Plus_Jakarta_Sans } from "next/font/google";
+import { DM_Sans, Kaushan_Script, Plus_Jakarta_Sans } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import NavigationProgress from "@/components/NavigationProgress";
 import RoutePrefetcher from "@/components/RoutePrefetcher";
@@ -13,6 +14,7 @@ import {
 } from "@/lib/site";
 import "./globals.css";
 
+/* Travelia unavailable → Plus Jakarta as soft geometric UI fallback */
 const plusJakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
@@ -20,10 +22,18 @@ const plusJakarta = Plus_Jakarta_Sans({
   display: "swap",
 });
 
+/* Brice unavailable → Georgia as elegant display fallback (via CSS stack) */
 const dmSans = DM_Sans({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
   variable: "--font-dm-sans",
+  display: "swap",
+});
+
+const kaushan = Kaushan_Script({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-script",
   display: "swap",
 });
 
@@ -85,7 +95,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en-IN" className={`${plusJakarta.variable} ${dmSans.variable}`}>
+    <html
+      lang="en-IN"
+      className={`${plusJakarta.variable} ${dmSans.variable} ${kaushan.variable}`}
+      style={
+        {
+          "--font-ui": "var(--font-plus-jakarta)",
+          "--font-display": "Georgia, 'Times New Roman', serif",
+        } as CSSProperties
+      }
+    >
       <head>
         {/* Preload both logos so dark/light swap never waits on a network fetch */}
         <link rel="preload" as="image" href="/icons/Nav-logo.png" />

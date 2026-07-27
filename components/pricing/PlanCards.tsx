@@ -33,10 +33,8 @@ function PricingCard({ plan, billing }: { plan: Plan; billing: BillingCycle }) {
 
   return (
     <div
-      className={`relative flex h-full flex-col rounded-2xl border bg-white p-6 md:p-7 ${
-        plan.featured
-          ? "border-[#10B981] shadow-[0_8px_32px_rgba(16,185,129,0.12)]"
-          : "border-gray-200 shadow-[0_2px_16px_rgba(13,27,42,0.04)]"
+      className={`relative flex h-full flex-col p-6 md:p-7 ${
+        plan.featured ? "card-brand-featured" : "card-brand"
       }`}
     >
       {plan.featured && plan.featuredBadge && (
@@ -49,11 +47,11 @@ function PricingCard({ plan, billing }: { plan: Plan; billing: BillingCycle }) {
       )}
 
       <div>
-        <h3 className="text-xl font-bold tracking-tight" style={{ color: brand.navy }}>
+        <h3 className="font-display text-xl font-semibold tracking-[-0.02em]" style={{ color: brand.navy }}>
           {fullName}
         </h3>
         <p
-          className="font-dm-sans mt-2 text-sm leading-relaxed"
+          className="font-sans mt-2 text-sm leading-relaxed"
           style={{ color: brand.subtext }}
         >
           {plan.description}
@@ -84,7 +82,7 @@ function PricingCard({ plan, billing }: { plan: Plan; billing: BillingCycle }) {
               ₹{price}
             </span>
             <span
-              className="font-dm-sans text-sm font-medium"
+              className="font-sans text-sm font-medium"
               style={{ color: brand.subtext }}
             >
               /month
@@ -93,7 +91,7 @@ function PricingCard({ plan, billing }: { plan: Plan; billing: BillingCycle }) {
         )}
 
         <p
-          className="font-dm-sans mt-2 text-sm leading-snug"
+          className="font-sans mt-2 text-sm leading-snug"
           style={{ color: brand.subtext }}
         >
           {strike.showStrike ? (
@@ -119,7 +117,7 @@ function PricingCard({ plan, billing }: { plan: Plan; billing: BillingCycle }) {
         </p>
       </div>
 
-      <ul className="mt-6 flex flex-1 flex-col gap-2.5 border-t border-gray-100 pt-6">
+      <ul className="mt-6 flex flex-1 flex-col gap-2.5 border-t border-border-default pt-6">
         {plan.highlights.map((item) => (
           <li key={item} className="flex items-start gap-2.5">
             <span
@@ -133,7 +131,7 @@ function PricingCard({ plan, billing }: { plan: Plan; billing: BillingCycle }) {
               />
             </span>
             <span
-              className="font-dm-sans text-sm leading-snug"
+              className="font-sans text-sm leading-snug"
               style={{ color: brand.body }}
             >
               {item}

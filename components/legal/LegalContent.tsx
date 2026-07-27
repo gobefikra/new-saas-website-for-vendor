@@ -1,6 +1,6 @@
 export function LegalIntro({ children }: { children: React.ReactNode }) {
   return (
-    <div className="text-gray-600 text-base leading-relaxed mb-10">{children}</div>
+    <div className="text-subtext text-base leading-relaxed mb-10">{children}</div>
   );
 }
 
@@ -18,10 +18,10 @@ export function LegalSection({
   return (
     <section
       className={
-        showDivider ? "border-t border-gray-100 mt-10 pt-10" : "mt-0"
+        showDivider ? "border-t border-border-default mt-10 pt-10" : "mt-0"
       }
     >
-      <h2 className="text-xl font-bold text-gray-900 mb-3">
+      <h2 className="text-xl font-bold text-navy mb-3">
         {number}. {title}
       </h2>
       {children}
@@ -39,13 +39,13 @@ export function LegalSubheading({ children }: { children: React.ReactNode }) {
 
 export function LegalP({ children }: { children: React.ReactNode }) {
   return (
-    <p className="text-gray-600 text-base leading-relaxed mb-4">{children}</p>
+    <p className="text-subtext text-base leading-relaxed mb-4">{children}</p>
   );
 }
 
 export function LegalList({ items }: { items: string[] }) {
   return (
-    <ul className="list-disc list-inside space-y-2 text-gray-600 text-base ml-2 mb-4">
+    <ul className="list-disc list-inside space-y-2 text-subtext text-base ml-2 mb-4">
       {items.map((item) => (
         <li key={item}>{item}</li>
       ))}
@@ -57,7 +57,7 @@ export function LegalEmailLink() {
   return (
     <a
       href="mailto:support@befikra.com"
-      className="text-emerald-600 hover:underline font-medium"
+      className="text-brand-green-dark hover:underline font-medium"
     >
       support@befikra.com
     </a>

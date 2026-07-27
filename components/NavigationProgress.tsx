@@ -61,7 +61,7 @@ export default function NavigationProgress() {
       aria-label="Loading page"
       aria-valuetext="Loading"
     >
-      <div className="nav-progress-bar h-full w-full origin-left bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.65)]" />
+      <div className="nav-progress-bar h-full w-full origin-left bg-brand-green shadow-[0_0_10px_rgba(45,106,79,0.65)]" />
     </div>
   );
 }

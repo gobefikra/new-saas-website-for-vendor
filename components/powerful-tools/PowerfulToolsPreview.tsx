@@ -12,9 +12,9 @@ import {
   Wallet,
 } from "lucide-react";
 
-const GREEN = "#10B981";
-const NAVY = "#0F172A";
-const MINT = "#ECFDF5";
+const GREEN = "#2D6A4F";
+const NAVY = "#0A1E3B";
+const MINT = "#E8F3EE";
 
 const statCards = [
   { label: "New Leads", value: "128", change: "+18%" },
@@ -83,7 +83,7 @@ function ScribbleLabel() {
           strokeLinejoin="round"
         />
       </svg>
-      <p className="font-dm-sans mt-1 text-xs text-gray-500">
+      <p className="font-sans mt-1 text-xs text-subtext">
         A quick overview of how everything works together.
       </p>
     </div>
@@ -95,10 +95,10 @@ export default function PowerfulToolsPreview() {
     <div className="w-full">
       <ScribbleLabel />
 
-      <div className="overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-[0_12px_48px_rgba(13,27,42,0.08)]">
+      <div className="card-brand-static overflow-hidden">
         <div className="relative flex min-h-[320px] sm:min-h-[360px]">
           {/* Sidebar */}
-          <div className="flex w-10 shrink-0 flex-col items-center gap-3 border-r border-gray-100 bg-gray-50 py-4 sm:w-12">
+          <div className="flex w-10 shrink-0 flex-col items-center gap-3 border-r border-border-default bg-off-white py-4 sm:w-12">
             {sidebarIcons.map(({ Icon, active }, i) => (
               <div
                 key={i}
@@ -122,9 +122,9 @@ export default function PowerfulToolsPreview() {
               {statCards.map((stat) => (
                 <div
                   key={stat.label}
-                  className="rounded-lg border border-gray-100 bg-white p-2"
+                  className="rounded-lg border border-border-default bg-white p-2"
                 >
-                  <p className="text-[9px] text-gray-500 sm:text-[10px]">
+                  <p className="text-[9px] text-subtext sm:text-[10px]">
                     {stat.label}
                   </p>
                   <p
@@ -154,25 +154,25 @@ export default function PowerfulToolsPreview() {
                 {pipelineColumns.map((col) => (
                   <div
                     key={col.title}
-                    className="rounded-lg bg-gray-50 p-1.5"
+                    className="rounded-lg bg-off-white p-1.5"
                   >
                     <div className="mb-1.5 flex items-center justify-between">
-                      <span className="text-[8px] font-semibold text-gray-600 sm:text-[9px]">
+                      <span className="text-[8px] font-semibold text-subtext sm:text-[9px]">
                         {col.title}
                       </span>
-                      <span className="rounded bg-gray-200 px-1 text-[7px] font-bold text-gray-600">
+                      <span className="rounded bg-gray-200 px-1 text-[7px] font-bold text-subtext">
                         {col.count}
                       </span>
                     </div>
                     {col.cards.map((card) => (
                       <div
                         key={card.name}
-                        className="rounded border border-gray-100 bg-white p-1.5"
+                        className="rounded border border-border-default bg-white p-1.5"
                       >
                         <p className="truncate text-[8px] font-bold text-gray-800 sm:text-[9px]">
                           {card.name}
                         </p>
-                        <p className="truncate text-[7px] text-gray-500 sm:text-[8px]">
+                        <p className="truncate text-[7px] text-subtext sm:text-[8px]">
                           {card.trip}
                         </p>
                       </div>
@@ -209,11 +209,11 @@ export default function PowerfulToolsPreview() {
           className="flex w-full items-center justify-between px-4 py-3 text-left transition-opacity hover:opacity-90 sm:px-5"
           style={{ backgroundColor: MINT }}
         >
-          <span className="inline-flex items-center gap-2 text-xs font-semibold sm:text-sm" style={{ color: "#10B981" }}>
+          <span className="inline-flex items-center gap-2 text-xs font-semibold sm:text-sm" style={{ color: "#2D6A4F" }}>
             <Sparkles className="h-4 w-4" strokeWidth={2.25} />
             Watch 1-min product tour
           </span>
-          <ArrowRight className="h-4 w-4" style={{ color: "#10B981" }} strokeWidth={2.25} />
+          <ArrowRight className="h-4 w-4" style={{ color: "#2D6A4F" }} strokeWidth={2.25} />
         </button>
       </div>
     </div>

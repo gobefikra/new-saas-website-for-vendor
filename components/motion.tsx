@@ -2,12 +2,15 @@
 
 import type { Variants } from "framer-motion";
 
+/** Matches design-board easing: cubic-bezier(0.16, 1, 0.3, 1) */
+const brandEase = [0.16, 1, 0.3, 1] as const;
+
 export const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 24 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.55, ease: brandEase },
   },
 };
 
@@ -23,7 +26,7 @@ export const fadeInDown: Variants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.4, ease: brandEase },
   },
 };
 
@@ -32,7 +35,7 @@ export const fadeInLeft: Variants = {
   visible: {
     opacity: 1,
     x: 0,
-    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.55, ease: brandEase },
   },
 };
 
@@ -41,6 +44,6 @@ export const fadeInRight: Variants = {
   visible: {
     opacity: 1,
     x: 0,
-    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.55, ease: brandEase },
   },
 };

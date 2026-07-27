@@ -19,8 +19,8 @@ type FeatureRowProps = {
 
 export default function FeatureRow({ feature, mobilePlan }: FeatureRowProps) {
   return (
-    <div className={`${GRID} border-b border-gray-100 bg-white last:border-b-0`}>
-      <div className="flex items-start gap-1.5 border-gray-100 px-4 py-3.5 lg:items-center lg:border-r md:px-5 md:py-4">
+    <div className={`${GRID} border-b border-border-default bg-white last:border-b-0`}>
+      <div className="flex items-start gap-1.5 border-border-default px-4 py-3.5 lg:items-center lg:border-r md:px-5 md:py-4">
         <span
           className="text-sm font-medium leading-snug"
           style={{ color: brand.navy }}
@@ -47,8 +47,8 @@ export default function FeatureRow({ feature, mobilePlan }: FeatureRowProps) {
         return (
           <div
             key={plan.id}
-            className={`items-center justify-center border-gray-100 px-3 py-3 last:border-r-0 max-lg:hidden md:py-3.5 lg:flex lg:border-r ${
-              plan.featured ? "bg-emerald-50/40" : ""
+            className={`items-center justify-center border-border-default px-3 py-3 last:border-r-0 max-lg:hidden md:py-3.5 lg:flex lg:border-r ${
+              plan.featured ? "bg-brand-green-light/40" : ""
             } ${isMobileVisible ? "max-lg:!flex max-lg:justify-start max-lg:px-4 max-lg:pb-4 max-lg:pt-0" : ""}`}
           >
             <FeatureCell value={feature.values[plan.id]} />

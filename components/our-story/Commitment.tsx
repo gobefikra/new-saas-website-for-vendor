@@ -13,7 +13,7 @@ export default function Commitment() {
   return (
     <section
       ref={ref}
-      className="relative overflow-hidden border-t border-white/5 bg-[#070b09] px-6 py-16 md:px-8 md:py-20"
+      className="relative overflow-hidden border-t border-white/5 bg-dark px-6 py-16 md:px-8 md:py-20"
     >
       <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2 lg:gap-16">
         <motion.div
@@ -32,16 +32,16 @@ export default function Commitment() {
             />
 
             {/* Deep bottom blend so the half-compass melts into the photo */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
             <div
               aria-hidden
-              className="absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-emerald-950/50 via-emerald-950/15 to-transparent"
+              className="absolute inset-x-0 bottom-0 h-[45%] bg-gradient-to-t from-emerald-950/35 via-emerald-950/10 to-transparent"
             />
 
             {/* Half-visible compass — oversized, flush to bottom edge */}
             <div className="pointer-events-none absolute inset-x-0 bottom-0 flex justify-center overflow-hidden">
-              <div className="w-[125%] max-w-none translate-y-[52%] opacity-45 mix-blend-soft-light md:w-[120%] md:translate-y-[54%] md:opacity-50">
-                <CompassIllustration className="w-full" />
+              <div className="w-[125%] max-w-none translate-y-[32%] opacity-90 md:w-[120%] md:translate-y-[34%] md:opacity-95">
+                <CompassIllustration className="w-full drop-shadow-[0_0_18px_rgba(232,243,238,0.25)]" />
               </div>
             </div>
           </div>
@@ -52,9 +52,9 @@ export default function Commitment() {
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
             variants={fadeInUp}
-            className="text-3xl font-semibold tracking-[-0.03em] md:text-5xl"
+            className="font-display text-3xl font-semibold tracking-[-0.02em] md:text-5xl"
           >
-            <span className="text-emerald-400">Our Commitment</span>
+            <span className="text-brand-green">Our Commitment</span>
             <span className="text-white"> to the Industry</span>
           </motion.h2>
 
@@ -62,12 +62,12 @@ export default function Commitment() {
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
             variants={fadeInUp}
-            className="font-dm-sans mt-8 text-[15px] leading-relaxed text-gray-400 md:text-base"
+            className="font-sans mt-8 text-[15px] leading-relaxed text-gray-400 md:text-base"
           >
             Befikra is not a finished product. It is an evolving platform. We
             continuously work on improving workflows, adding new features, and
             solving deeper operational challenges faced by travel businesses.{" "}
-            <span className="text-emerald-400">
+            <span className="text-brand-green">
               We are committed to listening. We are committed to improving.
             </span>{" "}
             And most importantly, we are committed to helping travel businesses
@@ -86,7 +86,7 @@ export default function Commitment() {
               variants={fadeInUp}
               className="rounded-2xl border border-white/10 bg-black/30 p-6"
             >
-              <p className="text-[11px] font-medium uppercase tracking-[0.3em] text-emerald-400">
+              <p className="text-[11px] font-medium uppercase tracking-[0.3em] text-brand-green">
                 Our Mission
               </p>
               <p className="mt-3 text-lg font-medium leading-snug text-white md:text-xl">
@@ -98,7 +98,7 @@ export default function Commitment() {
               variants={fadeInUp}
               className="rounded-2xl border border-white/10 bg-black/30 p-6"
             >
-              <p className="text-[11px] font-medium uppercase tracking-[0.3em] text-emerald-400">
+              <p className="text-[11px] font-medium uppercase tracking-[0.3em] text-brand-green">
                 Our Vision
               </p>
               <p className="mt-3 text-lg font-medium leading-snug text-white md:text-xl">

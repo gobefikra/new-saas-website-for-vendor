@@ -220,7 +220,7 @@ export default function PrivacyPolicyPage() {
           If you have questions about this Privacy Policy or your data, please
           contact:
         </LegalP>
-        <p className="text-gray-600 text-base leading-relaxed mb-4">
+        <p className="text-subtext text-base leading-relaxed mb-4">
           <strong className="font-semibold text-gray-800">Befikra Support</strong>
           <br />
           Email: <LegalEmailLink />

@@ -147,48 +147,47 @@ export default function Navbar({ theme = "light" }: NavbarProps) {
 
   const headerClass = isDark
     ? scrolled
-      ? "bg-black/80 backdrop-blur-md border-b border-[#1A3A25]"
+      ? "bg-footer-dark/90 backdrop-blur-md border-b border-brand-green/25"
       : "bg-transparent border-b border-transparent"
     : scrolled
-      ? "bg-white/90 backdrop-blur-md border-b border-gray-100 shadow-sm"
-      : "bg-white border-b border-gray-100";
+      ? "bg-white/90 backdrop-blur-md border-b border-border-default shadow-card"
+      : "bg-white border-b border-border-default";
 
   const desktopLinkClass = (href: string) => {
     const active = isActive(pathname, href);
     if (isDark) {
       return active
-        ? "font-semibold text-emerald-400"
+        ? "font-semibold text-brand-green"
         : "font-medium text-gray-300 hover:text-white";
     }
     return active
-      ? "font-semibold text-emerald-600"
-      : "font-medium text-gray-600 hover:text-emerald-600";
+      ? "font-semibold text-brand-green-dark"
+      : "font-medium text-subtext hover:text-brand-green";
   };
 
   const mobileLinkClass = (href: string) => {
     const active = isActive(pathname, href);
     if (isDark) {
       return active
-        ? "font-semibold text-emerald-400 bg-emerald-500/10 border-l-2 border-emerald-400"
+        ? "font-semibold text-brand-green bg-brand-green/10 border-l-2 border-brand-green"
         : "font-medium text-gray-300 hover:text-white border-l-2 border-transparent";
     }
     return active
-      ? "font-semibold text-emerald-700 bg-emerald-50 border-l-2 border-emerald-500"
-      : "font-medium text-gray-600 hover:text-emerald-600 border-l-2 border-transparent";
+      ? "font-semibold text-brand-green-dark bg-brand-green-light border-l-2 border-brand-green"
+      : "font-medium text-subtext hover:text-brand-green border-l-2 border-transparent";
   };
 
   const desktopHighlightClass = isDark
-    ? "font-semibold text-emerald-400"
-    : "font-semibold text-emerald-600";
+    ? "font-semibold text-brand-green"
+    : "font-semibold text-brand-green-dark";
 
   const mobileHighlightClass = isDark
-    ? "font-semibold text-emerald-400 border-l-2 border-transparent"
-    : "font-semibold text-emerald-600 border-l-2 border-transparent";
+    ? "font-semibold text-brand-green border-l-2 border-transparent"
+    : "font-semibold text-brand-green-dark border-l-2 border-transparent";
 
   const ctaClass = isDark
-    ? "inline-flex bg-white text-gray-900 rounded-full px-6 py-2.5 font-semibold text-sm hover:bg-gray-100 transition-colors"
-    : "inline-flex bg-gradient-to-r from-[#10B981] to-[#059669] text-white rounded-full px-6 py-2.5 font-semibold text-sm shadow-[0_4px_16px_rgba(16,185,129,0.35)] hover:shadow-[0_6px_22px_rgba(16,185,129,0.45)] hover:opacity-95 transition-all";
-
+    ? "inline-flex rounded-full bg-white px-6 py-2.5 text-sm font-semibold text-navy transition-all duration-200 ease-brand hover:bg-off-white active:scale-95"
+    : "inline-flex rounded-full bg-brand-green px-6 py-2.5 text-sm font-semibold text-white shadow-cta-glow transition-all duration-200 ease-brand hover:bg-brand-green-dark active:scale-95";
   return (
     <>
       <motion.header
@@ -237,7 +236,7 @@ export default function Navbar({ theme = "light" }: NavbarProps) {
                       <motion.span
                         layoutId="nav-active-underline"
                         className={`absolute -bottom-1 left-0 right-0 h-0.5 rounded-full ${
-                          isDark ? "bg-emerald-400" : "bg-emerald-500"
+                          isDark ? "bg-brand-green" : "bg-brand-green"
                         }`}
                         transition={{ type: "spring", stiffness: 380, damping: 30 }}
                       />
@@ -285,13 +284,13 @@ export default function Navbar({ theme = "light" }: NavbarProps) {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 28, stiffness: 280 }}
-              className={`fixed top-0 right-0 bottom-0 w-full max-w-sm z-[70] shadow-2xl lg:hidden flex flex-col ${
-                isDark ? "bg-[#0A0F0A] border-l border-[#1A3A25]" : "bg-white"
+              className={`fixed top-0 right-0 bottom-0 z-[70] flex w-full max-w-sm flex-col shadow-modal lg:hidden ${
+                isDark ? "border-l border-brand-green/25 bg-footer-dark" : "bg-white"
               }`}
             >
               <div
-                className={`flex items-center justify-between p-4 border-b ${
-                  isDark ? "border-[#1A3A25]" : "border-gray-100"
+                className={`flex items-center justify-between border-b p-4 ${
+                  isDark ? "border-brand-green/25" : "border-border-default"
                 }`}
               >
                 <Link href="/" onClick={() => setMobileOpen(false)} aria-label="Befikra Partner home">
@@ -345,17 +344,17 @@ export default function Navbar({ theme = "light" }: NavbarProps) {
                 })}
               </ul>
               <div
-                className={`p-6 border-t ${
-                  isDark ? "border-[#1A3A25]" : "border-gray-100"
+                className={`border-t p-6 ${
+                  isDark ? "border-brand-green/25" : "border-border-default"
                 }`}
               >
                 <Link
                   href="/contact"
                   onClick={() => setMobileOpen(false)}
-                  className={`flex w-full justify-center rounded-full px-6 py-3 font-semibold transition-all ${
+                  className={`flex w-full justify-center rounded-full px-6 py-3 font-semibold transition-all duration-200 ease-brand active:scale-95 ${
                     isDark
-                      ? "bg-white text-gray-900 hover:bg-gray-100"
-                      : "bg-gradient-to-r from-[#10B981] to-[#059669] text-white shadow-[0_4px_16px_rgba(16,185,129,0.35)] hover:shadow-[0_6px_22px_rgba(16,185,129,0.45)] hover:opacity-95"
+                      ? "bg-white text-navy hover:bg-off-white"
+                      : "bg-brand-green text-white shadow-cta-glow hover:bg-brand-green-dark"
                   }`}
                 >
                   Get a demo

@@ -21,8 +21,8 @@ function FaqItem({
 }) {
   return (
     <div
-      className={`rounded-2xl bg-white shadow-[0_4px_20px_rgba(13,27,42,0.05)] transition-shadow ${
-        isOpen ? "p-5 sm:p-6" : "px-5 py-4 sm:px-6 sm:py-4"
+      className={`border border-border-default bg-white shadow-card transition-all duration-200 ease-brand hover:border-brand-green hover:shadow-card-hover ${
+        isOpen ? "rounded-2xl p-5 sm:p-6" : "rounded-2xl px-5 py-4 sm:px-6 sm:py-4"
       }`}
     >
       <button
@@ -72,12 +72,12 @@ function FaqItem({
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
             className="overflow-hidden"
           >
-            <div className="mt-4 rounded-xl bg-gray-50 px-4 py-3.5 sm:ml-14 sm:px-5 sm:py-4">
+            <div className="mt-4 rounded-xl bg-off-white px-4 py-3.5 sm:ml-14 sm:px-5 sm:py-4">
               <p
-                className="font-dm-sans text-sm leading-relaxed"
+                className="font-sans text-sm leading-relaxed"
                 style={{ color: brand.subtext }}
               >
                 {faq.answer}

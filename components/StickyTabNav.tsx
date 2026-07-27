@@ -18,7 +18,7 @@ const TABS: { id: TabId; label: string }[] = [
 
 const SECTION_IDS: TabId[] = ["whatsapp", "instagram", "website"];
 
-const ACTIVE_GREEN = "#25D366";
+const ACTIVE_GREEN = "#2D6A4F";
 /** Approx secondary nav height for scroll offset calculations */
 const NAV_HEIGHT = 60;
 /**
@@ -167,13 +167,13 @@ export default function StickyTabNav({
     >
       <div
         ref={navRef}
-        className="relative flex w-full items-center overflow-hidden rounded-full bg-white p-1.5 shadow-[0_10px_30px_rgba(0,0,0,0.18)] sm:max-w-[380px]"
+        className="relative flex w-full items-center overflow-hidden rounded-full border border-border-default bg-white p-1.5 shadow-card sm:max-w-[380px]"
         role="tablist"
         aria-label="Integration sections"
       >
         <span
           aria-hidden
-          className="pointer-events-none absolute bottom-1.5 left-0 top-1.5 rounded-full transition-[transform,width] duration-300 ease-out"
+          className="pointer-events-none absolute bottom-1.5 left-0 top-1.5 rounded-full transition-[transform,width] duration-300 ease-brand"
           style={{
             width: pill.width,
             transform: `translateX(${pill.x}px)`,
@@ -197,7 +197,7 @@ export default function StickyTabNav({
               className={`relative z-10 flex-1 rounded-full px-4 py-2.5 text-[14px] transition-colors duration-300 sm:flex-none sm:px-7 sm:py-3 sm:text-[15px] ${
                 isActive
                   ? "font-semibold text-white"
-                  : "font-medium text-[#6B7280] hover:text-[#374151]"
+                  : "font-medium text-subtext hover:text-navy"
               }`}
             >
               {tab.label}

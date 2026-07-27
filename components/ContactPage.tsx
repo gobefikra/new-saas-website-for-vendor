@@ -16,11 +16,12 @@ import { motion, useInView } from "framer-motion";
 import Footer from "@/components/Footer";
 import Button from "@/components/ui/Button";
 import Eyebrow from "@/components/ui/Eyebrow";
+import ScriptAccent from "@/components/ui/ScriptAccent";
 import { fadeInUp, staggerContainer } from "@/components/motion";
 
 const featureCards = [
   {
-    icon: <Zap className="h-6 w-6 text-emerald-500" />,
+    icon: <Zap className="h-6 w-6 text-brand-green" />,
     title: "Setup in days, not weeks",
     desc: "Fast implementation with zero downtime.",
     highlight: true,
@@ -32,7 +33,7 @@ const featureCards = [
     highlight: false,
   },
   {
-    icon: <Rocket className="h-6 w-6 text-emerald-500" />,
+    icon: <Rocket className="h-6 w-6 text-brand-green" />,
     title: "Start capturing leads instantly",
     desc: "Never miss a customer inquiry again.",
     highlight: false,
@@ -41,7 +42,7 @@ const featureCards = [
 
 const connectCards = [
   {
-    icon: <Monitor className="h-10 w-10 text-emerald-600" />,
+    icon: <Monitor className="h-10 w-10 text-brand-green-dark" />,
     title: "Book Demo",
     desc: "Schedule a 1-on-1 walkthrough of the Befikra platform.",
     link: "Schedule Demo →",
@@ -78,7 +79,7 @@ const connectCards = [
     href: "https://instagram.com/befikrapartner",
   },
   {
-    icon: <Mail className="h-10 w-10 text-emerald-600" />,
+    icon: <Mail className="h-10 w-10 text-brand-green-dark" />,
     title: "Email",
     desc: "For detailed inquiries, partnerships, or support.",
     link: "Get in Touch →",
@@ -125,7 +126,7 @@ const interestOptions = [
 
 function FeatureIcon({ icon }: { icon: ReactNode }) {
   return (
-    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gray-50">
+    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-off-white">
       {icon}
     </div>
   );
@@ -135,9 +136,8 @@ function ConnectIcon({ icon }: { icon: ReactNode }) {
   return <div className="mb-4 flex justify-center">{icon}</div>;
 }
 
-const inputClass =
-  "bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 w-full text-sm text-gray-700 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-300 focus:border-emerald-400 transition";
-const labelClass = "text-sm font-medium text-gray-700 mb-1 block";
+const inputClass = "input-brand";
+const labelClass = "mb-1 block text-[13px] font-medium text-navy";
 
 export default function ContactPage() {
   const connectRef = useRef(null);
@@ -162,17 +162,18 @@ export default function ContactPage() {
             </motion.div>
             <motion.h1
               variants={fadeInUp}
-              className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mt-4"
+              className="mt-4 font-display text-4xl font-semibold leading-tight tracking-[-0.02em] text-navy md:text-5xl"
             >
               Talk to Our Team and
               <br />
-              Grow Your Travel
-              <br />
-              Business Faster
+              Grow Your Travel Business
             </motion.h1>
+            <motion.div variants={fadeInUp} className="mt-3">
+              <ScriptAccent size="lg">faster together</ScriptAccent>
+            </motion.div>
             <motion.p
               variants={fadeInUp}
-              className="text-gray-500 text-base mt-6 max-w-sm leading-relaxed"
+              className="mt-6 max-w-sm font-sans text-base leading-relaxed text-subtext"
             >
               Tell us about your business, and we&apos;ll show you how Befikra
               helps you capture leads, automate conversations, and convert
@@ -181,21 +182,19 @@ export default function ContactPage() {
 
             <motion.div
               variants={staggerContainer}
-              className="space-y-4 mt-10"
+              className="mt-10 space-y-4"
             >
               {featureCards.map((card) => (
                 <motion.div
                   key={card.title}
                   variants={fadeInUp}
-                  className={`border rounded-2xl px-5 py-4 flex items-start gap-4 bg-white ${
-                    card.highlight
-                      ? "border-emerald-400"
-                      : "border-gray-200"
+                  className={`card-brand flex items-start gap-4 px-5 py-4 ${
+                    card.highlight ? "border-brand-green" : ""
                   }`}
                 >
                   <FeatureIcon icon={card.icon} />
                   <div>
-                    <p className="font-semibold text-gray-900">{card.title}</p>
+                    <p className="font-semibold text-navy">{card.title}</p>
                     <p className="text-gray-400 text-sm mt-0.5">{card.desc}</p>
                   </div>
                 </motion.div>
@@ -206,11 +205,11 @@ export default function ContactPage() {
           <motion.div
             initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="bg-white border border-gray-200 rounded-3xl p-8 shadow-sm"
+            transition={{ duration: 0.5, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="card-brand-static p-8"
           >
-            <h2 className="font-bold text-2xl text-gray-900">Get in touch</h2>
-            <p className="text-gray-400 text-sm mt-1 mb-6">
+            <h2 className="font-display text-2xl font-semibold text-navy">Get in touch</h2>
+            <p className="mb-6 mt-1 font-sans text-sm text-subtext">
               Fill out the form and we&apos;ll be in touch shortly.
             </p>
 
@@ -290,7 +289,7 @@ export default function ContactPage() {
               </Button>
 
               <div className="flex items-center gap-2 mt-3">
-                <ShieldCheck className="text-emerald-500 w-4 h-4 shrink-0" />
+                <ShieldCheck className="text-brand-green w-4 h-4 shrink-0" />
                 <p className="text-gray-400 text-xs">
                   Your information is secure and will never be shared.
                 </p>
@@ -302,7 +301,7 @@ export default function ContactPage() {
 
       {/* Section 2 - Other ways to connect */}
       <section ref={connectRef} className="bg-white py-20 px-6">
-        <h2 className="text-4xl font-extrabold text-gray-900 text-center">
+        <h2 className="text-4xl font-display font-semibold tracking-[-0.02em] text-navy text-center">
           Other ways to connect
         </h2>
         <p className="text-gray-400 text-center mt-3 max-w-xl mx-auto">
@@ -319,14 +318,14 @@ export default function ContactPage() {
             <motion.div
               key={card.title}
               variants={fadeInUp}
-              className="bg-emerald-50 border border-emerald-100 rounded-3xl p-8 flex flex-col items-center text-center hover:shadow-md transition-shadow"
+              className="card-brand-soft flex flex-col items-center p-8 text-center"
             >
               <ConnectIcon icon={card.icon} />
-              <h3 className="font-bold text-gray-900 text-xl">{card.title}</h3>
-              <p className="text-gray-500 text-sm mt-2">{card.desc}</p>
+              <h3 className="font-bold text-navy text-xl">{card.title}</h3>
+              <p className="text-subtext text-sm mt-2">{card.desc}</p>
               <Link
                 href={card.href}
-                className="text-emerald-600 font-semibold text-sm mt-4 hover:text-emerald-700"
+                className="text-brand-green-dark font-semibold text-sm mt-4 hover:text-brand-green-dark"
                 {...(card.href.startsWith("http")
                   ? { target: "_blank", rel: "noopener noreferrer" }
                   : {})}
@@ -340,7 +339,7 @@ export default function ContactPage() {
 
       {/* Section 3 - Help and Support */}
       <section ref={helpRef} className="bg-white py-20 px-6">
-        <h2 className="text-4xl font-extrabold text-gray-900 text-center">
+        <h2 className="text-4xl font-display font-semibold tracking-[-0.02em] text-navy text-center">
           Help and Support
         </h2>
         <p className="text-gray-400 text-center mt-3 max-w-lg mx-auto">
@@ -364,13 +363,13 @@ export default function ContactPage() {
                   transition: {
                     delay: i * 0.05,
                     duration: 0.4,
-                    ease: [0.22, 1, 0.36, 1],
+                    ease: [0.16, 1, 0.3, 1],
                   },
                 },
               }}
-              className="bg-gray-50 border border-gray-100 rounded-2xl p-7"
+              className="card-brand bg-off-white p-7"
             >
-              <p className="font-semibold text-gray-900 text-base leading-snug">
+              <p className="font-semibold text-navy text-base leading-snug">
                 {card.q}
               </p>
               <p className="text-gray-400 text-sm mt-3 leading-relaxed">

@@ -21,6 +21,7 @@ import {
   GREEN,
   NAVY,
 } from "@/components/smart-dashboard/shared";
+import ScriptAccent from "@/components/ui/ScriptAccent";
 import {
   AnalyticsView,
   BatchesView,
@@ -32,7 +33,7 @@ import {
   TransactionsView,
 } from "@/components/smart-dashboard/views";
 
-const GREEN_DARK = "#059669";
+const GREEN_DARK = "#1F4D38";
 const SIDEBAR_BG = "#0B1F17";
 
 const NAV_ICONS: Record<
@@ -97,7 +98,7 @@ function DashboardRightPanel({ onInteract }: { onInteract: () => void }) {
   const tasks = taskTab === "Pending" ? pendingTasks : inProgressTasks;
 
   return (
-    <div className="dashboard-scroll w-full shrink-0 lg:w-[240px] lg:overflow-y-auto lg:border-l lg:border-gray-100 lg:bg-white lg:p-4">
+    <div className="dashboard-scroll w-full shrink-0 lg:w-[240px] lg:overflow-y-auto lg:border-l lg:border-border-default lg:bg-white lg:p-4">
       <button
         type="button"
         onClick={() => {
@@ -105,14 +106,14 @@ function DashboardRightPanel({ onInteract }: { onInteract: () => void }) {
           setPaymentSuccess(true);
           setTimeout(() => setPaymentSuccess(false), 2000);
         }}
-        className="w-full rounded-lg bg-emerald-600 px-3 py-2.5 text-[13px] font-medium text-white transition hover:bg-emerald-700"
+        className="w-full rounded-lg bg-brand-green-dark px-3 py-2.5 text-[13px] font-medium text-white transition hover:bg-brand-green-dark"
       >
         {paymentSuccess ? "Links generated" : "Generate payment links"}
       </button>
 
       <div className="mt-5">
         <p className="text-[11px] font-medium uppercase tracking-wide text-gray-400">Summary</p>
-        <p className="mt-2 text-xs leading-relaxed text-gray-500">
+        <p className="mt-2 text-xs leading-relaxed text-subtext">
           Revenue ₹2.45L today · 12 bookings · conversion up 8%.{" "}
           {visibleReminders.length} follow-ups left.
         </p>
@@ -124,7 +125,7 @@ function DashboardRightPanel({ onInteract }: { onInteract: () => void }) {
           {visibleReminders.map((r) => (
             <li
               key={r.text}
-              className="flex items-start justify-between gap-2 rounded-lg px-2 py-2 hover:bg-gray-50"
+              className="flex items-start justify-between gap-2 rounded-lg px-2 py-2 hover:bg-off-white"
             >
               <div className="min-w-0">
                 <p className="text-xs font-medium text-gray-800">{r.text}</p>
@@ -136,7 +137,7 @@ function DashboardRightPanel({ onInteract }: { onInteract: () => void }) {
                   setDoneReminders((d) => [...d, r.text]);
                   onInteract();
                 }}
-                className="shrink-0 text-[10px] text-emerald-600 hover:text-emerald-700"
+                className="shrink-0 text-[10px] text-brand-green-dark hover:text-brand-green-dark"
               >
                 Done
               </button>
@@ -161,7 +162,7 @@ function DashboardRightPanel({ onInteract }: { onInteract: () => void }) {
                   onInteract();
                 }}
                 className={
-                  taskTab === t ? "font-medium text-emerald-700" : "text-gray-400 hover:text-gray-600"
+                  taskTab === t ? "font-medium text-brand-green-dark" : "text-gray-400 hover:text-subtext"
                 }
               >
                 {t === "Pending" ? "Pending" : "Active"}
@@ -171,7 +172,7 @@ function DashboardRightPanel({ onInteract }: { onInteract: () => void }) {
         </div>
         <ul className="mt-2 space-y-1">
           {tasks.map((t) => (
-            <li key={t.text} className="rounded-lg px-2 py-2 hover:bg-gray-50">
+            <li key={t.text} className="rounded-lg px-2 py-2 hover:bg-off-white">
               <p className="text-xs font-medium text-gray-800">{t.text}</p>
               <p className="mt-0.5 text-[10px] text-gray-400">{t.meta}</p>
             </li>
@@ -284,16 +285,16 @@ export default function SmartDashboardSection() {
     >
       <div className="mx-auto max-w-[1200px] px-4 sm:px-6">
         <div className="text-center">
-          <p className="inline-flex items-center gap-2 text-[13px] font-medium tracking-wide text-gray-500">
-            <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: GREEN }} />
+          <p className="section-eyebrow mb-4">
+            <span className="h-1.5 w-1.5 rounded-full bg-brand-green" aria-hidden />
             All-in-one platform for travel businesses
           </p>
 
-          <h2 className="mt-4 text-4xl font-extrabold leading-[1.08] tracking-tight sm:text-5xl lg:text-[4.25rem]">
+          <h2 className="font-display text-4xl font-semibold leading-[1.08] tracking-[-0.02em] sm:text-5xl lg:text-[4.25rem]">
             {headlineWords.map((w, i) => (
               <span
                 key={w.text}
-                className={`block transition-all duration-700 ${
+                className={`block transition-all duration-700 ease-brand ${
                   section.inView ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
                 }`}
                 style={{ color: w.color, transitionDelay: `${i * 60}ms` }}
@@ -303,7 +304,16 @@ export default function SmartDashboardSection() {
             ))}
           </h2>
 
-          <p className="mx-auto mt-5 max-w-lg text-base leading-relaxed text-gray-500">
+          <div
+            className={`mt-3 transition-all duration-700 ease-brand ${
+              section.inView ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
+            }`}
+            style={{ transitionDelay: "180ms" }}
+          >
+            <ScriptAccent size="lg">built for scale</ScriptAccent>
+          </div>
+
+          <p className="mx-auto mt-5 max-w-lg font-sans text-base leading-relaxed text-subtext">
             See how Befikra automates bookings, manages leads, and increases revenue for travel
             businesses. All from one intelligent dashboard built for scale.
           </p>
@@ -317,7 +327,7 @@ export default function SmartDashboardSection() {
             style={{ perspective: "1400px" }}
           >
             <div
-              className={`relative overflow-hidden rounded-xl border border-gray-200 bg-white shadow-[0_20px_50px_rgba(15,23,42,0.08)] transition-transform duration-[800ms] ease-out ${
+              className={`relative overflow-hidden rounded-2xl border border-border-default bg-white shadow-card transition-transform duration-[800ms] ease-out ${
                 gated ? "pointer-events-none blur-[5px]" : ""
               }`}
               style={{
@@ -355,7 +365,7 @@ export default function SmartDashboardSection() {
                               className={`flex w-full items-center gap-2.5 rounded-md px-2.5 py-2 text-left text-[12px] transition-colors duration-200 ${
                                 active
                                   ? "bg-white/10 font-medium text-white"
-                                  : "text-emerald-100/60 hover:bg-white/5 hover:text-white"
+                                  : "text-brand-green-light/60 hover:bg-white/5 hover:text-white"
                               } ${
                                 section.inView
                                   ? "translate-x-0 opacity-100"
@@ -389,7 +399,7 @@ export default function SmartDashboardSection() {
                           className={`flex shrink-0 flex-col items-center gap-1 rounded-lg px-2.5 py-1.5 text-center transition-colors ${
                             active
                               ? "bg-white/15 text-white"
-                              : "text-emerald-100/55 hover:bg-white/5 hover:text-white"
+                              : "text-brand-green-light/55 hover:bg-white/5 hover:text-white"
                           }`}
                         >
                           <Icon className="h-3.5 w-3.5 opacity-90" strokeWidth={2} />
@@ -426,7 +436,7 @@ export default function SmartDashboardSection() {
                         />
                         {/* Right panel stacks under content on mobile */}
                         {showRightPanel ? (
-                          <div className="mt-4 border-t border-gray-100 pt-4 lg:hidden">
+                          <div className="mt-4 border-t border-border-default pt-4 lg:hidden">
                             <DashboardRightPanel onInteract={bumpInteraction} />
                           </div>
                         ) : null}
@@ -445,12 +455,12 @@ export default function SmartDashboardSection() {
 
             {gated && (
               <div className="dashboard-overlay-in absolute inset-0 z-50 flex items-center justify-center p-4">
-                <div className="max-w-sm rounded-xl border border-gray-100 bg-white p-8 text-center shadow-lg">
-                  <Lock className="mx-auto h-8 w-8 text-emerald-600" strokeWidth={1.75} />
+                <div className="max-w-sm rounded-xl border border-border-default bg-white p-8 text-center shadow-lg">
+                  <Lock className="mx-auto h-8 w-8 text-brand-green-dark" strokeWidth={1.75} />
                   <h3 className="mt-3 text-xl font-semibold" style={{ color: NAVY }}>
                     This is only a preview
                   </h3>
-                  <p className="mx-auto mt-2 text-sm leading-relaxed text-gray-500">
+                  <p className="mx-auto mt-2 text-sm leading-relaxed text-subtext">
                     Want to explore the actual dashboard? Sign in, or book a demo with our sales
                     team.
                   </p>
@@ -464,7 +474,7 @@ export default function SmartDashboardSection() {
                     </Link>
                     <Link
                       href="/contact"
-                      className="inline-flex items-center justify-center rounded-lg border border-gray-200 px-5 py-2.5 text-sm font-medium text-gray-700 transition hover:bg-gray-50"
+                      className="inline-flex items-center justify-center rounded-lg border border-border-default px-5 py-2.5 text-sm font-medium text-gray-700 transition hover:bg-off-white"
                     >
                       Book a Demo
                     </Link>
@@ -475,7 +485,7 @@ export default function SmartDashboardSection() {
                       setGated(false);
                       setInteractions(0);
                     }}
-                    className="mt-4 text-sm text-gray-400 hover:text-emerald-700"
+                    className="mt-4 text-sm text-gray-400 hover:text-brand-green-dark"
                   >
                     Continue exploring
                   </button>

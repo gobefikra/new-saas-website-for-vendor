@@ -18,8 +18,8 @@ import {
   WhatsAppLogo,
 } from "@/components/integrations/BrandLogos";
 
-const GREEN = "#10B981";
-const NAVY = "#0F172A";
+const GREEN = "#2D6A4F";
+const NAVY = "#0A1E3B";
 const BODY_GRAY = "#6B7280";
 const DIVIDER = "#E5E7EB";
 const SECTION_WRAP_BG = "#F9FAFB";
@@ -80,7 +80,7 @@ function IntegrationsStrip() {
   return (
     <div
       ref={ref}
-      className="overflow-hidden rounded-xl border bg-white shadow-[0_4px_24px_rgba(13,27,42,0.06)] sm:rounded-2xl"
+      className="card-brand-static overflow-hidden"
       style={{ borderColor: DIVIDER }}
     >
       <div className="flex flex-col lg:flex-row lg:items-stretch">
@@ -89,13 +89,13 @@ function IntegrationsStrip() {
           style={{ borderColor: DIVIDER }}
         >
           <p
-            className="text-[16px] font-extrabold leading-snug sm:text-[18px] lg:text-[22px] lg:leading-tight"
+            className="text-[16px] font-display font-semibold leading-snug sm:text-[18px] lg:text-[22px] lg:leading-tight"
             style={{ color: NAVY }}
           >
             Connect Your
           </p>
           <p
-            className="text-[16px] font-extrabold leading-snug sm:text-[18px] lg:text-[22px] lg:leading-tight"
+            className="text-[16px] font-display font-semibold leading-snug sm:text-[18px] lg:text-[22px] lg:leading-tight"
             style={{ color: GREEN }}
           >
             Business
@@ -156,13 +156,13 @@ function PlatformIcon({
         <Logo className="h-7 w-7 sm:h-10 sm:w-10 lg:h-11 lg:w-11" id={`${platform.id}-${index}`} />
       </div>
       <span
-        className="font-dm-sans text-center text-[9px] font-medium leading-tight sm:text-[11px] lg:text-xs"
+        className="font-sans text-center text-[9px] font-medium leading-tight sm:text-[11px] lg:text-xs"
         style={{ color: BODY_GRAY }}
       >
         {label}
       </span>
       <span
-        className="pointer-events-none absolute -top-8 left-1/2 z-20 -translate-x-1/2 whitespace-nowrap rounded-md bg-[#0F172A] px-2 py-0.5 text-[10px] font-medium text-white opacity-0 shadow-lg transition-opacity duration-200 group-hover:opacity-100 sm:-top-9 sm:px-2.5 sm:py-1 sm:text-[11px]"
+        className="pointer-events-none absolute -top-8 left-1/2 z-20 -translate-x-1/2 whitespace-nowrap rounded-md bg-[#0A1E3B] px-2 py-0.5 text-[10px] font-medium text-white opacity-0 shadow-lg transition-opacity duration-200 group-hover:opacity-100 sm:-top-9 sm:px-2.5 sm:py-1 sm:text-[11px]"
         role="tooltip"
       >
         {label}
@@ -186,7 +186,7 @@ const benefitCards: BenefitCard[] = [
     title: "Save Time",
     description: "Automate repetitive tasks and focus on what matters.",
     Icon: Clock,
-    iconBg: "#ECFDF5",
+    iconBg: "#E8F3EE",
     iconColor: GREEN,
   },
   {
@@ -194,24 +194,24 @@ const benefitCards: BenefitCard[] = [
     title: "Delight Customers",
     description: "Personalize every interaction and build loyalty.",
     Icon: Users,
-    iconBg: "#ECFDF5",
-    iconColor: "#10B981",
+    iconBg: "#E8F3EE",
+    iconColor: "#2D6A4F",
   },
   {
     id: "performance",
     title: "Improve Performance",
     description: "Real-time analytics to track, measure and improve.",
     Icon: BarChart3,
-    iconBg: "#ECFDF5",
-    iconColor: "#10B981",
+    iconBg: "#E8F3EE",
+    iconColor: "#2D6A4F",
   },
   {
     id: "security",
     title: "Enterprise Security",
     description: "Your data is protected with industry-grade security.",
     Icon: Shield,
-    iconBg: "#ECFDF5",
-    iconColor: "#059669",
+    iconBg: "#E8F3EE",
+    iconColor: "#1F4D38",
   },
 ];
 
@@ -276,7 +276,7 @@ function BenefitCardItem({
           {title}
         </h3>
         <p
-          className="font-dm-sans mt-1.5 text-sm leading-relaxed"
+          className="font-sans mt-1.5 text-sm leading-relaxed"
           style={{ color: BODY_GRAY }}
         >
           {description}
