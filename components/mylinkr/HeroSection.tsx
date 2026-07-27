@@ -81,9 +81,9 @@ export default function MyLinkrHeroSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative h-[155svh] overflow-x-clip bg-gradient-to-b from-[#F9FAFB] via-white to-white pb-12 sm:h-[160svh] sm:pb-16 md:h-[165svh] md:pb-20 lg:h-[185svh] lg:pb-28"
+      className="relative h-[118svh] overflow-x-clip bg-gradient-to-b from-[#F9FAFB] via-white to-white pb-6 sm:h-[160svh] sm:pb-16 md:h-[165svh] md:pb-20 lg:h-[185svh] lg:pb-28"
     >
-      <div className="sticky top-16 flex h-[calc(100svh-4rem)] min-h-[460px] flex-col items-center justify-start px-3 pb-4 pt-2 text-center sm:min-h-[500px] sm:justify-center sm:px-4 sm:pb-6 sm:pt-3 md:top-[4.5rem] md:h-[calc(100svh-4.5rem)] md:min-h-[520px] md:px-6 md:pb-8 lg:min-h-[680px] lg:justify-start lg:px-8 lg:pb-16 lg:pt-6">
+      <div className="sticky top-16 flex h-auto min-h-0 flex-col items-center justify-start px-3 pb-5 pt-8 text-center sm:h-[calc(100svh-4rem)] sm:min-h-[500px] sm:justify-center sm:px-4 sm:pb-6 sm:pt-3 md:top-[4.5rem] md:h-[calc(100svh-4.5rem)] md:min-h-[520px] md:px-6 md:pb-8 lg:min-h-[680px] lg:justify-start lg:px-8 lg:pb-16 lg:pt-6">
         {/* Copy */}
         <motion.div
           initial="hidden"
@@ -112,7 +112,7 @@ export default function MyLinkrHeroSection() {
         </motion.div>
 
         {/* Fixed-height stage on tablet so phone + cards share one cluster */}
-        <div className="relative mx-auto mt-6 h-[380px] w-full max-w-6xl sm:mt-8 sm:h-[420px] md:mt-10 md:h-[460px] lg:mt-14 lg:h-auto lg:min-h-[520px] lg:flex-1">
+        <div className="relative mx-auto mt-10 h-[360px] w-full max-w-6xl sm:mt-8 sm:h-[420px] md:mt-10 md:h-[460px] lg:mt-14 lg:h-auto lg:min-h-[520px] lg:flex-1">
           <motion.div
             aria-hidden
             className="pointer-events-none absolute left-1/2 top-1/2 h-40 w-40 -translate-x-1/2 -translate-y-1/2 rounded-full bg-emerald-200/45 blur-3xl sm:h-48 sm:w-48 md:h-56 md:w-56 lg:h-72 lg:w-72"
