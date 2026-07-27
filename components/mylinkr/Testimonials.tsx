@@ -179,7 +179,7 @@ export default function Testimonials() {
   return (
     <section
       ref={ref}
-      className="w-full overflow-hidden px-4 py-20 md:px-8 md:py-24"
+      className="w-full overflow-hidden px-4 py-14 md:px-8 md:py-16"
       style={{
         background:
           "radial-gradient(ellipse 65% 45% at 50% 0%, rgba(16, 185, 129,0.07), transparent 60%), #FFFFFF",

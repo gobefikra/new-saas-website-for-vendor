@@ -32,7 +32,7 @@ export default function StoryCTA() {
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
         variants={fadeInUp}
-        className="relative z-10 mx-auto flex max-w-6xl flex-col items-start justify-center px-6 py-28 md:px-8 md:py-36"
+        className="relative z-10 mx-auto flex max-w-6xl flex-col items-start justify-center px-6 py-20 md:px-8 md:py-24"
       >
         <p className="mb-5 text-[11px] font-medium uppercase tracking-[0.35em] text-emerald-400">
           Ready when you are

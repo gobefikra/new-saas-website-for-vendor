@@ -194,7 +194,7 @@ const benefitCards: BenefitCard[] = [
     title: "Delight Customers",
     description: "Personalize every interaction and build loyalty.",
     Icon: Users,
-    iconBg: "#F7FEE7",
+    iconBg: "#ECFDF5",
     iconColor: "#10B981",
   },
   {
@@ -210,7 +210,7 @@ const benefitCards: BenefitCard[] = [
     title: "Enterprise Security",
     description: "Your data is protected with industry-grade security.",
     Icon: Shield,
-    iconBg: "#F7FEE7",
+    iconBg: "#ECFDF5",
     iconColor: "#059669",
   },
 ];
@@ -289,7 +289,7 @@ function BenefitCardItem({
 export default function IntegrationsFeatures() {
   return (
     <section
-      className="w-full px-4 pb-4 sm:px-8 lg:px-16 lg:pb-8"
+      className="w-full px-4 py-6 sm:px-8 sm:py-8 lg:px-16"
       style={{ backgroundColor: SECTION_WRAP_BG }}
     >
       <div className="mx-auto flex max-w-7xl flex-col gap-5">

@@ -16,7 +16,7 @@ import { fadeInUp } from "@/components/motion";
 import { HOME_FAQS as faqs } from "@/lib/faq-data";
 
 const GREEN = "#10B981";
-const GREEN_DARK = "#10B981";
+const GREEN_DARK = "#059669";
 const NAVY = "#0F172A";
 const BODY = "#6B7280";
 const MINT = "#ECFDF5";
@@ -111,7 +111,7 @@ export default function FAQSection() {
     <section
       id="faq"
       ref={ref}
-      className="w-full overflow-hidden px-4 py-20 md:py-24"
+      className="w-full overflow-hidden px-4 py-14 md:py-16"
       style={{ backgroundColor: SECTION_BG }}
     >
       <div className="mx-auto max-w-3xl">

@@ -29,7 +29,7 @@ export default function CoreValues() {
   return (
     <section
       ref={ref}
-      className="relative overflow-hidden border-t border-white/5 bg-black px-6 py-24 md:px-8 md:py-32"
+      className="relative overflow-hidden border-t border-white/5 bg-black px-6 py-16 md:px-8 md:py-20"
     >
       <div className="mx-auto max-w-6xl">
         <div className="grid items-end gap-8 lg:grid-cols-[1.1fr_0.9fr]">

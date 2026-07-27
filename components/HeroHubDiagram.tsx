@@ -21,10 +21,12 @@ const CENTER_X = 50;
 const CENTER_Y = 50;
 
 /**
- * Card width as % of the stage (190px at max-w 680px).
- * Used so ribbons meet the inner edge of each card.
+ * Approximate card width as % of the stage for ribbon endpoints.
+ * Updated at runtime to match responsive card sizes.
  */
-const CARD_WIDTH_PCT = 27;
+const CARD_WIDTH_PCT_MOBILE = 36;
+const CARD_WIDTH_PCT_TABLET = 32;
+const CARD_WIDTH_PCT_DESKTOP = 28;
 
 type HubNode = {
   id: string;
@@ -37,15 +39,21 @@ type HubNode = {
   y: number;
   /** Vertical bend for the ribbon curve */
   cy: number;
+  /** Push this card farther from the hub on mobile/tablet */
+  outward?: boolean;
 };
 
 /**
- * Balanced two-column layout. Stagger kept; columns sit near the
- * stage edges so ribbons have a clear path to the hub.
+ * Uniform two-column layout — every left card shares LEFT_X,
+ * every right card shares RIGHT_X. Middle-row cards nudge
+ * outward on smaller screens for a hex-style stagger.
  */
-const CARD_SHIFT_Y = 10;
-/** Push both columns away from the hub (left ← / right →) */
-const CARD_OUTWARD = 8;
+const LEFT_X = 1.5;
+const RIGHT_X = 98.5;
+const CARD_SHIFT_Y = 6;
+/** Extra % the middle left/right cards move away from the hub */
+const MIDDLE_OUTWARD_MOBILE = 7;
+const MIDDLE_OUTWARD_TABLET = 5;
 
 const hubNodes: HubNode[] = [
   {
@@ -54,9 +62,9 @@ const hubNodes: HubNode[] = [
     description: "Automate conversations and follow-ups across all channels.",
     Icon: Users,
     side: "left",
-    x: 2 - CARD_OUTWARD,
-    y: 12 + CARD_SHIFT_Y,
-    cy: 30 + CARD_SHIFT_Y,
+    x: LEFT_X,
+    y: 14 + CARD_SHIFT_Y,
+    cy: 32 + CARD_SHIFT_Y,
   },
   {
     id: "leads",
@@ -64,9 +72,10 @@ const hubNodes: HubNode[] = [
     description: "Capture, qualify & organize leads from multiple platforms.",
     Icon: MessageCircle,
     side: "left",
-    x: -6 - CARD_OUTWARD,
+    x: LEFT_X,
     y: 42 + CARD_SHIFT_Y,
     cy: 50 + CARD_SHIFT_Y,
+    outward: true,
   },
   {
     id: "relationships",
@@ -75,9 +84,9 @@ const hubNodes: HubNode[] = [
       "Stay connected and build lasting relationships with your travelers.",
     Icon: ShieldCheck,
     side: "left",
-    x: 4 - CARD_OUTWARD,
-    y: 72 + CARD_SHIFT_Y,
-    cy: 68 + CARD_SHIFT_Y,
+    x: LEFT_X,
+    y: 70 + CARD_SHIFT_Y,
+    cy: 66 + CARD_SHIFT_Y,
   },
   {
     id: "insights",
@@ -85,9 +94,9 @@ const hubNodes: HubNode[] = [
     description: "Get real-time insights to make smarter, faster decisions.",
     Icon: BarChart3,
     side: "right",
-    x: 98 + CARD_OUTWARD,
-    y: 12 + CARD_SHIFT_Y,
-    cy: 30 + CARD_SHIFT_Y,
+    x: RIGHT_X,
+    y: 14 + CARD_SHIFT_Y,
+    cy: 32 + CARD_SHIFT_Y,
   },
   {
     id: "conversions",
@@ -95,9 +104,10 @@ const hubNodes: HubNode[] = [
     description: "Nurture leads with personalized journeys that convert.",
     Icon: Zap,
     side: "right",
-    x: 106 + CARD_OUTWARD,
+    x: RIGHT_X,
     y: 42 + CARD_SHIFT_Y,
     cy: 50 + CARD_SHIFT_Y,
+    outward: true,
   },
   {
     id: "growth",
@@ -106,16 +116,46 @@ const hubNodes: HubNode[] = [
       "Track performance, measure results and grow your travel business.",
     Icon: PieChart,
     side: "right",
-    x: 96 + CARD_OUTWARD,
-    y: 72 + CARD_SHIFT_Y,
-    cy: 68 + CARD_SHIFT_Y,
+    x: RIGHT_X,
+    y: 70 + CARD_SHIFT_Y,
+    cy: 66 + CARD_SHIFT_Y,
   },
 ];
+
+type Viewport = "mobile" | "tablet" | "desktop";
+
+function nodeX(node: HubNode, viewport: Viewport) {
+  if (!node.outward || viewport === "desktop") return node.x;
+  const outward =
+    viewport === "mobile" ? MIDDLE_OUTWARD_MOBILE : MIDDLE_OUTWARD_TABLET;
+  return node.side === "left" ? node.x - outward : node.x + outward;
+}
 
 export default function HeroHubDiagram() {
   const reduceMotion = useReducedMotion();
   const [activeId, setActiveId] = useState(hubNodes[0].id);
   const [hovered, setHovered] = useState(false);
+  const [cardWidthPct, setCardWidthPct] = useState(CARD_WIDTH_PCT_MOBILE);
+  const [viewport, setViewport] = useState<Viewport>("mobile");
+
+  useEffect(() => {
+    const update = () => {
+      const w = window.innerWidth;
+      if (w >= 1024) {
+        setViewport("desktop");
+        setCardWidthPct(CARD_WIDTH_PCT_DESKTOP);
+      } else if (w >= 640) {
+        setViewport("tablet");
+        setCardWidthPct(CARD_WIDTH_PCT_TABLET);
+      } else {
+        setViewport("mobile");
+        setCardWidthPct(CARD_WIDTH_PCT_MOBILE);
+      }
+    };
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
 
   useEffect(() => {
     if (hovered || reduceMotion) return;
@@ -131,10 +171,10 @@ export default function HeroHubDiagram() {
   const active = hubNodes.find((n) => n.id === activeId) ?? hubNodes[0];
 
   return (
-    <div className="relative mx-auto w-full max-w-[680px]">
+    <div className="relative mx-auto w-full max-w-[360px] sm:max-w-[480px] md:max-w-[560px] lg:max-w-[680px]">
       <div
         className="relative isolate w-full overflow-visible"
-        style={{ aspectRatio: "1 / 1.02" }}
+        style={{ aspectRatio: "1 / 1.08" }}
         onMouseLeave={() => setHovered(false)}
       >
         {/* Atmosphere */}
@@ -189,11 +229,12 @@ export default function HeroHubDiagram() {
           </defs>
           {hubNodes.map((node) => {
             const isActive = node.id === activeId;
+            const x = nodeX(node, viewport);
             // Meet the card on the edge that faces the hub
             const endX =
               node.side === "left"
-                ? node.x + CARD_WIDTH_PCT - 2
-                : node.x - CARD_WIDTH_PCT + 2;
+                ? x + cardWidthPct - 2
+                : x - cardWidthPct + 2;
             const endY = node.y;
             const cx =
               node.side === "left"
@@ -229,13 +270,14 @@ export default function HeroHubDiagram() {
         {/* Feature cards */}
         {hubNodes.map((node, i) => {
           const isActive = node.id === activeId;
+          const x = nodeX(node, viewport);
           return (
             <div
               key={node.id}
-              className="absolute z-20 w-[min(44%,190px)] -translate-y-1/2"
+              className="absolute z-20 w-[min(38%,136px)] -translate-y-1/2 sm:w-[min(34%,148px)] md:w-[min(36%,160px)] lg:w-[min(42%,190px)]"
               style={{
-                left: node.side === "left" ? `${node.x}%` : "auto",
-                right: node.side === "right" ? `${100 - node.x}%` : "auto",
+                left: node.side === "left" ? `${x}%` : "auto",
+                right: node.side === "right" ? `${100 - x}%` : "auto",
                 top: `${node.y}%`,
                 zIndex: isActive ? 30 : 20,
               }}
@@ -246,8 +288,8 @@ export default function HeroHubDiagram() {
                 initial={{ opacity: 0, y: 16, scale: 0.96 }}
                 animate={{
                   opacity: isActive ? 1 : 0.72,
-                  y: isActive ? -4 : 0,
-                  scale: isActive ? 1.04 : 1,
+                  y: isActive ? -3 : 0,
+                  scale: isActive ? 1.03 : 1,
                 }}
                 transition={{
                   opacity: {
@@ -267,7 +309,7 @@ export default function HeroHubDiagram() {
                 }}
               >
                 <div
-                  className="rounded-2xl bg-white/90 px-3.5 py-3 backdrop-blur-md sm:px-4 sm:py-3.5"
+                  className="rounded-xl bg-white/90 px-2.5 py-2 backdrop-blur-md sm:rounded-2xl sm:px-3.5 sm:py-3 lg:px-4 lg:py-3.5"
                   style={{
                     border: isActive
                       ? "1px solid rgba(16, 185, 129,0.4)"
@@ -277,27 +319,27 @@ export default function HeroHubDiagram() {
                       : "0 10px 28px rgba(15,23,42,0.06)",
                   }}
                 >
-                  <div className="flex gap-2.5">
+                  <div className="flex gap-1.5 sm:gap-2.5">
                     <span
-                      className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full sm:h-9 sm:w-9"
+                      className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full sm:h-8 sm:w-8 lg:h-9 lg:w-9"
                       style={{
                         background: `linear-gradient(145deg, #34D399, ${GREEN})`,
                         boxShadow: "0 6px 14px rgba(16, 185, 129,0.3)",
                       }}
                     >
                       <node.Icon
-                        className="h-3.5 w-3.5 text-white sm:h-4 sm:w-4"
+                        className="h-3 w-3 text-white sm:h-3.5 sm:w-3.5 lg:h-4 lg:w-4"
                         strokeWidth={2.25}
                       />
                     </span>
                     <span className="min-w-0">
                       <span
-                        className="block text-[12px] font-semibold leading-snug tracking-tight sm:text-[13px]"
+                        className="block text-[10px] font-semibold leading-snug tracking-tight sm:text-[12px] lg:text-[13px]"
                         style={{ color: NAVY }}
                       >
                         {node.title}
                       </span>
-                      <span className="font-dm-sans mt-1 block text-[10px] leading-relaxed text-slate-500 sm:text-[11px]">
+                      <span className="font-dm-sans mt-0.5 block text-[8.5px] leading-relaxed text-slate-500 sm:mt-1 sm:text-[10px] lg:text-[11px]">
                         {node.description}
                       </span>
                     </span>
@@ -316,12 +358,12 @@ export default function HeroHubDiagram() {
           {!reduceMotion && (
             <>
               <motion.span
-                className="absolute left-1/2 top-1/2 h-[168px] w-[168px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-emerald-300/50 sm:h-[186px] sm:w-[186px]"
+                className="absolute left-1/2 top-1/2 h-[108px] w-[108px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-emerald-300/50 sm:h-[120px] sm:w-[120px] md:h-[140px] md:w-[140px] lg:h-[186px] lg:w-[186px]"
                 animate={{ scale: [1, 1.08, 1], opacity: [0.45, 0.15, 0.45] }}
                 transition={{ duration: 3.6, repeat: Infinity, ease: "easeInOut" }}
               />
               <motion.span
-                className="absolute left-1/2 top-1/2 h-[188px] w-[188px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-emerald-400/30 sm:h-[208px] sm:w-[208px]"
+                className="absolute left-1/2 top-1/2 h-[122px] w-[122px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-emerald-400/30 sm:h-[136px] sm:w-[136px] md:h-[156px] md:w-[156px] lg:h-[208px] lg:w-[208px]"
                 animate={{ scale: [1, 1.12, 1], opacity: [0.35, 0.08, 0.35] }}
                 transition={{
                   duration: 3.6,
@@ -334,7 +376,7 @@ export default function HeroHubDiagram() {
           )}
 
           <motion.div
-            className="relative flex h-[148px] w-[148px] items-center justify-center rounded-full border-[5px] border-white bg-white sm:h-[168px] sm:w-[168px]"
+            className="relative flex h-[96px] w-[96px] items-center justify-center rounded-full border-[3px] border-white bg-white sm:h-[110px] sm:w-[110px] sm:border-[4px] md:h-[128px] md:w-[128px] lg:h-[168px] lg:w-[168px] lg:border-[5px]"
             style={{
               boxShadow:
                 "0 18px 50px rgba(15,23,42,0.1), 0 0 0 1px rgba(15,23,42,0.03)",
@@ -343,18 +385,18 @@ export default function HeroHubDiagram() {
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div className="mt-4 flex w-[78%] flex-col items-center justify-center sm:mt-5">
+            <div className="mt-2 flex w-[78%] flex-col items-center justify-center sm:mt-3 md:mt-3.5 lg:mt-5">
               <Image
                 src="/icons/Nav-logo.png"
                 alt="Befikra Partner"
                 width={160}
                 height={52}
-                className="!relative h-10 w-auto object-contain sm:h-11"
+                className="!relative h-6 w-auto object-contain sm:h-7 md:h-8 lg:h-11"
                 style={{ marginLeft: "auto", marginRight: "auto" }}
                 priority
               />
               <p
-                className="mt-1.5 w-full text-center text-xs font-bold uppercase sm:mt-2 sm:text-[13px]"
+                className="mt-1 w-full text-center text-[9px] font-bold uppercase sm:mt-1 sm:text-[10px] md:text-[11px] lg:mt-2 lg:text-[13px]"
                 style={{
                   color: GREEN,
                   letterSpacing: "0.22em",
@@ -368,9 +410,9 @@ export default function HeroHubDiagram() {
           </motion.div>
         </div>
 
-        {/* Active label chip under center (desktop) */}
+        {/* Active label chip under center (tablet+) */}
         <div
-          className="pointer-events-none absolute bottom-[6%] z-30 hidden -translate-x-1/2 sm:block"
+          className="pointer-events-none absolute bottom-[6%] z-30 hidden -translate-x-1/2 md:block"
           style={{ left: `${CENTER_X}%` }}
         >
           <motion.p

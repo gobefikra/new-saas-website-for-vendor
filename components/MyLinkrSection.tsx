@@ -34,7 +34,7 @@ const features = [
     Icon: Zap,
     title: "Instant actions",
     desc: "Book, pay, and confirm in seconds.",
-    iconBg: "#F7FEE7",
+    iconBg: "#ECFDF5",
     iconColor: "#10B981",
   },
   {
@@ -48,7 +48,7 @@ const features = [
     Icon: Shield,
     title: "Secure & reliable",
     desc: "Safe payments, secure data, total peace of mind.",
-    iconBg: "#F7FEE7",
+    iconBg: "#ECFDF5",
     iconColor: "#059669",
   },
 ];
@@ -67,7 +67,7 @@ const stats = [
     value: "2M+",
     title: "Bookings Made",
     desc: "Turning visitors into happy customers",
-    iconBg: "#F7FEE7",
+    iconBg: "#ECFDF5",
     iconColor: "#10B981",
   },
   {
@@ -83,7 +83,7 @@ const stats = [
     value: "98%",
     title: "Conversion Boost",
     desc: "More bookings with smarter engagement",
-    iconBg: "#F7FEE7",
+    iconBg: "#ECFDF5",
     iconColor: "#059669",
   },
   {
@@ -104,7 +104,7 @@ export default function MyLinkrSection() {
     <section
       id="mylinkr"
       ref={ref}
-      className="w-full overflow-hidden bg-white px-4 py-20 md:py-24 lg:px-8"
+      className="w-full overflow-hidden bg-white px-4 py-16 md:py-20 lg:px-8"
     >
       <div className="mx-auto max-w-6xl">
         <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-2 lg:items-center lg:gap-10 xl:gap-14">

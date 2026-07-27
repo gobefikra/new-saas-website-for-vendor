@@ -9,7 +9,7 @@ import { fadeInUp, staggerContainer } from "@/components/motion";
 
 const HERO_BG = "#F9FAFB";
 const GREEN = "#10B981";
-const GREEN_DARK = "#10B981";
+const GREEN_DARK = "#059669";
 const NAVY = "#0F172A";
 const BODY_GRAY = "#6B7280";
 

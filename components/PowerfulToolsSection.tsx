@@ -18,7 +18,7 @@ import { fadeInUp, staggerContainer } from "@/components/motion";
 const NAVY = "#0F172A";
 const BODY = "#6B7280";
 const MINT = "#ECFDF5";
-const GREEN_DARK = "#10B981";
+const GREEN_DARK = "#059669";
 
 const features = [
   {
@@ -50,7 +50,7 @@ const stats = [
     Icon: Users,
     value: "50K+",
     label: "Happy Customers",
-    iconBg: "#F7FEE7",
+    iconBg: "#ECFDF5",
     iconColor: "#10B981",
   },
   {
@@ -64,7 +64,7 @@ const stats = [
     Icon: Star,
     value: "4.8/5",
     label: "User Rating",
-    iconBg: "#F7FEE7",
+    iconBg: "#ECFDF5",
     iconColor: "#059669",
   },
 ];
@@ -77,7 +77,7 @@ export default function PowerfulToolsSection() {
     <section
       id="powerful-tools"
       ref={ref}
-      className="w-full overflow-hidden bg-white px-4 py-20 md:py-24 lg:px-8"
+      className="w-full overflow-hidden bg-white px-4 py-16 md:py-20 lg:px-8"
     >
       <div className="mx-auto max-w-6xl">
         <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-2 lg:gap-10">
