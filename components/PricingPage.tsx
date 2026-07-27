@@ -73,7 +73,10 @@ export default function PricingPage() {
         <section className="border-t border-border-default bg-off-white px-4 py-16 md:px-8 md:py-20">
           <div className="mx-auto max-w-[1200px]">
             <div className="mb-8 text-center md:mb-10">
-              <h2 className="font-display text-2xl font-semibold tracking-[-0.02em] text-navy md:text-3xl">
+              <div className="flex justify-center">
+                <Eyebrow>Feature comparison</Eyebrow>
+              </div>
+              <h2 className="mt-4 font-display text-2xl font-semibold tracking-[-0.02em] text-navy md:text-3xl">
                 Compare all features
               </h2>
               <p className="mx-auto mt-3 max-w-md font-sans text-sm leading-relaxed text-subtext md:text-base">

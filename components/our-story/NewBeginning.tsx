@@ -296,7 +296,7 @@ function MilestoneCard({
                 {mile.title}
               </h3>
 
-              <p className="font-sans relative mt-4 text-[15px] leading-relaxed text-gray-400">
+              <p className="font-sans relative mt-4 text-[15px] leading-relaxed text-subtext">
                 {mile.body}
               </p>
             </div>
@@ -348,7 +348,7 @@ function JourneyTrail() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.7 }}
           transition={{ duration: 0.55, delay: 0.14 }}
-          className="font-sans mx-auto mt-5 max-w-xl text-[15px] leading-relaxed text-gray-400"
+          className="font-sans mx-auto mt-5 max-w-xl text-[15px] leading-relaxed text-subtext"
         >
           Scroll the path. Each milestone is a chapter in how Befikra grew from
           a single frustration into a platform built for the way adventure
@@ -370,16 +370,34 @@ function JourneyTrail() {
             <path
               d={TRAIL_PATH}
               fill="none"
-              stroke="rgba(255,255,255,0.07)"
+              stroke="rgba(255,255,255,0.08)"
               strokeWidth="22"
               strokeLinecap="round"
             />
-            {/* Emerald progress — grows from first card */}
+            {/* Glow underlay — soft highlight behind the progress */}
+            <motion.path
+              d={TRAIL_PATH}
+              fill="none"
+              stroke="#6EE7B7"
+              strokeWidth="10"
+              strokeLinecap="round"
+              strokeOpacity="0.28"
+              style={{ pathLength: pathLength as MotionValue<number> }}
+            />
+            {/* Emerald progress — brighter + slightly thicker */}
+            <motion.path
+              d={TRAIL_PATH}
+              fill="none"
+              stroke="#A7D7BC"
+              strokeWidth="4.5"
+              strokeLinecap="round"
+              style={{ pathLength: pathLength as MotionValue<number> }}
+            />
             <motion.path
               d={TRAIL_PATH}
               fill="none"
               stroke="#2D6A4F"
-              strokeWidth="3.5"
+              strokeWidth="2.25"
               strokeLinecap="round"
               style={{ pathLength: pathLength as MotionValue<number> }}
             />
@@ -442,7 +460,7 @@ export default function NewBeginning() {
                 <p className="relative inline-block text-left text-lg font-medium leading-snug tracking-tight text-white md:text-2xl md:leading-snug">
                   <span
                     aria-hidden
-                    className="pointer-events-none absolute -left-12 -top-8 select-none font-serif text-[7rem] leading-none text-brand-green/20 md:-left-14 md:-top-10 md:text-[8.5rem]"
+                    className="pointer-events-none absolute -left-12 -top-8 select-none font-serif text-[7rem] leading-none text-[#A7D7BC]/35 md:-left-14 md:-top-10 md:text-[8.5rem]"
                   >
                     &ldquo;
                   </span>
@@ -450,8 +468,10 @@ export default function NewBeginning() {
                     We are good at running experiences.
                   </span>
                   <span className="block">
-                    We are not good at{" "}
-                    <span className="text-brand-green">managing systems.</span>
+                    We build systems that{" "}
+                    <span className="font-semibold text-[#A7D7BC]">
+                      help them scale.
+                    </span>
                   </span>
                 </p>
               </div>
@@ -468,7 +488,7 @@ export default function NewBeginning() {
               We spoke to multiple travel and adventure business owners who told
               us the same thing:
             </p>
-            <p className="font-sans text-[15px] leading-relaxed text-gray-400 md:text-base">
+            <p className="font-sans text-[15px] leading-relaxed text-subtext md:text-base">
               It started with a simple observation: travel agencies were
               drowning in admin work while trying to deliver dream vacations. We
               saw passionate founders buried in spreadsheets, losing track of

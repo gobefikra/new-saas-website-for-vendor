@@ -14,7 +14,7 @@ export default function CategoryRow({ name }: CategoryRowProps) {
   return (
     <div className={`${GRID} border-b border-border-default bg-[#F9FAFB]`}>
       <div
-        className="border-border-default px-4 py-3 text-xs font-bold uppercase tracking-wide md:px-5 md:py-3.5 lg:border-r"
+        className="flex min-h-[2.75rem] items-center border-border-default px-4 py-3.5 text-xs font-bold uppercase tracking-wide md:px-5 md:py-4 lg:border-r"
         style={{ color: brand.navy }}
       >
         {name}

@@ -69,7 +69,7 @@ export default function ScriptAccent({
       className={`script-lockup relative inline-flex items-end ${sizeClass[size]} ${className}`}
     >
       <span
-        className={`relative z-[1] font-script leading-[1.05] text-brand-green ${
+        className={`relative z-[1] font-script text-[1em] font-normal leading-[1.05] text-brand-green [font-synthesis:none] ${
           underline ? "script-gold-underline" : ""
         }`}
       >

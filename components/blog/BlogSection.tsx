@@ -49,68 +49,66 @@ export default function BlogSection({
     (tabs && TAB_LAYOUTS[activeTab]) || "standard";
 
   return (
-    <section
-      id={id}
-      ref={ref}
-      className="scroll-mt-24 bg-white px-6 py-16 md:px-10"
-    >
-      <div className="mb-6">
-        <p className="mb-1 text-sm font-medium text-gray-400">{label}</p>
-        <h2 className="text-4xl font-display font-semibold tracking-[-0.02em] text-navy">{heading}</h2>
+    <section id={id} ref={ref} className="scroll-mt-24 bg-white py-16">
+      <div className="mx-auto max-w-7xl px-4 md:px-6">
+        <div className="mb-6">
+          <p className="section-eyebrow mb-2">{label}</p>
+          <h2 className="section-title">{heading}</h2>
+        </div>
+
+        {tabs && tabs.length > 0 && (
+          <FilterTabs
+            tabs={tabs}
+            activeTab={activeTab}
+            onTabChange={setActiveTab}
+          />
+        )}
+
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={tabs ? activeTab : "static"}
+            initial={{ opacity: 0, y: 12 }}
+            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.25 }}
+            className={
+              variant === "compact"
+                ? "grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
+                : "grid grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-3"
+            }
+          >
+            {filteredCards.length === 0 ? (
+              <p className="col-span-full py-10 text-center text-sm text-subtext">
+                No articles in this category yet.
+              </p>
+            ) : (
+              filteredCards.map((card, i) => (
+                <motion.div
+                  key={card.slug ?? `${card.title}-${i}`}
+                  initial={{ opacity: 0, y: 18 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.35,
+                    delay: 0.04 * i,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                  className={
+                    variant === "overlay" && i === 0
+                      ? "sm:col-span-2 lg:col-span-2"
+                      : undefined
+                  }
+                >
+                  <BlogCard
+                    {...card}
+                    variant={variant}
+                    featured={variant === "overlay" && i === 0}
+                  />
+                </motion.div>
+              ))
+            )}
+          </motion.div>
+        </AnimatePresence>
       </div>
-
-      {tabs && tabs.length > 0 && (
-        <FilterTabs
-          tabs={tabs}
-          activeTab={activeTab}
-          onTabChange={setActiveTab}
-        />
-      )}
-
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={tabs ? activeTab : "static"}
-          initial={{ opacity: 0, y: 12 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
-          exit={{ opacity: 0, y: -8 }}
-          transition={{ duration: 0.25 }}
-          className={
-            variant === "compact"
-              ? "grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
-              : "grid grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-3"
-          }
-        >
-          {filteredCards.length === 0 ? (
-            <p className="col-span-full py-10 text-center text-sm text-gray-400">
-              No articles in this category yet.
-            </p>
-          ) : (
-            filteredCards.map((card, i) => (
-              <motion.div
-                key={card.slug ?? `${card.title}-${i}`}
-                initial={{ opacity: 0, y: 18 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.35,
-                  delay: 0.04 * i,
-                  ease: [0.16, 1, 0.3, 1],
-                }}
-                className={
-                  variant === "overlay" && i === 0
-                    ? "sm:col-span-2 lg:col-span-2"
-                    : undefined
-                }
-              >
-                <BlogCard
-                  {...card}
-                  variant={variant}
-                  featured={variant === "overlay" && i === 0}
-                />
-              </motion.div>
-            ))
-          )}
-        </motion.div>
-      </AnimatePresence>
     </section>
   );
 }

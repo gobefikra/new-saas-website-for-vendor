@@ -108,7 +108,7 @@ export default function TrainedByFounders() {
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
           variants={fadeInUp}
-          className="font-sans mx-auto mt-5 max-w-xl text-[15px] leading-relaxed text-gray-400"
+          className="font-sans mx-auto mt-5 max-w-xl text-[15px] leading-relaxed text-subtext"
         >
           We didn&apos;t build in a vacuum. Every algorithm, every workflow, and
           every UI decision was shaped by active travel agencies handling real

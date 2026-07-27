@@ -52,7 +52,7 @@ export default function FeatureCell({ value }: FeatureCellProps) {
       const isLong = value.label.length > 18;
       return (
         <span
-          className={`block max-w-[11rem] text-center font-medium leading-snug ${
+          className={`block max-w-[11rem] text-center font-medium leading-normal ${
             isLong ? "text-xs" : "text-sm"
           }`}
           style={{ color: badgeColors[value.variant ?? "default"] }}

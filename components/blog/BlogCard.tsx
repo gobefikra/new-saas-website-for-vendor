@@ -167,10 +167,10 @@ export default function BlogCard({
           <h3 className="mt-1.5 text-[0.95rem] font-semibold leading-snug text-navy transition-colors group-hover:text-brand-green-dark sm:mt-2 sm:text-base">
             {title}
           </h3>
-          <p className="mt-1 hidden text-[12px] text-gray-400 sm:mt-2 sm:line-clamp-2 sm:block sm:text-[13px] sm:text-subtext">
+          <p className="mt-1 hidden text-[12px] text-subtext sm:mt-2 sm:line-clamp-2 sm:block sm:text-[13px] sm:text-subtext">
             {excerpt}
           </p>
-          <p className="mt-2 text-[11px] text-gray-400">
+          <p className="mt-2 text-[11px] text-subtext">
             {date} · {readTime}
           </p>
         </div>
@@ -196,7 +196,7 @@ export default function BlogCard({
           </div>
         </div>
         <div className="flex flex-1 flex-col px-5 pb-5 pt-5 md:px-6 md:pb-6">
-          <p className="flex items-center gap-2 text-[11px] text-gray-400">
+          <p className="flex items-center gap-2 text-[11px] text-subtext">
             <span>{date}</span>
             <span className="h-1 w-1 rounded-full bg-brand-green/70" aria-hidden />
             <span>{readTime}</span>

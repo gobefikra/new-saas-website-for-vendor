@@ -125,7 +125,7 @@ export default function IntegrationsCTA() {
                   />
                 </div>
                 <p className="mt-3 text-sm font-bold text-white">{item.title}</p>
-                <p className="font-sans mt-1 text-xs leading-relaxed text-gray-400">
+                <p className="font-sans mt-1 text-xs leading-relaxed text-white/55">
                   {item.desc}
                 </p>
               </div>

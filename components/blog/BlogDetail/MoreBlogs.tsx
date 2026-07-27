@@ -15,7 +15,9 @@ export default function MoreBlogs({ currentSlug }: { currentSlug: string }) {
   return (
     <section ref={ref} className="mt-16">
       <div className="mb-8 flex items-center justify-between">
-        <h2 className="text-2xl font-bold text-navy">More from the blog</h2>
+        <h2 className="font-display text-2xl font-semibold tracking-[-0.02em] text-navy">
+          More from the blog
+        </h2>
         <Link
           href="/blogs"
           className="text-sm font-semibold text-brand-green hover:text-brand-green-dark"

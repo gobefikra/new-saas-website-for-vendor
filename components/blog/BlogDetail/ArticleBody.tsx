@@ -16,7 +16,7 @@ function AnimatedH2({ children }: { children: React.ReactNode }) {
       initial="hidden"
       animate={inView ? "visible" : "hidden"}
       variants={fadeInUp}
-      className="mt-10 mb-4 text-2xl font-bold text-navy"
+      className="mb-4 mt-10 font-display text-2xl font-semibold tracking-[-0.02em] text-navy"
     >
       {children}
     </motion.h2>
@@ -63,7 +63,7 @@ function AnimatedImage({
         </div>
       )}
       {caption && (
-        <figcaption className="mb-6 mt-2 text-center text-sm text-gray-400">
+        <figcaption className="mb-6 mt-2 text-center text-sm text-subtext">
           {caption}
         </figcaption>
       )}
