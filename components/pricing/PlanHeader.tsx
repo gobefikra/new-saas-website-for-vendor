@@ -31,8 +31,8 @@ function TablePlanHeader({
 
   return (
     <div
-      className={`flex-col items-start justify-center gap-1.5 border-gray-100 px-4 py-4 last:border-r-0 max-lg:hidden md:px-5 md:py-5 lg:flex lg:border-r ${
-        plan.featured ? "bg-emerald-50/40" : ""
+      className={`flex-col items-start justify-center gap-1.5 border-border-default px-4 py-4 last:border-r-0 max-lg:hidden md:px-5 md:py-5 lg:flex lg:border-r ${
+        plan.featured ? "bg-brand-green-light/40" : ""
       } ${isMobileVisible ? "max-lg:!flex" : ""}`}
     >
       <h4
@@ -43,7 +43,7 @@ function TablePlanHeader({
       </h4>
       <Link
         href="/contact"
-        className="text-sm font-medium transition-colors hover:text-emerald-600"
+        className="text-sm font-medium transition-colors hover:text-brand-green-dark"
         style={{ color: brand.subtext }}
       >
         {plan.cta} &rsaquo;
@@ -57,9 +57,9 @@ export default function PlanHeader({ billing, mobilePlan }: PlanHeaderProps) {
 
   return (
     <div
-      className={`${GRID} sticky top-16 z-30 rounded-t-2xl border-b border-gray-200 bg-white/95 backdrop-blur-md md:top-[4.5rem]`}
+      className={`${GRID} sticky top-16 z-30 rounded-t-2xl border-b border-border-default bg-white/95 backdrop-blur-md md:top-[4.5rem]`}
     >
-      <div className="hidden border-r border-gray-100 lg:block" />
+      <div className="hidden border-r border-border-default lg:block" />
 
       {PLANS.map((plan) => (
         <TablePlanHeader key={plan.id} plan={plan} mobilePlan={mobilePlan} />

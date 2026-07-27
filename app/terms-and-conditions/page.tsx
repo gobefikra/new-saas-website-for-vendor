@@ -147,7 +147,7 @@ export default function TermsAndConditionsPage() {
           Your use of Befikra is governed by our{" "}
           <Link
             href="/privacy-policy"
-            className="text-emerald-600 hover:underline font-medium"
+            className="text-brand-green-dark hover:underline font-medium"
           >
             Privacy Policy
           </Link>
@@ -211,7 +211,7 @@ export default function TermsAndConditionsPage() {
         <LegalP>
           For questions, support, or legal inquiries, please contact:
         </LegalP>
-        <p className="text-gray-600 text-base leading-relaxed mb-4">
+        <p className="text-subtext text-base leading-relaxed mb-4">
           <strong className="font-semibold text-gray-800">Befikra Support</strong>
           <br />
           Email: <LegalEmailLink />

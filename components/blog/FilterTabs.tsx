@@ -6,7 +6,7 @@ interface FilterTabsProps {
   onTabChange: (tab: string) => void;
 }
 
-const NAVY = "#0F172A";
+const NAVY = "#0A1E3B";
 
 export default function FilterTabs({
   tabs,
@@ -25,7 +25,7 @@ export default function FilterTabs({
             className="cursor-pointer rounded-full px-4 py-2 text-sm transition md:px-5"
             style={
               isActive
-                ? { backgroundColor: "#ECFDF5", color: NAVY, fontWeight: 600 }
+                ? { backgroundColor: "#E8F3EE", color: NAVY, fontWeight: 600 }
                 : { color: "#6B7280", fontWeight: 500 }
             }
           >

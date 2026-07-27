@@ -13,6 +13,7 @@ import { FaSpotify, FaWhatsapp } from "react-icons/fa";
 import { MousePointerClick, Star, Users } from "lucide-react";
 import { fadeInUp, staggerContainer } from "@/components/motion";
 import Eyebrow from "@/components/ui/Eyebrow";
+import ScriptAccent from "@/components/ui/ScriptAccent";
 
 function RevealCard({
   progress,
@@ -49,7 +50,7 @@ function RevealCard({
 
   return (
     <motion.div
-      className={`absolute left-1/2 top-1/2 z-10 -translate-y-1/2 will-change-transform ${className}`}
+      className={`absolute left-1/2 top-1/2 z-[1] -translate-y-1/2 will-change-transform ${className}`}
       style={{
         x: reduceMotion ? finalX : x,
         y: reduceMotion ? finalY : y,
@@ -65,7 +66,7 @@ function RevealCard({
 }
 
 const cardShell =
-  "rounded-2xl border border-gray-100 bg-white p-3.5 text-left shadow-[0_14px_40px_rgba(15,23,42,0.1)] sm:p-4";
+  "card-brand-static p-3.5 text-left sm:p-4";
 
 export default function MyLinkrHeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -81,9 +82,9 @@ export default function MyLinkrHeroSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative h-[118svh] overflow-x-clip bg-gradient-to-b from-[#F9FAFB] via-white to-white pb-6 sm:h-[160svh] sm:pb-16 md:h-[165svh] md:pb-20 lg:h-[185svh] lg:pb-28"
+      className="relative z-0 h-[118svh] overflow-x-clip bg-gradient-to-b from-[#F9FAFB] via-white to-white pb-6 sm:h-[160svh] sm:pb-16 md:h-[165svh] md:pb-20 lg:h-[185svh] lg:pb-28"
     >
-      <div className="sticky top-16 flex h-auto min-h-0 flex-col items-center justify-start px-3 pb-5 pt-8 text-center sm:h-[calc(100svh-4rem)] sm:min-h-[500px] sm:justify-center sm:px-4 sm:pb-6 sm:pt-3 md:top-[4.5rem] md:h-[calc(100svh-4.5rem)] md:min-h-[520px] md:px-6 md:pb-8 lg:min-h-[680px] lg:justify-start lg:px-8 lg:pb-16 lg:pt-6">
+      <div className="sticky top-16 z-0 flex h-auto min-h-0 flex-col items-center justify-start bg-gradient-to-b from-[#F9FAFB] via-white to-white px-3 pb-5 pt-8 text-center sm:h-[calc(100svh-4rem)] sm:min-h-[500px] sm:justify-center sm:px-4 sm:pb-6 sm:pt-3 md:top-[4.5rem] md:h-[calc(100svh-4.5rem)] md:min-h-[520px] md:px-6 md:pb-8 lg:min-h-[680px] lg:justify-start lg:px-8 lg:pb-16 lg:pt-6">
         {/* Copy */}
         <motion.div
           initial="hidden"
@@ -97,25 +98,25 @@ export default function MyLinkrHeroSection() {
 
           <motion.h1
             variants={staggerContainer}
-            className="mx-auto max-w-4xl text-[1.75rem] font-extrabold leading-[1.08] tracking-tight text-[#0F172A] sm:text-[2rem] md:text-[2.35rem] lg:text-5xl xl:text-[4rem]"
+            className="mx-auto max-w-4xl font-display text-[1.75rem] font-semibold leading-[1.08] tracking-[-0.02em] text-navy sm:text-[2rem] md:text-[2.35rem] lg:text-5xl xl:text-[4rem]"
           >
             <motion.span variants={fadeInUp} className="block">
               Create Your Own
             </motion.span>
-            <motion.span
-              variants={fadeInUp}
-              className="mt-0.5 block bg-gradient-to-r from-emerald-500 to-emerald-500 bg-clip-text pb-1 text-transparent"
-            >
+            <motion.span variants={fadeInUp} className="mt-0.5 block text-brand-green">
               Booking-Ready Mini Website
             </motion.span>
           </motion.h1>
+          <motion.div variants={fadeInUp} className="mt-3 flex justify-center">
+            <ScriptAccent size="lg">launch it freely</ScriptAccent>
+          </motion.div>
         </motion.div>
 
         {/* Fixed-height stage on tablet so phone + cards share one cluster */}
         <div className="relative mx-auto mt-10 h-[360px] w-full max-w-6xl sm:mt-8 sm:h-[420px] md:mt-10 md:h-[460px] lg:mt-14 lg:h-auto lg:min-h-[520px] lg:flex-1">
           <motion.div
             aria-hidden
-            className="pointer-events-none absolute left-1/2 top-1/2 h-40 w-40 -translate-x-1/2 -translate-y-1/2 rounded-full bg-emerald-200/45 blur-3xl sm:h-48 sm:w-48 md:h-56 md:w-56 lg:h-72 lg:w-72"
+            className="pointer-events-none absolute left-1/2 top-1/2 h-40 w-40 -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-green/45 blur-3xl sm:h-48 sm:w-48 md:h-56 md:w-56 lg:h-72 lg:w-72"
             style={{ opacity: reduceMotion ? 0.28 : haloOpacity }}
           />
 
@@ -130,11 +131,11 @@ export default function MyLinkrHeroSection() {
             className="w-[clamp(7rem,30vw,13rem)] origin-center scale-[0.8] sm:scale-90 md:scale-95 lg:scale-100"
           >
             <div className={cardShell}>
-              <p className="text-[10px] font-semibold uppercase tracking-wider text-emerald-600">
+              <p className="text-[10px] font-semibold uppercase tracking-wider text-brand-green-dark">
                 New inquiry
               </p>
               <div className="mt-2 flex items-center gap-2.5">
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-emerald-50 text-xs font-bold text-emerald-600">
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-green-light text-xs font-bold text-brand-green-dark">
                   AK
                 </span>
                 <div className="min-w-0">
@@ -157,15 +158,15 @@ export default function MyLinkrHeroSection() {
             rotate={5}
             className="w-[clamp(6.75rem,28vw,12.5rem)] origin-center scale-[0.8] sm:scale-90 md:scale-95 lg:scale-100"
           >
-            <div className={`${cardShell} border-emerald-100`}>
-              <p className="text-[10px] font-semibold uppercase tracking-wider text-emerald-600">
+            <div className={`${cardShell} border-brand-green/25`}>
+              <p className="text-[10px] font-semibold uppercase tracking-wider text-brand-green-dark">
                 Booking live
               </p>
               <p className="mt-2 text-xs font-bold text-slate-800 sm:text-sm">
                 Manali Weekend Trek
               </p>
               <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-slate-100">
-                <div className="h-full w-4/5 rounded-full bg-gradient-to-r from-emerald-400 to-emerald-500" />
+                <div className="h-full w-4/5 rounded-full bg-gradient-to-r from-brand-green to-brand-green" />
               </div>
               <p className="mt-1.5 text-[10px] text-slate-400">16 of 20 spots filled</p>
             </div>
@@ -183,7 +184,7 @@ export default function MyLinkrHeroSection() {
           >
             <div className={cardShell}>
               <div className="flex items-center gap-2.5">
-                <FaSpotify className="shrink-0 text-lg text-emerald-500 sm:text-xl" />
+                <FaSpotify className="shrink-0 text-lg text-brand-green sm:text-xl" />
                 <div>
                   <p className="text-xs font-bold text-slate-800 sm:text-sm">Travel Stories</p>
                   <p className="text-[10px] text-slate-400">Latest episode</p>
@@ -193,7 +194,7 @@ export default function MyLinkrHeroSection() {
                 {[45, 72, 55, 90, 62, 78, 48, 68].map((height, index) => (
                   <span
                     key={index}
-                    className="w-1 flex-1 rounded-full bg-emerald-400"
+                    className="w-1 flex-1 rounded-full bg-brand-green"
                     style={{ height: `${height / 4}px` }}
                   />
                 ))}
@@ -211,22 +212,22 @@ export default function MyLinkrHeroSection() {
             rotate={-9}
             className="w-[clamp(6.75rem,28vw,12rem)] origin-center scale-[0.8] sm:scale-90 md:scale-95 lg:scale-100"
           >
-            <div className={`${cardShell} border-emerald-100`}>
+            <div className={`${cardShell} border-brand-green/25`}>
               <div className="flex items-center justify-between gap-2">
                 <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-400">
                   Earnings
                 </p>
-                <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-[9px] font-bold text-emerald-600">
+                <span className="rounded-full bg-brand-green-light px-2 py-0.5 text-[9px] font-bold text-brand-green-dark">
                   +24%
                 </span>
               </div>
-              <p className="mt-1 text-lg font-extrabold tracking-tight text-slate-900 sm:text-xl">
+              <p className="mt-1 text-lg font-display font-semibold tracking-[-0.02em] text-navy sm:text-xl">
                 ₹1,26,202
               </p>
               <svg className="mt-2 h-8 w-full" viewBox="0 0 120 32" fill="none" aria-hidden>
                 <path
                   d="M2 27C15 25 18 17 30 20C43 23 48 10 60 14C73 18 78 5 91 9C102 12 107 3 118 4"
-                  stroke="#10B981"
+                  stroke="#2D6A4F"
                   strokeWidth="2.5"
                   strokeLinecap="round"
                 />
@@ -267,7 +268,7 @@ export default function MyLinkrHeroSection() {
             rotate={3}
             className="w-[clamp(6.5rem,28vw,11.5rem)] origin-center scale-[0.8] sm:scale-90 md:scale-95 lg:scale-100"
           >
-            <div className={`${cardShell} border-emerald-100`}>
+            <div className={`${cardShell} border-brand-green/25`}>
               <div className="flex items-center gap-2">
                 <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#25D366]/10">
                   <FaWhatsapp className="text-base text-[#25D366]" />
@@ -290,9 +291,9 @@ export default function MyLinkrHeroSection() {
             rotate={11}
             className="origin-center scale-[0.82] sm:scale-90 md:scale-95 lg:scale-100"
           >
-            <div className="flex items-center gap-2 rounded-full border border-gray-100 bg-white py-2 pl-2.5 pr-4 shadow-[0_14px_40px_rgba(15,23,42,0.1)]">
-              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-emerald-50">
-                <Users className="h-3.5 w-3.5 text-emerald-600" strokeWidth={2.25} />
+            <div className="flex items-center gap-2 rounded-full border border-border-default bg-white py-2 pl-2.5 pr-4 shadow-card">
+              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-brand-green-light">
+                <Users className="h-3.5 w-3.5 text-brand-green-dark" strokeWidth={2.25} />
               </span>
               <div className="text-left">
                 <p className="text-[11px] font-bold leading-none text-slate-800">+128 followers</p>
@@ -311,9 +312,9 @@ export default function MyLinkrHeroSection() {
             rotate={-3}
             className="origin-center scale-[0.82] sm:scale-90 md:scale-95 lg:scale-100"
           >
-            <div className="flex items-center gap-2 rounded-full border border-gray-100 bg-white py-2 pl-2.5 pr-4 shadow-[0_14px_40px_rgba(15,23,42,0.1)]">
-              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-emerald-50">
-                <MousePointerClick className="h-3.5 w-3.5 text-emerald-600" strokeWidth={2.25} />
+            <div className="flex items-center gap-2 rounded-full border border-border-default bg-white py-2 pl-2.5 pr-4 shadow-card">
+              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-brand-green-light">
+                <MousePointerClick className="h-3.5 w-3.5 text-brand-green-dark" strokeWidth={2.25} />
               </span>
               <div className="text-left">
                 <p className="text-[11px] font-bold leading-none text-slate-800">1.2k link clicks</p>
@@ -328,7 +329,7 @@ export default function MyLinkrHeroSection() {
               scale: reduceMotion ? 1 : phoneScale,
               y: reduceMotion ? 0 : phoneY,
             }}
-            className="absolute inset-0 z-20 flex items-center justify-center will-change-transform"
+            className="absolute inset-0 z-[1] flex items-center justify-center will-change-transform"
           >
             <PhoneMockup
               screenSrc={MYLINKR_SCREENS.hero}

@@ -14,11 +14,13 @@ import {
   Youtube,
 } from "lucide-react";
 
-const GREEN = "#10B981";
-const GREEN_DARK = "#059669";
-const NAVY = "#0F172A";
-const BODY = "#6B7280";
-const MINT = "#ECFDF5";
+import { brand } from "@/lib/brand-theme";
+
+const GREEN = brand.green;
+const GREEN_DARK = brand.greenDark;
+const NAVY = brand.navy;
+const BODY = brand.muted;
+const MINT = brand.greenLight;
 
 const companyLinks = [
   { label: "Home", href: "/" },
@@ -72,7 +74,7 @@ function FooterLinkColumn({
           <li key={link.label}>
             <Link
               href={link.href}
-              className="font-dm-sans text-sm transition-colors hover:opacity-80"
+              className="font-sans text-sm transition-colors hover:text-brand-green"
               style={{ color: BODY }}
             >
               {link.label}
@@ -90,23 +92,23 @@ export default function Footer() {
       <div className="mx-auto max-w-6xl px-4 pt-12 md:px-8 md:pt-16">
         {/* Newsletter */}
         <div
-          className="rounded-2xl border border-gray-200 p-6 md:p-8"
+          className="rounded-2xl border border-border-default p-6 md:p-8"
           style={{
             background:
-              "linear-gradient(135deg, rgba(232,245,233,0.55) 0%, rgba(249,250,251,0.95) 55%, #ffffff 100%)",
+              "linear-gradient(135deg, rgba(232,243,238,0.55) 0%, rgba(249,250,251,0.95) 55%, #ffffff 100%)",
           }}
         >
           <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
             <div className="flex items-start gap-4 sm:items-center">
-              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-gray-100 bg-white shadow-[0_4px_20px_rgba(13,27,42,0.06)]">
+              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-border-default bg-white shadow-card">
                 <Mail className="h-6 w-6" style={{ color: GREEN_DARK }} strokeWidth={2} />
               </div>
               <div>
-                <h3 className="text-lg font-bold md:text-xl" style={{ color: NAVY }}>
+                <h3 className="font-display text-lg font-semibold md:text-xl" style={{ color: NAVY }}>
                   Stay ahead of the AI curve
                 </h3>
                 <p
-                  className="font-dm-sans mt-1 max-w-md text-sm leading-relaxed md:text-base"
+                  className="mt-1 max-w-md font-sans text-sm leading-relaxed md:text-base"
                   style={{ color: BODY }}
                 >
                   Join our newsletter for the latest travel tech updates, insights,
@@ -137,13 +139,12 @@ export default function Footer() {
                   required
                   placeholder="Enter your email"
                   aria-label="Email address"
-                  className="font-dm-sans w-full rounded-xl border border-gray-200 bg-white py-3 pl-11 pr-4 text-sm outline-none transition-colors focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100"
-                  style={{ color: NAVY }}
+                  className="input-brand py-3 pl-11 pr-4"
                 />
               </div>
               <button
                 type="submit"
-                className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+                className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white shadow-cta-glow transition-all duration-200 ease-brand hover:opacity-95 active:scale-95"
                 style={{ backgroundColor: GREEN_DARK }}
               >
                 Subscribe
@@ -154,9 +155,9 @@ export default function Footer() {
         </div>
 
         {/* Main navigation */}
-        <div className="mt-12 grid grid-cols-1 gap-10 border-t border-gray-100 pt-12 sm:grid-cols-2 lg:grid-cols-[1.35fr_0.85fr_0.85fr_1.35fr] lg:gap-8 xl:gap-10">
+        <div className="mt-12 grid grid-cols-1 gap-10 border-t border-border-default pt-12 sm:grid-cols-2 lg:grid-cols-[1.35fr_0.85fr_0.85fr_1.35fr] lg:gap-8 xl:gap-10">
           {/* Brand */}
-          <div className="lg:border-r lg:border-gray-100 lg:pr-8">
+          <div className="lg:border-r lg:border-border-default lg:pr-8">
             <Link href="/" className="inline-block">
               <Image
                 src="/icons/Nav-logo.png"
@@ -167,7 +168,7 @@ export default function Footer() {
               />
             </Link>
             <p
-              className="font-dm-sans mt-4 max-w-xs text-sm leading-relaxed"
+              className="mt-4 max-w-xs font-sans text-sm leading-relaxed"
               style={{ color: BODY }}
             >
               India&apos;s intelligent CRM for travel brands, combining automation,
@@ -196,7 +197,7 @@ export default function Footer() {
             <FooterLinkColumn title="Resources" links={resourceLinks} />
 
             {/* Help card */}
-            <div className="w-full shrink-0 rounded-2xl border border-gray-100 bg-white p-5 shadow-[0_4px_24px_rgba(13,27,42,0.06)] sm:max-w-[220px]">
+            <div className="card-brand w-full shrink-0 p-5 sm:max-w-[220px]">
               <div
                 className="flex h-10 w-10 items-center justify-center rounded-full"
                 style={{ backgroundColor: MINT }}
@@ -211,7 +212,7 @@ export default function Footer() {
                 Need Help?
               </p>
               <p
-                className="font-dm-sans mt-1 text-xs leading-relaxed"
+                className="mt-1 font-sans text-xs leading-relaxed"
                 style={{ color: BODY }}
               >
                 Our support team is here to help you succeed.
@@ -230,37 +231,31 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="mt-12 border-t border-gray-100 bg-[#F9FAFB]">
+      <div className="mt-12 border-t border-border-default bg-footer-dark">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 py-5 md:flex-row md:px-8">
-          <p
-            className="font-dm-sans flex items-center gap-2 text-sm"
-            style={{ color: BODY }}
-          >
-            <Lock className="h-4 w-4 shrink-0" style={{ color: GREEN }} strokeWidth={2} />
+          <p className="flex items-center gap-2 font-sans text-sm text-footer-link">
+            <Lock className="h-4 w-4 shrink-0 text-brand-green" strokeWidth={2} />
             © 2026 Befikra Partners. All rights reserved.
           </p>
 
-          <div
-            className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm"
-            style={{ color: BODY }}
-          >
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm text-footer-link">
             <Link
               href="/privacy-policy"
-              className="font-dm-sans transition-colors hover:opacity-80"
+              className="font-sans transition-colors hover:text-white"
             >
               Privacy Policy
             </Link>
-            <span className="hidden h-3.5 w-px bg-gray-300 sm:inline" aria-hidden />
+            <span className="hidden h-3.5 w-px bg-white/15 sm:inline" aria-hidden />
             <Link
               href="/terms-and-conditions"
-              className="font-dm-sans transition-colors hover:opacity-80"
+              className="font-sans transition-colors hover:text-white"
             >
               Terms &amp; Conditions
             </Link>
-            <span className="hidden h-3.5 w-px bg-gray-300 sm:inline" aria-hidden />
+            <span className="hidden h-3.5 w-px bg-white/15 sm:inline" aria-hidden />
             <a
               href="mailto:support@befikra.com"
-              className="font-dm-sans transition-colors hover:opacity-80"
+              className="font-sans transition-colors hover:text-white"
             >
               support@befikra.com
             </a>

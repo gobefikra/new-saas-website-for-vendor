@@ -79,7 +79,7 @@ export function DashboardHomeView({
               setDateOpen((o) => !o);
               onInteract();
             }}
-            className="inline-flex items-center gap-1.5 rounded-lg bg-white px-3 py-1.5 text-[13px] font-medium text-gray-600 ring-1 ring-gray-200 hover:ring-gray-300"
+            className="inline-flex items-center gap-1.5 rounded-lg bg-white px-3 py-1.5 text-[13px] font-medium text-subtext ring-1 ring-gray-200 hover:ring-gray-300"
           >
             {dateLabel}
             <span className="text-gray-400">▾</span>
@@ -92,8 +92,8 @@ export function DashboardHomeView({
                   type="button"
                   className={`block w-full px-3 py-1.5 text-left text-[13px] ${
                     dateLabel === opt
-                      ? "bg-gray-50 font-medium text-emerald-700"
-                      : "text-gray-600 hover:bg-gray-50"
+                      ? "bg-off-white font-medium text-brand-green-dark"
+                      : "text-subtext hover:bg-off-white"
                   }`}
                   onClick={() => {
                     setDateLabel(opt);
@@ -146,7 +146,7 @@ export function DashboardHomeView({
                 showRevenue ? "text-gray-700" : "text-gray-300"
               }`}
             >
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-700" /> Revenue
+              <span className="h-1.5 w-1.5 rounded-full bg-brand-green-dark" /> Revenue
             </button>
             <button
               type="button"
@@ -158,7 +158,7 @@ export function DashboardHomeView({
                 showProfit ? "text-gray-700" : "text-gray-300"
               }`}
             >
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-300" /> Profit
+              <span className="h-1.5 w-1.5 rounded-full bg-brand-green" /> Profit
             </button>
           </div>
         </div>
@@ -180,7 +180,7 @@ export function DashboardHomeView({
               },
               {
                 label: "Net Profit",
-                color: "#34D399",
+                color: "#2D6A4F",
                 values: tipValues.map((t) => t.p),
                 visible: showProfit,
               },
@@ -189,8 +189,8 @@ export function DashboardHomeView({
           {hoverPoint !== null && (
             <div className="pointer-events-none absolute right-2 top-2 rounded-md bg-white px-2.5 py-1.5 text-[11px] ring-1 ring-gray-100">
               <p className="font-medium text-gray-800">{tipValues[hoverPoint].m}</p>
-              <p className="text-gray-500">Rev ₹{tipValues[hoverPoint].r}</p>
-              <p className="text-gray-500">Profit ₹{tipValues[hoverPoint].p}</p>
+              <p className="text-subtext">Rev ₹{tipValues[hoverPoint].r}</p>
+              <p className="text-subtext">Profit ₹{tipValues[hoverPoint].p}</p>
             </div>
           )}
         </div>
@@ -236,7 +236,7 @@ export function RavenAIView({ onInteract }: InteractProps) {
             setShowHistory(false);
             onInteract?.();
           }}
-          className="rounded-md bg-emerald-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-emerald-700"
+          className="rounded-md bg-brand-green-dark px-3 py-1.5 text-xs font-medium text-white hover:bg-brand-green-dark"
         >
           New chat
         </button>
@@ -248,8 +248,8 @@ export function RavenAIView({ onInteract }: InteractProps) {
           }}
           className={`rounded-md px-3 py-1.5 text-xs font-medium ring-1 ${
             showHistory
-              ? "bg-emerald-50 text-emerald-700 ring-emerald-200"
-              : "bg-white text-gray-600 ring-gray-200"
+              ? "bg-brand-green-light text-brand-green-dark ring-emerald-200"
+              : "bg-white text-subtext ring-gray-200"
           }`}
         >
           History
@@ -267,7 +267,7 @@ export function RavenAIView({ onInteract }: InteractProps) {
                   setShowHistory(false);
                   send(h);
                 }}
-                className="block w-full rounded-md px-3 py-2 text-left text-xs text-gray-600 hover:bg-gray-50"
+                className="block w-full rounded-md px-3 py-2 text-left text-xs text-subtext hover:bg-off-white"
               >
                 {h}
               </button>
@@ -288,8 +288,8 @@ export function RavenAIView({ onInteract }: InteractProps) {
               key={`${m.role}-${i}`}
               className={`rounded-lg px-3 py-2 text-xs leading-relaxed ${
                 m.role === "user"
-                  ? "ml-10 bg-emerald-600 text-white"
-                  : "mr-10 bg-gray-50 text-gray-600"
+                  ? "ml-10 bg-brand-green-dark text-white"
+                  : "mr-10 bg-off-white text-subtext"
               }`}
             >
               {m.text}
@@ -307,12 +307,12 @@ export function RavenAIView({ onInteract }: InteractProps) {
             if (e.key === "Enter") send(prompt);
           }}
           placeholder="Ask Raven AI..."
-          className="w-full rounded-xl bg-white px-4 py-3 pr-16 text-sm text-gray-700 outline-none ring-1 ring-gray-200 placeholder:text-gray-400 focus:ring-emerald-300"
+          className="w-full rounded-xl bg-white px-4 py-3 pr-16 text-sm text-gray-700 outline-none ring-1 ring-gray-200 placeholder:text-gray-400 focus:ring-brand-green/20"
         />
         <button
           type="button"
           onClick={() => send(prompt)}
-          className="absolute right-2 top-1/2 -translate-y-1/2 rounded-lg bg-emerald-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-emerald-700"
+          className="absolute right-2 top-1/2 -translate-y-1/2 rounded-lg bg-brand-green-dark px-3 py-1.5 text-xs font-medium text-white hover:bg-brand-green-dark"
         >
           Send
         </button>
@@ -384,13 +384,13 @@ export function EventsView({ onInteract }: InteractProps) {
           <button
             type="button"
             onClick={() => onInteract?.()}
-            className="rounded-md bg-emerald-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-emerald-700"
+            className="rounded-md bg-brand-green-dark px-3 py-1.5 text-xs font-medium text-white hover:bg-brand-green-dark"
           >
             New event
           </button>
         }
       />
-      <div className="mb-4 flex gap-4 border-b border-gray-100 text-xs">
+      <div className="mb-4 flex gap-4 border-b border-border-default text-xs">
         {["All", "Trek", "Thrill"].map((t) => (
           <button
             key={t}
@@ -401,8 +401,8 @@ export function EventsView({ onInteract }: InteractProps) {
             }}
             className={`pb-2 ${
               tab === t
-                ? "border-b-2 border-emerald-600 font-medium text-emerald-700"
-                : "text-gray-400 hover:text-gray-600"
+                ? "border-b-2 border-emerald-600 font-medium text-brand-green-dark"
+                : "text-gray-400 hover:text-subtext"
             }`}
           >
             {t}
@@ -419,7 +419,7 @@ export function EventsView({ onInteract }: InteractProps) {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder="Search events..."
-        className="mt-3 w-full rounded-lg bg-white px-3 py-2 text-xs outline-none ring-1 ring-gray-200 focus:ring-emerald-300"
+        className="mt-3 w-full rounded-lg bg-white px-3 py-2 text-xs outline-none ring-1 ring-gray-200 focus:ring-brand-green/20"
       />
       <div className="mt-3 space-y-2">
         {filtered.map((c) => (
@@ -427,7 +427,7 @@ export function EventsView({ onInteract }: InteractProps) {
             key={c.title}
             className="flex items-center gap-3 rounded-xl bg-white p-3 ring-1 ring-gray-100"
           >
-            <div className="h-12 w-16 shrink-0 rounded-lg bg-emerald-100" />
+            <div className="h-12 w-16 shrink-0 rounded-lg bg-brand-green-light" />
             <div className="min-w-0 flex-1">
               <div className="flex flex-wrap items-center gap-2">
                 <p className="text-sm font-medium" style={{ color: NAVY }}>
@@ -444,7 +444,7 @@ export function EventsView({ onInteract }: InteractProps) {
                     onInteract?.();
                   }}
                   className={`relative h-4 w-7 rounded-full transition ${
-                    liveOnly[c.title] ? "bg-emerald-500" : "bg-gray-300"
+                    liveOnly[c.title] ? "bg-brand-green" : "bg-gray-300"
                   }`}
                   aria-label="Toggle live"
                 >
@@ -456,12 +456,12 @@ export function EventsView({ onInteract }: InteractProps) {
                 </button>
               </div>
               <p className="mt-0.5 text-[11px] text-gray-400">{c.tags}</p>
-              <p className="mt-1 text-[11px] text-gray-500">{c.slots}</p>
+              <p className="mt-1 text-[11px] text-subtext">{c.slots}</p>
             </div>
             <button
               type="button"
               onClick={() => onInteract?.()}
-              className="shrink-0 rounded-md bg-emerald-600 px-2.5 py-1.5 text-[10px] font-medium text-white hover:bg-emerald-700"
+              className="shrink-0 rounded-md bg-brand-green-dark px-2.5 py-1.5 text-[10px] font-medium text-white hover:bg-brand-green-dark"
             >
               Book
             </button>
@@ -529,7 +529,7 @@ export function LeadsView({ onInteract }: InteractProps) {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search leads..."
-          className="min-w-[140px] flex-1 rounded-lg bg-white px-3 py-2 text-xs outline-none ring-1 ring-gray-200 focus:ring-emerald-300"
+          className="min-w-[140px] flex-1 rounded-lg bg-white px-3 py-2 text-xs outline-none ring-1 ring-gray-200 focus:ring-brand-green/20"
         />
         {["All", "Hot", "Warm", "Cold"].map((f) => (
           <button
@@ -541,8 +541,8 @@ export function LeadsView({ onInteract }: InteractProps) {
             }}
             className={`rounded-md px-2.5 py-1.5 text-[11px] ${
               filter === f
-                ? "bg-emerald-600 font-medium text-white"
-                : "bg-white text-gray-500 ring-1 ring-gray-200 hover:text-gray-700"
+                ? "bg-brand-green-dark font-medium text-white"
+                : "bg-white text-subtext ring-1 ring-gray-200 hover:text-gray-700"
             }`}
           >
             {f}
@@ -551,7 +551,7 @@ export function LeadsView({ onInteract }: InteractProps) {
       </div>
       <div className="mt-3 overflow-x-auto rounded-xl bg-white ring-1 ring-gray-100">
         <table className="min-w-full text-left text-[11px]">
-          <thead className="border-b border-gray-100 text-gray-400">
+          <thead className="border-b border-border-default text-gray-400">
             <tr>
               {["Lead", "Enquiry", "Status", "Type", "Assigned"].map((h) => (
                 <th key={h} className="px-3 py-2.5 font-medium">
@@ -571,13 +571,13 @@ export function LeadsView({ onInteract }: InteractProps) {
                     onInteract?.();
                   }}
                   className={`cursor-pointer border-t border-gray-50 ${
-                    selected === idx ? "bg-emerald-50/50" : "hover:bg-gray-50/80"
+                    selected === idx ? "bg-brand-green-light/50" : "hover:bg-off-white/80"
                   }`}
                 >
                   <td className="px-3 py-2.5 font-medium" style={{ color: NAVY }}>
                     {r.name}
                   </td>
-                  <td className="px-3 py-2.5 text-gray-500">{r.event}</td>
+                  <td className="px-3 py-2.5 text-subtext">{r.event}</td>
                   <td className="px-3 py-2.5" onClick={(e) => e.stopPropagation()}>
                     <select
                       value={statuses[idx] ?? "Contacted"}
@@ -589,7 +589,7 @@ export function LeadsView({ onInteract }: InteractProps) {
                         });
                         onInteract?.();
                       }}
-                      className="rounded-md bg-gray-50 px-2 py-1 text-[10px] text-gray-700 outline-none ring-1 ring-gray-200"
+                      className="rounded-md bg-off-white px-2 py-1 text-[10px] text-gray-700 outline-none ring-1 ring-gray-200"
                     >
                       {["New Enquiry", "Contacted", "Qualified", "Negotiating", "Booked"].map(
                         (o) => (
@@ -690,7 +690,7 @@ export function BookingsView({ onInteract }: InteractProps) {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search bookings..."
-          className="flex-1 rounded-lg bg-white px-3 py-2 text-xs outline-none ring-1 ring-gray-200 focus:ring-emerald-300"
+          className="flex-1 rounded-lg bg-white px-3 py-2 text-xs outline-none ring-1 ring-gray-200 focus:ring-brand-green/20"
         />
         <button
           type="button"
@@ -699,7 +699,7 @@ export function BookingsView({ onInteract }: InteractProps) {
             onInteract?.();
             setTimeout(() => setToast(""), 1500);
           }}
-          className="rounded-md bg-white px-3 py-1.5 text-xs font-medium text-gray-600 ring-1 ring-gray-200 hover:bg-gray-50"
+          className="rounded-md bg-white px-3 py-1.5 text-xs font-medium text-subtext ring-1 ring-gray-200 hover:bg-off-white"
         >
           Export
         </button>
@@ -715,8 +715,8 @@ export function BookingsView({ onInteract }: InteractProps) {
             }}
             className={`rounded-md px-2.5 py-1.5 text-[11px] ${
               filter === f
-                ? "bg-emerald-600 text-white"
-                : "bg-white text-gray-500 ring-1 ring-gray-200"
+                ? "bg-brand-green-dark text-white"
+                : "bg-white text-subtext ring-1 ring-gray-200"
             }`}
           >
             {f}
@@ -725,13 +725,13 @@ export function BookingsView({ onInteract }: InteractProps) {
         
       </div>
       {toast && (
-        <p className="mt-2 text-[11px] text-emerald-600">
+        <p className="mt-2 text-[11px] text-brand-green-dark">
           {toast}
         </p>
       )}
       <div className="mt-3 overflow-x-auto rounded-xl bg-white ring-1 ring-gray-100">
         <table className="min-w-full text-left text-[11px]">
-          <thead className="border-b border-gray-100 text-gray-400">
+          <thead className="border-b border-border-default text-gray-400">
             <tr>
               {["Booking ID", "Event", "Customer", "Total", "Paid", ""].map((h) => (
                 <th key={h || "action"} className="px-3 py-2 font-semibold">
@@ -742,7 +742,7 @@ export function BookingsView({ onInteract }: InteractProps) {
           </thead>
           <tbody>
             {filtered.map((r) => (
-              <tr key={r.id} className="border-t border-gray-50 hover:bg-gray-50">
+              <tr key={r.id} className="border-t border-gray-50 hover:bg-off-white">
                 <td className="px-3 py-2.5">
                   <span className="font-semibold" style={{ color: NAVY }}>
                     {r.id}
@@ -752,10 +752,10 @@ export function BookingsView({ onInteract }: InteractProps) {
                     tone={r.type === "Online" ? "green" : r.type === "Manual" ? "blue" : "orange"}
                   />
                 </td>
-                <td className="px-3 py-2.5 text-gray-600">{r.event}</td>
-                <td className="px-3 py-2.5 text-gray-600">{r.customer}</td>
+                <td className="px-3 py-2.5 text-subtext">{r.event}</td>
+                <td className="px-3 py-2.5 text-subtext">{r.customer}</td>
                 <td className="px-3 py-2.5 font-semibold">{r.total}</td>
-                <td className="px-3 py-2.5 font-semibold text-emerald-600">{r.paid}</td>
+                <td className="px-3 py-2.5 font-semibold text-brand-green-dark">{r.paid}</td>
                 <td className="px-3 py-2.5">
                   <button
                     type="button"
@@ -764,7 +764,7 @@ export function BookingsView({ onInteract }: InteractProps) {
                       onInteract?.();
                       setTimeout(() => setToast(""), 1500);
                     }}
-                    className="text-emerald-600 hover:underline"
+                    className="text-brand-green-dark hover:underline"
                   >
                     View
                   </button>
@@ -824,7 +824,7 @@ export function BatchesView({ onInteract }: InteractProps) {
           <button
             type="button"
             onClick={() => onInteract?.()}
-            className="rounded-md bg-emerald-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-emerald-700"
+            className="rounded-md bg-brand-green-dark px-3 py-1.5 text-xs font-medium text-white hover:bg-brand-green-dark"
           >
             Create batch
           </button>
@@ -841,7 +841,7 @@ export function BatchesView({ onInteract }: InteractProps) {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search batches..."
-          className="min-w-[180px] flex-1 rounded-lg bg-white px-3 py-2 text-xs outline-none ring-1 ring-gray-200 focus:ring-emerald-300"
+          className="min-w-[180px] flex-1 rounded-lg bg-white px-3 py-2 text-xs outline-none ring-1 ring-gray-200 focus:ring-brand-green/20"
         />
         {["All", "Upcoming", "Ongoing", "Completed"].map((s) => (
           <button
@@ -853,8 +853,8 @@ export function BatchesView({ onInteract }: InteractProps) {
             }}
             className={`rounded-md px-2.5 py-1.5 text-[11px] ${
               statusFilter === s
-                ? "bg-emerald-600 text-white"
-                : "bg-white text-gray-500 ring-1 ring-gray-200"
+                ? "bg-brand-green-dark text-white"
+                : "bg-white text-subtext ring-1 ring-gray-200"
             }`}
           >
             {s}
@@ -863,7 +863,7 @@ export function BatchesView({ onInteract }: InteractProps) {
       </div>
       <div className="mt-3 overflow-x-auto rounded-xl bg-white ring-1 ring-gray-100">
         <table className="min-w-full text-left text-[11px]">
-          <thead className="border-b border-gray-100 text-gray-400">
+          <thead className="border-b border-border-default text-gray-400">
             <tr>
               {["Batch ID", "Batch Name", "Event", "Status", "Revenue", ""].map((h) => (
                 <th key={h || "a"} className="px-3 py-2 font-semibold">
@@ -878,8 +878,8 @@ export function BatchesView({ onInteract }: InteractProps) {
                 <td className="px-3 py-2.5 font-semibold" style={{ color: NAVY }}>
                   {r.id}
                 </td>
-                <td className="px-3 py-2.5 text-gray-600">{r.name}</td>
-                <td className="px-3 py-2.5 text-gray-600">{r.event}</td>
+                <td className="px-3 py-2.5 text-subtext">{r.name}</td>
+                <td className="px-3 py-2.5 text-subtext">{r.event}</td>
                 <td className="px-3 py-2.5">
                   <SoftBadge
                     label={r.status}
@@ -914,7 +914,7 @@ export function BatchesView({ onInteract }: InteractProps) {
                             setMenuOpen(null);
                             onInteract?.();
                           }}
-                          className="block w-full px-3 py-1.5 text-left text-[11px] hover:bg-gray-50"
+                          className="block w-full px-3 py-1.5 text-left text-[11px] hover:bg-off-white"
                         >
                           {a}
                         </button>
@@ -978,7 +978,7 @@ export function TransactionsView({ onInteract }: InteractProps) {
         <MetricCard label="Refunds" value="₹22,000" />
         <MetricCard label="Pending amounts" value="₹26,000" />
       </div>
-      <div className="mt-3 flex gap-4 overflow-x-auto border-b border-gray-100 text-xs font-semibold">
+      <div className="mt-3 flex gap-4 overflow-x-auto border-b border-border-default text-xs font-semibold">
         {["All payments", "Full amount received", "Partial", "Refund / cancellation"].map(
           (t) => (
             <button
@@ -990,8 +990,8 @@ export function TransactionsView({ onInteract }: InteractProps) {
               }}
               className={`whitespace-nowrap pb-2 ${
                 tab === t
-                  ? "border-b-2 border-emerald-600 text-emerald-700"
-                  : "text-gray-500 hover:text-gray-700"
+                  ? "border-b-2 border-emerald-600 text-brand-green-dark"
+                  : "text-subtext hover:text-gray-700"
               }`}
             >
               {t}
@@ -1004,7 +1004,7 @@ export function TransactionsView({ onInteract }: InteractProps) {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search transactions..."
-          className="min-w-[180px] flex-1 rounded-lg bg-white px-3 py-2 text-xs outline-none ring-1 ring-gray-200 focus:ring-emerald-300"
+          className="min-w-[180px] flex-1 rounded-lg bg-white px-3 py-2 text-xs outline-none ring-1 ring-gray-200 focus:ring-brand-green/20"
         />
         <button
           type="button"
@@ -1013,7 +1013,7 @@ export function TransactionsView({ onInteract }: InteractProps) {
             onInteract?.();
             setTimeout(() => setToast(""), 1500);
           }}
-          className="rounded-md bg-emerald-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-emerald-700"
+          className="rounded-md bg-brand-green-dark px-3 py-1.5 text-xs font-medium text-white hover:bg-brand-green-dark"
         >
           Record payment
         </button>
@@ -1024,19 +1024,19 @@ export function TransactionsView({ onInteract }: InteractProps) {
             onInteract?.();
             setTimeout(() => setToast(""), 1500);
           }}
-          className="rounded-md bg-white px-3 py-1.5 text-xs font-medium text-gray-600 ring-1 ring-gray-200"
+          className="rounded-md bg-white px-3 py-1.5 text-xs font-medium text-subtext ring-1 ring-gray-200"
         >
           Export
         </button>
       </div>
       {toast && (
-        <p className="mt-2 text-[11px] text-emerald-600">
+        <p className="mt-2 text-[11px] text-brand-green-dark">
           {toast}
         </p>
       )}
       <div className="mt-3 overflow-x-auto rounded-xl bg-white ring-1 ring-gray-100">
         <table className="min-w-full text-left text-[11px]">
-          <thead className="border-b border-gray-100 text-gray-400">
+          <thead className="border-b border-border-default text-gray-400">
             <tr>
               {["Transaction ID", "Invoice", "Details", "Status", "Amount"].map((h) => (
                 <th key={h} className="px-3 py-2 font-semibold">
@@ -1047,7 +1047,7 @@ export function TransactionsView({ onInteract }: InteractProps) {
           </thead>
           <tbody>
             {filtered.map((r) => (
-              <tr key={r.id} className="border-t border-gray-50 hover:bg-gray-50">
+              <tr key={r.id} className="border-t border-gray-50 hover:bg-off-white">
                 <td className="px-3 py-2.5 font-semibold" style={{ color: NAVY }}>
                   {r.id}
                 </td>
@@ -1055,12 +1055,12 @@ export function TransactionsView({ onInteract }: InteractProps) {
                   <button
                     type="button"
                     onClick={() => onInteract?.()}
-                    className="text-emerald-600 hover:underline"
+                    className="text-brand-green-dark hover:underline"
                   >
                     {r.invoice}
                   </button>
                 </td>
-                <td className="px-3 py-2.5 text-gray-600">{r.details}</td>
+                <td className="px-3 py-2.5 text-subtext">{r.details}</td>
                 <td className="px-3 py-2.5">
                   <SoftBadge
                     label={r.status}
@@ -1110,7 +1110,7 @@ export function AnalyticsView({ onInteract }: InteractProps) {
       b: [60, 75, 95, 120, 150, 190, 220],
       labelA: "Revenue (₹K)",
       labelB: "Net Profit (₹K)",
-      colorB: "#34D399",
+      colorB: "#2D6A4F",
       yFormatter: (n: number) => `₹${n}K`,
       tipA: (n: number) => `₹${n}K revenue`,
       tipB: (n: number) => `₹${n}K profit`,
@@ -1131,7 +1131,7 @@ export function AnalyticsView({ onInteract }: InteractProps) {
               );
               onInteract?.();
             }}
-            className="rounded-md bg-emerald-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-emerald-700"
+            className="rounded-md bg-brand-green-dark px-3 py-1.5 text-xs font-medium text-white hover:bg-brand-green-dark"
           >
             AI summary
           </button>
@@ -1163,7 +1163,7 @@ export function AnalyticsView({ onInteract }: InteractProps) {
         </select>
       </div>
       {summary && (
-        <div className="mb-3 rounded-lg bg-emerald-50/80 px-3 py-2 text-[11px] text-emerald-800">
+        <div className="mb-3 rounded-lg bg-brand-green-light/80 px-3 py-2 text-[11px] text-brand-green-dark">
           {summary}
           <button
             type="button"
@@ -1196,7 +1196,7 @@ export function AnalyticsView({ onInteract }: InteractProps) {
                   onInteract?.();
                 }}
                 className={
-                  mode === m ? "font-medium text-emerald-700" : "text-gray-400 hover:text-gray-600"
+                  mode === m ? "font-medium text-brand-green-dark" : "text-gray-400 hover:text-subtext"
                 }
               >
                 {m}
@@ -1245,7 +1245,7 @@ export function PlaceholderView({ title }: { title: string }) {
   return (
     <div className="flex min-h-0 flex-col items-center justify-center text-center">
       <PageHeader title={title} crumb={`Dashboard / ${title}`} />
-      <div className="mt-8 max-w-sm rounded-2xl border border-dashed border-emerald-200 bg-emerald-50/50 px-6 py-10">
+      <div className="mt-8 max-w-sm rounded-2xl border border-dashed border-brand-green/30 bg-brand-green-light/50 px-6 py-10">
         <p className="text-sm font-semibold" style={{ color: NAVY }}>
           {title} module preview
         </p>

@@ -9,7 +9,7 @@ export default function PricingCTA() {
       <div
         className="relative mx-auto max-w-4xl overflow-hidden rounded-3xl px-6 py-14 text-center md:px-12 md:py-16"
         style={{
-          background: `linear-gradient(145deg, ${brand.navy} 0%, #152a3d 55%, #0f2418 100%)`,
+          background: `linear-gradient(145deg, ${brand.dark} 0%, ${brand.ravenDark} 45%, ${brand.forest} 100%)`,
         }}
       >
         <div
@@ -17,17 +17,17 @@ export default function PricingCTA() {
           aria-hidden
           style={{
             background:
-              "radial-gradient(ellipse 70% 55% at 50% 0%, rgba(16,185,129,0.16), transparent 65%)",
+              "radial-gradient(ellipse 70% 55% at 50% 0%, rgba(45,106,79,0.16), transparent 65%)",
           }}
         />
 
         <div className="relative">
-          <h3 className="text-3xl font-extrabold tracking-tight text-white md:text-4xl">
+          <h3 className="text-3xl font-display font-semibold tracking-[-0.02em] tracking-tight text-white md:text-4xl">
             {PRICING_CTA.title}{" "}
             <span style={{ color: brand.primary }}>{PRICING_CTA.titleEmphasis}</span>
           </h3>
 
-          <p className="font-dm-sans mx-auto mt-4 max-w-md text-base leading-relaxed text-gray-300">
+          <p className="font-sans mx-auto mt-4 max-w-md text-base leading-relaxed text-gray-300">
             {PRICING_CTA.subtitle}
           </p>
 

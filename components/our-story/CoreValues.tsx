@@ -29,7 +29,7 @@ export default function CoreValues() {
   return (
     <section
       ref={ref}
-      className="relative overflow-hidden border-t border-white/5 bg-black px-6 py-16 md:px-8 md:py-20"
+      className="relative overflow-hidden border-t border-white/5 bg-dark px-6 py-16 md:px-8 md:py-20"
     >
       <div className="mx-auto max-w-6xl">
         <div className="grid items-end gap-8 lg:grid-cols-[1.1fr_0.9fr]">
@@ -38,12 +38,11 @@ export default function CoreValues() {
             animate={inView ? "visible" : "hidden"}
             variants={fadeInUp}
           >
-            <p className="text-[11px] font-medium uppercase tracking-[0.35em] text-emerald-400">
+            <p className="text-[11px] font-medium uppercase tracking-[0.35em] text-brand-green">
               What guides us
             </p>
-            <h2 className="mt-5 text-3xl font-semibold tracking-[-0.03em] md:text-5xl">
-              <span className="text-emerald-400">Core Values</span>
-              <span className="text-white"> Section</span>
+            <h2 className="mt-5 font-display text-3xl font-semibold tracking-[-0.02em] text-brand-green md:text-5xl">
+              Core Values
             </h2>
           </motion.div>
           <motion.div
@@ -69,15 +68,10 @@ export default function CoreValues() {
             <motion.div
               key={item.label}
               variants={fadeInUp}
-              whileHover={{ y: -4 }}
-              className="group relative overflow-hidden rounded-2xl border border-white/10 bg-[#0A1510] p-6 md:p-8"
+              className="card-brand-dark relative overflow-hidden p-6 md:p-8"
             >
-              <div
-                aria-hidden
-                className="pointer-events-none absolute -right-6 -top-6 h-24 w-24 rounded-full bg-emerald-400/5 transition-colors group-hover:bg-emerald-400/10"
-              />
-              <div className="relative flex h-12 w-12 items-center justify-center rounded-2xl border border-emerald-400/20 bg-emerald-400/10">
-                <item.icon className="h-5 w-5 text-emerald-400" strokeWidth={1.75} />
+              <div className="relative flex h-12 w-12 items-center justify-center rounded-2xl border border-brand-green/20 bg-brand-green/10">
+                <item.icon className="h-5 w-5 text-brand-green" strokeWidth={1.75} />
               </div>
               <p className="relative mt-5 text-sm font-semibold text-white md:text-[15px]">
                 {item.label}

@@ -44,9 +44,9 @@ import { fadeInUp, staggerContainer } from "@/components/motion";
 const IntegrationFAQ = dynamic(() => import("@/components/IntegrationFAQ"));
 const IntegrationsCTA = dynamic(() => import("@/components/IntegrationsCTA"));
 
-const GREEN = "#10B981";
-const GREEN_DARK = "#059669";
-const NAVY = "#0F172A";
+const GREEN = "#2D6A4F";
+const GREEN_DARK = "#1F4D38";
+const NAVY = "#0A1E3B";
 const BODY = "#6B7280";
 const HERO_BG = "#F9FAFB";
 
@@ -65,8 +65,8 @@ type StatCard = {
 const stats: StatCard[] = [
   {
     Icon: Zap,
-    iconColor: "#10B981",
-    iconBg: "#ECFDF5",
+    iconColor: "#2D6A4F",
+    iconBg: "#E8F3EE",
     stat: "↓ 92%",
     label: "Response Time",
     desc: "From 15 mins to under 30s with AI replies",
@@ -75,8 +75,8 @@ const stats: StatCard[] = [
   },
   {
     Icon: Settings2,
-    iconColor: "#059669",
-    iconBg: "#ECFDF5",
+    iconColor: "#1F4D38",
+    iconBg: "#E8F3EE",
     stat: "↓ 75%",
     label: "Manual Work",
     desc: "Automated replies, follow-ups, and reminders",
@@ -85,8 +85,8 @@ const stats: StatCard[] = [
   },
   {
     Icon: Target,
-    iconColor: "#10B981",
-    iconBg: "#ECFDF5",
+    iconColor: "#2D6A4F",
+    iconBg: "#E8F3EE",
     stat: "↑ 2.4×",
     label: "Conversion Rate",
     desc: "Faster replies convert more leads into bookings",
@@ -95,8 +95,8 @@ const stats: StatCard[] = [
   },
   {
     Icon: TrendingUp,
-    iconColor: "#059669",
-    iconBg: "#ECFDF5",
+    iconColor: "#1F4D38",
+    iconBg: "#E8F3EE",
     stat: "↑ 3×",
     label: "Leads Captured",
     desc: "Capture leads from WA, IG, and website",
@@ -237,7 +237,7 @@ function FloatBadge({ badge }: { badge: FloatingBadge }) {
       }}
     >
       <div
-        className={`flex items-center justify-center bg-white shadow-[0_12px_34px_rgba(15,23,42,0.1)] ring-1 ring-black/[0.05] ${tile}`}
+        className={`flex items-center justify-center bg-white shadow-card ring-1 ring-black/[0.05] ${tile}`}
       >
         <Logo className={icon} id={logoId} />
       </div>
@@ -263,7 +263,7 @@ function StatFloatCard({ card }: { card: StatCard }) {
         },
       }}
     >
-      <div className="flex h-[64px] w-[164px] items-center gap-3 rounded-2xl border border-gray-200/80 bg-white px-3.5 shadow-[0_10px_28px_rgba(15,23,42,0.08)] xl:h-[68px] xl:w-[178px] xl:px-4">
+      <div className="flex h-[64px] w-[164px] items-center gap-3 rounded-2xl border border-border-default/80 bg-white px-3.5 shadow-[0_10px_28px_rgba(10,30,59,0.08)] xl:h-[68px] xl:w-[178px] xl:px-4">
         <div
           className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl xl:h-10 xl:w-10"
           style={{ backgroundColor: card.iconBg }}
@@ -282,7 +282,7 @@ function StatFloatCard({ card }: { card: StatCard }) {
           >
             {card.stat}
           </p>
-          <p className="mt-1 whitespace-nowrap text-xs font-semibold leading-tight text-gray-600">
+          <p className="mt-1 whitespace-nowrap text-xs font-semibold leading-tight text-subtext">
             {card.label}
           </p>
         </div>
@@ -324,8 +324,8 @@ const INTEGRATION_THEME: Record<
   },
   website: {
     label: "Befikra Website",
-    accent: "#10B981",
-    soft: "#ECFDF5",
+    accent: "#2D6A4F",
+    soft: "#E8F3EE",
     Icon: BarChart3,
   },
 };
@@ -346,7 +346,7 @@ function PreviewShell({
       initial={{ opacity: 0, y: 18, scale: 0.985 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, y: -12, scale: 0.985 }}
-      transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.38, ease: [0.16, 1, 0.3, 1] }}
       className="absolute inset-0 p-4 sm:p-6"
     >
       {chrome === "phone" ? (
@@ -425,11 +425,11 @@ function PreviewShell({
       ) : (
         <div className="flex h-full flex-col overflow-hidden rounded-[1.6rem] border border-white/70 bg-[#F8FAFC] shadow-[0_24px_70px_rgba(2,6,23,0.18)]">
           {chrome !== "sync" && (
-            <div className="flex h-12 shrink-0 items-center justify-between border-b border-slate-200 bg-white px-4">
+            <div className="flex h-12 shrink-0 items-center justify-between border-b border-border-default bg-white px-4">
               <div className="flex items-center gap-1.5" aria-hidden>
                 <span className="h-2.5 w-2.5 rounded-full bg-red-300" />
                 <span className="h-2.5 w-2.5 rounded-full bg-amber-300" />
-                <span className="h-2.5 w-2.5 rounded-full bg-emerald-300" />
+                <span className="h-2.5 w-2.5 rounded-full bg-brand-green" />
               </div>
               <div className="rounded-full bg-slate-100 px-4 py-1 text-[10px] font-medium text-slate-400">
                 {chrome === "browser"
@@ -450,11 +450,11 @@ function WebsiteCaptureLeadsMock() {
   return (
     <PreviewShell ariaLabel="Website lead capture demo" chrome="browser">
       <div className="grid h-full gap-4 p-4 sm:grid-cols-2 sm:p-5">
-        <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-          <p className="text-xs font-semibold uppercase tracking-wide text-emerald-600">
+        <div className="card-brand-static p-4">
+          <p className="text-xs font-semibold uppercase tracking-wide text-brand-green-dark">
             Website form
           </p>
-          <h3 className="mt-2 text-base font-bold text-slate-900">
+          <h3 className="mt-2 text-base font-bold text-navy">
             Plan your next trek
           </h3>
           <div className="mt-4 space-y-3">
@@ -464,7 +464,7 @@ function WebsiteCaptureLeadsMock() {
                 initial={{ opacity: 0, x: -8 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.1 + i * 0.08 }}
-                className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5"
+                className="rounded-xl border border-border-default bg-off-white px-3 py-2.5"
               >
                 <p className="text-[10px] font-medium text-slate-400">{label}</p>
                 <p className="mt-0.5 text-sm font-semibold text-slate-700">
@@ -477,21 +477,21 @@ function WebsiteCaptureLeadsMock() {
               initial={{ scale: 0.96 }}
               animate={{ scale: [0.96, 1.02, 1] }}
               transition={{ duration: 0.55, delay: 0.35 }}
-              className="w-full rounded-xl bg-emerald-500 py-2.5 text-sm font-semibold text-white"
+              className="w-full rounded-xl bg-brand-green py-2.5 text-sm font-semibold text-white"
             >
               Submit inquiry
             </motion.button>
           </div>
         </div>
 
-        <div className="flex flex-col justify-between rounded-2xl border border-emerald-100 bg-gradient-to-br from-emerald-50 to-white p-4">
+        <div className="flex flex-col justify-between rounded-2xl border border-brand-green/25 bg-gradient-to-br from-emerald-50 to-white p-4">
           <div>
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-100 px-2.5 py-1 text-[10px] font-semibold text-emerald-700">
-              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-500" />
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-green-light px-2.5 py-1 text-[10px] font-semibold text-brand-green-dark">
+              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-brand-green" />
               New lead captured
             </span>
-            <p className="mt-3 text-2xl font-extrabold text-slate-900">+1 CRM lead</p>
-            <p className="mt-1 text-sm text-slate-500">
+            <p className="mt-3 text-2xl font-display font-semibold tracking-[-0.02em] text-navy">+1 CRM lead</p>
+            <p className="mt-1 text-sm text-subtext">
               Form data synced to Befikra instantly
             </p>
           </div>
@@ -503,9 +503,9 @@ function WebsiteCaptureLeadsMock() {
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.45 + i * 0.1 }}
-                  className="flex items-center gap-2 rounded-xl bg-white px-3 py-2 text-xs font-medium text-slate-600 shadow-sm"
+                  className="flex items-center gap-2 rounded-xl bg-white px-3 py-2 text-xs font-medium text-subtext shadow-sm"
                 >
-                  <Check className="h-3.5 w-3.5 text-emerald-500" />
+                  <Check className="h-3.5 w-3.5 text-brand-green" />
                   {row}
                 </motion.div>
               )
@@ -524,12 +524,12 @@ function WebsiteBookingsMock() {
       <div className="flex h-full flex-col p-4 sm:p-5">
         <div className="mb-4 flex items-center justify-between">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-wide text-emerald-600">
+            <p className="text-xs font-semibold uppercase tracking-wide text-brand-green-dark">
               Direct bookings
             </p>
-            <h3 className="text-lg font-bold text-slate-900">April availability</h3>
+            <h3 className="text-lg font-bold text-navy">April availability</h3>
           </div>
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-green-light text-brand-green-dark">
             <CalendarCheck className="h-5 w-5" />
           </div>
         </div>
@@ -552,10 +552,10 @@ function WebsiteBookingsMock() {
                 transition={{ delay: i * 0.01 }}
                 className={`flex items-center justify-center rounded-xl text-xs font-semibold ${
                   selected
-                    ? "bg-emerald-500 text-white shadow-lg shadow-emerald-500/30"
+                    ? "bg-brand-green text-white shadow-lg shadow-emerald-500/30"
                     : booked
-                      ? "bg-emerald-50 text-emerald-700"
-                      : "bg-white text-slate-600 ring-1 ring-slate-100"
+                      ? "bg-brand-green-light text-brand-green-dark"
+                      : "bg-white text-subtext ring-1 ring-slate-100"
                 }`}
               >
                 {day}
@@ -568,13 +568,13 @@ function WebsiteBookingsMock() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.35 }}
-          className="mt-4 flex items-center justify-between rounded-2xl border border-emerald-100 bg-white px-4 py-3 shadow-sm"
+          className="mt-4 flex items-center justify-between rounded-2xl border border-brand-green/25 bg-white px-4 py-3 shadow-sm"
         >
           <div>
             <p className="text-sm font-semibold text-slate-800">Booking confirmed</p>
             <p className="text-xs text-slate-400">Manali Trek · Apr 18 · 2 guests</p>
           </div>
-          <span className="rounded-full bg-emerald-500 px-3 py-1 text-[11px] font-bold text-white">
+          <span className="rounded-full bg-brand-green px-3 py-1 text-[11px] font-bold text-white">
             Paid
           </span>
         </motion.div>
@@ -596,10 +596,10 @@ function WebsiteEventShareMock() {
             }}
           />
           <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-emerald-900/85 to-transparent p-4 pb-3">
-            <p className="text-[10px] font-semibold uppercase tracking-wider text-emerald-100">
+            <p className="text-[10px] font-semibold uppercase tracking-wider text-brand-green-light">
               Featured event
             </p>
-            <h3 className="text-[17px] font-extrabold leading-snug">
+            <h3 className="text-[17px] font-display font-semibold leading-snug">
               Manali Base Camp Trek
             </h3>
           </div>
@@ -607,12 +607,12 @@ function WebsiteEventShareMock() {
 
         <div className="flex min-h-0 flex-1 flex-col gap-3 bg-white px-4 pb-7 pt-4 text-slate-800">
           <div className="flex items-center justify-between text-xs">
-            <span className="font-medium text-slate-500">Starts Apr 18</span>
-            <span className="rounded-full bg-emerald-50 px-2 py-0.5 font-semibold text-emerald-700">
+            <span className="font-medium text-subtext">Starts Apr 18</span>
+            <span className="rounded-full bg-brand-green-light px-2 py-0.5 font-semibold text-brand-green-dark">
               12 seats left
             </span>
           </div>
-          <p className="text-[13px] leading-relaxed text-slate-500">
+          <p className="text-[13px] leading-relaxed text-subtext">
             5-day guided trek with stay, meals, and pickup from Delhi.
           </p>
           <div className="mt-auto space-y-2">
@@ -621,7 +621,7 @@ function WebsiteEventShareMock() {
               initial={{ y: 8, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.2 }}
-              className="flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-500 py-2.5 text-sm font-semibold text-white"
+              className="flex w-full items-center justify-center gap-2 rounded-xl bg-brand-green py-2.5 text-sm font-semibold text-white"
             >
               <Share2 className="h-4 w-4" />
               Share event page
@@ -630,7 +630,7 @@ function WebsiteEventShareMock() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
-              className="flex items-center justify-center gap-2 rounded-xl border border-dashed border-emerald-200 bg-emerald-50 px-3 py-2 text-[11px] font-medium text-emerald-700"
+              className="flex items-center justify-center gap-2 rounded-xl border border-dashed border-brand-green/30 bg-brand-green-light px-3 py-2 text-[11px] font-medium text-brand-green-dark"
             >
               <Link2 className="h-3.5 w-3.5" />
               befikra.com/e/manali-trek
@@ -655,7 +655,7 @@ function WebsiteSyncMock() {
       <div className="flex h-full flex-col bg-[#071912] p-5 text-white">
         <div className="mb-5 flex items-center justify-between">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-wide text-emerald-400">
+            <p className="text-xs font-semibold uppercase tracking-wide text-brand-green">
               Data sync
             </p>
             <h3 className="text-xl font-bold">Everything stays in sync</h3>
@@ -663,7 +663,7 @@ function WebsiteSyncMock() {
           <motion.div
             animate={{ rotate: 360 }}
             transition={{ duration: 3.2, repeat: Infinity, ease: "linear" }}
-            className="flex h-11 w-11 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-400"
+            className="flex h-11 w-11 items-center justify-center rounded-full bg-brand-green/20 text-brand-green"
           >
             <RefreshCw className="h-5 w-5" />
           </motion.div>
@@ -679,12 +679,12 @@ function WebsiteSyncMock() {
               className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur"
             >
               <div className="flex items-center gap-3">
-                <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-500/20 text-emerald-400">
+                <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-green/20 text-brand-green">
                   <source.Icon className="h-4 w-4" />
                 </span>
                 <div>
                   <p className="text-sm font-semibold">{source.name}</p>
-                  <p className="text-[11px] text-emerald-300/80">{source.status}</p>
+                  <p className="text-[11px] text-brand-green/80">{source.status}</p>
                 </div>
               </div>
               <div className="mt-4 h-1.5 overflow-hidden rounded-full bg-white/10">
@@ -692,7 +692,7 @@ function WebsiteSyncMock() {
                   initial={{ width: "0%" }}
                   animate={{ width: "100%" }}
                   transition={{ duration: 0.8, delay: 0.2 + i * 0.1 }}
-                  className="h-full rounded-full bg-emerald-400"
+                  className="h-full rounded-full bg-brand-green"
                 />
               </div>
             </motion.div>
@@ -703,7 +703,7 @@ function WebsiteSyncMock() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.7 }}
-          className="mt-4 text-center text-xs text-emerald-200/70"
+          className="mt-4 text-center text-xs text-brand-green-light/70"
         >
           Bookings and leads update across channels in real time
         </motion.p>
@@ -744,7 +744,7 @@ function IntegrationPreview({
   return (
     <PreviewShell ariaLabel={`${feature.title} integration demo`}>
       <div className="grid h-full min-h-0 grid-cols-[58px_1fr] sm:grid-cols-[72px_1fr]">
-        <div className="flex flex-col items-center gap-4 border-r border-slate-200 bg-white py-5">
+        <div className="flex flex-col items-center gap-4 border-r border-border-default bg-white py-5">
           <div
             className="flex h-9 w-9 items-center justify-center rounded-xl"
             style={{ backgroundColor: theme.accent }}
@@ -772,7 +772,7 @@ function IntegrationPreview({
                 <span className="h-1.5 w-1.5 rounded-full bg-current" />
                 {theme.label} connected
               </span>
-              <h3 className="mt-2 text-lg font-bold text-slate-900 sm:text-xl">
+              <h3 className="mt-2 text-lg font-bold text-navy sm:text-xl">
                 {feature.previewLabel}
               </h3>
             </div>
@@ -783,7 +783,7 @@ function IntegrationPreview({
           </div>
 
           <div className="grid gap-3 sm:grid-cols-[1fr_0.72fr]">
-            <div className="rounded-2xl border border-slate-200 bg-white p-4">
+            <div className="card-brand-static p-4">
               <div className="flex items-center gap-3">
                 <div
                   className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl"
@@ -812,10 +812,10 @@ function IntegrationPreview({
               </div>
 
               <div className="mt-5 flex items-center justify-between rounded-xl bg-slate-50 px-3 py-2.5">
-                <span className="text-xs font-medium text-slate-500">
+                <span className="text-xs font-medium text-subtext">
                   Automation status
                 </span>
-                <span className="inline-flex items-center gap-1 text-xs font-semibold text-emerald-600">
+                <span className="inline-flex items-center gap-1 text-xs font-semibold text-brand-green-dark">
                   <Check className="h-3.5 w-3.5" />
                   Active
                 </span>
@@ -829,11 +829,11 @@ function IntegrationPreview({
               }}
             >
               <div>
-                <p className="text-xs font-medium text-slate-500">
+                <p className="text-xs font-medium text-subtext">
                   {feature.previewNote}
                 </p>
                 <p
-                  className="mt-2 text-3xl font-extrabold tracking-tight"
+                  className="mt-2 text-3xl font-display font-semibold tracking-[-0.02em] tracking-tight"
                   style={{ color: theme.accent }}
                 >
                   {feature.previewValue}
@@ -862,7 +862,7 @@ function IntegrationPreview({
               (label, item) => (
                 <div
                   key={label}
-                  className="flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-3"
+                  className="flex items-center gap-2 rounded-xl border border-border-default bg-white px-3 py-3 shadow-card"
                 >
                   <span
                     className="flex h-6 w-6 items-center justify-center rounded-full"
@@ -870,7 +870,7 @@ function IntegrationPreview({
                   >
                     <Check className="h-3.5 w-3.5" />
                   </span>
-                  <span className="text-[11px] font-medium text-slate-500">
+                  <span className="text-[11px] font-medium text-subtext">
                     {item <= index ? label : "Waiting…"}
                   </span>
                 </div>
@@ -924,18 +924,18 @@ function IntegrationShowcase({
       <div className={reverse ? "text-right" : undefined}>
         <span
           className={`text-sm font-semibold uppercase tracking-[0.18em] ${
-            dark ? "text-emerald-400" : "text-emerald-600"
+            dark ? "text-brand-green" : "text-brand-green-dark"
           }`}
         >
           Connected workflow
         </span>
-        <h2 className="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">
+        <h2 className="mt-3 text-3xl font-display font-semibold tracking-[-0.02em] tracking-tight sm:text-4xl">
           {title}
         </h2>
         <p
           className={`mt-4 max-w-lg text-base leading-relaxed ${
             reverse ? "ml-auto" : ""
-          } ${dark ? "text-slate-400" : "text-slate-500"}`}
+          } ${dark ? "text-slate-400" : "text-subtext"}`}
         >
           Select a feature to preview it, or watch the workflow advance
           automatically.
@@ -953,11 +953,11 @@ function IntegrationShowcase({
               className={`group relative w-full overflow-hidden rounded-2xl border px-5 py-4 text-left transition-all duration-300 ${
                 active
                   ? dark
-                    ? "border-emerald-400/50 bg-[#102A20] shadow-[0_12px_30px_rgba(0,0,0,0.16)]"
-                    : "border-pink-200 bg-white shadow-[0_12px_30px_rgba(15,23,42,0.08)]"
+                    ? "border-brand-green bg-[#12281C] shadow-card"
+                    : "border-brand-green bg-white shadow-card"
                   : dark
                     ? "border-white/[0.06] bg-[#0F1F18] hover:border-white/15"
-                    : "border-slate-200 bg-slate-50 hover:border-slate-300"
+                    : "border-border-default bg-off-white hover:border-brand-green"
               }`}
               aria-pressed={active}
             >
@@ -969,14 +969,14 @@ function IntegrationShowcase({
                 <div>
                   <h3
                     className={`font-semibold ${
-                      dark ? "text-white" : "text-slate-900"
+                      dark ? "text-white" : "text-navy"
                     }`}
                   >
                     {feature.title}
           </h3>
           <p
                     className={`mt-1 text-sm ${
-                      dark ? "text-slate-400" : "text-slate-500"
+                      dark ? "text-slate-400" : "text-subtext"
                     }`}
                   >
                     {feature.desc}
@@ -987,7 +987,7 @@ function IntegrationShowcase({
                     active
                       ? "text-white"
                       : dark
-                        ? "text-slate-500 group-hover:text-white"
+                        ? "text-subtext group-hover:text-white"
                         : "text-slate-400 group-hover:text-slate-700"
                   }`}
                   style={active ? { backgroundColor: theme.accent } : undefined}
@@ -1019,8 +1019,8 @@ function IntegrationShowcase({
           reverse ? "ml-auto" : ""
         } ${
           dark
-            ? "border border-white/60 text-white hover:bg-white hover:text-slate-900"
-            : "bg-emerald-600 text-white hover:bg-emerald-700"
+            ? "border border-white/60 text-white hover:bg-white hover:text-navy"
+            : "bg-brand-green-dark text-white hover:bg-brand-green-dark"
         }`}
       >
         Book Demo
@@ -1033,7 +1033,7 @@ function IntegrationShowcase({
     <div
       className={`relative min-h-[510px] overflow-hidden rounded-[2rem] lg:min-h-[590px] ${
         dark
-          ? "bg-[radial-gradient(circle_at_top_right,rgba(16, 185, 129,0.18),transparent_42%),#0A2118]"
+          ? "bg-[radial-gradient(circle_at_top_right,rgba(45, 106, 79,0.18),transparent_42%),#0A2118]"
           : "bg-[radial-gradient(circle_at_top_right,rgba(225,48,108,0.12),transparent_42%),#F1F5F9]"
       }`}
     >
@@ -1063,7 +1063,7 @@ function IntegrationShowcase({
       id={kind}
       className={`scroll-mt-[9.5rem] px-5 pb-28 md:px-10 md:pb-36 lg:px-16 xl:px-20 ${
         whatsappTopSpacing ? "pt-36 md:pt-44" : "pt-28 md:pt-36"
-      } ${dark ? "bg-[#0D2B1F] text-white" : "bg-white text-slate-900"}`}
+      } ${dark ? "bg-[#1F4D38] text-white" : "bg-white text-navy"}`}
     >
       <div
         className={`mx-auto grid max-w-7xl items-stretch gap-10 lg:gap-14 ${
@@ -1212,7 +1212,7 @@ export default function IntegrationsPage() {
               >
             <motion.h1
               variants={fadeInUp}
-                className="text-4xl font-extrabold leading-[1.12] tracking-tight sm:text-5xl md:text-[3.15rem] lg:text-[3.35rem]"
+                className="text-4xl font-display font-semibold tracking-[-0.02em] leading-[1.12] tracking-tight sm:text-5xl md:text-[3.15rem] lg:text-[3.35rem]"
               style={{ color: NAVY }}
             >
               Turn Every Inquiry.
@@ -1222,7 +1222,7 @@ export default function IntegrationsPage() {
 
             <motion.p
               variants={fadeInUp}
-                className="font-dm-sans mx-auto mt-5 max-w-md text-base leading-relaxed md:mt-6 md:text-lg"
+                className="font-sans mx-auto mt-5 max-w-md text-base leading-relaxed md:mt-6 md:text-lg"
               style={{ color: BODY }}
             >
               Save time, reduce manual work, and never miss a lead — Befikra
@@ -1253,7 +1253,7 @@ export default function IntegrationsPage() {
                 <div
                   key={key}
                   title={label}
-                  className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white shadow-[0_10px_28px_rgba(15,23,42,0.1)] ring-1 ring-black/[0.04] sm:h-[72px] sm:w-[72px]"
+                  className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white shadow-[0_10px_28px_rgba(10,30,59,0.1)] ring-1 ring-black/[0.04] sm:h-[72px] sm:w-[72px]"
                 >
                   <Logo
                     className="h-8 w-8 sm:h-9 sm:w-9"
@@ -1268,7 +1268,7 @@ export default function IntegrationsPage() {
                 <div
                   key={`m-${card.label}`}
                   title={card.desc}
-                  className="flex items-start gap-2.5 rounded-2xl border border-gray-200/90 bg-white px-3 py-3 shadow-sm"
+                  className="flex items-start gap-2.5 rounded-2xl border border-border-default/90 bg-white px-3 py-3 shadow-sm"
             >
               <div
                     className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl"
@@ -1288,7 +1288,7 @@ export default function IntegrationsPage() {
                     >
                 {card.stat}
               </p>
-                    <p className="mt-1 text-[11px] font-semibold leading-tight text-gray-600">
+                    <p className="mt-1 text-[11px] font-semibold leading-tight text-subtext">
                       {card.label}
                     </p>
                   </div>

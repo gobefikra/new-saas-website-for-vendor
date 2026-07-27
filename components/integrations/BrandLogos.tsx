@@ -77,7 +77,7 @@ export function WebhooksLogo({ className = "h-11 w-11" }: LogoProps) {
 export function MyLinkrLogo({ className = "h-11 w-11" }: LogoProps) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden>
-      <rect width="24" height="24" rx="6" fill="#10B981" />
+      <rect width="24" height="24" rx="6" fill="#2D6A4F" />
       <g
         stroke="#fff"
         strokeWidth="2"
@@ -95,10 +95,10 @@ export function MyLinkrLogo({ className = "h-11 w-11" }: LogoProps) {
 export function WebsiteLogo({ className = "h-11 w-11" }: LogoProps) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden>
-      <circle cx="12" cy="12" r="10" stroke="#0F172A" strokeWidth="1.75" />
+      <circle cx="12" cy="12" r="10" stroke="#0A1E3B" strokeWidth="1.75" />
       <path
         d="M2.5 12h19M12 2.5c2.5 2.7 3.8 5.9 3.8 9.5S14.5 18.8 12 21.5C9.5 18.8 8.2 15.6 8.2 12S9.5 5.2 12 2.5z"
-        stroke="#0F172A"
+        stroke="#0A1E3B"
         strokeWidth="1.75"
         strokeLinejoin="round"
       />

@@ -31,7 +31,7 @@ export default function OpengraphImage() {
             fontSize: 24,
             letterSpacing: 6,
             textTransform: "uppercase",
-            color: "#34D399",
+            color: "#2D6A4F",
           }}
         >
           <div
@@ -39,7 +39,7 @@ export default function OpengraphImage() {
               width: 14,
               height: 14,
               borderRadius: 999,
-              background: "#10B981",
+              background: "#2D6A4F",
             }}
           />
           {SITE_NAME}
@@ -86,7 +86,7 @@ export default function OpengraphImage() {
                 padding: "10px 24px",
                 borderRadius: 999,
                 border: "1px solid rgba(52,211,153,0.35)",
-                background: "rgba(16,185,129,0.12)",
+                background: "rgba(45,106,79,0.12)",
               }}
             >
               {tag}

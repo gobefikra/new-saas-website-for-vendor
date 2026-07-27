@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import StoryHeroSection from "@/components/our-story/HeroSection";
 
 const SectionFallback = () => (
-  <div className="min-h-[40vh] w-full bg-black" aria-hidden />
+  <div className="min-h-[40vh] w-full bg-dark" aria-hidden />
 );
 
 const NewBeginning = dynamic(() => import("@/components/our-story/NewBeginning"), {
@@ -31,7 +31,7 @@ const Footer = dynamic(() => import("@/components/Footer"), { loading: () => nul
 
 export default function OurStoryPage() {
   return (
-    <main className="min-h-screen bg-black text-white">
+    <main className="min-h-screen bg-dark text-white">
       <StoryHeroSection />
       <NewBeginning />
       <BuiltWithFounders />

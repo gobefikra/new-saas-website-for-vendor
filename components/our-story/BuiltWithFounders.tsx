@@ -53,7 +53,7 @@ export default function BuiltWithFounders() {
   return (
     <section
       ref={ref}
-      className="relative overflow-hidden border-t border-white/5 bg-[#070b09] px-6 py-16 md:px-8 md:py-20"
+      className="relative overflow-hidden border-t border-white/5 bg-dark px-6 py-16 md:px-8 md:py-20"
     >
       <div className="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-2 lg:gap-16">
         <motion.div
@@ -61,14 +61,14 @@ export default function BuiltWithFounders() {
           animate={inView ? "visible" : "hidden"}
           variants={fadeInLeft}
         >
-          <p className="text-[11px] font-medium uppercase tracking-[0.35em] text-emerald-400">
+          <p className="text-[11px] font-medium uppercase tracking-[0.35em] text-brand-green">
             CO-CREATED ECOSYSTEM
           </p>
-          <h2 className="mt-5 text-3xl font-semibold leading-[1.15] tracking-[-0.03em] text-white md:text-5xl">
-            Built With <span className="text-emerald-400">Founders</span>, Not Just
+          <h2 className="mt-5 font-display text-3xl font-semibold leading-[1.15] tracking-[-0.02em] text-white md:text-5xl">
+            Built With <span className="text-brand-green">Founders</span>, Not Just
             For Founders
           </h2>
-          <p className="font-dm-sans mt-6 max-w-md text-[15px] leading-relaxed text-gray-400">
+          <p className="font-sans mt-6 max-w-md text-[15px] leading-relaxed text-gray-400">
             Befikra was built through continuous discussions with travel
             founders and their teams.
           </p>
@@ -83,19 +83,19 @@ export default function BuiltWithFounders() {
               <motion.li
                 key={text}
                 variants={fadeInUp}
-                className="flex gap-4 rounded-xl border border-white/[0.07] bg-white/[0.02] px-4 py-3.5 transition-colors hover:border-emerald-400/25 hover:bg-white/[0.04]"
+                className="flex gap-4 rounded-xl border border-white/[0.07] bg-white/[0.02] px-4 py-3.5 transition-colors hover:border-brand-green/25 hover:bg-white/[0.04]"
               >
-                <span className="font-mono text-[11px] font-semibold text-emerald-400">
+                <span className="font-mono text-[11px] font-semibold text-brand-green">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <span className="font-dm-sans text-sm leading-snug text-gray-300">
+                <span className="font-sans text-sm leading-snug text-gray-300">
                   {text}
                 </span>
               </motion.li>
             ))}
           </motion.ul>
 
-          <p className="font-dm-sans mt-8 max-w-md text-sm leading-relaxed text-gray-500">
+          <p className="font-sans mt-8 max-w-md text-sm leading-relaxed text-subtext">
             So we built a platform that connects everything - from inquiry to
             booking to payment - into one seamless system. A system designed
             specifically for trekking companies, travel operators, and
@@ -112,26 +112,26 @@ export default function BuiltWithFounders() {
           {/* ambient */}
           <div
             aria-hidden
-            className="pointer-events-none absolute -inset-6 rounded-[2.5rem] bg-gradient-to-br from-emerald-500/10 via-transparent to-emerald-400/10 blur-2xl"
+            className="pointer-events-none absolute -inset-6 rounded-[2.5rem] bg-gradient-to-br from-brand-green/10 via-transparent to-brand-green/10 blur-2xl"
           />
 
-          <div className="relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-[#0A1510]/80 p-5 md:p-6">
+          <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-dark/80 p-5 md:p-6">
             {/* crown */}
-            <div className="mb-5 flex items-center justify-between rounded-2xl border border-emerald-400/20 bg-gradient-to-r from-emerald-500/15 to-emerald-400/10 px-4 py-3.5">
+            <div className="mb-5 flex items-center justify-between rounded-2xl border border-brand-green/20 bg-gradient-to-r from-brand-green/15 to-brand-green/10 px-4 py-3.5">
               <div className="flex items-center gap-3">
-                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-400 text-black">
+                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-green text-black">
                   <Sparkles className="h-5 w-5" strokeWidth={2.25} />
                 </span>
                 <div>
                   <p className="text-sm font-semibold text-white">
                     One seamless system
                   </p>
-                  <p className="font-dm-sans text-[12px] text-gray-400">
+                  <p className="font-sans text-[12px] text-gray-400">
                     Inquiry → booking → payment
                   </p>
                 </div>
               </div>
-              <span className="hidden rounded-full bg-black/30 px-2.5 py-1 font-mono text-[10px] text-emerald-400 sm:inline">
+              <span className="hidden rounded-full bg-black/30 px-2.5 py-1 font-mono text-[10px] text-brand-green sm:inline">
                 LIVE
               </span>
             </div>
@@ -140,7 +140,7 @@ export default function BuiltWithFounders() {
             <div className="relative space-y-2.5">
               <div
                 aria-hidden
-                className="absolute bottom-7 left-[34px] top-7 w-px bg-gradient-to-b from-emerald-400/80 via-emerald-500/40 to-emerald-500/10"
+                className="absolute bottom-7 left-[34px] top-7 w-px bg-gradient-to-b from-brand-green/80 via-brand-green/40 to-brand-green/10"
               />
 
               {pillars.map((item, i) => (
@@ -151,27 +151,27 @@ export default function BuiltWithFounders() {
                     inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 18 }
                   }
                   transition={{ delay: 0.2 + i * 0.1, duration: 0.4 }}
-                  className="group relative flex items-center gap-3.5 rounded-2xl border border-white/[0.08] bg-black/35 py-3.5 pl-3.5 pr-4 transition-all duration-300 hover:border-emerald-400/30 hover:bg-black/50"
+                  className="group relative flex items-center gap-3.5 rounded-2xl border border-white/[0.08] bg-black/35 py-3.5 pl-3.5 pr-4 transition-all duration-300 hover:border-brand-green/30 hover:bg-black/50"
                 >
-                  <span className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-emerald-400/30 bg-[#0A1510] text-emerald-400 shadow-[0_0_0_4px_rgba(10,21,16,1)]">
+                  <span className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-brand-green/30 bg-dark text-brand-green shadow-[0_0_0_4px_rgba(10,21,16,1)]">
                     <item.icon className="h-4 w-4" strokeWidth={1.75} />
                   </span>
                   <div className="min-w-0 flex-1">
                     <p className="text-sm font-semibold text-white">
                       {item.label}
                     </p>
-                    <p className="font-dm-sans mt-0.5 text-[12px] text-gray-500">
+                    <p className="font-sans mt-0.5 text-[12px] text-subtext">
                       {item.caption}
                     </p>
                   </div>
-                  <span className="font-mono text-[10px] text-white/20 transition-colors group-hover:text-emerald-400/50">
+                  <span className="font-mono text-[10px] text-white/20 transition-colors group-hover:text-brand-green/50">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                 </motion.div>
               ))}
             </div>
 
-            <p className="font-dm-sans mt-5 text-center text-[11px] tracking-wide text-gray-600">
+            <p className="font-sans mt-5 text-center text-[11px] tracking-wide text-subtext">
               Four layers · One platform · Founder-shaped
             </p>
           </div>

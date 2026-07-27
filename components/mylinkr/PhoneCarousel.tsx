@@ -5,6 +5,7 @@ import { ArrowRight } from "lucide-react";
 import {
   motion,
   useMotionValue,
+  useReducedMotion,
   useScroll,
   useTransform,
 } from "framer-motion";
@@ -30,6 +31,7 @@ export default function PhoneCarousel() {
   const trackRef = useRef<HTMLDivElement>(null);
   const firstPhoneRef = useRef<HTMLDivElement>(null);
   const lastPhoneRef = useRef<HTMLDivElement>(null);
+  const reduceMotion = useReducedMotion();
 
   const startX = useMotionValue(0);
   const endX = useMotionValue(0);
@@ -66,6 +68,11 @@ export default function PhoneCarousel() {
       startX.set(nextStart);
       endX.set(nextEnd);
 
+      if (reduceMotion) {
+        setSectionHeight("auto");
+        return;
+      }
+
       // Travel distance drives section height so motion feels paced, not rushed
       const travel = Math.abs(nextStart - nextEnd);
       const vh = window.innerHeight;
@@ -90,17 +97,39 @@ export default function PhoneCarousel() {
       images.forEach((img) => img.removeEventListener("load", measure));
       window.removeEventListener("resize", measure);
     };
-  }, [startX, endX]);
+  }, [startX, endX, reduceMotion]);
+
+  const phones = carouselPhones.map((phone, i) => (
+    <div
+      key={`${phone.screen}-${i}`}
+      ref={
+        i === 0
+          ? firstPhoneRef
+          : i === carouselPhones.length - 1
+            ? lastPhoneRef
+            : undefined
+      }
+      className={`flex-shrink-0 ${phone.scale}`}
+    >
+      <PhoneMockup
+        screenSrc={phone.screen}
+        className="w-48 md:w-56"
+        frameWidth={224}
+        frameHeight={450}
+        alt={`MyLinkr template ${i + 1}`}
+      />
+    </div>
+  ));
 
   return (
-    <section className="w-full bg-white">
-      <div className="py-14 px-6 text-center md:py-16">
-        <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
+    <section className="relative z-10 w-full bg-white">
+      <div className="relative z-10 bg-white px-6 pb-6 pt-16 text-center md:pb-8 md:pt-20">
+        <h2 className="text-4xl font-display font-semibold leading-tight tracking-[-0.02em] text-navy md:text-5xl">
           Templates Built to Convert
           <br />
           Visitors into Customers
         </h2>
-        <p className="text-gray-400 text-base mt-4 max-w-xl mx-auto">
+        <p className="mx-auto mt-4 max-w-xl text-base text-gray-400">
           Pick a template, customize your branding, and create a powerful link
           hub for your business.
         </p>
@@ -110,46 +139,34 @@ export default function PhoneCarousel() {
             <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-0.5" />
           </Button>
         </div>
-        <p className="mt-12 mb-6 text-gray-500 font-medium text-sm text-center">
+        <p className="mb-2 mt-14 text-center text-sm font-medium text-subtext md:mt-16">
           Social Hub
         </p>
       </div>
 
-      <div
-        ref={sectionRef}
-        className="relative"
-        style={{ height: sectionHeight }}
-      >
-        <div className="sticky top-0 h-screen flex items-center overflow-hidden">
-          <motion.div
-            ref={trackRef}
-            style={{ x }}
-            className="flex gap-6 w-max will-change-transform"
-          >
-            {carouselPhones.map((phone, i) => (
-              <div
-                key={`${phone.screen}-${i}`}
-                ref={
-                  i === 0
-                    ? firstPhoneRef
-                    : i === carouselPhones.length - 1
-                      ? lastPhoneRef
-                      : undefined
-                }
-                className={`flex-shrink-0 ${phone.scale}`}
-              >
-                <PhoneMockup
-                  screenSrc={phone.screen}
-                  className="w-48 md:w-56"
-                  frameWidth={224}
-                  frameHeight={450}
-                  alt={`MyLinkr template ${i + 1}`}
-                />
-              </div>
-            ))}
-          </motion.div>
+      {reduceMotion ? (
+        <div className="overflow-x-auto bg-white px-6 pb-16 pt-4">
+          <div ref={trackRef} className="mx-auto flex w-max gap-6">
+            {phones}
+          </div>
         </div>
-      </div>
+      ) : (
+        <div
+          ref={sectionRef}
+          className="relative z-0"
+          style={{ height: sectionHeight }}
+        >
+          <div className="sticky top-16 flex h-[calc(100svh-4rem)] items-center overflow-hidden bg-white md:top-[4.5rem] md:h-[calc(100svh-4.5rem)]">
+            <motion.div
+              ref={trackRef}
+              style={{ x }}
+              className="flex w-max gap-6 will-change-transform"
+            >
+              {phones}
+            </motion.div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

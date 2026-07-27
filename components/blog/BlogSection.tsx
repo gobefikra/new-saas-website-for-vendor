@@ -56,7 +56,7 @@ export default function BlogSection({
     >
       <div className="mb-6">
         <p className="mb-1 text-sm font-medium text-gray-400">{label}</p>
-        <h2 className="text-4xl font-extrabold text-gray-900">{heading}</h2>
+        <h2 className="text-4xl font-display font-semibold tracking-[-0.02em] text-navy">{heading}</h2>
       </div>
 
       {tabs && tabs.length > 0 && (
@@ -93,7 +93,7 @@ export default function BlogSection({
                 transition={{
                   duration: 0.35,
                   delay: 0.04 * i,
-                  ease: [0.22, 1, 0.36, 1],
+                  ease: [0.16, 1, 0.3, 1],
                 }}
                 className={
                   variant === "overlay" && i === 0

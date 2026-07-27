@@ -35,7 +35,7 @@ const GREEN = brand.primary;
 const LIME = brand.lime;
 
 const cardBase =
-  "group relative flex h-full min-h-[170px] flex-col overflow-hidden rounded-[1.75rem] border border-white/[0.07] bg-[#0A120E] p-5 transition-all duration-300 hover:border-emerald-500/35 hover:bg-[#0C1812] md:p-6";
+  "card-brand-dark group relative flex h-full min-h-[170px] flex-col overflow-hidden p-5 md:p-6";
 
 const trustItems = [
   {
@@ -54,13 +54,13 @@ const trustItems = [
     title: "Powered by Advanced AI",
     desc: "Smarter conversations, better results.",
     Icon: Sparkles,
-    color: "#34D399",
+    color: "#2D6A4F",
   },
   {
     title: "Loved by Sales Teams",
     desc: "Helping teams close more deals, every day.",
     Icon: Heart,
-    color: "#10B981",
+    color: "#2D6A4F",
   },
 ];
 
@@ -114,7 +114,7 @@ function InsightRows() {
           style={{
             background:
               i === 0
-                ? "linear-gradient(90deg, rgba(16, 185, 129,0.22), rgba(16, 185, 129,0.04))"
+                ? "linear-gradient(90deg, rgba(45, 106, 79,0.22), rgba(45, 106, 79,0.04))"
                 : "rgba(255,255,255,0.03)",
           }}
         >
@@ -187,7 +187,7 @@ function BentoCard({
       transition={{
         duration: 0.5,
         delay: reduceMotion ? 0 : 0.05 + index * 0.14,
-        ease: [0.22, 1, 0.36, 1],
+        ease: [0.16, 1, 0.3, 1],
       }}
     >
       {children}
@@ -206,18 +206,18 @@ export function RavenPlatformGrid() {
         className="text-center"
         initial={reduceMotion ? false : { opacity: 0, y: 20 }}
         animate={inView || reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-        transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
       >
         <span
           className="inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-[11px] font-semibold uppercase tracking-widest"
-          style={{ borderColor: "rgba(16, 185, 129,0.4)", color: GREEN }}
+          style={{ borderColor: "rgba(45, 106, 79,0.4)", color: GREEN }}
         >
           <Sparkles className="h-3.5 w-3.5" />
           All-in-one AI sales platform
         </span>
-        <h3 className="mx-auto mt-6 max-w-3xl text-3xl font-extrabold leading-tight text-white sm:text-4xl md:text-[2.75rem]">
+        <h3 className="mx-auto mt-6 max-w-3xl text-3xl font-display font-semibold tracking-[-0.02em] leading-tight text-white sm:text-4xl md:text-[2.75rem]">
           Everything you need to close more deals,{" "}
-          <span className="bg-gradient-to-r from-emerald-400 via-[#10B981] to-emerald-400 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-brand-green via-[#2D6A4F] to-brand-green bg-clip-text text-transparent">
             on autopilot.
           </span>
         </h3>
@@ -236,7 +236,7 @@ export function RavenPlatformGrid() {
           className="sm:col-span-2 lg:col-span-5 lg:row-span-2 lg:min-h-[360px]"
           style={{
             background:
-              "linear-gradient(160deg, rgba(16, 185, 129,0.14) 0%, #0A120E 48%, rgba(0,0,0,0.25) 100%)",
+              "linear-gradient(160deg, rgba(45, 106, 79,0.14) 0%, #0E1F13 48%, rgba(0,0,0,0.25) 100%)",
           }}
         >
           <div className="relative z-10 flex items-start justify-between gap-3">
@@ -285,18 +285,18 @@ export function RavenPlatformGrid() {
           className="items-center text-center lg:col-span-3"
         >
           <IllusQrCapture
-            accent="#34D399"
+            accent="#2D6A4F"
             className="mx-auto h-16 w-28 opacity-95 sm:h-[72px] sm:w-32"
           />
           <div className="relative z-10 mt-3 flex items-center justify-center gap-2">
-            <QrCode className="h-4 w-4 text-emerald-400" />
-            <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-emerald-400">
+            <QrCode className="h-4 w-4 text-brand-green" />
+            <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-brand-green">
               Smart QR
             </span>
           </div>
           <h4 className="relative z-10 mt-2 text-sm font-bold leading-snug text-white md:text-base">
             24/7 lead capture{" "}
-            <AccentWord color="#34D399">automation</AccentWord>
+            <AccentWord color="#2D6A4F">automation</AccentWord>
           </h4>
           <p className="relative z-10 mt-1.5 text-xs text-gray-400">
             Capture leads anytime, anywhere with smart QR.
@@ -311,12 +311,12 @@ export function RavenPlatformGrid() {
           className="lg:col-span-4"
         >
           <div className="relative z-10 flex items-start justify-between gap-3">
-            <IconBadge Icon={Share2} color="#10B981" />
-            <IllusEmbed accent="#10B981" className="h-14 w-24 opacity-85" />
+            <IconBadge Icon={Share2} color="#2D6A4F" />
+            <IllusEmbed accent="#2D6A4F" className="h-14 w-24 opacity-85" />
           </div>
           <h4 className="relative z-10 mt-4 text-base font-bold leading-snug text-white">
             Embed your favorite{" "}
-            <AccentWord color="#10B981">content</AccentWord>
+            <AccentWord color="#2D6A4F">content</AccentWord>
           </h4>
           <p className="relative z-10 mt-2 text-xs leading-relaxed text-gray-400">
             Share and embed content from your favorite platforms.
@@ -365,17 +365,17 @@ export function RavenPlatformGrid() {
             </p>
             <div className="mt-3 flex items-end gap-2">
               <span
-                className="bg-clip-text text-5xl font-extrabold leading-none text-transparent md:text-6xl"
+                className="bg-clip-text text-5xl font-display font-semibold tracking-[-0.02em] leading-none text-transparent md:text-6xl"
                 style={{
                   backgroundImage: `linear-gradient(135deg, ${LIME}, ${GREEN})`,
                 }}
               >
                 10
               </span>
-              <span className="pb-1 text-sm font-semibold uppercase tracking-wider text-emerald-400/80">
+              <span className="pb-1 text-sm font-semibold uppercase tracking-wider text-brand-green/80">
                 sec
               </span>
-              <Zap className="mb-1.5 h-6 w-6 text-emerald-400" />
+              <Zap className="mb-1.5 h-6 w-6 text-brand-green" />
             </div>
             <p className="mt-2 text-xs text-gray-400">
               Instant AI replies keep conversations moving.
@@ -414,19 +414,19 @@ export function RavenPlatformGrid() {
           className="lg:col-span-3 lg:row-span-2 lg:min-h-[360px]"
           style={{
             background:
-              "linear-gradient(180deg, rgba(52,211,153,0.12) 0%, #0A120E 55%)",
+              "linear-gradient(180deg, rgba(45,106,79,0.12) 0%, #0E1F13 55%)",
           }}
         >
-          <IconBadge Icon={MessageCircle} color="#34D399" />
+          <IconBadge Icon={MessageCircle} color="#2D6A4F" />
           <h4 className="relative z-10 mt-4 text-base font-bold leading-snug text-white md:text-lg">
             Turn chats into{" "}
-            <AccentWord color="#34D399">booked</AccentWord> customers
+            <AccentWord color="#2D6A4F">booked</AccentWord> customers
           </h4>
           <p className="relative z-10 mt-2 text-xs leading-relaxed text-gray-400">
             AI-powered conversations that turn interest into meetings.
           </p>
           <IllusBooked
-            accent="#34D399"
+            accent="#2D6A4F"
             className="relative z-10 mx-auto mt-auto h-[160px] w-[140px] opacity-95 sm:h-[180px] sm:w-[150px]"
           />
         </BentoCard>
@@ -443,7 +443,7 @@ export function RavenPlatformGrid() {
               <IconBadge Icon={Smartphone} color="#6EE7B7" />
               <h4 className="mt-4 text-base font-bold leading-snug text-white">
                 Mobile app for{" "}
-                <span className="font-extrabold text-white">iOS</span> and{" "}
+                <span className="font-display font-semibold text-white">iOS</span> and{" "}
                 <AccentWord color="#6EE7B7">Android</AccentWord>
               </h4>
               <p className="mt-2 text-xs leading-relaxed text-gray-400">
@@ -462,7 +462,7 @@ export function RavenPlatformGrid() {
           index={9}
           show={inView}
           reduceMotion={reduceMotion}
-          className="justify-center border-emerald-500/20 lg:col-span-4"
+          className="justify-center border-brand-green/20 lg:col-span-4"
           style={{
             boxShadow: "inset 0 0 0 1px rgba(74,222,128,0.12)",
           }}
@@ -472,7 +472,7 @@ export function RavenPlatformGrid() {
             <IllusConversion accent="#4ADE80" className="h-14 w-24 opacity-85" />
           </div>
           <h4
-            className="relative z-10 mt-5 text-2xl font-extrabold leading-none tracking-tight md:text-3xl"
+            className="relative z-10 mt-5 text-2xl font-display font-semibold tracking-[-0.02em] leading-none tracking-tight md:text-3xl"
             style={{
               WebkitTextStroke: "1.4px #4ADE80",
               color: "transparent",
@@ -489,10 +489,10 @@ export function RavenPlatformGrid() {
 
       {/* Trust strip */}
       <motion.div
-        className="mt-6 grid grid-cols-1 gap-5 rounded-[1.5rem] border px-5 py-5 sm:grid-cols-2 lg:grid-cols-4 lg:px-7 lg:py-6"
+        className="mt-6 grid grid-cols-1 gap-5 rounded-2xl border px-5 py-5 sm:grid-cols-2 lg:grid-cols-4 lg:px-7 lg:py-6"
         style={{
           background:
-            "linear-gradient(180deg, rgba(16, 185, 129,0.06) 0%, rgba(255,255,255,0.02) 100%)",
+            "linear-gradient(180deg, rgba(45, 106, 79,0.06) 0%, rgba(255,255,255,0.02) 100%)",
           borderColor: "rgba(255,255,255,0.07)",
         }}
         initial={reduceMotion ? false : { opacity: 0, y: 24 }}
@@ -504,7 +504,7 @@ export function RavenPlatformGrid() {
         transition={{
           duration: 0.5,
           delay: reduceMotion ? 0 : 0.05 + 10 * 0.14,
-          ease: [0.22, 1, 0.36, 1],
+          ease: [0.16, 1, 0.3, 1],
         }}
       >
         {trustItems.map((item, i) => (
@@ -520,7 +520,7 @@ export function RavenPlatformGrid() {
             transition={{
               duration: 0.4,
               delay: reduceMotion ? 0 : 1.5 + i * 0.1,
-              ease: [0.22, 1, 0.36, 1],
+              ease: [0.16, 1, 0.3, 1],
             }}
           >
             <div
@@ -535,7 +535,7 @@ export function RavenPlatformGrid() {
             </div>
             <div>
               <p className="text-sm font-semibold text-white">{item.title}</p>
-              <p className="mt-0.5 text-xs leading-relaxed text-gray-500">
+              <p className="mt-0.5 text-xs leading-relaxed text-subtext">
                 {item.desc}
               </p>
             </div>

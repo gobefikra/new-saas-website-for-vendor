@@ -19,7 +19,7 @@ export default function PricingTable({
   mobilePlan,
 }: PricingTableProps) {
   return (
-    <div className="rounded-2xl border border-gray-200 bg-white shadow-sm">
+    <div className="card-brand-static overflow-hidden">
       <PlanHeader billing={billing} mobilePlan={mobilePlan} />
 
       {PRICING_CATEGORIES.map((category) => (

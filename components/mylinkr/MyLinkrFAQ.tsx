@@ -52,12 +52,8 @@ export default function MyLinkrFAQ() {
           <Eyebrow icon={<CircleHelp className="h-3 w-3" strokeWidth={2.5} />}>
             FAQ
           </Eyebrow>
-          <h2
-            className="mt-5 text-3xl font-extrabold leading-tight md:text-4xl lg:text-[2.75rem]"
-            style={{ color: brand.navy }}
-          >
-            Common{" "}
-            <span style={{ color: brand.primary }}>Questions</span>
+          <h2 className="section-title mt-5">
+            Common <span className="text-brand-green">Questions</span>
             <br />
             About Integrations
           </h2>

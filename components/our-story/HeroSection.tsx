@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 type StoryCard = {
   title: string;
@@ -120,6 +120,7 @@ export default function StoryHeroSection() {
   const [active, setActive] = useState(3);
   const [paused, setPaused] = useState(false);
   const layout = useLayout();
+  const reduceMotion = useReducedMotion();
   const dragStartX = useRef<number | null>(null);
   const hovering = useRef(false);
   const resumeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -150,12 +151,12 @@ export default function StoryHeroSection() {
   }, []);
 
   useEffect(() => {
-    if (paused) return;
+    if (paused || reduceMotion) return;
     const id = window.setInterval(() => {
       setActive((i) => wrap(i + 1));
     }, 4500);
     return () => window.clearInterval(id);
-  }, [paused, wrap]);
+  }, [paused, wrap, reduceMotion]);
 
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
@@ -204,7 +205,7 @@ export default function StoryHeroSection() {
   const arcHeight = layout.height + layout.stepY * 3 + 80;
 
   return (
-    <section className="relative overflow-hidden bg-black px-4 pb-16 pt-28 md:pb-24 md:pt-36">
+    <section className="relative overflow-hidden bg-dark px-4 pb-16 pt-28 md:pb-24 md:pt-36">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-x-0 top-0 h-[70vh]"
@@ -219,7 +220,7 @@ export default function StoryHeroSection() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-400 md:text-sm"
+          className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-green md:text-sm"
         >
           Our Story
         </motion.p>

@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import type { BillingCycle } from "@/lib/pricing-data";
 
-const GREEN = "#10B981";
+const GREEN = "#2D6A4F";
 
 type BillingToggleProps = {
   billing: BillingCycle;
@@ -52,7 +52,7 @@ export default function BillingToggle({ billing, onChange }: BillingToggleProps)
         type="button"
         onClick={() => onChange("monthly")}
         className={`relative z-10 rounded-full px-5 py-2 text-sm font-medium transition-colors duration-300 sm:px-6 ${
-          billing === "monthly" ? "text-gray-900" : "text-gray-500 hover:text-gray-700"
+          billing === "monthly" ? "text-navy" : "text-subtext hover:text-gray-700"
         }`}
       >
         Monthly
@@ -62,13 +62,13 @@ export default function BillingToggle({ billing, onChange }: BillingToggleProps)
         type="button"
         onClick={() => onChange("annual")}
         className={`relative z-10 flex items-center gap-2 rounded-full px-5 py-2 text-sm font-medium transition-colors duration-300 sm:px-6 ${
-          billing === "annual" ? "text-gray-900" : "text-gray-500 hover:text-gray-700"
+          billing === "annual" ? "text-navy" : "text-subtext hover:text-gray-700"
         }`}
       >
         Yearly
         <span
           className="rounded-md px-1.5 py-0.5 text-[10px] font-bold"
-          style={{ backgroundColor: "#ECFDF5", color: GREEN }}
+          style={{ backgroundColor: "#E8F3EE", color: GREEN }}
         >
           -20%
         </span>

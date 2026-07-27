@@ -6,12 +6,14 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Play, Sparkles } from "lucide-react";
 import HeroHubDiagram from "@/components/HeroHubDiagram";
 import { fadeInUp, staggerContainer } from "@/components/motion";
+import ScriptAccent from "@/components/ui/ScriptAccent";
+import { brand } from "@/lib/brand-theme";
 
-const HERO_BG = "#F9FAFB";
-const GREEN = "#10B981";
-const GREEN_DARK = "#059669";
-const NAVY = "#0F172A";
-const BODY_GRAY = "#6B7280";
+const HERO_BG = brand.surfaceHover;
+const GREEN = brand.green;
+const GREEN_DARK = brand.greenDark;
+const NAVY = brand.navy;
+const BODY_GRAY = brand.muted;
 
 const ROTATING_LINES = [
   "Scale Effortlessly.",
@@ -25,7 +27,7 @@ const LONGEST_LINE = ROTATING_LINES.reduce((a, b) =>
   a.length >= b.length ? a : b,
 );
 
-const letterEase = [0.22, 1, 0.36, 1] as const;
+const letterEase = [0.16, 1, 0.3, 1] as const;
 
 const letterContainer = {
   hidden: {},
@@ -121,34 +123,32 @@ export default function HeroSection() {
           variants={staggerContainer}
           className="text-left"
         >
-          <motion.div
-            variants={fadeInUp}
-            className="inline-flex items-center gap-2 rounded-full border border-[#E5E7EB] bg-white px-3.5 py-1.5 shadow-sm"
-          >
-            <Sparkles className="h-3.5 w-3.5 shrink-0" style={{ color: GREEN }} />
-            <span
-              className="font-dm-sans text-xs font-medium sm:text-[13px]"
-              style={{ color: NAVY }}
-            >
+          <motion.div variants={fadeInUp} className="inline-flex items-center gap-2">
+            <Sparkles className="h-3.5 w-3.5 shrink-0 text-brand-green" />
+            <span className="section-eyebrow normal-case tracking-[0.14em]">
               Intelligent CRM for Travel Businesses
             </span>
           </motion.div>
 
           <motion.h1
             variants={fadeInUp}
-            className="mt-5 text-[2.25rem] font-extrabold leading-[1.1] tracking-tight sm:text-5xl lg:text-[3.5rem] xl:text-[4rem]"
+            className="mt-5 font-display text-[2.25rem] font-semibold leading-[1.1] tracking-[-0.02em] sm:text-5xl lg:text-[3.5rem] xl:text-[4rem]"
             style={{ color: NAVY }}
           >
-            Simplify Operations.
+            <span className="whitespace-nowrap">Simplify&nbsp;Operations.</span>
             <br />
             Strengthen Relationships.
             <br />
             <RotatingHeadlineLine />
           </motion.h1>
 
+          <motion.div variants={fadeInUp} className="mt-3">
+            <ScriptAccent size="lg">without worry</ScriptAccent>
+          </motion.div>
+
           <motion.p
             variants={fadeInUp}
-            className="font-dm-sans mt-5 max-w-[420px] text-base leading-relaxed"
+            className="mt-5 max-w-[420px] font-sans text-base leading-relaxed"
             style={{ color: BODY_GRAY }}
           >
             Befikra CRM helps travel businesses automate tasks, understand their
@@ -161,15 +161,13 @@ export default function HeroSection() {
           >
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
-              style={{ backgroundColor: GREEN_DARK }}
+              className="inline-flex items-center justify-center rounded-full bg-brand-green px-6 py-3 text-sm font-semibold text-white shadow-cta-glow transition-all duration-200 ease-brand hover:bg-brand-green-dark active:scale-95"
             >
               Get a demo →
             </Link>
             <Link
               href="/#smart-dashboard"
-              className="inline-flex items-center gap-2.5 rounded-full border bg-white px-5 py-3 text-sm font-semibold transition-colors hover:bg-gray-50"
-              style={{ borderColor: GREEN_DARK, color: NAVY }}
+              className="inline-flex items-center gap-2.5 rounded-full border border-brand-green-dark bg-white px-5 py-3 text-sm font-semibold text-navy transition-all duration-200 ease-brand hover:border-brand-green hover:bg-off-white active:scale-95"
             >
               Explore features
               <span

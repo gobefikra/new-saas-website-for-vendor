@@ -15,7 +15,7 @@ export default function PricingFAQ() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section ref={ref} className="border-t border-gray-100 bg-white px-4 py-16 md:px-8 md:py-20">
+    <section ref={ref} className="border-t border-border-default bg-white px-4 py-16 md:px-8 md:py-20">
       <div className="mx-auto max-w-3xl">
         <motion.div
           initial="hidden"
@@ -26,10 +26,7 @@ export default function PricingFAQ() {
           <Eyebrow icon={<CircleHelp className="h-3 w-3" strokeWidth={2.5} />}>
             FAQ
           </Eyebrow>
-          <h2
-            className="mt-5 text-2xl font-extrabold leading-tight tracking-tight md:text-3xl lg:text-4xl"
-            style={{ color: brand.navy }}
-          >
+          <h2 className="section-title mt-5">
             Everything you want to know
           </h2>
         </motion.div>
@@ -49,7 +46,7 @@ export default function PricingFAQ() {
           animate={inView ? "visible" : "hidden"}
           variants={fadeInUp}
           transition={{ delay: 0.15 }}
-          className="font-dm-sans mt-8 text-center text-sm"
+          className="font-sans mt-8 text-center text-sm"
           style={{ color: brand.subtext }}
         >
           Still have questions?{" "}

@@ -33,7 +33,7 @@ export default function CtaBand({
       ref={ref}
       className={`relative w-full overflow-hidden px-4 py-16 text-center md:px-8 md:py-20 ${className}`}
       style={{
-        background: `radial-gradient(ellipse 70% 80% at 50% 45%, ${brand.forest} 0%, ${brand.footerDark} 55%, ${brand.navy} 100%)`,
+        background: `radial-gradient(ellipse 70% 80% at 50% 45%, ${brand.forest} 0%, ${brand.ravenDark} 52%, ${brand.dark} 100%)`,
       }}
     >
       <motion.div
@@ -43,14 +43,14 @@ export default function CtaBand({
             ? { opacity: 1, y: 0, scale: 1 }
             : { opacity: 0, y: 24, scale: 0.96 }
         }
-        transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
         className="relative z-10 mx-auto max-w-3xl"
       >
-        <h2 className="text-3xl font-extrabold leading-tight tracking-tight text-white md:text-4xl lg:text-[2.75rem]">
+        <h2 className="font-display text-3xl font-semibold leading-tight tracking-[-0.02em] text-white md:text-4xl lg:text-[2.75rem]">
           {title}
         </h2>
         {subtitle ? (
-          <p className="font-dm-sans mx-auto mt-5 max-w-lg text-base leading-relaxed text-gray-300 md:text-lg">
+          <p className="mx-auto mt-5 max-w-lg font-sans text-base leading-relaxed text-gray-300 md:text-lg">
             {subtitle}
           </p>
         ) : null}

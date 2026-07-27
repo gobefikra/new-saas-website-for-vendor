@@ -11,12 +11,14 @@ import {
   TrendingUp,
 } from "lucide-react";
 import { fadeInUp, staggerContainer } from "@/components/motion";
+import SectionHeading from "@/components/ui/SectionHeading";
+import { brand } from "@/lib/brand-theme";
 
-const GREEN = "#10B981";
-const GREEN_DARK = "#059669";
-const NAVY = "#0F172A";
-const BODY = "#6B7280";
-const MINT = "#ECFDF5";
+const GREEN = brand.green;
+const GREEN_DARK = brand.greenDark;
+const NAVY = brand.navy;
+const BODY = brand.muted;
+const MINT = brand.greenLight;
 
 const steps = [
   {
@@ -62,7 +64,7 @@ function WavyConnector({ animate }: { animate: boolean }) {
         strokeLinecap="round"
         initial={{ pathLength: 0, opacity: 0 }}
         animate={animate ? { pathLength: 1, opacity: 0.55 } : { pathLength: 0, opacity: 0 }}
-        transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+        transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
       />
     </svg>
   );
@@ -84,7 +86,7 @@ function StepColumn({ step }: { step: (typeof steps)[number] }) {
       {/* Icon bubble */}
       <div className="relative z-10 flex h-14 w-14 items-center justify-center sm:h-[5.5rem] sm:w-[5.5rem] lg:h-24 lg:w-24">
         <div
-          className="flex h-10 w-10 items-center justify-center rounded-lg shadow-[0_8px_24px_rgba(16,185,129,0.25)] sm:h-14 sm:w-14 sm:rounded-xl lg:h-[3.75rem] lg:w-[3.75rem]"
+          className="flex h-10 w-10 items-center justify-center rounded-lg shadow-[0_8px_24px_rgba(45,106,79,0.25)] sm:h-14 sm:w-14 sm:rounded-xl lg:h-[3.75rem] lg:w-[3.75rem]"
           style={{ backgroundColor: GREEN }}
         >
           <Icon className="h-4 w-4 text-white sm:h-6 sm:w-6 lg:h-7 lg:w-7" strokeWidth={2} />
@@ -100,9 +102,9 @@ function StepColumn({ step }: { step: (typeof steps)[number] }) {
       </span>
 
       {/* Card */}
-      <article className="relative z-10 mt-2 flex w-full flex-1 flex-col rounded-xl border border-gray-100 bg-white p-3 shadow-[0_4px_24px_rgba(13,27,42,0.05)] sm:mt-3 sm:rounded-2xl sm:p-5 lg:p-6">
+      <article className="relative z-10 mt-2 flex w-full flex-1 flex-col rounded-2xl border border-border-default bg-white p-3 shadow-card transition-all duration-200 ease-brand hover:-translate-y-1.5 hover:border-brand-green hover:shadow-card-hover sm:mt-3 sm:p-5 lg:p-6">
         <h3
-          className="text-[11px] font-bold leading-snug sm:text-sm lg:text-base"
+          className="font-display text-[11px] font-semibold leading-snug sm:text-sm lg:text-base"
           style={{ color: NAVY }}
         >
           {title}
@@ -112,7 +114,7 @@ function StepColumn({ step }: { step: (typeof steps)[number] }) {
           style={{ backgroundColor: GREEN }}
         />
         <p
-          className="font-dm-sans mt-2 flex-1 text-[10px] leading-relaxed sm:mt-3 sm:text-sm"
+          className="font-sans mt-2 flex-1 text-[10px] leading-relaxed sm:mt-3 sm:text-sm"
           style={{ color: BODY }}
         >
           {desc}
@@ -148,7 +150,7 @@ export default function HowItWorksSection() {
         aria-hidden
         style={{
           background:
-            "radial-gradient(ellipse 50% 40% at 15% 45%, rgba(16, 185, 129,0.07), transparent 60%), radial-gradient(ellipse 50% 40% at 85% 45%, rgba(16, 185, 129,0.07), transparent 60%)",
+            "radial-gradient(ellipse 50% 40% at 15% 45%, rgba(45, 106, 79,0.07), transparent 60%), radial-gradient(ellipse 50% 40% at 85% 45%, rgba(45, 106, 79,0.07), transparent 60%)",
         }}
       />
 
@@ -160,30 +162,17 @@ export default function HowItWorksSection() {
           variants={fadeInUp}
           className="text-center"
         >
-          <span
-            className="inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-semibold uppercase tracking-wider"
-            style={{ borderColor: "#A7F3D0", backgroundColor: MINT, color: GREEN_DARK }}
-          >
-            <Sparkles className="h-3.5 w-3.5" strokeWidth={2.25} />
-            Our Process
-          </span>
-
-          <h2
-            className="mt-5 text-3xl font-extrabold leading-tight md:text-4xl lg:text-[2.75rem]"
-            style={{ color: NAVY }}
-          >
-            How{" "}
-            <span style={{ color: GREEN }}>Befikra Powers</span> Your Growth
-          </h2>
-
-          <p
-            className="font-dm-sans mx-auto mt-4 max-w-2xl text-base leading-relaxed md:text-lg"
-            style={{ color: BODY }}
-          >
-            Run your entire travel business in 4 simple steps. Capture leads,
-            convert bookings, and manage operations - all from one powerful
-            platform.
-          </p>
+          <SectionHeading
+            eyebrow="Our Process"
+            eyebrowIcon={<Sparkles className="h-3.5 w-3.5" strokeWidth={2.25} />}
+            title={
+              <>
+                How <span className="text-brand-green">Befikra</span> Powers
+              </>
+            }
+            script="your growth"
+            description="Run your entire travel business in 4 simple steps. Capture leads, convert bookings, and manage operations - all from one powerful platform."
+          />
         </motion.div>
 
         {/* Steps */}
@@ -212,7 +201,7 @@ export default function HowItWorksSection() {
         >
           <span
             className="inline-flex items-center gap-2 rounded-full border px-5 py-2 text-sm font-semibold"
-            style={{ borderColor: "#A7F3D0", backgroundColor: MINT, color: GREEN_DARK }}
+            style={{ borderColor: "#A7D7BC", backgroundColor: MINT, color: GREEN_DARK }}
           >
             <Sparkles className="h-4 w-4" strokeWidth={2.25} />
             One Platform. Endless Possibilities.

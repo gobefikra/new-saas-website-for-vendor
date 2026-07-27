@@ -41,7 +41,7 @@ export default function MyLinkrCTA() {
       ref={ref}
       className="relative w-full overflow-hidden px-4 py-16 md:px-8 md:py-20 lg:px-10"
       style={{
-        background: `radial-gradient(ellipse 70% 80% at 50% 0%, ${brand.forest} 0%, ${brand.footerDark} 55%, ${brand.navy} 100%)`,
+        background: `radial-gradient(ellipse 70% 80% at 50% 0%, ${brand.forest} 0%, ${brand.ravenDark} 52%, ${brand.dark} 100%)`,
       }}
     >
       <div className="relative mx-auto max-w-6xl">
@@ -57,8 +57,8 @@ export default function MyLinkrCTA() {
             <span
               className="inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-bold uppercase tracking-wider"
               style={{
-                borderColor: "rgba(16, 185, 129,0.35)",
-                backgroundColor: "rgba(16, 185, 129,0.12)",
+                borderColor: "rgba(45, 106, 79,0.35)",
+                backgroundColor: "rgba(45, 106, 79,0.12)",
                 color: brand.primary,
               }}
             >
@@ -66,12 +66,12 @@ export default function MyLinkrCTA() {
               Ready when you are
             </span>
 
-            <h2 className="mt-5 text-3xl font-extrabold leading-[1.12] tracking-tight text-white md:text-4xl lg:text-[2.75rem]">
+            <h2 className="mt-5 text-3xl font-display font-semibold tracking-[-0.02em] leading-[1.12] tracking-tight text-white md:text-4xl lg:text-[2.75rem]">
               Connect Your Customer{" "}
               <span style={{ color: brand.primary }}>Channels</span>
             </h2>
 
-            <p className="font-dm-sans mx-auto mt-4 max-w-lg text-base leading-relaxed text-gray-300 md:text-lg">
+            <p className="font-sans mx-auto mt-4 max-w-lg text-base leading-relaxed text-gray-300 md:text-lg">
               Capture leads, reply instantly, and manage bookings from WhatsApp,
               Instagram, and your website — all in one CRM.
             </p>
@@ -79,7 +79,7 @@ export default function MyLinkrCTA() {
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#10B981] to-[#059669] px-7 py-3 text-sm font-semibold text-white shadow-[0_4px_16px_rgba(16, 185, 129,0.35)] transition-opacity hover:opacity-90"
+                className="inline-flex items-center gap-2 rounded-full bg-brand-green shadow-cta-glow px-7 py-3 text-sm font-semibold text-white transition-all duration-200 ease-brand hover:bg-brand-green-dark active:scale-95"
               >
                 Book a demo
                 <ArrowRight className="h-4 w-4" strokeWidth={2.25} />
@@ -116,7 +116,7 @@ export default function MyLinkrCTA() {
               >
                 <div
                   className="flex h-10 w-10 items-center justify-center rounded-full"
-                  style={{ backgroundColor: "rgba(16, 185, 129,0.15)" }}
+                  style={{ backgroundColor: "rgba(45, 106, 79,0.15)" }}
                 >
                   <item.Icon
                     className="h-5 w-5"
@@ -125,7 +125,7 @@ export default function MyLinkrCTA() {
                   />
                 </div>
                 <p className="mt-3 text-sm font-bold text-white">{item.title}</p>
-                <p className="font-dm-sans mt-1 text-xs leading-relaxed text-gray-400">
+                <p className="font-sans mt-1 text-xs leading-relaxed text-gray-400">
                   {item.desc}
                 </p>
               </div>

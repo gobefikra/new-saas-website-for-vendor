@@ -38,7 +38,7 @@ const testimonials: Testimonial[] = [
     quote: "MyLinkr made sharing and booking incredibly simple.",
     body: "We share one MyLinkr page with customers, and they can view events, see details, and book instantly. It looks professional and saves a lot of manual effort.",
     date: "Feb 28, 2026",
-    accent: "#10B981",
+    accent: "#2D6A4F",
   },
   {
     name: "Sneha Kapoor",
@@ -46,7 +46,7 @@ const testimonials: Testimonial[] = [
     quote: "The WhatsApp and Instagram integration is a game changer.",
     body: "All messages automatically become leads in the CRM. We respond faster and manage everything from one dashboard without switching between apps.",
     date: "March 5, 2026",
-    accent: "#059669",
+    accent: "#1F4D38",
   },
   {
     name: "Neha Joshi",
@@ -62,7 +62,7 @@ const testimonials: Testimonial[] = [
     quote: "The analytics help us understand our business clearly.",
     body: "We can now see which events perform best, which channels bring leads, and where revenue comes from. It helps us make smarter decisions every week.",
     date: "Feb 20, 2026",
-    accent: "#10B981",
+    accent: "#2D6A4F",
   },
 ];
 
@@ -84,15 +84,15 @@ function initials(name: string) {
 function TestimonialCard({ t }: { t: Testimonial }) {
   return (
     <article className="group flex flex-col">
-      <div className="relative flex flex-col rounded-[1.5rem] border border-slate-200/80 bg-white p-6 transition-colors duration-300 group-hover:border-emerald-200">
-        <Quote className="h-7 w-7 text-slate-200" strokeWidth={2.5} />
+      <div className="card-brand relative flex flex-col p-6 group-hover:border-brand-green">
+        <Quote className="h-7 w-7 text-border-default" strokeWidth={2.5} />
 
-        <p className="mt-3 text-[15px] font-semibold leading-snug text-slate-900">
+        <p className="mt-3 text-[15px] font-semibold leading-snug text-navy">
           {t.quote}
         </p>
-        <p className="mt-2.5 text-sm leading-relaxed text-slate-500">{t.body}</p>
+        <p className="mt-2.5 text-sm leading-relaxed text-subtext">{t.body}</p>
 
-        <div className="mt-5 flex items-center gap-2 border-t border-slate-100 pt-4 text-[11px] text-slate-400">
+        <div className="mt-5 flex items-center gap-2 border-t border-border-default pt-4 text-[11px] text-subtext">
           <span
             className="flex items-center gap-1 rounded-full px-2 py-0.5 font-bold"
             style={{
@@ -106,7 +106,7 @@ function TestimonialCard({ t }: { t: Testimonial }) {
           <span className="ml-auto">{t.date}</span>
         </div>
 
-        <span className="absolute -bottom-[9px] left-9 h-4 w-4 rotate-45 border-b border-r border-slate-200/80 bg-white transition-colors duration-300 group-hover:border-emerald-200" />
+        <span className="absolute -bottom-[9px] left-9 h-4 w-4 rotate-45 border-b border-r border-border-default bg-white transition-colors duration-300 group-hover:border-brand-green" />
       </div>
 
       <div className="mt-5 flex items-center gap-3 pl-2">
@@ -119,10 +119,10 @@ function TestimonialCard({ t }: { t: Testimonial }) {
           {initials(t.name)}
         </div>
         <div className="min-w-0">
-          <p className="truncate text-sm font-semibold text-slate-900">
+          <p className="truncate text-sm font-semibold text-navy">
             {t.name}
           </p>
-          <p className="truncate text-xs text-slate-500">{t.role}</p>
+          <p className="truncate text-xs text-subtext">{t.role}</p>
         </div>
       </div>
     </article>
@@ -182,7 +182,7 @@ export default function Testimonials() {
       className="w-full overflow-hidden px-4 py-14 md:px-8 md:py-16"
       style={{
         background:
-          "radial-gradient(ellipse 65% 45% at 50% 0%, rgba(16, 185, 129,0.07), transparent 60%), #FFFFFF",
+          "radial-gradient(ellipse 65% 45% at 50% 0%, rgba(45, 106, 79,0.07), transparent 60%), #FFFFFF",
       }}
     >
       <div className="mx-auto max-w-6xl">
@@ -193,22 +193,22 @@ export default function Testimonials() {
           variants={fadeInUp}
         >
           <span
-            className="inline-flex items-center gap-2 rounded-full border bg-emerald-50 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-widest"
+            className="inline-flex items-center gap-2 rounded-full border bg-brand-green-light px-4 py-1.5 text-[11px] font-semibold uppercase tracking-widest"
             style={{
-              borderColor: "rgba(16, 185, 129,0.25)",
+              borderColor: "rgba(45, 106, 79,0.25)",
               color: brand.primaryDark,
             }}
           >
             <Star className="h-3.5 w-3.5 fill-current" />
             Customer stories
           </span>
-          <h2 className="mx-auto mt-5 max-w-3xl text-3xl font-extrabold leading-tight text-slate-900 sm:text-4xl md:text-[2.75rem]">
+          <h2 className="mx-auto mt-5 max-w-3xl text-3xl font-display font-semibold tracking-[-0.02em] leading-tight text-navy sm:text-4xl md:text-[2.75rem]">
             Trusted by travel teams{" "}
-            <span className="bg-gradient-to-r from-emerald-600 via-[#059669] to-emerald-600 bg-clip-text text-transparent">
+            <span className="text-brand-green">
               growing with Befikra
             </span>
           </h2>
-          <p className="mx-auto mt-4 max-w-xl text-base text-slate-500">
+          <p className="mx-auto mt-4 max-w-xl text-base text-subtext">
             Real operators share how MyLinkr, CRM, and automations help them
             book more trips with less chaos.
           </p>

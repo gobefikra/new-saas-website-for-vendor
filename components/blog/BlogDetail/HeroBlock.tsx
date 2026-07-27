@@ -22,10 +22,10 @@ export default function HeroBlock({ post }: { post: BlogPost }) {
           <div className="mb-4">
             <Eyebrow uppercase={false}>{post.category}</Eyebrow>
           </div>
-          <h1 className="mt-2 text-3xl font-extrabold leading-tight text-gray-900 md:text-4xl">
+          <h1 className="mt-2 text-3xl font-display font-semibold tracking-[-0.02em] leading-tight text-navy md:text-4xl">
             {post.title}
           </h1>
-          <p className="mt-4 text-base leading-relaxed text-gray-500">
+          <p className="mt-4 text-base leading-relaxed text-subtext">
             {post.excerpt}
           </p>
           <div className="mt-6">
@@ -34,8 +34,8 @@ export default function HeroBlock({ post }: { post: BlogPost }) {
               <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-0.5" />
             </Button>
           </div>
-          <div className="mt-8 flex flex-wrap items-center gap-4 border-t border-gray-100 pt-6">
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-sm font-bold text-emerald-700">
+          <div className="mt-8 flex flex-wrap items-center gap-4 border-t border-border-default pt-6">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-brand-green-light text-sm font-bold text-brand-green-dark">
               {post.author.name
                 .split(" ")
                 .map((n) => n[0])
@@ -43,7 +43,7 @@ export default function HeroBlock({ post }: { post: BlogPost }) {
                 .join("")}
             </div>
             <div>
-              <p className="text-sm font-semibold text-gray-900">
+              <p className="text-sm font-semibold text-navy">
                 {post.author.name}
               </p>
               <p className="text-xs text-gray-400">{post.author.role}</p>
@@ -73,7 +73,7 @@ export default function HeroBlock({ post }: { post: BlogPost }) {
                 onError={() => setImgError(true)}
               />
             ) : (
-              <div className="absolute inset-0 bg-gradient-to-br from-emerald-700 to-[#0A1510]" />
+              <div className="absolute inset-0 bg-gradient-to-br from-emerald-700 to-[#06140F]" />
             )}
             <div
               aria-hidden

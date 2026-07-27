@@ -14,13 +14,15 @@ import {
 } from "lucide-react";
 import { fadeInUp } from "@/components/motion";
 import { HOME_FAQS as faqs } from "@/lib/faq-data";
+import SectionHeading from "@/components/ui/SectionHeading";
+import { brand } from "@/lib/brand-theme";
 
-const GREEN = "#10B981";
-const GREEN_DARK = "#059669";
-const NAVY = "#0F172A";
-const BODY = "#6B7280";
-const MINT = "#ECFDF5";
-const SECTION_BG = "#F9FAFB";
+const GREEN = brand.green;
+const GREEN_DARK = brand.greenDark;
+const NAVY = brand.navy;
+const BODY = brand.muted;
+const MINT = brand.greenLight;
+const SECTION_BG = brand.surfaceHover;
 
 function FaqItem({
   faq,
@@ -33,8 +35,8 @@ function FaqItem({
 }) {
   return (
     <div
-      className={`rounded-2xl bg-white shadow-[0_4px_20px_rgba(13,27,42,0.05)] transition-shadow ${
-        isOpen ? "p-5 sm:p-6" : "px-5 py-4 sm:px-6 sm:py-4"
+      className={`border border-border-default bg-white shadow-card transition-all duration-200 ease-brand hover:border-brand-green hover:shadow-card-hover ${
+        isOpen ? "rounded-2xl p-5 sm:p-6" : "rounded-2xl px-5 py-4 sm:px-6 sm:py-4"
       }`}
     >
       <button
@@ -84,12 +86,12 @@ function FaqItem({
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="overflow-hidden"
           >
-            <div className="mt-4 rounded-xl bg-gray-50 px-4 py-3.5 sm:ml-14 sm:px-5 sm:py-4">
+            <div className="mt-4 rounded-xl bg-off-white px-4 py-3.5 sm:ml-14 sm:px-5 sm:py-4">
               <p
-                className="font-dm-sans text-sm leading-relaxed"
+                className="font-sans text-sm leading-relaxed"
                 style={{ color: BODY }}
               >
                 {faq.answer}
@@ -122,34 +124,13 @@ export default function FAQSection() {
           variants={fadeInUp}
           className="text-center"
         >
-          <span
-            className="inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-bold uppercase tracking-wide"
-            style={{ borderColor: "#A7F3D0", backgroundColor: MINT, color: GREEN_DARK }}
-          >
-            <span
-              className="flex h-5 w-5 items-center justify-center rounded-full text-white"
-              style={{ backgroundColor: GREEN }}
-            >
-              <CircleHelp className="h-3 w-3" strokeWidth={2.5} />
-            </span>
-            FAQ
-          </span>
-
-          <h2
-            className="mt-5 text-3xl font-extrabold leading-tight md:text-4xl lg:text-[2.75rem]"
-            style={{ color: NAVY }}
-          >
-            Common Questions.
-            <br />
-            <span style={{ color: GREEN }}>Clear Answers.</span>
-          </h2>
-
-          <p
-            className="font-dm-sans mx-auto mt-4 max-w-md text-base"
-            style={{ color: BODY }}
-          >
-            Everything you need to know about Befikra Partner.
-          </p>
+          <SectionHeading
+            eyebrow="FAQ"
+            eyebrowIcon={<CircleHelp className="h-3.5 w-3.5" strokeWidth={2.25} />}
+            title="Common Questions."
+            script="clear answers"
+            description="Everything you need to know about Befikra Partner."
+          />
         </motion.div>
 
         {/* Accordion */}
@@ -176,7 +157,7 @@ export default function FAQSection() {
           animate={inView ? "visible" : "hidden"}
           variants={fadeInUp}
           transition={{ delay: 0.2 }}
-          className="mt-8 flex flex-col items-start gap-4 rounded-2xl bg-white px-5 py-5 shadow-[0_4px_20px_rgba(13,27,42,0.05)] sm:flex-row sm:items-center sm:justify-between sm:px-6"
+          className="card-brand-static mt-8 flex flex-col items-start gap-4 px-5 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-6"
         >
           <div className="flex items-center gap-3.5">
             <span
@@ -190,10 +171,10 @@ export default function FAQSection() {
               />
             </span>
             <div>
-              <p className="text-sm font-bold sm:text-base" style={{ color: NAVY }}>
+              <p className="text-sm font-semibold sm:text-base" style={{ color: NAVY }}>
                 Still have questions?
               </p>
-              <p className="font-dm-sans text-sm" style={{ color: BODY }}>
+              <p className="font-sans text-sm" style={{ color: BODY }}>
                 We&apos;re here to help you succeed.
               </p>
             </div>
@@ -201,7 +182,7 @@ export default function FAQSection() {
 
           <Link
             href="/contact"
-            className="inline-flex w-full items-center justify-center gap-2 rounded-xl border px-5 py-2.5 text-sm font-semibold transition-colors hover:bg-gray-50 sm:w-auto"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-xl border px-5 py-2.5 text-sm font-semibold transition-colors hover:bg-off-white sm:w-auto"
             style={{ borderColor: GREEN, color: GREEN_DARK }}
           >
             Contact Support

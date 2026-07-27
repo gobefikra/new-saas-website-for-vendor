@@ -14,18 +14,20 @@ export default function StoryCTA() {
   return (
     <section
       ref={ref}
-      className="relative overflow-hidden border-t border-white/5"
+      className="relative overflow-hidden border-t border-white/5 bg-dark"
     >
       <div className="absolute inset-0">
         <Image
           src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1920&h=1080&auto=format&fit=crop"
           alt=""
           fill
-          className="object-cover object-center opacity-50"
+          priority={false}
+          className="object-cover object-[center_40%]"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/75 to-black/35" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/25" />
+        {/* Keep type readable on the left; let the photo breathe on the right */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/40 to-black/25 md:from-black/88 md:via-black/45 md:to-black/15" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-black/15 md:from-black/50 md:to-black/20" />
       </div>
 
       <motion.div
@@ -34,10 +36,10 @@ export default function StoryCTA() {
         variants={fadeInUp}
         className="relative z-10 mx-auto flex max-w-6xl flex-col items-start justify-center px-6 py-20 md:px-8 md:py-24"
       >
-        <p className="mb-5 text-[11px] font-medium uppercase tracking-[0.35em] text-emerald-400">
+        <p className="mb-5 text-[11px] font-medium uppercase tracking-[0.35em] text-brand-green">
           Ready when you are
         </p>
-        <h2 className="max-w-2xl text-3xl font-semibold leading-[1.15] tracking-[-0.03em] text-white md:text-5xl lg:text-[3.25rem]">
+        <h2 className="max-w-2xl font-display text-3xl font-semibold leading-[1.15] tracking-[-0.02em] text-white md:text-5xl lg:text-[3.25rem]">
           Join the Travel
           <br />
           Businesses Building

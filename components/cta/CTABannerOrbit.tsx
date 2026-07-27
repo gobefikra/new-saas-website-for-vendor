@@ -13,7 +13,7 @@ import {
   WhatsAppLogo,
 } from "@/components/integrations/BrandLogos";
 
-const GREEN = "#10B981";
+const GREEN = "#2D6A4F";
 
 type OrbitApp = {
   id: string;
@@ -25,7 +25,7 @@ type OrbitApp = {
 
 function HubCircle({ children }: { children: ReactNode }) {
   return (
-    <div className="relative flex h-[4.5rem] w-[4.5rem] items-center justify-center rounded-full border border-gray-100 bg-white shadow-[0_12px_40px_rgba(16, 185, 129,0.15)] sm:h-20 sm:w-20">
+    <div className="relative flex h-[4.5rem] w-[4.5rem] items-center justify-center rounded-full border border-border-default bg-white shadow-[0_12px_40px_rgba(45, 106, 79,0.15)] sm:h-20 sm:w-20">
       <div
         className="absolute inset-0 rounded-full opacity-40 blur-xl"
         style={{
@@ -34,7 +34,7 @@ function HubCircle({ children }: { children: ReactNode }) {
       />
       <div
         className="relative flex h-11 w-11 items-center justify-center rounded-full sm:h-12 sm:w-12"
-        style={{ backgroundColor: "#ECFDF5" }}
+        style={{ backgroundColor: "#E8F3EE" }}
       >
         {children}
       </div>
@@ -61,7 +61,7 @@ function AppBubble({ app, animate }: { app: OrbitApp; animate: boolean }) {
           delay: app.delay ?? 0,
         },
       }}
-      className={`absolute flex h-10 w-10 items-center justify-center rounded-full border border-gray-100 bg-white shadow-[0_4px_16px_rgba(13,27,42,0.08)] sm:h-11 sm:w-11 ${app.className}`}
+      className={`absolute flex h-10 w-10 items-center justify-center rounded-full border border-border-default bg-white shadow-[0_4px_16px_rgba(13,27,42,0.08)] sm:h-11 sm:w-11 ${app.className}`}
       title={app.label}
     >
       {app.node}

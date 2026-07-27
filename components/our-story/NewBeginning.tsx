@@ -104,7 +104,7 @@ function ContourBackdrop() {
             <path
               d="M-20 64 Q20 36 60 64 T140 64 T220 64"
               fill="none"
-              stroke="#A7F3D0"
+              stroke="#A7D7BC"
               strokeOpacity="0.18"
               strokeWidth="0.5"
             />
@@ -132,28 +132,28 @@ function HexMarker({
   alignToPath?: boolean;
 }) {
   const badge = (
-    <span className="whitespace-nowrap rounded-full border border-emerald-400/55 bg-black/50 px-3.5 py-1 text-[10px] font-medium uppercase tracking-[0.22em] text-emerald-300 shadow-[0_0_20px_rgba(16,185,129,0.15)] backdrop-blur-sm">
+    <span className="whitespace-nowrap rounded-full border border-brand-green/55 bg-black/50 px-3.5 py-1 text-[10px] font-medium uppercase tracking-[0.22em] text-brand-green shadow-[0_0_20px_rgba(45,106,79,0.15)] backdrop-blur-sm">
       {label}
     </span>
   );
 
   const hex = (
     <div className="relative">
-      <span className="absolute -inset-5 rounded-full bg-emerald-400/25 blur-2xl" />
+      <span className="absolute -inset-5 rounded-full bg-brand-green/25 blur-2xl" />
       <svg
         width="40"
         height="44"
         viewBox="0 0 44 48"
-        className="relative drop-shadow-[0_0_16px_rgba(16,185,129,0.55)]"
+        className="relative drop-shadow-[0_0_16px_rgba(45,106,79,0.55)]"
         aria-hidden
       >
         <path
           d="M22 2.5 L39.5 12.5 L39.5 35.5 L22 45.5 L4.5 35.5 L4.5 12.5 Z"
           fill="#07140f"
-          stroke="#34D399"
+          stroke="#2D6A4F"
           strokeWidth="1.75"
         />
-        <circle cx="22" cy="24" r="4.5" fill="#10B981" />
+        <circle cx="22" cy="24" r="4.5" fill="#2D6A4F" />
       </svg>
     </div>
   );
@@ -202,7 +202,7 @@ function MilestoneCard({
       <motion.div
         initial={{ opacity: 0, scale: 0.6 }}
         animate={inView ? { opacity: 1, scale: 1 } : undefined}
-        transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
         className="pointer-events-none absolute left-1/2 top-1/2 z-20 hidden -translate-x-1/2 -translate-y-1/2 lg:block"
       >
         <motion.div
@@ -245,7 +245,7 @@ function MilestoneCard({
           }
           transition={{
             duration: 0.9,
-            ease: [0.22, 1, 0.36, 1],
+            ease: [0.16, 1, 0.3, 1],
             delay: 0.08,
           }}
           className={fromLeft ? "lg:pr-6" : "lg:pl-6"}
@@ -266,23 +266,23 @@ function MilestoneCard({
             }}
             className={`w-full max-w-[26rem] ${fromLeft ? "lg:ml-auto" : ""}`}
           >
-            <div className="relative overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-[#0B1410]/90 p-7 shadow-[0_28px_70px_-36px_rgba(0,0,0,0.95)] backdrop-blur-md md:p-8">
+            <div className="relative overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0A1510]/90 p-7 shadow-[0_28px_70px_-36px_rgba(0,0,0,0.95)] backdrop-blur-md md:p-8">
               {/* Soft emerald wash */}
               <div
                 aria-hidden
-                className="pointer-events-none absolute -right-16 -top-20 h-44 w-44 rounded-full bg-emerald-400/10 blur-3xl"
+                className="pointer-events-none absolute -right-16 -top-20 h-44 w-44 rounded-full bg-brand-green/10 blur-3xl"
               />
               <div
                 aria-hidden
-                className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-400/35 to-transparent"
+                className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-green/35 to-transparent"
               />
 
               {/* Header: phase + step */}
               <div className="relative flex items-center justify-between gap-4">
-                <span className="text-[11px] font-medium uppercase tracking-[0.28em] text-gray-500">
+                <span className="text-[11px] font-medium uppercase tracking-[0.28em] text-subtext">
                   {mile.phase}
                 </span>
-                <span className="font-mono text-sm font-semibold tracking-[0.12em] text-emerald-400">
+                <span className="font-mono text-sm font-semibold tracking-[0.12em] text-brand-green">
                   {mile.id}
                 </span>
               </div>
@@ -296,7 +296,7 @@ function MilestoneCard({
                 {mile.title}
               </h3>
 
-              <p className="font-dm-sans relative mt-4 text-[15px] leading-relaxed text-gray-400">
+              <p className="font-sans relative mt-4 text-[15px] leading-relaxed text-gray-400">
                 {mile.body}
               </p>
             </div>
@@ -329,7 +329,7 @@ function JourneyTrail() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.8 }}
           transition={{ duration: 0.55 }}
-          className="text-[11px] font-medium uppercase tracking-[0.35em] text-emerald-400"
+          className="text-[11px] font-medium uppercase tracking-[0.35em] text-brand-green"
         >
           The trail so far
         </motion.p>
@@ -338,17 +338,17 @@ function JourneyTrail() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.7 }}
           transition={{ duration: 0.6, delay: 0.08 }}
-          className="mt-4 text-3xl font-semibold tracking-[-0.03em] text-white md:text-5xl"
+          className="mt-4 font-display text-3xl font-semibold tracking-[-0.02em] text-white md:text-5xl"
         >
           Our journey,{" "}
-          <span className="text-emerald-400">one camp at a time</span>
+          <span className="text-brand-green">one camp at a time</span>
         </motion.h3>
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.7 }}
           transition={{ duration: 0.55, delay: 0.14 }}
-          className="font-dm-sans mx-auto mt-5 max-w-xl text-[15px] leading-relaxed text-gray-400"
+          className="font-sans mx-auto mt-5 max-w-xl text-[15px] leading-relaxed text-gray-400"
         >
           Scroll the path. Each milestone is a chapter in how Befikra grew from
           a single frustration into a platform built for the way adventure
@@ -378,7 +378,7 @@ function JourneyTrail() {
             <motion.path
               d={TRAIL_PATH}
               fill="none"
-              stroke="#10B981"
+              stroke="#2D6A4F"
               strokeWidth="3.5"
               strokeLinecap="round"
               style={{ pathLength: pathLength as MotionValue<number> }}
@@ -399,7 +399,7 @@ export default function NewBeginning() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section ref={ref} className="relative overflow-hidden bg-black">
+    <section ref={ref} className="relative overflow-hidden bg-dark">
       <div className="px-6 pb-12 pt-24 md:px-8 md:pb-16 md:pt-32">
         <div className="mx-auto max-w-6xl">
           <motion.div
@@ -410,9 +410,9 @@ export default function NewBeginning() {
           >
             <h2
               aria-label="A New Beginning"
-              className="pointer-events-none absolute inset-x-0 top-0 z-20 whitespace-nowrap text-center text-[clamp(3rem,10vw,7.5rem)] font-extrabold leading-none tracking-[-0.055em] text-white"
+              className="pointer-events-none absolute inset-x-0 top-0 z-20 whitespace-nowrap text-center text-[clamp(3rem,10vw,7.5rem)] font-display font-semibold leading-none tracking-[-0.055em] text-white"
             >
-              A New <span className="text-emerald-400">Beginning</span>
+              A New <span className="text-brand-green">Beginning</span>
             </h2>
 
             <div className="relative z-10 overflow-hidden rounded-[2rem] border border-white/10">
@@ -437,12 +437,12 @@ export default function NewBeginning() {
               <div className="relative px-6 py-8 text-center md:px-8 md:py-10">
                 <span
                   aria-hidden
-                  className="pointer-events-none absolute inset-x-16 top-0 h-px bg-gradient-to-r from-transparent via-emerald-400/60 to-transparent"
+                  className="pointer-events-none absolute inset-x-16 top-0 h-px bg-gradient-to-r from-transparent via-brand-green/60 to-transparent"
                 />
                 <p className="relative inline-block text-left text-lg font-medium leading-snug tracking-tight text-white md:text-2xl md:leading-snug">
                   <span
                     aria-hidden
-                    className="pointer-events-none absolute -left-12 -top-8 select-none font-serif text-[7rem] leading-none text-emerald-400/20 md:-left-14 md:-top-10 md:text-[8.5rem]"
+                    className="pointer-events-none absolute -left-12 -top-8 select-none font-serif text-[7rem] leading-none text-brand-green/20 md:-left-14 md:-top-10 md:text-[8.5rem]"
                   >
                     &ldquo;
                   </span>
@@ -451,7 +451,7 @@ export default function NewBeginning() {
                   </span>
                   <span className="block">
                     We are not good at{" "}
-                    <span className="text-emerald-400">managing systems.</span>
+                    <span className="text-brand-green">managing systems.</span>
                   </span>
                 </p>
               </div>
@@ -468,7 +468,7 @@ export default function NewBeginning() {
               We spoke to multiple travel and adventure business owners who told
               us the same thing:
             </p>
-            <p className="font-dm-sans text-[15px] leading-relaxed text-gray-400 md:text-base">
+            <p className="font-sans text-[15px] leading-relaxed text-gray-400 md:text-base">
               It started with a simple observation: travel agencies were
               drowning in admin work while trying to deliver dream vacations. We
               saw passionate founders buried in spreadsheets, losing track of
@@ -488,18 +488,18 @@ export default function NewBeginning() {
               <motion.div
                 key={card.title}
                 variants={fadeInUp}
-                className="rounded-2xl border border-white/10 bg-[#0A1510]/80 p-6 transition-colors hover:border-emerald-400/30 hover:bg-[#0D1F14]"
+                className="rounded-2xl border border-white/10 bg-dark/80 p-6"
               >
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-400/10">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-green/10">
                   <card.icon
-                    className="h-5 w-5 text-emerald-400"
+                    className="h-5 w-5 text-brand-green"
                     strokeWidth={1.75}
                   />
                 </div>
                 <h3 className="mt-5 text-sm font-semibold text-white">
                   {card.title}
                 </h3>
-                <p className="font-dm-sans mt-2 text-[13px] leading-relaxed text-gray-500">
+                <p className="font-sans mt-2 text-[13px] leading-relaxed text-subtext">
                   {card.desc}
                 </p>
               </motion.div>

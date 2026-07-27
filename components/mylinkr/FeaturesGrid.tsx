@@ -28,13 +28,14 @@ import {
 import PhoneMockup, { MYLINKR_SCREENS } from "@/components/mylinkr/PhoneMockup";
 import { IllusQrCapture } from "@/components/raven-ai/FeatureIllustrations";
 import { brand } from "@/lib/brand-theme";
+import ScriptAccent from "@/components/ui/ScriptAccent";
 
 const GREEN = brand.primary;
 const LIME = brand.lime;
-const LIME_DARK = "#059669";
+const LIME_DARK = "#1F4D38";
 
 const cardBase =
-  "group relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-emerald-100 bg-white p-5 shadow-[0_18px_55px_-34px_rgba(15,23,42,0.28)] transition-all duration-300 hover:-translate-y-0.5 hover:border-emerald-300 hover:shadow-[0_24px_65px_-32px_rgba(16, 185, 129,0.28)] md:p-6";
+  "card-brand group relative flex h-full flex-col overflow-hidden p-5 md:p-6";
 
 function AccentWord({
   children,
@@ -98,7 +99,7 @@ function BentoCard({
       transition={{
         duration: 0.45,
         delay: reduceMotion ? 0 : 0.04 + index * 0.09,
-        ease: [0.22, 1, 0.36, 1],
+        ease: [0.16, 1, 0.3, 1],
       }}
     >
       {children}
@@ -123,10 +124,10 @@ function HubLinkBoard({ reduceMotion }: { reduceMotion: boolean | null }) {
             className="flex items-center gap-2.5 rounded-xl border px-3 py-2.5"
             style={{
               borderColor: link.hot
-                ? "rgba(16, 185, 129,0.4)"
+                ? "rgba(45, 106, 79,0.4)"
                 : "rgba(148,163,184,0.25)",
               background: link.hot
-                ? "linear-gradient(90deg, rgba(16, 185, 129,0.14), rgba(236,253,245,0.5))"
+                ? "linear-gradient(90deg, rgba(45, 106, 79,0.14), rgba(236,253,245,0.5))"
                 : "rgba(248,250,252,0.9)",
             }}
             initial={reduceMotion ? false : { opacity: 0, x: -12 }}
@@ -143,10 +144,10 @@ function HubLinkBoard({ reduceMotion }: { reduceMotion: boolean | null }) {
               <ExternalLink className="h-3.5 w-3.5" strokeWidth={2.2} />
             </span>
             <span className="min-w-0 flex-1">
-              <span className="block truncate text-[11px] font-semibold text-slate-900">
+              <span className="block truncate text-[11px] font-semibold text-navy">
                 {link.title}
               </span>
-              <span className="block text-[9px] text-gray-500">{link.meta}</span>
+              <span className="block text-[9px] text-subtext">{link.meta}</span>
             </span>
             <ArrowUpRight
               className="h-3.5 w-3.5 shrink-0"
@@ -162,17 +163,17 @@ function HubLinkBoard({ reduceMotion }: { reduceMotion: boolean | null }) {
           ].map((stat) => (
             <div
               key={stat.label}
-              className="flex-1 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2"
+              className="flex-1 rounded-xl border border-border-default bg-off-white px-3 py-2"
             >
               <p
-                className="bg-clip-text text-lg font-extrabold leading-none text-transparent"
+                className="bg-clip-text text-lg font-display font-semibold leading-none text-transparent"
                 style={{
                   backgroundImage: `linear-gradient(135deg, ${LIME}, ${GREEN})`,
                 }}
               >
                 {stat.value}
               </p>
-              <p className="mt-0.5 text-[9px] uppercase tracking-wide text-gray-500">
+              <p className="mt-0.5 text-[9px] uppercase tracking-wide text-subtext">
                 {stat.label}
               </p>
             </div>
@@ -185,7 +186,7 @@ function HubLinkBoard({ reduceMotion }: { reduceMotion: boolean | null }) {
         animate={reduceMotion ? undefined : { y: [0, -6, 0] }}
         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
       >
-        <div className="absolute -inset-3 rounded-[2rem] bg-emerald-300/25 blur-xl" />
+        <div className="absolute -inset-3 rounded-[2rem] bg-brand-green/25 blur-xl" />
         <PhoneMockup
           screenSrc={MYLINKR_SCREENS.hero}
           className="relative w-[108px] md:w-[118px]"
@@ -214,10 +215,10 @@ function LayoutBlocks({ reduceMotion }: { reduceMotion: boolean | null }) {
           className="flex items-center gap-2 rounded-xl border px-3 py-2 text-[11px]"
           style={{
             borderColor: block.active
-              ? "rgba(16,185,129,0.35)"
+              ? "rgba(45,106,79,0.35)"
               : "rgba(148,163,184,0.25)",
             background: block.active
-              ? "linear-gradient(90deg, rgba(16,185,129,0.13), rgba(236,253,245,0.7))"
+              ? "linear-gradient(90deg, rgba(45,106,79,0.13), rgba(236,253,245,0.7))"
               : "rgba(248,250,252,0.9)",
           }}
           animate={
@@ -227,13 +228,13 @@ function LayoutBlocks({ reduceMotion }: { reduceMotion: boolean | null }) {
         >
           <GripVertical
             className="h-3.5 w-3.5 shrink-0"
-            style={{ color: block.active ? "#059669" : "#94A3B8" }}
+            style={{ color: block.active ? "#1F4D38" : "#94A3B8" }}
           />
-          <span className={block.active ? "text-slate-900" : "text-slate-500"}>
+          <span className={block.active ? "text-navy" : "text-subtext"}>
             {block.label}
           </span>
           {block.active ? (
-            <MousePointerClick className="ml-auto h-3.5 w-3.5 text-emerald-400" />
+            <MousePointerClick className="ml-auto h-3.5 w-3.5 text-brand-green" />
           ) : (
             <span className="ml-auto h-1.5 w-8 rounded-full bg-slate-200" />
           )}
@@ -262,7 +263,7 @@ function SocialCluster({ reduceMotion }: { reduceMotion: boolean | null }) {
         {socials.map(({ Icon, color }, i) => (
           <motion.span
             key={i}
-            className="flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 bg-white shadow-sm"
+            className="flex h-8 w-8 items-center justify-center rounded-full border border-border-default bg-white shadow-card"
             style={{ color }}
             animate={reduceMotion ? undefined : { y: [0, -3, 0] }}
             transition={{
@@ -275,14 +276,14 @@ function SocialCluster({ reduceMotion }: { reduceMotion: boolean | null }) {
             <Icon className="h-3.5 w-3.5" />
           </motion.span>
         ))}
-        <span className="flex h-8 items-center rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 text-[10px] font-semibold text-emerald-400">
+        <span className="flex h-8 items-center rounded-full border border-brand-green/30 bg-brand-green/10 px-2.5 text-[10px] font-semibold text-brand-green">
           +6
         </span>
       </div>
-      <div className="mt-3 flex items-center gap-1.5 text-[10px] text-slate-500">
+      <div className="mt-3 flex items-center gap-1.5 text-[10px] text-subtext">
         <span className="relative flex h-1.5 w-1.5">
-          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-          <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
+          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-green opacity-75" />
+          <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-brand-green" />
         </span>
         11 profiles synced
       </div>
@@ -296,8 +297,8 @@ function BookingWidget() {
   const slots = ["9:00 AM", "9:30 AM", "3:00 PM"];
 
   return (
-    <div className="relative z-10 w-full rounded-2xl border border-emerald-100 bg-white/85 p-3.5 shadow-sm">
-      <div className="flex items-center justify-between text-[10px] text-slate-500">
+    <div className="relative z-10 w-full rounded-2xl border border-brand-green/25 bg-white/85 p-3.5 shadow-sm">
+      <div className="flex items-center justify-between text-[10px] text-subtext">
         <span className="font-semibold text-slate-700">March</span>
         <span>Book an event</span>
       </div>
@@ -325,16 +326,16 @@ function BookingWidget() {
             className="rounded-full border px-2.5 py-1 text-[10px]"
             style={{
               borderColor:
-                i === 1 ? "rgba(16, 185, 129,0.4)" : "rgba(148,163,184,0.25)",
+                i === 1 ? "rgba(45, 106, 79,0.4)" : "rgba(148,163,184,0.25)",
               backgroundColor:
-                i === 1 ? "rgba(16, 185, 129,0.1)" : "#F8FAFC",
-              color: i === 1 ? "#059669" : "#64748B",
+                i === 1 ? "rgba(45, 106, 79,0.1)" : "#F8FAFC",
+              color: i === 1 ? "#1F4D38" : "#64748B",
             }}
           >
             {slot}
           </span>
         ))}
-        <span className="ml-auto flex items-center gap-1 rounded-full bg-emerald-500 px-2.5 py-1 text-[10px] font-bold text-white">
+        <span className="ml-auto flex items-center gap-1 rounded-full bg-brand-green px-2.5 py-1 text-[10px] font-bold text-white">
           <Check className="h-3 w-3" strokeWidth={3} />
           Book
         </span>
@@ -378,10 +379,10 @@ function ContentReelFan({ reduceMotion }: { reduceMotion: boolean | null }) {
             className="rounded-full border px-2.5 py-1 text-[10px] font-medium"
             style={{
               borderColor:
-                i === 0 ? "rgba(16, 185, 129,0.4)" : "rgba(148,163,184,0.25)",
+                i === 0 ? "rgba(45, 106, 79,0.4)" : "rgba(148,163,184,0.25)",
               backgroundColor:
-                i === 0 ? "rgba(16, 185, 129,0.1)" : "#F8FAFC",
-              color: i === 0 ? "#059669" : "#64748B",
+                i === 0 ? "rgba(45, 106, 79,0.1)" : "#F8FAFC",
+              color: i === 0 ? "#1F4D38" : "#64748B",
             }}
           >
             {tab}
@@ -393,7 +394,7 @@ function ContentReelFan({ reduceMotion }: { reduceMotion: boolean | null }) {
         {reels.map((reel, i) => (
           <motion.div
             key={reel.handle}
-            className="absolute bottom-0 w-[96px] overflow-hidden rounded-2xl border border-white shadow-[0_18px_35px_-14px_rgba(15,23,42,0.35)]"
+            className="absolute bottom-0 w-[96px] overflow-hidden rounded-2xl border border-white shadow-[0_18px_35px_-14px_rgba(10,30,59,0.35)]"
             style={{
               zIndex: reel.z,
               left: `calc(50% + ${(i - 1) * 58}px)`,
@@ -459,7 +460,7 @@ export default function FeaturesGrid() {
       className="w-full overflow-hidden px-4 py-14 md:px-8 md:py-16"
       style={{
         background:
-          "radial-gradient(ellipse 70% 50% at 50% 0%, rgba(16, 185, 129,0.08), transparent 65%), #F8FAF9",
+          "radial-gradient(ellipse 70% 50% at 50% 0%, rgba(45, 106, 79,0.08), transparent 65%), #F8FAF9",
       }}
     >
       <div className="mx-auto max-w-[1200px]">
@@ -471,22 +472,19 @@ export default function FeaturesGrid() {
               ? { opacity: 1, y: 0 }
               : { opacity: 0, y: 20 }
           }
-          transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
         >
-          <span
-            className="inline-flex items-center gap-2 rounded-full border bg-emerald-50 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-widest"
-            style={{ borderColor: "rgba(16, 185, 129,0.25)", color: brand.primaryDark }}
-          >
+          <span className="section-eyebrow mb-4">
             <Sparkles className="h-3.5 w-3.5" />
             Next level features
           </span>
-          <h2 className="mx-auto mt-6 max-w-3xl text-3xl font-extrabold leading-tight text-slate-900 sm:text-4xl md:text-[2.75rem]">
-            Everything Connected in{" "}
-            <span className="bg-gradient-to-r from-emerald-600 via-[#059669] to-emerald-600 bg-clip-text text-transparent">
-              One Place
-            </span>
+          <h2 className="section-title mx-auto max-w-3xl">
+            Everything Connected in
           </h2>
-          <p className="mx-auto mt-4 max-w-xl text-base text-slate-500">
+          <div className="mt-2 flex justify-center">
+            <ScriptAccent size="lg">one place</ScriptAccent>
+          </div>
+          <p className="mx-auto mt-4 max-w-xl font-sans text-base text-subtext">
             Hub, layouts, socials, bookings, content, and QR — all built into one
             MyLinkr page.
           </p>
@@ -501,20 +499,20 @@ export default function FeaturesGrid() {
             className="min-h-[380px] sm:col-span-2 lg:col-span-5 lg:row-span-2 lg:min-h-[440px]"
             style={{
               background:
-                "linear-gradient(145deg, #ECFDF5 0%, #FFFFFF 48%, #ECFDF5 100%)",
+                "linear-gradient(145deg, #E8F3EE 0%, #FFFFFF 48%, #E8F3EE 100%)",
             }}
           >
             <div className="relative z-10 flex items-start justify-between gap-3">
               <IconBadge Icon={Link2} color={GREEN} />
-              <span className="flex items-center gap-1.5 rounded-full border border-emerald-100 bg-white px-2.5 py-1 text-[10px] font-medium text-slate-600 shadow-sm">
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+              <span className="flex items-center gap-1.5 rounded-full border border-brand-green/25 bg-white px-2.5 py-1 text-[10px] font-medium text-subtext shadow-sm">
+                <span className="h-1.5 w-1.5 rounded-full bg-brand-green" />
                 befikra.link/manchala
               </span>
             </div>
-            <h3 className="relative z-10 mt-4 text-xl font-bold leading-snug text-slate-900 md:text-2xl">
+            <h3 className="relative z-10 mt-4 text-xl font-bold leading-snug text-navy md:text-2xl">
               Build your central <AccentWord>MyLinkr hub</AccentWord>
             </h3>
-            <p className="relative z-10 mt-2 max-w-sm text-sm leading-relaxed text-slate-500">
+            <p className="relative z-10 mt-2 max-w-sm text-sm leading-relaxed text-subtext">
               One branded page for every trek, booking, and social link.
             </p>
             <HubLinkBoard reduceMotion={reduceMotion} />
@@ -533,11 +531,11 @@ export default function FeaturesGrid() {
           >
             <div className="relative z-10 flex items-start justify-between gap-3">
               <IconBadge Icon={GripVertical} color={LIME} />
-              <span className="text-[10px] font-bold uppercase tracking-[0.14em] text-emerald-600">
+              <span className="text-[10px] font-bold uppercase tracking-[0.14em] text-brand-green-dark">
                 Drag &amp; drop
               </span>
             </div>
-            <h3 className="relative z-10 mt-4 text-base font-bold leading-snug text-slate-900 md:text-lg">
+            <h3 className="relative z-10 mt-4 text-base font-bold leading-snug text-navy md:text-lg">
               Customize layouts{" "}
               <AccentWord color={LIME_DARK}>your way</AccentWord>
             </h3>
@@ -551,8 +549,8 @@ export default function FeaturesGrid() {
             reduceMotion={reduceMotion}
             className="min-h-[190px] lg:col-span-3"
           >
-            <IconBadge Icon={Share2} color="#10B981" />
-            <h3 className="relative z-10 mt-4 text-sm font-bold leading-snug text-slate-900 md:text-base">
+            <IconBadge Icon={Share2} color="#2D6A4F" />
+            <h3 className="relative z-10 mt-4 text-sm font-bold leading-snug text-navy md:text-base">
               Keep every profile{" "}
               <AccentWord color={LIME_DARK}>connected</AccentWord>
             </h3>
@@ -567,20 +565,20 @@ export default function FeaturesGrid() {
             className="min-h-[220px] sm:col-span-2 lg:col-span-7 lg:flex-row lg:items-center lg:gap-6"
             style={{
               background:
-                "linear-gradient(105deg, #ECFDF5 0%, #FFFFFF 68%)",
+                "linear-gradient(105deg, #E8F3EE 0%, #FFFFFF 68%)",
             }}
           >
             <div className="relative z-10 min-w-0 flex-1">
-              <IconBadge Icon={CalendarCheck} color="#34D399" />
-              <h3 className="mt-4 text-base font-bold leading-snug text-slate-900 md:text-lg">
+              <IconBadge Icon={CalendarCheck} color="#2D6A4F" />
+              <h3 className="mt-4 text-base font-bold leading-snug text-navy md:text-lg">
                 Add event booking to your{" "}
                 <AccentWord color={brand.primaryDark}>page</AccentWord>
               </h3>
-              <p className="mt-2 max-w-xs text-xs leading-relaxed text-slate-500 md:text-[13px]">
+              <p className="mt-2 max-w-xs text-xs leading-relaxed text-subtext md:text-[13px]">
                 Visitors pick a date and slot, then confirm — without ever
                 leaving your link.
               </p>
-              <div className="mt-3 flex items-center gap-1.5 text-[10px] text-emerald-700">
+              <div className="mt-3 flex items-center gap-1.5 text-[10px] text-brand-green-dark">
                 <Check className="h-3 w-3" strokeWidth={3} />
                 21 bookings confirmed this week
               </div>
@@ -599,15 +597,15 @@ export default function FeaturesGrid() {
           >
             <div className="relative z-10 flex items-start justify-between gap-3">
               <IconBadge Icon={ImageIcon} color="#6EE7B7" />
-              <span className="rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-[10px] font-medium text-slate-600">
+              <span className="rounded-full border border-border-default bg-off-white px-2.5 py-1 text-[10px] font-medium text-subtext">
                 Media embed
               </span>
             </div>
-            <h3 className="relative z-10 mt-4 text-base font-bold leading-snug text-slate-900 md:text-lg">
+            <h3 className="relative z-10 mt-4 text-base font-bold leading-snug text-navy md:text-lg">
               Bring your content to{" "}
               <AccentWord color={brand.primaryDark}>life</AccentWord>
             </h3>
-            <p className="relative z-10 mt-2 text-xs leading-relaxed text-slate-500">
+            <p className="relative z-10 mt-2 text-xs leading-relaxed text-subtext">
               Embed media that turns browsers into bookers.
             </p>
             <ContentReelFan reduceMotion={reduceMotion} />
@@ -621,20 +619,20 @@ export default function FeaturesGrid() {
             className="min-h-[240px] lg:col-span-6"
             style={{
               background:
-                "linear-gradient(145deg, #ECFDF5 0%, #FFFFFF 65%)",
+                "linear-gradient(145deg, #E8F3EE 0%, #FFFFFF 65%)",
             }}
           >
             <div className="relative z-10 flex items-start justify-between gap-3">
               <IconBadge Icon={QrCode} color={LIME} />
-              <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-emerald-700">
+              <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-brand-green-dark">
                 Smart QR
               </span>
             </div>
-            <h3 className="relative z-10 mt-4 text-base font-bold leading-snug text-slate-900 md:text-lg">
+            <h3 className="relative z-10 mt-4 text-base font-bold leading-snug text-navy md:text-lg">
               Share your QR code{" "}
               <AccentWord color={LIME_DARK}>anywhere</AccentWord>
             </h3>
-            <p className="relative z-10 mt-2 max-w-xs text-xs leading-relaxed text-slate-500">
+            <p className="relative z-10 mt-2 max-w-xs text-xs leading-relaxed text-subtext">
               Print it, post it, or stick it on gear — one scan, full funnel.
             </p>
 
@@ -646,14 +644,14 @@ export default function FeaturesGrid() {
                 ].map((row) => (
                   <div key={row.label}>
                     <p
-                      className="bg-clip-text text-2xl font-extrabold leading-none text-transparent"
+                      className="bg-clip-text text-2xl font-display font-semibold tracking-[-0.02em] leading-none text-transparent"
                       style={{
                         backgroundImage: `linear-gradient(135deg, ${LIME}, ${GREEN})`,
                       }}
                     >
                       {row.value}
                     </p>
-                    <p className="mt-0.5 text-[10px] text-gray-500">
+                    <p className="mt-0.5 text-[10px] text-subtext">
                       {row.label}
                     </p>
                   </div>
