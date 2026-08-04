@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, Sparkles, X } from "lucide-react";
@@ -64,22 +65,22 @@ function BrandLogo({
       className={`relative inline-flex shrink-0 items-center ${sizeClass}`}
       aria-hidden
     >
-      <img
+      <Image
         src="/icons/Nav-logo.png"
         alt=""
         width={138}
         height={40}
-        decoding="async"
+        priority
         draggable={false}
         className="h-full w-auto"
         style={{ display: isDark ? "none" : "block" }}
       />
-      <img
+      <Image
         src="/icons/Nav-logo-dark.png"
         alt=""
         width={138}
         height={40}
-        decoding="async"
+        priority
         draggable={false}
         className="h-full w-auto"
         style={{ display: isDark ? "block" : "none" }}
