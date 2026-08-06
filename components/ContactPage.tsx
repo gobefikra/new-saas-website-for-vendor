@@ -252,13 +252,23 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              <div>
-                <label className={labelClass}>Job Title</label>
-                <input
-                  type="text"
-                  placeholder="Marketing head, Sales Lead..."
-                  className={inputClass}
-                />
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className={labelClass}>Job Title</label>
+                  <input
+                    type="text"
+                    placeholder="Marketing head, Sales Lead..."
+                    className={inputClass}
+                  />
+                </div>
+                <div>
+                  <label className={labelClass}>Contact Number</label>
+                  <input
+                    type="tel"
+                    placeholder="+91 98765 43210"
+                    className={inputClass}
+                  />
+                </div>
               </div>
 
               <div>
