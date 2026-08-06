@@ -14,6 +14,12 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ["lucide-react", "react-icons"],
   },
+  // Next 16 enables Turbopack by default. Declaring an (empty) turbopack config is
+  // what tells Next the webpack block below is deliberate legacy, not an oversight —
+  // without it the build errors out rather than silently picking a bundler.
+  turbopack: {},
+  // Applies only under `next dev --webpack` / `next build --webpack`; Turbopack has
+  // its own cache and does not read this.
   // OneDrive/sync can corrupt filesystem webpack cache — use in-memory instead of disabling entirely
   webpack: (config, { dev }) => {
     if (dev) {
